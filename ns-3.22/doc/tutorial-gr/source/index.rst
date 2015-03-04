@@ -22,6 +22,8 @@
 
 * Οδηγός *(το παρόν έγγραφο)*, Εγχειρίδιο, και Βιβλιοθήκη Μοντέλων για την `τελευταία έκδοση <http://www.nsnam.org/documentation/latest/>`_ και `δέντρο ανάπτυξης <http://www.nsnam.org/ns-3-dev/documentation/>`_
 
+..
+	* `ns-3 wiki <http://www.nsnam.org/wiki/Main_Page>`_
 
 * `ns-3 wiki <http://www.nsnam.org/wiki/Main_Page>`_
 
