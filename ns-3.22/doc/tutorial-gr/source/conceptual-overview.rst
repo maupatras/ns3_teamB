@@ -631,9 +631,14 @@ O προσομοιωτής |ns3| υπάγεται στην Γενική Άδει
 (logging component) που ονομάζεται ``FirstScriptExample`` και σας επιτρέπει να ενεργοποιήσετε
 και να απενεργοποιήσετε την καταγραφή μηνυμάτων κονσόλας μέσω αναφοράς στο όνομα.
 
-Main Function
-+++++++++++++
-The next lines of the script you will find are,
+.. Main Function
+
+Η Μέθοδος Main
+++++++++++++++
+..
+	The next lines of the script you will find are,
+
+Οι επόμενες γραμμές του σεναρίου που θα συναντήσετε είναι,
 
 ::
 
@@ -641,98 +646,185 @@ The next lines of the script you will find are,
   main (int argc, char *argv[])
   {
 
-This is just the declaration of the main function of your program (script).
-Just as in any C++ program, you need to define a main function that will be 
-the first function run.  There is nothing at all special here.  Your 
-|ns3| script is just a C++ program.
+..
+	This is just the declaration of the main function of your program (script).
+	Just as in any C++ program, you need to define a main function that will be 
+	the first function run.  There is nothing at all special here.  Your 
+	|ns3| script is just a C++ program.
+	
+Αυτή είναι απλά η δήλωση της main μεθόδου του προγράμματός (σεναρίου) σας. Όπως
+και σε οποιοδήποτε C++ πρόγραμμα, θα χρειαστεί να ορίσετε μια main μέθοδο η οποία
+θα είναι η πρώτη μέθοδος που θα εκτελεστεί. Δεν υπάρχει τίποτε το ιδιαίτερο εδώ. Το
+|ns3| σενάριό σας είναι απλά ένα C++ πρόγραμμα.
 
-The next line sets the time resolution to one nanosecond, which happens
-to be the default value:
+..
+	The next line sets the time resolution to one nanosecond, which happens
+	to be the default value:
+	
+Η επόμενη γραμμή θέτει την ακρίβεια της ώρας σε ένα νανοδευτερόλεπτο (1 ns), το οποίο
+τυχαίνει να είναι και η προκαθορισμένη τιμή:
 
 ::
 
     Time::SetResolution (Time::NS);
 
-The resolution is the smallest time value that can be represented (as well as
-the smallest representable difference between two time values).
-You can change the resolution exactly once.  The mechanism enabling this
-flexibility is somewhat memory hungry, so once the resolution has been
-set explicitly we release the memory, preventing further updates.   (If
-you don't set the resolution explicitly, it will default to one nanosecond,
-and the memory will be released when the simulation starts.)
+..
+	The resolution is the smallest time value that can be represented (as well as
+	the smallest representable difference between two time values).
+	You can change the resolution exactly once.  The mechanism enabling this
+	flexibility is somewhat memory hungry, so once the resolution has been
+	set explicitly we release the memory, preventing further updates.   (If
+	you don't set the resolution explicitly, it will default to one nanosecond,
+	and the memory will be released when the simulation starts.)
+	
+Η ακρίβεια είναι η μικρότερη τιμή του χρόνου που μπορεί να αναπαρασταθεί (καθώς επίσης
+και η μικρότερη αναπαραστήσιμη διαφορά μεταξύ δύο τιμών χρόνου). 
+Μπορείτε να αλλάξετε την ακρίβει μόνο μία φορά. Ο μηχανισμός που επιτρέπει αυτή την
+ευελιξία απαιτεί κατά κάποιο τρόπο πολύ μνήμη, οπότε μόλις η ακρίβεια έχει 
+καθοριστεί ρητά απελευθερώνουμε τη μνήμη, εμποδίζοντας περαιτέρω ανανεώσεις. (Εάν
+δεν θέσετε ρητά την ακρίβεια, θα τεθεί εξ ορισμού στο ένα νανοδευτερόλεπτο,
+και η μνήμη θα απελευθερωθεί όταν ξεκινήσει η προσομοίωση.)
 
-The next two lines of the script are used to enable two logging components that
-are built into the Echo Client and Echo Server applications:
+..
+	The next two lines of the script are used to enable two logging components that
+	are built into the Echo Client and Echo Server applications:
+	
+Οι δύο επόμενες γραμμές του σεναρίου χρησιμοποιούνται για την ενεργοποίηση δύο συστατικών καταγραφής (logging component) που είναι ενσωματωμένα στις εφαρμογές του Echo Client και
+του Echo Server:
 
 ::
 
     LogComponentEnable("UdpEchoClientApplication", LOG_LEVEL_INFO);
     LogComponentEnable("UdpEchoServerApplication", LOG_LEVEL_INFO);
 
-If you have read over the Logging component documentation you will have seen
-that there are a number of levels of logging verbosity/detail that you can 
-enable on each component.  These two lines of code enable debug logging at the
-INFO level for echo clients and servers.  This will result in the application
-printing out messages as packets are sent and received during the simulation.
+..
+	If you have read over the Logging component documentation you will have seen
+	that there are a number of levels of logging verbosity/detail that you can 
+	enable on each component.  These two lines of code enable debug logging at the
+	INFO level for echo clients and servers.  This will result in the application
+	printing out messages as packets are sent and received during the simulation.
 
-Now we will get directly to the business of creating a topology and running 
-a simulation.  We use the topology helper objects to make this job as
-easy as possible.
+Αν έχετε διαβάσει την τεκμηρίωση για τα συστατικά του Logging θα έχετε δει ότι 
+υπάρχει ένας αριθμός από επίπεδα λεπτομέρειας καταγραφής που μπορείτε να
+ενεργοποιήσετε σε κάθε συστατικό. Αυτές οι δύο γραμμές κώδικα επιτρέπουν την καταγραφή
+αποσφαλμάτωσης στο επίπεδο INFO για τους πελάτες και εξυπηρετητές echo. Αυτό θα έχει σαν
+αποτέλεσμα το να εκτυπώνει η εφαρμογή μηνύματα καθώς στέλνονται και λαμβάνονται τα πακέτα
+κατά τη διάρκεια της προσομοίωσης.
 
-Topology Helpers
-++++++++++++++++
+..
+	Now we will get directly to the business of creating a topology and running 
+	a simulation.  We use the topology helper objects to make this job as
+	easy as possible.
+	
+Τώρα θα πάμε κατευθείαν στη διαδικασία δημιουργίας μιας τοπολογίας και την εκτέλεση
+μιας προσομοίωσης. Θα χρησιμοποιήσουμε τα αντικείμενα βοηθών τοπολογίας για να κάνουμε
+αυτή την εργασία όσο πιο εύκολη γίνεται.
+
+.. Topology Helpers
+
+Βοηθοί Τοπολογίας
++++++++++++++++++
 NodeContainer
 ~~~~~~~~~~~~~
-The next two lines of code in our script will actually create the 
-|ns3| ``Node`` objects that will represent the computers in the 
-simulation.  
+..
+	The next two lines of code in our script will actually create the 
+	|ns3| ``Node`` objects that will represent the computers in the 
+	simulation.  
+
+Οι επόμενες δύο γραμμές κώδικα στο σενάριό μας θα δημιουργήσουν στην ουσία
+τα αντικείμενα του |ns3| ``Node`` τα οποία θα αναπαριστούν τους υπολογιστές
+στην προσομοίωση.
 
 ::
 
     NodeContainer nodes;
     nodes.Create (2);
 
-Let's find the documentation for the ``NodeContainer`` class before we
-continue.  Another way to get into the documentation for a given class is via 
-the ``Classes`` tab in the Doxygen pages.  If you still have the Doxygen 
-handy, just scroll up to the top of the page and select the ``Classes`` 
-tab.  You should see a new set of tabs appear, one of which is 
-``Class List``.  Under that tab you will see a list of all of the 
-|ns3| classes.  Scroll down, looking for ``ns3::NodeContainer``.
-When you find the class, go ahead and select it to go to the documentation for
-the class.
+..
+	Let's find the documentation for the ``NodeContainer`` class before we
+	continue.  Another way to get into the documentation for a given class is via 
+	the ``Classes`` tab in the Doxygen pages.  If you still have the Doxygen 
+	handy, just scroll up to the top of the page and select the ``Classes`` 
+	tab.  You should see a new set of tabs appear, one of which is 
+	``Class List``.  Under that tab you will see a list of all of the 
+	|ns3| classes.  Scroll down, looking for ``ns3::NodeContainer``.
+	When you find the class, go ahead and select it to go to the documentation for
+	the class.
+	
+Ας βρούμε την τεκμηρίωση για την κλάση ``NodeContainer`` πριν συνεχίσουμε. 
+Ένας άλλος τρόπος για να φτάσουμε στην τεκμηρίωση για μια δεδομένη κλάση είναι μέσω
+της καρτέλας ``Classes`` στις σελίδες Doxygen. Εάν έχετε ακόμα πρόχειρο το Doxygen, 
+απλά ανεβείτε στο πάνω μέρος της σελίδας και επιλέξτε την καρτέλα ``Classes``.
+Θα πρέπει να δείτε να εμφανίζεται ένα νέο σύνολο από καρτέλες, μία από τις οποίες θα
+είναι και η ``Class List``. Κάτω από αυτήν την καρτέλα θα δείτε μία λίστα με όλες 
+τις κλάσεις του |ns3|. Κατεβείτε προς τα κάτω, ψάχνοντας για την ``ns3::NodeContainer``.
+Μόλις βρείτε την κλάση, προχωρήστε και επιλέξτε την ώστε να πάτε στην τεκμηρίωση της 
+κλάσης.
 
-You may recall that one of our key abstractions is the ``Node``.  This
-represents a computer to which we are going to add things like protocol stacks,
-applications and peripheral cards.  The ``NodeContainer`` topology helper
-provides a convenient way to create, manage and access any ``Node`` objects
-that we create in order to run a simulation.  The first line above just 
-declares a NodeContainer which we call ``nodes``.  The second line calls the
-``Create`` method on the ``nodes`` object and asks the container to 
-create two nodes.  As described in the Doxygen, the container calls down into
-the |ns3| system proper to create two ``Node`` objects and stores
-pointers to those objects internally.
+..
+	You may recall that one of our key abstractions is the ``Node``.  This
+	represents a computer to which we are going to add things like protocol stacks,
+	applications and peripheral cards.  The ``NodeContainer`` topology helper
+	provides a convenient way to create, manage and access any ``Node`` objects
+	that we create in order to run a simulation.  The first line above just 
+	declares a NodeContainer which we call ``nodes``.  The second line calls the
+	``Create`` method on the ``nodes`` object and asks the container to 
+	create two nodes.  As described in the Doxygen, the container calls down into
+	the |ns3| system proper to create two ``Node`` objects and stores
+	pointers to those objects internally.
 
-The nodes as they stand in the script do nothing.  The next step in 
-constructing a topology is to connect our nodes together into a network.
-The simplest form of network we support is a single point-to-point link 
-between two nodes.  We'll construct one of those links here.
+Μπορεί να θυμάστε ότι μία από τις αφαιρέσεις-κλειδιά μας είναι ο ``κόμβος``. Αυτός
+αντιπροσωπεύει έναν υπολογιστή στον οποίο εμείς πρόκειται να προσθέσουμε πράγματα όπως στοίβες
+πρωτοκόλλου, εφαρμογές και περιφερειακές κάρτες. Ο βοηθός τοπολογίας ``NodeContainer``
+παρέχει έναν βολικό τρόπο για τη δημιουργία, τη διαχείριση και την πρόσβαση σε οποιοδήποτε 
+``Node`` αντικείμενο που δημιουργούμε ώστε να εκτελέσουμε την προσομοίωση. Η πρώτη γραμμή παραπάνω
+απλά δηλώνει ένα NodeContainer, τον οποίο αποκαλούμε ``nodes``. Η δεύτερη γραμμή καλεί τη μέθοδο
+``Create`` πάνω στο αντικείμενο ``nodes`` και ζητάει από τον container να δημιουργήσει
+δύο κόμβους. Όπως περιγράφθηκε και στο Doxygen, ο container καλεί στο κατάλληλο σύστημα του |ns3| 
+για να δημιουργήσει δύο αντικείμενα ``Node`` και αποθηκεύει τους δείκτες προς αυτά τα αντικείμενα
+εσωτερικά.
+
+..
+	The nodes as they stand in the script do nothing.  The next step in 
+	constructing a topology is to connect our nodes together into a network.
+	The simplest form of network we support is a single point-to-point link 
+	between two nodes.  We'll construct one of those links here.
+
+Οι κόμβοι δεν κάνουν τίποτα έτσι όπως είναι στο σενάριο. Το επόμενο βήμα για την
+κατασκευή μιας τοπολογίας είναι να συνδέσουμε δύο κόμβους μεταξύ τους σε ένα δίκτυο.
+Η απλούστερη μορφή δικτύου που υποστηρίζουμε είναι ένας απλός σύνδεσμος σημείου-προς-σημείο
+ανάμεσα σε δύο κόμβους. Θα κατασκευάσουμε εδώ έναν από αυτούς τους συνδέσμους.
 
 PointToPointHelper
 ~~~~~~~~~~~~~~~~~~
-We are constructing a point to point link, and, in a pattern which will become
-quite familiar to you, we use a topology helper object to do the low-level
-work required to put the link together.  Recall that two of our key 
-abstractions are the ``NetDevice`` and the ``Channel``.  In the real
-world, these terms correspond roughly to peripheral cards and network cables.  
-Typically these two things are intimately tied together and one cannot expect
-to interchange, for example, Ethernet devices and wireless channels.  Our 
-Topology Helpers follow this intimate coupling and therefore you will use a
-single ``PointToPointHelper`` to configure and connect |ns3|
-``PointToPointNetDevice`` and ``PointToPointChannel`` objects in this 
-script.
+..
+	We are constructing a point to point link, and, in a pattern which will become
+	quite familiar to you, we use a topology helper object to do the low-level
+	work required to put the link together.  Recall that two of our key 
+	abstractions are the ``NetDevice`` and the ``Channel``.  In the real
+	world, these terms correspond roughly to peripheral cards and network cables.  
+	Typically these two things are intimately tied together and one cannot expect
+	to interchange, for example, Ethernet devices and wireless channels.  Our 
+	Topology Helpers follow this intimate coupling and therefore you will use a
+	single ``PointToPointHelper`` to configure and connect |ns3|
+	``PointToPointNetDevice`` and ``PointToPointChannel`` objects in this 
+	script.
 
-The next three lines in the script are,
+Κατασκευάζουμε ένα σύνδεσμο σημείου-προς-σημείο, και, με ένα πρότυπο που θα σας γίνει
+αρκετά οικείο, χρησιμοποιούμε ένα αντικείμενο βοηθού τοπολογίας ώστε να κάνουμε τη δουλειά
+χαμηλού επιπέπδου που απαιτείται για να στήσουμε το σύνδεσμο. Θυμηθείε ότι δύο από τις κύριες
+αφαιρέσεις μας είναι η ``NetDevice`` και το ``Channel``. Στον πραγματικό κόσμο,
+αυτοί οι όροι αντιστοιχούν περίπου στις περιφερειακές κάρτες και στα καλώδια δικτύο.
+Τυπικά αυτά τα δύο πράγματα είναι στενά συνδεδεμένα μεταξύ τους και δεν θα πρέπει να περιμένετε
+ότι συλλειτουργούν π.χ. συσκευές Ethernet και ασύρματα κανάλια. Οι βοηθοί τοπολογίας μας
+ακολουθούν αυτό το αυστηρό ταίριασμα και κατά συνέπεια θα χρησιμοποιήσετε έναν
+``PointToPointHelper`` για να ρυθμίσετε και να συνδέσετε τα αντικείμενα του |ns3| 
+``PointToPointNetDevice`` και ``PointToPointChannel`` σε αυτό το σενάριο.
+
+..
+	The next three lines in the script are,
+
+Οι επόμενες τρεις γραμμές στο σενάριο είναι,
 
 ::
 
@@ -740,31 +832,54 @@ The next three lines in the script are,
     pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
     pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
 
-The first line,
+..
+	The first line,
+
+Η πρώτη γραμμή,
 
 ::
 
     PointToPointHelper pointToPoint;
 
-instantiates a ``PointToPointHelper`` object on the stack.  From a 
-high-level perspective the next line,
+..
+	instantiates a ``PointToPointHelper`` object on the stack.  From a 
+	high-level perspective the next line,
+	
+δημιουργεί ένα αντικείμενο ``PointToPointHelper`` στη στοίβα. Από την οπτική
+υψηλού επιπέδου η επόμενη γραμμή,
 
 ::
 
     pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("5Mbps"));
 
-tells the ``PointToPointHelper`` object to use the value "5Mbps"
-(five megabits per second) as the "DataRate" when it creates a 
-``PointToPointNetDevice`` object.
+..
+	tells the ``PointToPointHelper`` object to use the value "5Mbps"
+	(five megabits per second) as the "DataRate" when it creates a 
+	``PointToPointNetDevice`` object.
+	
+λέει στο αντικείμενο ``PointToPointHelper`` να χρησιμοποιήσει την τιμή "5Mbps"
+(πέντε μεγα-μπιτ ανά δευτερόλεπτο) ως "DataRate" (ρυθμό δεδομένων) όταν δημιουργήσει ένα
+αντικείμενο ``PointToPointNetDevice``.
 
-From a more detailed perspective, the string "DataRate" corresponds
-to what we call an ``Attribute`` of the ``PointToPointNetDevice``.
-If you look at the Doxygen for class ``ns3::PointToPointNetDevice`` and 
-find the documentation for the ``GetTypeId`` method, you will find a list
-of  ``Attributes`` defined for the device.  Among these is the "DataRate"
-``Attribute``.  Most user-visible |ns3| objects have similar lists of 
-``Attributes``.  We use this mechanism to easily configure simulations without
-recompiling as you will see in a following section.
+..
+	From a more detailed perspective, the string "DataRate" corresponds
+	to what we call an ``Attribute`` of the ``PointToPointNetDevice``.
+	If you look at the Doxygen for class ``ns3::PointToPointNetDevice`` and 
+	find the documentation for the ``GetTypeId`` method, you will find a list
+	of  ``Attributes`` defined for the device.  Among these is the "DataRate"
+	``Attribute``.  Most user-visible |ns3| objects have similar lists of 
+	``Attributes``.  We use this mechanism to easily configure simulations without
+	recompiling as you will see in a following section.
+	
+Από μια πιο λεπτομερή οπτική, η ακολουθία χαρακτήρων "DataRate" αντιστοιχεί
+σε αυτό που αποκαλούμε ``Attribute`` (χαρακτηριστικό) της ``PointToPointNetDevice``.
+Εάν κοιτάξετε στο Doxygen την κλάση ``ns3::PointToPointNetDevice`` και βρείτε
+την τεκμηρίωση για τη μέθοδο ``GetTypeId``, θα δείτε μια λίστα από χαρακτηριστικά
+που ορίζονται για αυτή τη συσκευή. Ανάμεσα σε αυτά είναι και το "DataRate"
+``Attribute``. Τα περισσότερα αντικείμενα του |ns3| που είναι ορατά από τους χρήστες
+έχουν παρόμοιες λίστες από χαρακτηριστικά. Χρησιμοποιούμε αυτόν το μηχανισμό για να 
+ρυθμίσουμε εύκολα τις προσομοιώσεις χωρίς να επαναμεταγλωττίζουμε όπως θα δείτε 
+στο ακόλουθο τμήμα.
 
 Similar to the "DataRate" on the ``PointToPointNetDevice`` you will find a
 "Delay" ``Attribute`` associated with the ``PointToPointChannel``.  The 
