@@ -1,7 +1,9 @@
 .. only:: html or latex
 
-ns-3 Tutorial
-===========================
+.. ns-3 Tutorial
+
+Οδηγός του ns-3
+===============
 
 ..
 	This is the *ns-3 Tutorial*. Primary documentation for the ns-3 project is
@@ -20,13 +22,14 @@ ns-3 Tutorial
 
 * Οδηγός *(το παρόν έγγραφο)*, Εγχειρίδιο, και Βιβλιοθήκη Μοντέλων για την `τελευταία έκδοση <http://www.nsnam.org/documentation/latest/>`_ και `δέντρο ανάπτυξης <http://www.nsnam.org/ns-3-dev/documentation/>`_
 
+
 * `ns-3 wiki <http://www.nsnam.org/wiki/Main_Page>`_
 
 ..
 	This document is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ for `Sphinx <http://sphinx.pocoo.org/>`_ and is maintained in the
 	``doc/tutorial`` directory of ns-3's source code.
 	
-Αυτό το έγγραφο είναι γραμμένο σε `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ για `Sphinx <http://sphinx.pocoo.org/>`_ και διατηρείται στον φάκελο 
+Αυτό το έγγραφο είναι γραμμένο σε `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ για `Sphinx <http://sphinx.pocoo.org/>`_ και διατηρείται στον κατάλογο 
 ``doc/tutorial`` του πηγαίου κώδικα του ns-3.
 
 .. toctree::

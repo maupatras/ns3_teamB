@@ -11,7 +11,6 @@
 *************
 
 ..
-
 	There are several important resources of which any |ns3| user must be
 	aware.  The main web site is located at http://www.nsnam.org and 
 	provides access to basic information about the |ns3| system.  Detailed 
