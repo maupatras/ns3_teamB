@@ -1,13 +1,4 @@
 .. include:: replace.txt
-..
-========================================================================================
-Translated for Greeks by the students of a seminar ns-3 in University of Patras.
-	
-		
-* Giorgos Kaffezas (kaffezas@ceid.upatras.gr);
-* Costas Deltouzos (costas.deltouzos@gmail.com);
-* Vasileios Dimitropoulos (vasdimitrop@upatras.gr).
-========================================================================================
 
 ..
 	Introduction
