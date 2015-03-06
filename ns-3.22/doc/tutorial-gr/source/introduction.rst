@@ -1,12 +1,21 @@
 .. include:: replace.txt
 
 ..
+========================================================================================
+Translated for Greeks by the students of a seminar ns-3 in University of Patras.
+	
+		
+* Giorgos Kaffezas (kaffezas@ceid.upatras.gr);
+* Costas Deltouzos (costas.deltouzos@gmail.com);
+* Vasileios Dimitropoulos (vasdimitrop@upatras.gr).
+========================================================================================
+
+..
 	Introduction
 	------------
 
 Εισαγωγή 
 --------
-
 
 ..
 	The |ns3| simulator is a discrete-event network simulator targeted 
@@ -144,8 +153,8 @@
   για τους |ns-3| χρήστες.
 
 .. 
-For |ns2| Users
-***************
+	For |ns2| Users
+	***************
 
 Για τους |ns-2| χρήστες
 ***********************
