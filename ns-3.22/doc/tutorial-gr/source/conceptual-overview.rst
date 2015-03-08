@@ -881,125 +881,227 @@ PointToPointHelper
 ρυθμίσουμε εύκολα τις προσομοιώσεις χωρίς να επαναμεταγλωττίζουμε όπως θα δείτε 
 στο ακόλουθο τμήμα.
 
-Similar to the "DataRate" on the ``PointToPointNetDevice`` you will find a
-"Delay" ``Attribute`` associated with the ``PointToPointChannel``.  The 
-final line,
+..
+	Similar to the "DataRate" on the ``PointToPointNetDevice`` you will find a
+	"Delay" ``Attribute`` associated with the ``PointToPointChannel``.  The 
+	final line,
+	
+Αντίστοιχα με το "DataRate" στην ``PointToPointNetDevice`` θα βρείτε ένα
+"Delay" (καθυστέρηση) ``Attribute`` συσχετισμένο με το ``PointToPointChannel``. Η
+τελευταία γραμμή,
 
 ::
 
     pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
 
-tells the ``PointToPointHelper`` to use the value "2ms" (two milliseconds)
-as the value of the transmission delay of every point to point channel it 
-subsequently creates.
+..
+	tells the ``PointToPointHelper`` to use the value "2ms" (two milliseconds)
+	as the value of the transmission delay of every point to point channel it 
+	subsequently creates.
+	
+λέει στο ``PointToPointHelper`` να χρησιμοποιήσει την τιμή "2ms" (δύο χιλιοστά του
+δευτερολέπτου) ως την τιμή της καθυστέρησης μετάδοσης κάθε καναλιού σημείου-προς-σημείο που
+θα δημιουργήσει στη συνέχεια.
 
 NetDeviceContainer
 ~~~~~~~~~~~~~~~~~~
-At this point in the script, we have a ``NodeContainer`` that contains
-two nodes.  We have a ``PointToPointHelper`` that is primed and ready to 
-make ``PointToPointNetDevices`` and wire ``PointToPointChannel`` objects
-between them.  Just as we used the ``NodeContainer`` topology helper object
-to create the ``Nodes`` for our simulation, we will ask the 
-``PointToPointHelper`` to do the work involved in creating, configuring and
-installing our devices for us.  We will need to have a list of all of the 
-NetDevice objects that are created, so we use a NetDeviceContainer to hold 
-them just as we used a NodeContainer to hold the nodes we created.  The 
-following two lines of code,
+..
+	At this point in the script, we have a ``NodeContainer`` that contains
+	two nodes.  We have a ``PointToPointHelper`` that is primed and ready to 
+	make ``PointToPointNetDevices`` and wire ``PointToPointChannel`` objects
+	between them.  Just as we used the ``NodeContainer`` topology helper object
+	to create the ``Nodes`` for our simulation, we will ask the 
+	``PointToPointHelper`` to do the work involved in creating, configuring and
+	installing our devices for us.  We will need to have a list of all of the 
+	NetDevice objects that are created, so we use a NetDeviceContainer to hold 
+	them just as we used a NodeContainer to hold the nodes we created.  The 
+	following two lines of code,
+	
+Σε αυτό το σημείο του σεναρίου, έχουμε ένα ``NodeContainer`` που περιέχει
+δύο κόμβους. Έχουμε έναν ``PointToPointHelper`` που έχει καθοριστεί και είναι έτοιμο να
+φτιάξει ``PointToPointNetDevices`` και να τις ενώσει με αντικείμενα της ``PointToPointChannel``
+μεταξύ τους. Με τον ίδιο τρόπο που χρησιμοποιήσαμε το αντικείμενο βοηθού τοπολογίας
+``NodeContainer`` για να δημιουργήσουμε τους κόμβους της προσομοίωσής μας, θα ζητήσουμε από
+τον ``PointToPointHelper`` να κάνει τη δουλειά που περιλαμβάνει τη δημιουργία, τη ρύθμιση και
+την εγκατάσταση των συσκευών για εμάς. Θα χρειαστεί να έχουμε μια λίστα με όλα τα αντικείμενα
+τύπου NetDevice που θα δημιουργηθούν, οπότε χρησιμοποιούμε ένα NetDeviceContainer για να τα 
+αποθηκεύσουμε, όπως χρησιμοποιήσαμε και ένα NodeContainer για να κρατήσουμε τους κόμβους που 
+δημιουργήσαμε. Οι δύο ακόλουθες γραμμές κώδικα,
 
 ::
 
     NetDeviceContainer devices;
     devices = pointToPoint.Install (nodes);
 
-will finish configuring the devices and channel.  The first line declares the 
-device container mentioned above and the second does the heavy lifting.  The 
-``Install`` method of the ``PointToPointHelper`` takes a 
-``NodeContainer`` as a parameter.  Internally, a ``NetDeviceContainer`` 
-is created.  For each node in the ``NodeContainer`` (there must be exactly 
-two for a point-to-point link) a ``PointToPointNetDevice`` is created and 
-saved in the device container.  A ``PointToPointChannel`` is created and 
-the two ``PointToPointNetDevices`` are attached.  When objects are created
-by the ``PointToPointHelper``, the ``Attributes`` previously set in the 
-helper are used to initialize the corresponding ``Attributes`` in the 
-created objects.
+..
+	will finish configuring the devices and channel.  The first line declares the 
+	device container mentioned above and the second does the heavy lifting.  The 
+	``Install`` method of the ``PointToPointHelper`` takes a 
+	``NodeContainer`` as a parameter.  Internally, a ``NetDeviceContainer`` 
+	is created.  For each node in the ``NodeContainer`` (there must be exactly 
+	two for a point-to-point link) a ``PointToPointNetDevice`` is created and 
+	saved in the device container.  A ``PointToPointChannel`` is created and 
+	the two ``PointToPointNetDevices`` are attached.  When objects are created
+	by the ``PointToPointHelper``, the ``Attributes`` previously set in the 
+	helper are used to initialize the corresponding ``Attributes`` in the 
+	created objects.
+	
+θα τελειώσουν τη ρύθμιση των συσκευών και του καναλιού. Η πρώτη γραμμή δηλώνει
+τον container συσκευών που αναφέρθηκε παραπάνω και η δεύτερη κάνει τη βαριά δουλειά. Η
+μέθοδος ``Install`` του ``PointToPointHelper`` δέχεται έναν ``NodeContainer`` ως παράμετρο.
+Εσωτερικά, δημιουργείται ένας ``NetDeviceContainer``. Για κάθε κόμβο του ``NodeContainer``
+(πρέπει να είναι ακριβώς δύο για έναν σύνδεσμο σημείου-προς-σημείο) μια ``PointToPointNetDevice``
+δημιουργείται και σώζεται στον container συσκευών. Ένα ``PointToPointChannel`` δημιουργείται και
+οι δύο ``PointToPointNetDevices`` συνδέονται σε αυτό. Όταν δημιουργούνται αντικείμενα από τον
+``PointToPointHelper``, τα ``Attributes`` που έχυον τεθεί νωρίτερα στον βοηθό χρησιμοποιούνται
+για να αρχικοποιήσουν τα αντίστοιχα ``Attributes`` στα αντικείμενα που δημιουργήθηκαν.
 
-After executing the ``pointToPoint.Install (nodes)`` call we will have
-two nodes, each with an installed point-to-point net device and a single
-point-to-point channel between them.  Both devices will be configured to 
-transmit data at five megabits per second over the channel which has a two 
-millisecond transmission delay.
+..
+	After executing the ``pointToPoint.Install (nodes)`` call we will have
+	two nodes, each with an installed point-to-point net device and a single
+	point-to-point channel between them.  Both devices will be configured to 
+	transmit data at five megabits per second over the channel which has a two 
+	millisecond transmission delay.
+	
+Μετά την εκτέλεση της κλήσης ``pointToPoint.Install (nodes)``, θα έχουμε δύο
+κόμβους, σε κάθε έναν μια εγκατεστημένη δικτυακή συσκευή σημείου-προς-σημείο και
+ένα μονό κανάλι σημείου-προς-σημείο ανάμεσά τους. Και οι δύο συσκευές θα ρυθμιστούν
+ώστε να μεταδίδουν δεδομένα με ρυθμό 5 megabit ανά δευτερόλεπτο πάνω από το κανάλι, που 
+έχει καθυστέρηση μετάδοσης δύο χιλιοστά του δευτερολέπτου.
 
 InternetStackHelper
 ~~~~~~~~~~~~~~~~~~~
-We now have nodes and devices configured, but we don't have any protocol stacks
-installed on our nodes.  The next two lines of code will take care of that.
+..
+	We now have nodes and devices configured, but we don't have any protocol stacks
+	installed on our nodes.  The next two lines of code will take care of that.
+
+Τώρα έχουμε ρυθμισμένους κόμβους και συσκευές, αλλά δεν έχουμε καθόλου στοίβες πρωτοκόλλου
+εγκατεστημένες στους κόμβους. Οι επόμενες δύο γραμμές κώδικα θα το φροντίσουν αυτό.
 
 ::
 
     InternetStackHelper stack;
     stack.Install (nodes);
 
-The ``InternetStackHelper`` is a topology helper that is to internet stacks
-what the ``PointToPointHelper`` is to point-to-point net devices.  The
-``Install`` method takes a ``NodeContainer`` as a parameter.  When it is
-executed, it will install an Internet Stack (TCP, UDP, IP, etc.) on each of
-the nodes in the node container.
+..
+	The ``InternetStackHelper`` is a topology helper that is to internet stacks
+	what the ``PointToPointHelper`` is to point-to-point net devices.  The
+	``Install`` method takes a ``NodeContainer`` as a parameter.  When it is
+	executed, it will install an Internet Stack (TCP, UDP, IP, etc.) on each of
+	the nodes in the node container.
+	
+Ο ``InternetStackHelper`` είναι ένας βοηθός τοπολογίας που είναι για τις διαδικτυακες
+στοίβες ότι είναι ο ``PointToPointHelper`` για τις δικτυακές συσκευές σημείου-προς-σημείο. Η
+μέθοδος ``Install`` δέχεται ένα ``NodeContainer`` ως παράμετρο. Όταν εκτελείται,
+θα εγκαταστήσει μια Διαδικτυακή Στοίβα (TCP, UDP, IP, κτλ.) σε κάθε έναν από τους 
+κόμβους μέσα στον container κόμβων.
 
 Ipv4AddressHelper
 ~~~~~~~~~~~~~~~~~
-Next we need to associate the devices on our nodes with IP addresses.  We 
-provide a topology helper to manage the allocation of IP addresses.  The only
-user-visible API is to set the base IP address and network mask to use when
-performing the actual address allocation (which is done at a lower level 
-inside the helper).
+..
+	Next we need to associate the devices on our nodes with IP addresses.  We 
+	provide a topology helper to manage the allocation of IP addresses.  The only
+	user-visible API is to set the base IP address and network mask to use when
+	performing the actual address allocation (which is done at a lower level 
+	inside the helper).
+	
+Έπειτα χρειάζεται να συσχετίσουμε τις συσκευές στους κόμβους μας με διευθύνσεις IP. Εμείς
+παρέχουμε έναν βοηθό τοπολογίας που διαχειρίζεται την κατανομή των διευθύνσεων IP. Το μόνο
+API που είναι ορατό στους χρήστες είναι ο καθορισμός της βασικής διεύθυνσης IP (base IP address)
+και της μάσκας δικτύου (network mask) που θα χρησιμοποιηθούν όταν πραγματοποιηθεί η
+ουσιαστική κατανομή διευθύνσεων (η οποία γίνεται σε έναν κατώτερο επίπεδο μέσα στο βοηθό).
 
-The next two lines of code in our example script, ``first.cc``,
+..
+	The next two lines of code in our example script, ``first.cc``,
+	
+Οι επόμενες δύο γραμμές κώδικα στο σενάριο που έχουμε ως παράδειγμα, το ``first.cc``,
 
 ::
 
     Ipv4AddressHelper address;
     address.SetBase ("10.1.1.0", "255.255.255.0");
 
-declare an address helper object and tell it that it should begin allocating IP
-addresses from the network 10.1.1.0 using the mask 255.255.255.0 to define 
-the allocatable bits.  By default the addresses allocated will start at one
-and increase monotonically, so the first address allocated from this base will
-be 10.1.1.1, followed by 10.1.1.2, etc.  The low level |ns3| system
-actually remembers all of the IP addresses allocated and will generate a
-fatal error if you accidentally cause the same address to be generated twice 
-(which is a very hard to debug error, by the way).
+..
+	declare an address helper object and tell it that it should begin allocating IP
+	addresses from the network 10.1.1.0 using the mask 255.255.255.0 to define 
+	the allocatable bits.  By default the addresses allocated will start at one
+	and increase monotonically, so the first address allocated from this base will
+	be 10.1.1.1, followed by 10.1.1.2, etc.  The low level |ns3| system
+	actually remembers all of the IP addresses allocated and will generate a
+	fatal error if you accidentally cause the same address to be generated twice 
+	(which is a very hard to debug error, by the way).
+	
+δηλώνουν ένα αντικείμενο βοηθού διευθύνσεων και του λένε ότι πρέπει να ξεκινήσει την διανομή
+IP διευθύνσεων από το δίκτυο 10.1.1.0 χρησιμοποιώντας τη μάσκα 255.255.255.0 για να καθορίσουν
+τα bit που θα διανεμηθούν. Εξ ορισμού οι διευθύνσεις που δεσμεύονται θα αρχίσουν από το ένα 
+και θα αυξάνονται μονότονα, οπότε η πρώτη διεύθυνση που θα δοθεί ααπό τη βάση θα είναι η
+10.1.1.1, ακολουθούμενη από την 10.1.1.2, κτλ. Το σύστημα χαμηλού επιπέδου του |ns3| 
+θυμάται στην ουσία όλες τις διευθύνσεις IP που έχουν κατανεμηθεί και θα παράξει ένα
+fatal error (μοιραίο λάθος) εάν προκαλέσετε κατά λάθος τη δημιουργία της ίδιας διεύθυνσης
+δύο φορές (κάτι που αποτελεί σφάλμα πολύ δύσκολο προς αποσφαλμάτωση, παρεμπιπτόντως).
 
-The next line of code,
+..
+	The next line of code,
+	
+Η επόμενη γραμμή κώδικα,
 
 ::
 
     Ipv4InterfaceContainer interfaces = address.Assign (devices);
 
-performs the actual address assignment.  In |ns3| we make the
-association between an IP address and a device using an ``Ipv4Interface``
-object.  Just as we sometimes need a list of net devices created by a helper 
-for future reference we sometimes need a list of ``Ipv4Interface`` objects.
-The ``Ipv4InterfaceContainer`` provides this functionality.
+..
+	performs the actual address assignment.  In |ns3| we make the
+	association between an IP address and a device using an ``Ipv4Interface``
+	object.  Just as we sometimes need a list of net devices created by a helper 
+	for future reference we sometimes need a list of ``Ipv4Interface`` objects.
+	The ``Ipv4InterfaceContainer`` provides this functionality.
+	
+πραγματοποιεί την ουσιαστική ανάθεση διευθύνσεων. Στον |ns3| κάνουμε τη
+συσχέτιση μεταξύ μιας IP διεύθυνσης και μιας συσκευής χρησιμοποιώντας ένα αντικείμενο
+``Ipv4Interface``. Όπως κάποιες φορές χρειαζόμαστε μια λίστα δικτυακών συσκευών που έχουν
+δημιουργηθεί από έναν βοηθό για μελλοντική αναφορά, έτσι κάποιες φορές χρειαζόμαστε και μια
+λίστα από αντικείμενα ``Ipv4Interface``. Ο ``Ipv4InterfaceContainer`` παρέχει αυτή τη λειτουργία.
 
-Now we have a point-to-point network built, with stacks installed and IP 
-addresses assigned.  What we need at this point are applications to generate
-traffic.
+..
+	Now we have a point-to-point network built, with stacks installed and IP 
+	addresses assigned.  What we need at this point are applications to generate
+	traffic.
+	
+Τώρα έχουμε φτιάξει ένα δίκτυο σημείου-προς-σημείο, με εγκατεστημένες στοίβες και 
+διευθύνσεις IP ανατεθημένες. Αυτό που χρειαζόμαστε σε αυτό το σημείο είναι εφαρμογές οι οποίες
+θα δημιουργήσουν κίνηση.
 
-Applications
-++++++++++++
-Another one of the core abstractions of the ns-3 system is the 
-``Application``.  In this script we use two specializations of the core
-|ns3| class ``Application`` called ``UdpEchoServerApplication``
-and ``UdpEchoClientApplication``.  Just as we have in our previous 
-explanations,  we use helper objects to help configure and manage the 
-underlying objects.  Here, we use ``UdpEchoServerHelper`` and
-``UdpEchoClientHelper`` objects to make our lives easier.
+.. Applications
+
+Εφαρμογές
++++++++++
+..
+	Another one of the core abstractions of the ns-3 system is the 
+	``Application``.  In this script we use two specializations of the core
+	|ns3| class ``Application`` called ``UdpEchoServerApplication``
+	and ``UdpEchoClientApplication``.  Just as we have in our previous 
+	explanations,  we use helper objects to help configure and manage the 
+	underlying objects.  Here, we use ``UdpEchoServerHelper`` and
+	``UdpEchoClientHelper`` objects to make our lives easier.
+	
+Άλλη μια από τις κεντρικές αφαιρέσεις του συστήματος του ns-3 είναι η
+``Application``. Σε αυτό το σενάριο χρησιμοποιούμε δύο εξειδικεύσεις (specializations)
+της κεντρικής κλάσης του |ns3| ``Application`` που καλούνται ``UdpEchoServerApplication``
+και ``UdpEchoClientApplication``. Όπως έχουμε κάνει και στις προηγούμενες επεξηγήσεις μας,
+χρησιμοποιούμε βοηθούς αντικειμένων για να μας βοηθήσουν με τη ρύθμιση και τη διαχείριση των
+βασικών αντικειμένων. Εδώ, χρησιμοποιούμε αντικείμενα των ``UdpEchoServerHelper`` και
+``UdpEchoClientHelper`` ώστε να κάνουμε τη ζωή μας πιο εύκολη.
 
 UdpEchoServerHelper
 ~~~~~~~~~~~~~~~~~~~
-The following lines of code in our example script, ``first.cc``, are used
-to set up a UDP echo server application on one of the nodes we have previously
-created.
+..
+	The following lines of code in our example script, ``first.cc``, are used
+	to set up a UDP echo server application on one of the nodes we have previously
+	created.
+	
+Οι ακόλουθες γραμμές κώδικα στο σενάριο του παραδείγματός μας, ``first.cc``, χρησιμοποιούνται
+για να θέσουν μια εφαρμογή UDP echo εξυπηρετητή σε έναν από τους κόμβους που έχουμε δημιουργήσει
+προηγούμενως.
 
 ::
 
@@ -1009,64 +1111,121 @@ created.
     serverApps.Start (Seconds (1.0));
     serverApps.Stop (Seconds (10.0));
 
-The first line of code in the above snippet declares the 
-``UdpEchoServerHelper``.  As usual, this isn't the application itself, it
-is an object used to help us create the actual applications.  One of our 
-conventions is to place *required* ``Attributes`` in the helper constructor.
-In this case, the helper can't do anything useful unless it is provided with
-a port number that the client also knows about.  Rather than just picking one 
-and hoping it all works out, we require the port number as a parameter to the 
-constructor.  The constructor, in turn, simply does a ``SetAttribute``
-with the passed value.  If you want, you can set the "Port" ``Attribute``
-to another value later using ``SetAttribute``.
+..
+	The first line of code in the above snippet declares the 
+	``UdpEchoServerHelper``.  As usual, this isn't the application itself, it
+	is an object used to help us create the actual applications.  One of our 
+	conventions is to place *required* ``Attributes`` in the helper constructor.
+	In this case, the helper can't do anything useful unless it is provided with
+	a port number that the client also knows about.  Rather than just picking one 
+	and hoping it all works out, we require the port number as a parameter to the 
+	constructor.  The constructor, in turn, simply does a ``SetAttribute``
+	with the passed value.  If you want, you can set the "Port" ``Attribute``
+	to another value later using ``SetAttribute``.
+	
+Η πρώτη γραμμή κώδικα στο παραπάνω απόσπασμα δηλώνει τον ``UdpEchoServerHelper``. Ως
+συνήθως, αυτή δεν είναι η ίδια η εφαρμογή, αλλά έναν αντικείμενο που χρησιμοποιείται για
+να μας βοηθήσει να δημιουργήσουμε τις πραγματικές εφαρμογές. Μια από τις συμβάσεις
+μας είναι να τοποθετούμε τα *απαιτούμενα* ``Attributes`` στο δημιουργό (constructor) του
+βοηθού. Σε αυτή την περίπτωση, ο βοηθός δε μπορεί να κάνει τίποτα χρήσιμο εάν δεν του 
+δοθεί ένας αριθμός port που να γνωρίζει ήδη ο πελάτης. Αντί να επιλεχθεί απλά ένας αριθμός και
+να ελπίζουμε ότι όλα θα δουλέψουν, απαιτούμε να υπάρχει ένας αριθμός port ως παράμετρος για τον
+δημιουργό. Ο δημιουργός, με τη σειρά του, απλά κάνει μια ανάθεση τιμής ``SetAttribute`` 
+με τη δοθείσα τιμή. Εάν θέλετε, μπορείτε να θέσετε το ``Attribute`` "Port" σε μια
+άλλη τιμή αργότερα χρησιμοποιώντας τη ``SetAttribute``.
 
-Similar to many other helper objects, the ``UdpEchoServerHelper`` object 
-has an ``Install`` method.  It is the execution of this method that actually
-causes the underlying echo server application to be instantiated and attached
-to a node.  Interestingly, the ``Install`` method takes a
-``NodeContainter`` as a parameter just as the other ``Install`` methods
-we have seen.  This is actually what is passed to the method even though it 
-doesn't look so in this case.  There is a C++ *implicit conversion* at
-work here that takes the result of ``nodes.Get (1)`` (which returns a smart
-pointer to a node object --- ``Ptr<Node>``) and uses that in a constructor
-for an unnamed ``NodeContainer`` that is then passed to ``Install``.
-If you are ever at a loss to find a particular method signature in C++ code
-that compiles and runs just fine, look for these kinds of implicit conversions.  
+..
+	Similar to many other helper objects, the ``UdpEchoServerHelper`` object 
+	has an ``Install`` method.  It is the execution of this method that actually
+	causes the underlying echo server application to be instantiated and attached
+	to a node.  Interestingly, the ``Install`` method takes a
+	``NodeContainter`` as a parameter just as the other ``Install`` methods
+	we have seen.  This is actually what is passed to the method even though it 
+	doesn't look so in this case.  There is a C++ *implicit conversion* at
+	work here that takes the result of ``nodes.Get (1)`` (which returns a smart
+	pointer to a node object --- ``Ptr<Node>``) and uses that in a constructor
+	for an unnamed ``NodeContainer`` that is then passed to ``Install``.
+	If you are ever at a loss to find a particular method signature in C++ code
+	that compiles and runs just fine, look for these kinds of implicit conversions. 
+	
+Παρόμοια με πολλά άλλα αντικείμενα βοηθών, το αντικείμενο ``UdpEchoServerHelper`` έχει
+μια μέθοδο ``Install``. Είναι η εκτέλεση αυτής της μεθόδου που στην ουσία κάνει τη βασική εφαρμογή
+του echo εξυπηρετητή να δημιουργηθεί και να ενσωματωθεί σε έναν κόμβο. Κατά ενδιαφέροντα τρόπο,
+η μέθοδος ``Install`` δέχεται ένα ``NodeContainter`` ως παράμετρο όπως και οι άλλες μέθοδοι
+``Install`` που έχουμε δει. Είναι ουσιαστικά αυτό που μεταβιβάζεται στη μέθοδο παρόλο που δε
+φαίνεται έτσι σε αυτή την περίπτωση. Υπάρχει μια *υπόρρητη μετατροπή* (implicit conversion) της C++
+που λαμβάνει χώρα εδώ και η οποία παίρνει το αποτέλεσμα της ``nodes.Get (1)`` (που επιστρέφει
+έναν έξυπνο δείκτη σε ένα αντικείμενο κόμβου --- ``Ptr<Node>``) και το χρησιμοποιεί σε έναν
+δημιουργό για έναν ανώνυμο ``NodeContainer``, ο οποίος ύστερα μεταβιβάεται στην ``Install``.
+Εάν βρεθείτε ποτέ στο σημείο να ψάχνετε για μια συγκεκριμένη υπογραφή μεθόδου (method signature)
+σε κώδικα C++ που να μεταγλωττίζει και να τρέχει ομαλά, ανατρέξτε σε αυτών των ειδών τις
+υπόρρητες μετατροπές.
 
-We now see that ``echoServer.Install`` is going to install a
-``UdpEchoServerApplication`` on the node found at index number one of the
-``NodeContainer`` we used to manage our nodes.  ``Install`` will return
-a container that holds pointers to all of the applications (one in this case 
-since we passed a ``NodeContainer`` containing one node) created by the 
-helper.
+..
+	We now see that ``echoServer.Install`` is going to install a
+	``UdpEchoServerApplication`` on the node found at index number one of the
+	``NodeContainer`` we used to manage our nodes.  ``Install`` will return
+	a container that holds pointers to all of the applications (one in this case 
+	since we passed a ``NodeContainer`` containing one node) created by the 
+	helper.
+	
+Τώρα βλέπουμε ότι η ``echoServer.Install`` πρόκειται να εγκαταστήσει μία
+``UdpEchoServerApplication`` στον κόμβο που βρίσκεται στην πρώτη θέση καταχώρησης του
+``NodeContainer`` που χρησιμοποιήσαμε για να διαχειριστούμε τους κόμβους μας. Η ``Install`` θα
+επιστρέψει έναν container που θα κρατάει τους δείκτες για όλες τις εφαρμογές (μία σε αυτή
+την περίπτωση, καθώς δώσαμε ως όρισμα ένα ``NodeContainer`` που περιλαμβάνει έναν κόμβο)
+που έχουν δημιουργηθεί από τον βοηθό.
 
-Applications require a time to "start" generating traffic and may take an
-optional time to "stop".  We provide both.  These times are set using  the
-``ApplicationContainer`` methods ``Start`` and ``Stop``.  These 
-methods take ``Time`` parameters.  In this case, we use an *explicit*
-C++ conversion sequence to take the C++ double 1.0 and convert it to an 
-|ns3| ``Time`` object using a ``Seconds`` cast.  Be aware that
-the conversion rules may be controlled by the model author, and C++ has its
-own rules, so you can't always just assume that parameters will be happily 
-converted for you.  The two lines,
+..
+	Applications require a time to "start" generating traffic and may take an
+	optional time to "stop".  We provide both.  These times are set using  the
+	``ApplicationContainer`` methods ``Start`` and ``Stop``.  These 
+	methods take ``Time`` parameters.  In this case, we use an *explicit*
+	C++ conversion sequence to take the C++ double 1.0 and convert it to an 
+	|ns3| ``Time`` object using a ``Seconds`` cast.  Be aware that
+	the conversion rules may be controlled by the model author, and C++ has its
+	own rules, so you can't always just assume that parameters will be happily 
+	converted for you.  The two lines,
+	
+Οι εφαρμογές απαιτούν χρόνο για να "ξεκινήσουν" να δημιουργούν κίνηση και μπορεί
+να χρειαστούν κάποιον προαιρετικό χρόνο για να "σταματήσουν". Εμείς παρέχουμε και τα δύο. Αυτοί
+οι χρόνοι καθορίζονται με τη χρήση των μεθόδων ``Start`` και ``Stop`` του ``ApplicationContainer``.
+Αυτές οι μέθοδοι δέχονται παραμέτρους τύπου ``Time``. Σε αυτή την περίπτωση, χρησιμοποιούμε μια
+*ρητή* ακολουθία μετατροπών της C++ ώστε να πάρουμε τη μεταβλητή διπλής ακρίβειας (double)
+της C++ 1.0 και να τη μετατρέψουμε σε ένα αντικείμενο ``Time`` του |ns3| χρησιμοποιώντας μια
+ρητή μετατροπή σε ``Seconds``. Προσέξτε ότι οι κανόνες μετατροπής μπορούν να ελέγχονται από το
+συγγραφέα του μοντέλου, και η C++ έχει τους δικούς της κανόνες, οπότε δεν μπορείτε πάντα απλά 
+να υποθέτετε ότι οι παράμετροι θα μετατραπούν επιτυχώς για χάρη σας. Οι δύο γραμμές,
 
 ::
 
     serverApps.Start (Seconds (1.0));
     serverApps.Stop (Seconds (10.0));
 
-will cause the echo server application to ``Start`` (enable itself) at one
-second into the simulation and to ``Stop`` (disable itself) at ten seconds
-into the simulation.  By virtue of the fact that we have declared a simulation
-event (the application stop event) to be executed at ten seconds, the simulation
-will last *at least* ten seconds.
+..
+	will cause the echo server application to ``Start`` (enable itself) at one
+	second into the simulation and to ``Stop`` (disable itself) at ten seconds
+	into the simulation.  By virtue of the fact that we have declared a simulation
+	event (the application stop event) to be executed at ten seconds, the simulation
+	will last *at least* ten seconds.
+	
+θα κάνουν την εφαρμογή του echo εξυπηρετητή να ξεκινήσει (``Start``, να ενεργοποιήσει τον
+εαυτό της) στο πρώτο δευτερόλεπτο της προσομοίωσης και να σταματήσει (``Stop``, να
+απενεργοποιήσει τον εαυτό της) στο δέκατο δευτερόλεπτο της προσομοίωσης. Δεδομένου του γεγονότος
+ότι έχουμε δηλώσει ότι ένα γεγονός της προσομοίωσης (το γεγονός απενεργοποίησης της εφαρμογής)
+θα συμβεί στο δέκατο δευτερόλεπτο, η προσομοίωση θα διαρκέσει *τουλάχιστον* δέκα δευτερόλεπτα.
 
 UdpEchoClientHelper
 ~~~~~~~~~~~~~~~~~~~
 
-The echo client application is set up in a method substantially similar to
-that for the server.  There is an underlying ``UdpEchoClientApplication``
-that is managed by an ``UdpEchoClientHelper``.
+..
+	The echo client application is set up in a method substantially similar to
+	that for the server.  There is an underlying ``UdpEchoClientApplication``
+	that is managed by an ``UdpEchoClientHelper``.
+	
+Η εφαρμογή echo πελάτη (echo client) καθορίζεται με μία μέθοδο η οποία είναι κατ' ουσίαν
+παρόμοια με αυτή για τον εξυπηρετητή. Υπάρχει μια βασική ``UdpEchoClientApplication``
+που είναι διαχειρίσιμη από έναν ``UdpEchoClientHelper``.
 
 ::
 
@@ -1079,44 +1238,82 @@ that is managed by an ``UdpEchoClientHelper``.
     clientApps.Start (Seconds (2.0));
     clientApps.Stop (Seconds (10.0));
 
-For the echo client, however, we need to set five different ``Attributes``.
-The first two ``Attributes`` are set during construction of the 
-``UdpEchoClientHelper``.  We pass parameters that are used (internally to
-the helper) to set the "RemoteAddress" and "RemotePort" ``Attributes``
-in accordance with our convention to make required ``Attributes`` parameters
-in the helper constructors.  
+..
+	For the echo client, however, we need to set five different ``Attributes``.
+	The first two ``Attributes`` are set during construction of the 
+	``UdpEchoClientHelper``.  We pass parameters that are used (internally to
+	the helper) to set the "RemoteAddress" and "RemotePort" ``Attributes``
+	in accordance with our convention to make required ``Attributes`` parameters
+	in the helper constructors.  
+	
+Για τον echo πελάτη, χρειάζεται να θέσουμε πέντε διαφορετικά ``Attributes``.
+Τα πρώτα δύο ``Attributes`` τίθενται κατά τη διάρκεια της δημιουργίας του
+``UdpEchoClientHelper``. Περνάμε τις παραμέτρους που χρησιμοποιούνται (εσωτερικά
+στον βοηθό) για να θέσουμε τα ``Attributes`` "RemoteAddress" και "RemotePort"
+σύμφωνα με τη σύμβασή μας να φτιάχνουμε τις απαιτούμενες παραμέτρους ``Attributes``
+στους δημιουργούς του helper.
 
-Recall that we used an ``Ipv4InterfaceContainer`` to keep track of the IP 
-addresses we assigned to our devices.  The zeroth interface in the 
-``interfaces`` container is going to correspond to the IP address of the 
-zeroth node in the ``nodes`` container.  The first interface in the 
-``interfaces`` container corresponds to the IP address of the first node 
-in the ``nodes`` container.  So, in the first line of code (from above), we
-are creating the helper and telling it so set the remote address of the client
-to be  the IP address assigned to the node on which the server resides.  We 
-also tell it to arrange to send packets to port nine.
+..
+	Recall that we used an ``Ipv4InterfaceContainer`` to keep track of the IP 
+	addresses we assigned to our devices.  The zeroth interface in the 
+	``interfaces`` container is going to correspond to the IP address of the 
+	zeroth node in the ``nodes`` container.  The first interface in the 
+	``interfaces`` container corresponds to the IP address of the first node 
+	in the ``nodes`` container.  So, in the first line of code (from above), we
+	are creating the helper and telling it so set the remote address of the client
+	to be  the IP address assigned to the node on which the server resides.  We 
+	also tell it to arrange to send packets to port nine.
+	
+Θυμηθείτε ότι χρησιμοποιήσαμε έναν ``Ipv4InterfaceContainer`` για να καταγράψουμε τις
+διευθύνσεις IP που αναθέσαμε στις συσκευές μας. Η μηδενική διεπαφή στον container των
+``interfaces`` θα ανταποκρίνεται στην IP διεύθυνση του μηδενικού κόμβου στον container
+των ``nodes``. Η πρώτη διεπαφή στον container των ``interfaces`` αντιστοιχεί στην IP
+διεύθυνση του πρώτου κόμβου στον container των ``nodes``. Έτσι, στην πρώτη γραμμή του κώδικα
+(παραπάνω), δημιουργούμε τον βοηθώ και του λέμε να θέσει την απομακρυσμένη (remote) διεύθυνση
+του πελάτη έτσι ώστε να είναι η IP διεύθυνση που έχει ανατεθεί στον κόμβο στον οποίο βρίσκεται
+ο εξυπηρετητής. Του λέμε επίσης να κανονίσει να στέλνει τα πακέτα στο port εννιά.
 
-The "MaxPackets" ``Attribute`` tells the client the maximum number of 
-packets we allow it to send during the simulation.  The "Interval" 
-``Attribute`` tells the client how long to wait between packets, and the
-"PacketSize" ``Attribute`` tells the client how large its packet payloads
-should be.  With this particular combination of ``Attributes``, we are 
-telling the client to send one 1024-byte packet.
+..
+	The "MaxPackets" ``Attribute`` tells the client the maximum number of 
+	packets we allow it to send during the simulation.  The "Interval" 
+	``Attribute`` tells the client how long to wait between packets, and the
+	"PacketSize" ``Attribute`` tells the client how large its packet payloads
+	should be.  With this particular combination of ``Attributes``, we are 
+	telling the client to send one 1024-byte packet.
+	
+Το ``Attribute`` "MaxPackets" λέει στον πελάτη το μέγιστο νούμερο των πακέτων που του
+επιτρέπουμε να στείλει κατά τη διάρκεια της προσομοίωσης. Το ``Attribute`` "Interval"
+λέει στον πελάτη πόσο πρέπει να περιμένει μεταξύ των πακέτων, και το ``Attribute``
+"PacketSize" λέει στον πελάτη πόσο μεγάλο πρέπει να είναι το ωφέλιμο φορτίο σε κάθε 
+πακέτο του. Με αυτόν τον συγκεκριμένο συνδυασμό από ``Attributes``, λέμε στον
+πελάτη να στείλει ένα πακέτο μεγέθους 1024 byte.
 
-Just as in the case of the echo server, we tell the echo client to ``Start``
-and ``Stop``, but here we start the client one second after the server is
-enabled (at two seconds into the simulation).
+..
+	Just as in the case of the echo server, we tell the echo client to ``Start``
+	and ``Stop``, but here we start the client one second after the server is
+	enabled (at two seconds into the simulation).
+	
+Όπως και στην περίπτωση του echo εξυπηρετητή, λέμε στον echo πελάτη να ξεκινήσει (``Start``)
+και να σταματήσει (``Stop``) αλλά εδώ ενεργοποιούμε τον πελάτη ένα δευτερόλεπτο αφότου ο 
+εξυπηρετητής έχει ενεργοποιηθεί (στο δεύτερο δευτερόλεπτο της προσομοίωσης).
 
 Simulator
 +++++++++
-What we need to do at this point is to actually run the simulation.  This is 
-done using the global function ``Simulator::Run``.
+..
+	What we need to do at this point is to actually run the simulation.  This is 
+	done using the global function ``Simulator::Run``.
+	
+Αυτό που χρειαζόμαστε σε αυτό το σημείο είναι να εκτελέσουμε όντως την προσομοίωση. Αυτό
+γίνεται με τη χρήση της καθολικής συνάρτησης ``Simulator::Run``.
 
 ::
 
     Simulator::Run ();
 
-When we previously called the methods,
+..
+	When we previously called the methods,
+
+Όταν καλέσαμε πριν τις μεθόδους,
 
 ::
 
@@ -1126,37 +1323,74 @@ When we previously called the methods,
     clientApps.Start (Seconds (2.0));
     clientApps.Stop (Seconds (10.0));
 
-we actually scheduled events in the simulator at 1.0 seconds, 2.0 seconds and
-two events at 10.0 seconds.  When ``Simulator::Run`` is called, the system 
-will begin looking through the list of scheduled events and executing them.  
-First it will run the event at 1.0 seconds, which will enable the echo server 
-application (this event may, in turn, schedule many other events).  Then it 
-will run the event scheduled for t=2.0 seconds which will start the echo client
-application.  Again, this event may schedule many more events.  The start event
-implementation in the echo client application will begin the data transfer phase
-of the simulation by sending a packet to the server.
+..
+	we actually scheduled events in the simulator at 1.0 seconds, 2.0 seconds and
+	two events at 10.0 seconds.  When ``Simulator::Run`` is called, the system 
+	will begin looking through the list of scheduled events and executing them.  
+	First it will run the event at 1.0 seconds, which will enable the echo server 
+	application (this event may, in turn, schedule many other events).  Then it 
+	will run the event scheduled for t=2.0 seconds which will start the echo client
+	application.  Again, this event may schedule many more events.  The start event
+	implementation in the echo client application will begin the data transfer phase
+	of the simulation by sending a packet to the server.
+	
+προγραμματίσαμε όντως τα γεγονότα στον προσομοιωτή να γίνουν στο 1.0 δευτερόλεπτο, στα
+2.0 δευτερόλεπτα και δύο γεγονότα να γίνουν στα 10.0 δευτερόλεπτα. Όταν καλείται η 
+``Simulator::Run``, το σύστημα θα αρχίσει να κοιτάζει στη λίστα των προγραμματισμένων
+γεγονότων και να τα εκτελεί. Αρχικά θα εκτελέσει το γεγονός στο 1.0 δευτερόλεπτο, το οποίο θα
+ενεργοποιήσει την εφαρμογή του echo εξυπηρετητή (αυτό το γεγονός μπορείς, με τη σειρά του, να
+προγραμματίζει και άλλα γεγονότα). Έπειτα θα εκτελέσει το γεγονός που είναι προγραμματισμένο για
+t=2.0 δευτερόλεπτα, το οποίο θα ξεκινήσει την εφαρμογή του echo πελάτη. Ξανά, αυτό το γεγονός
+μπορεί να προγραμματίσει πολλά ακόμα γεγονότα. Η υλοποίηση εκκίνησης γεγονότων στην εφαρμογή του
+echo πελάτη θα ξεκινήσει τη φάση της μεταφοράς δεδομένων στην προσομοίωση στέλνοντας ένα πακέτο
+προς τον εξυπηρετητή.
 
-The act of sending the packet to the server will trigger a chain of events
-that will be automatically scheduled behind the scenes and which will perform 
-the mechanics of the packet echo according to the various timing parameters 
-that we have set in the script.
+..
+	The act of sending the packet to the server will trigger a chain of events
+	that will be automatically scheduled behind the scenes and which will perform 
+	the mechanics of the packet echo according to the various timing parameters 
+	that we have set in the script.
+	
+Η πράξη της αποστολής του πακέτου προς τον εξυπηρετητή θα πυροδοτήσει μια αλυσίδα από
+γεγονότα που θα προγραμματιστούν αυτόματα στο παρασκήνιο και τα οποία θα εκτελέσουν
+τη μηχανική του packet echo σύμφωνα με τις διάφορες χρονικές παραμέτρους που έχουμε
+θέσει εμείς στο σενάριο. 
 
-Eventually, since we only send one packet (recall the ``MaxPackets`` 
-``Attribute`` was set to one), the chain of events triggered by 
-that single client echo request will taper off and the simulation will go 
-idle.  Once this happens, the remaining events will be the ``Stop`` events
-for the server and the client.  When these events are executed, there are
-no further events to process and ``Simulator::Run`` returns.  The simulation
-is then complete.
+..
+	Eventually, since we only send one packet (recall the ``MaxPackets`` 
+	``Attribute`` was set to one), the chain of events triggered by 
+	that single client echo request will taper off and the simulation will go 
+	idle.  Once this happens, the remaining events will be the ``Stop`` events
+	for the server and the client.  When these events are executed, there are
+	no further events to process and ``Simulator::Run`` returns.  The simulation
+	is then complete.
+	
+Τελικά, από τη στιγμή που στέλνουμε μόνο ένα πακέτο (θυμηθείτε ότι το ``Attribute``
+``MaxPackets`` ορίστηκε ως ένα), η αλυσίδα των γεγονότων που θα πυροδοτηθούν από 
+αυτή και μόνο την αίτηση echo στον πελάτη (client echo request) θα εξαλειφθεί και η
+προσομοίωση θα καταστεί αδρανής. Μόλις γίνει αυτό, τα εναπομείναντα γεγονότα θα είναι
+τα γεγονότα ``Stop`` για τον εξυπηρετητή και τον πελάτη. Όταν αυτά τα γεγονότα εκτελεστούν,
+δεν υπάρχουν πλέον άλλα γεγονότα προς επεξεργασία και η ``Simulator::Run`` επιστρέφει τον έλεγχο.
+Η προσομοίωση τότε ολοκληρώνεται.
 
-All that remains is to clean up.  This is done by calling the global function 
-``Simulator::Destroy``.  As the helper functions (or low level 
-|ns3| code) executed, they arranged it so that hooks were inserted in
-the simulator to destroy all of the objects that were created.  You did not 
-have to keep track of any of these objects yourself --- all you had to do 
-was to call ``Simulator::Destroy`` and exit.  The |ns3| system
-took care of the hard part for you.  The remaining lines of our first 
-|ns3| script, ``first.cc``, do just that:
+..
+	All that remains is to clean up.  This is done by calling the global function 
+	``Simulator::Destroy``.  As the helper functions (or low level 
+	|ns3| code) executed, they arranged it so that hooks were inserted in
+	the simulator to destroy all of the objects that were created.  You did not 
+	have to keep track of any of these objects yourself --- all you had to do 
+	was to call ``Simulator::Destroy`` and exit.  The |ns3| system
+	took care of the hard part for you.  The remaining lines of our first 
+	|ns3| script, ``first.cc``, do just that:
+	
+Αυτό που απομένει είναι η εκκαθάριση. Αυτή γίνεται με κλήση της καθολικής συνάρτησης
+``Simulator::Destroy``. Καθώς εκτελούνταν οι συναρτήσεις του βοηθού (ή κώδικας χαμηλού
+επιπέδου του |ns3|), το κανόνισαν έτσι ώστε να εισαχθούν hooks στον προσομοιωτή
+που να καταστρέφουν όλα τα αντικείμενα που δημιουργήθηκαν. Δε χρειάστηκε εσείς οι ίδιοι να 
+καταγράψετε κανένα από αυτά τα αντικείμενα --- αυτό που είχατε να κάνετε ήταν να καλέσετε
+την ``Simulator::Destroy`` και να βγείτε. Το σύστημα του |ns3| θα αναλάβει το δύσκολο
+μέρος για εσάς. Οι υπόλοιπες γραμμές του πρώτου μας σεναρίου |ns3|, ``first.cc``, κάνουν
+ακριβώς αυτό:
 
 ::
 
@@ -1164,49 +1398,100 @@ took care of the hard part for you.  The remaining lines of our first
     return 0;
   }
 
-When the simulator will stop?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. When the simulator will stop?
 
-|ns3| is a Discrete Event (DE) simulator. In such a simulator, each event is
-associated with its execution time, and the simulation proceeds by executing
-events in the temporal order of simulation time.  Events may cause future
-events to be scheduled (for example, a timer may reschedule itself to
-expire at the next interval).
+Πότε θα σταματήσει ο προσομοιωτής;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The initial events are usually triggered by each object, e.g., IPv6 will 
-schedule Router Advertisements, Neighbor Solicitations, etc., 
-an Application schedule the first packet sending event, etc.
+..
+	|ns3| is a Discrete Event (DE) simulator. In such a simulator, each event is
+	associated with its execution time, and the simulation proceeds by executing
+	events in the temporal order of simulation time.  Events may cause future
+	events to be scheduled (for example, a timer may reschedule itself to
+	expire at the next interval).
+	
+Ο |ns3| είναι ένας προσομοιωτής Διακριτών Γεγονότων (Discrete Event ή DE). Σε έναν τέτοιο
+προσομοιωτή, κάθε γεγονός συσχετίζεται με τον χρόνο εκτέλεσής του, και η προσομοίωση
+συνεχίζει εκτελώντας γεγονότα κατά τη χρονική σειρά του χρόνου προσομοίωσης. Τα γεγονότα
+μπορούν να προκαλέσουν τον προγραμματισμό μελλοντικών γεγονότων (για παράδειγμα, ένα χρονόμετρο
+μπορεί να επαναπρογραμματίσει τον εαυτό του ώστε να εκλείψει στο επόμενο διάστημα).
 
-When an event is processed, it may generate zero, one or more events.
-As a simulation executes, events are consumed, but more events may (or may
-not) be generated.
-The simulation will stop automatically when no further events are in the 
-event queue, or when a special Stop event is found. The Stop event is 
-created through the 
-``Simulator::Stop (stopTime);`` function.
+..
+	The initial events are usually triggered by each object, e.g., IPv6 will 
+	schedule Router Advertisements, Neighbor Solicitations, etc., 
+	an Application schedule the first packet sending event, etc.
+	
+Τα αρχικά γεγονότα συνήθως πυροδοτούνται από κάθε αντικείμενο, π.χ. το IPv6 θα
+προγραμματίσει Ενημερώσεις Δρομολογητών (Router Advertisements), Παρακλήσεις σε
+Γείτονες (Neighbor Solicitations), κτλ., μια εφαρμογή θα προγραμματίσει το γεγονός
+αποστολής του πρώτου πακέτου, κτλ.
 
-There is a typical case where ``Simulator::Stop`` is absolutely necessary 
-to stop the simulation: when there is a self-sustaining event.
-Self-sustaining (or recurring) events are events that always reschedule 
-themselves. As a consequence, they always keep the event queue non-empty.
+..
+	When an event is processed, it may generate zero, one or more events.
+	As a simulation executes, events are consumed, but more events may (or may
+	not) be generated.
+	The simulation will stop automatically when no further events are in the 
+	event queue, or when a special Stop event is found. The Stop event is 
+	created through the 
+	``Simulator::Stop (stopTime);`` function.
 
-There are many protocols and modules containing recurring events, e.g.:
+Όταν ένα γεγονός βρίσκεται υπό επεξεργασία, μπορεί να παράξει μηδεν, ένα ή περισσότερα
+γεγονότα. Καθώς η προσομοίωση εκτελείται, γεγονότα καταναλώνονται, αλλά περισσότερα
+γεγονότα μπορεί (ή μπορεί και όχι) να δημιουργηθούν.
+Η προσομοίωση θα σταματήσει αυτόματα όταν δεν υπάρχουν άλλα γεγονότα στην ουρά των γεγονότων,
+ή όταν βρεθεί ένα ειδικό γεγονός παύσης (Stop). Το γεγονός παύσης δημιουργείτει μέσω
+της συνάρτησης ``Simulator::Stop (stopTime);``.
 
-* FlowMonitor - periodic check for lost packets
-* RIPng - periodic broadcast of routing tables update
-* etc.
+..
+	There is a typical case where ``Simulator::Stop`` is absolutely necessary 
+	to stop the simulation: when there is a self-sustaining event.
+	Self-sustaining (or recurring) events are events that always reschedule 
+	themselves. As a consequence, they always keep the event queue non-empty.
+	
+Υπάρχει μια χαρακτηριστική περίπτωση όπου η ``Simulator::Stop`` είναι απολύτως απαραίτητη
+για να σταματήσει η προσομοίωση: όταν υπάρχει ένα αυτο-συντηρούμενο γεγονός. Αυτο-συντηρούμενα
+(ή αναδρομικά) γεγονότα είναι γεγονότα που επαναπρογραμματίζουν συνέχεια τον εαυτό τους. Κατά 
+συνέπεια, θα διατηρούν για πάντα την ουρά γεγονότων γεμάτη.
 
-In these cases, ``Simulator::Stop`` is necessary to gracefully stop the 
-simulation.  In addition, when |ns3| is in emulation mode, the 
-``RealtimeSimulator`` is used to keep the simulation clock aligned with 
-the machine clock, and ``Simulator::Stop`` is necessary to stop the 
-process.  
+..
+	There are many protocols and modules containing recurring events, e.g.:
+	
+Υπάρχουν πολλά πρωτόκολλα και ενότητες που περιλαμβάνουν αναδρομικά γεγονότα, π.χ.: 
 
-Many of the simulation programs in the tutorial do not explicitly call
-``Simulator::Stop``, since the event queue will automatically run out
-of events.  However, these programs will also accept a call to 
-``Simulator::Stop``.  For example, the following additional statement
-in the first example program will schedule an explicit stop at 11 seconds: 
+..
+	* FlowMonitor - periodic check for lost packets
+	* RIPng - periodic broadcast of routing tables update
+	* etc.
+
+* FlowMonitor - περιοδικός έλεγχος για χαμένα πακέτα
+* RIPng - περιοδική εκπομπή για ανανέωση πινάκων δρομολόγησης
+* κτλ.
+
+..
+	In these cases, ``Simulator::Stop`` is necessary to gracefully stop the 
+	simulation.  In addition, when |ns3| is in emulation mode, the 
+	``RealtimeSimulator`` is used to keep the simulation clock aligned with 
+	the machine clock, and ``Simulator::Stop`` is necessary to stop the 
+	process.  
+	
+Σε αυτές τις περιπτώσεις, η ``Simulator::Stop`` είναι απαραίτητη για να σταματήσει
+επιτυχώς η προσομοίωση. Επιπρόσθετα, όταν ο |ns3| είναι σε κατάσταση προσομοίωσης,
+ο ``RealtimeSimulator`` (προσομοιωτής πραγματικού χρόνου) χρησιμοποιείται για να διατηρήσει
+το ρολόι της προσομοίωσης σε αντιστοιχία με το ρολόι της μηχανής, και η ``Simulator::Stop``
+είναι αναγκαία για να σταματήσει τη διαδικασία.
+
+..
+	Many of the simulation programs in the tutorial do not explicitly call
+	``Simulator::Stop``, since the event queue will automatically run out
+	of events.  However, these programs will also accept a call to 
+	``Simulator::Stop``.  For example, the following additional statement
+	in the first example program will schedule an explicit stop at 11 seconds: 
+
+Πολλά από τα προγράμματα προσομοίωσης σε αυτόν τον οδηγό δεν καλούν ρητώς τη
+``Simulator::Stop``, καθώς η ουρά των γεγονότων θα αδειάσει αυτόματα από γεγονότα.
+Ωστόσο, αυτά τα προγράμματα θα αποδεχθούν μια κλήση της ``Simulator::Stop``. Για παράδειγμα,
+η ακόλουθη συμπληρωματική δήλωση στο πρόγραμμα του πρώτου παραδείγματος θα προγραμματίσει
+ένα ρητό σταμάτημα στα 11 δευτερόλεπτα:
 
 ::
 
@@ -1216,37 +1501,64 @@ in the first example program will schedule an explicit stop at 11 seconds:
      return 0;
    }
 
-The above wil not actually change the behavior of this program, since
-this particular simulation naturally ends after 10 seconds.  But if you 
-were to change the stop time in the above statement from 11 seconds to 1 
-second, you would notice that the simulation stops before any output is 
-printed to the screen (since the output occurs around time 2 seconds of 
-simulation time).
+..
+	The above wil not actually change the behavior of this program, since
+	this particular simulation naturally ends after 10 seconds.  But if you 
+	were to change the stop time in the above statement from 11 seconds to 1 
+	second, you would notice that the simulation stops before any output is 
+	printed to the screen (since the output occurs around time 2 seconds of 
+	simulation time).
+	
+Το παραπάνω δεν θα αλλάξει ουσιαστικά τη συμπεριφορά αυτού του προγράμματος, καθώς
+η συγκεκριμένα προσομοίωση τελειώνει εκ των πραγμάτων μετά από 10 δευτερόλεπτα. Αλλά εάν
+αλλάζατε το χρόνο σταματήματος στην παραπάνω δήλωση από 11 δευτερόλεπτα σε 1 δευτερόλεπτο,
+θα παρατηρούσατε ότι η προσομοίωση σταματάει πριν τυπωθεί κάποια έξοδος στην οθόνη (καθώς η 
+έξοδος προκύπτει περίπου στο δεύτερο δευτερόλεπτο του χρόνου προσομοίωσης).
 
-It is important to call ``Simulator::Stop`` *before* calling 
-``Simulator::Run``; otherwise, ``Simulator::Run`` may never return control
-to the main program to execute the stop!
+..
+	It is important to call ``Simulator::Stop`` *before* calling 
+	``Simulator::Run``; otherwise, ``Simulator::Run`` may never return control
+	to the main program to execute the stop!
+	
+Είναι σημαντικό να καλείτε τη ``Simulator::Stop`` *πριν* την κλήση της
+``Simulator::Run``. Διαφορετικά, η ``Simulator::Run`` μπορεί να μην επιστρέψει
+ποτέ τον έλεγχο στο κεντρικό πρόγραμμα ώστε αυτό να εκτελέσει το σταμάτημα!
 
-Building Your Script
-++++++++++++++++++++
-We have made it trivial to build your simple scripts.  All you have to do is 
-to drop your script into the scratch directory and it will automatically be 
-built if you run Waf.  Let's try it.  Copy ``examples/tutorial/first.cc`` into 
-the ``scratch`` directory after changing back into the top level directory.
+.. Building Your Script
+
+Κάνοντας Build το Σενάριό Σας
++++++++++++++++++++++++++++++
+..
+	We have made it trivial to build your simple scripts.  All you have to do is 
+	to drop your script into the scratch directory and it will automatically be 
+	built if you run Waf.  Let's try it.  Copy ``examples/tutorial/first.cc`` into 
+	the ``scratch`` directory after changing back into the top level directory.
+	
+Έχουμε κάνει το build των απλών σεναρίων σας πολύ απλό. Αυτό που έχετε να κάνετε είναι
+απλά να μεταφέρετε το σενάριό σας στον κατάλογο scratch και θα κάνει αυτόματα build εάν
+εκτελέσετε το Waf. Ας το δοκιμάσουμε. Αντιγράψτε το ``examples/tutorial/first.cc`` στον
+κατάλογο ``scratch`` αφότου μεταβείτε στον κατάλογο του υψηλότερου επιπέδου.
 
 .. sourcecode:: bash
 
   $ cd ../..
   $ cp examples/tutorial/first.cc scratch/myfirst.cc
 
-Now build your first example script using waf:
+..
+	Now build your first example script using waf:
+	
+Τώρα κάντε built το σενάριο του πρώτου παραδείγματός σας χρησιμοποιώντας το Waf:
 
 .. sourcecode:: bash
 
   $ ./waf
 
-You should see messages reporting that your ``myfirst`` example was built
-successfully.
+..
+	You should see messages reporting that your ``myfirst`` example was built
+	successfully.
+	
+Θα πρέπει να δείτε μηνύματα που να αναφέρουν ότι το παράδειγμά σας ``myfirst``
+έγινε build επιτυχώς.
 
 .. sourcecode:: bash
 
@@ -1256,14 +1568,21 @@ successfully.
   Waf: Leaving directory `/home/craigdo/repos/ns-3-allinone/ns-3-dev/build'
   'build' finished successfully (2.357s)
 
-You can now run the example (note that if you build your program in the scratch
-directory you must run it out of the scratch directory):
+..
+	You can now run the example (note that if you build your program in the scratch
+	directory you must run it out of the scratch directory):
+	
+Μπορειε τώρα να τρέξετε το παράδειγμα (σημειώστε πως εάν θέλετε να κάνετε build το πρόγραμμά σας
+στον κατάλογο scratch θα πρέπει να το τρέξετε εκτός του καταλόγου scratch):
 
 .. sourcecode:: bash
 
   $ ./waf --run scratch/myfirst
 
-You should see some output:
+..
+	You should see some output:
+
+Θα πρέπει να δείτε κάποια έξοδο:
 
 .. sourcecode:: bash
 
@@ -1274,31 +1593,55 @@ You should see some output:
   Received 1024 bytes from 10.1.1.1
   Received 1024 bytes from 10.1.1.2
 
-Here you see that the build system checks to make sure that the file has been
-build and then runs it.  You see the logging component on the echo client 
-indicate that it has sent one 1024 byte packet to the Echo Server on 
-10.1.1.2.  You also see the logging component on the echo server say that
-it has received the 1024 bytes from 10.1.1.1.  The echo server silently 
-echoes the packet and you see the echo client log that it has received its 
-packet back from the server.
+..
+	Here you see that the build system checks to make sure that the file has been
+	build and then runs it.  You see the logging component on the echo client 
+	indicate that it has sent one 1024 byte packet to the Echo Server on 
+	10.1.1.2.  You also see the logging component on the echo server say that
+	it has received the 1024 bytes from 10.1.1.1.  The echo server silently 
+	echoes the packet and you see the echo client log that it has received its 
+	packet back from the server.
+	
+Εδώ βλέπετε ότι το σύστημα κατασκευής (build) ελέγχει ώστε να διασφαλίσει πως το αρχειο
+έχει γίνει build και έπειτα το τρέχει. Παρατηρείτε ότι το συστατικό καταγραφής στον echo
+πελάτη καταδεικνύει ότι έχει σταλεί ένα πακέτο μεγέθους 1024 byte προς τον echo εξυπηρετητή
+στη διεύθυνση 10.1.1.2. Βλέπετε επίσης το συστατικό καταγραφής στον echo εξυπηρετητή λέει ότι
+έχει λάβει τα 1024 byte από τη διεύθυνση 10.1.1.1. Ο echo εξυπηρετητής μεταδίδει σιωπηλά το
+πακέτο και βλέπετε ότι ο echo πελάτης καταγράφει πως έλαβε το πακέτο του πίσω από τον εξυπηρετητή.
 
-Ns-3 Source Code
-****************
+.. Ns-3 Source Code
 
-Now that you have used some of the |ns3| helpers you may want to 
-have a look at some of the source code that implements that functionality.
-The most recent code can be browsed on our web server at the following link:
-http://code.nsnam.org/ns-3-dev.  There, you will see the Mercurial
-summary page for our |ns3| development tree.
+Ο Πηγαίος Κώδικας του ns-3
+**************************
 
-At the top of the page, you will see a number of links,
+..
+	Now that you have used some of the |ns3| helpers you may want to 
+	have a look at some of the source code that implements that functionality.
+	The most recent code can be browsed on our web server at the following link:
+	http://code.nsnam.org/ns-3-dev.  There, you will see the Mercurial
+	summary page for our |ns3| development tree.
+	
+Τώρα που έχετε χρησιμοποιήσει κάποιους από τους βοηθούς του |ns3| μπορεί να θέλετε να 
+ρίξετε μια ματιά σε κάποιο μέρος από τον πηγαίο κώδικα που υλοποιεί αυτή τη λειτουργία.
+Ο πιο πρόσφατος κώδικας μπορεί να βρεθεί στον δικτυακό μας εξυπηρετητή στον ακόλουθο σύνδεσμο:
+http://code.nsnam.org/ns-3-dev. Εκεί, θα δείτε μια σελίδα περίληψης του Mercurial για το
+δέντρο ανάπτυξης του |ns3|.
+
+..
+	At the top of the page, you will see a number of links,
+	
+Στην κορυφή της σελίδας, θα δείτε έναν αριθμό από συνδέσμους,
 
 .. sourcecode:: text
 
   summary | shortlog | changelog | graph | tags | files 
 
-Go ahead and select the ``files`` link.  This is what the top-level of
-most of our *repositories* will look:
+..
+	Go ahead and select the ``files`` link.  This is what the top-level of
+	most of our *repositories* will look:
+	
+Προχωρήστε και επιλέξτε το σύνδεσμο ``files``. Το υψηλότερο επίπεδο των περισσότερων
+αποθετηρίων μας θα φαίνεται κάπως έτσι:
 
 .. sourcecode:: text
 
@@ -1323,19 +1666,39 @@ most of our *repositories* will look:
   -rw-r--r-- 2009-07-01 12:47 +0200 35395  wscript          file | revisions | annotate
   -rw-r--r-- 2009-07-01 12:47 +0200 7673   wutils.py        file | revisions | annotate
   
-Our example scripts are in the ``examples`` directory.  If you click on ``examples``
-you will see a list of subdirectories.  One of the files in ``tutorial`` subdirectory is ``first.cc``.  If
-you click on ``first.cc`` you will find the code you just walked through.
+..
+	Our example scripts are in the ``examples`` directory.  If you click on ``examples``
+	you will see a list of subdirectories.  One of the files in ``tutorial`` subdirectory is ``first.cc``.  If
+	you click on ``first.cc`` you will find the code you just walked through.
+	
+Τα σενάρια παραδειγμάτων μας είναι στον κατάλογο ``examples``. Εάν κάνετε κλικ στα ``examples``
+θα δείτε μια λίστα από υποκαταλόγους. Ένα από τα αρχεία στον υποκατάλογο ``tutorial`` είναι
+το ``first.cc``. Εάν κάνετε κλικ στο ``first.cc`` θα βρείτε τον κώδικα τον οποίο μόλις εξετάσατε.
 
-The source code is mainly in the ``src`` directory.  You can view source
-code either by clicking on the directory name or by clicking on the ``files``
-link to the right of the directory name.  If you click on the ``src``
-directory, you will be taken to the listing of the ``src`` subdirectories.  If you 
-then click on ``core`` subdirectory, you will find a list of files.  The first file
-you will find (as of this writing) is ``abort.h``.  If you click on the 
-``abort.h`` link, you will be sent to the source file for ``abort.h`` which 
-contains useful macros for exiting scripts if abnormal conditions are detected.
+..
+	The source code is mainly in the ``src`` directory.  You can view source
+	code either by clicking on the directory name or by clicking on the ``files``
+	link to the right of the directory name.  If you click on the ``src``
+	directory, you will be taken to the listing of the ``src`` subdirectories.  If you 
+	then click on ``core`` subdirectory, you will find a list of files.  The first file
+	you will find (as of this writing) is ``abort.h``.  If you click on the 
+	``abort.h`` link, you will be sent to the source file for ``abort.h`` which 
+	contains useful macros for exiting scripts if abnormal conditions are detected.
+	
+Ο πηγαίος κώδικας είναι κυρίως στον κατάλογο ``src``. Μπορείτε να δείτε τον πηγαίο κώδικα
+είτε κάνοντας κλικ στο όνομα του καταλόγου ή κάνοντας κλικ στο σύνδεσμο ``files`` στα δεξιά
+του ονόματος του καταλόγου. Εάν κάνετε κλικ στον κατάλογο ``src``, θα μεταφερθείτε στην λίστα
+των υποκαταλότων του ``src``. Εάν τότε κάνετε κλικ στον υποκατάλογο ``core``, θα βρείτε μία λίστα
+από αρχεία. Το πρώτο αρχείο που θα βρείτε (κατά τη διάρκεια της συγγραφής του παρόντος οδηγού)
+είναι το ``abort.h``. Εάν κάνετε κλικ στο σύνδεσμο ``abort.h``, θα μεταβείτε στο πηγαίο αρχείο του
+``abort.h``, το οποίο περιέχει χρήσιμες μακροεντολές για την έξοδο από σενάρια σε περίπτωση που 
+ανιχνευθούν αφύσικες συνθήκες.
 
-The source code for the helpers we have used in this chapter can be found in the 
-``src/applications/helper`` directory.  Feel free to poke around in the directory tree to
-get a feel for what is there and the style of |ns3| programs.
+..
+	The source code for the helpers we have used in this chapter can be found in the 
+	``src/applications/helper`` directory.  Feel free to poke around in the directory tree to
+	get a feel for what is there and the style of |ns3| programs.
+	
+Ο πηγαίος κώδικας για τους βοηθούς που χρησιμοποιήσαμε σε αυτό το κεφάλαιο μπορεί να βρεθεί στον
+κατάλογο ``src/applications/helper``. Μπορείτε ελεύθερα να ψάξετε στο δέντρο καταλόγων για να 
+αποκτήσετε μια αίσθηση του τι βρίσκεται εκεί και του στυλ των προγραμμάτων του |ns3|.
