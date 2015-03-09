@@ -230,7 +230,7 @@
 	  
 * Αδειοδότηση ανοιχτού κώδικα με βάση τη συμβατότητα του GNU GPLv2
 * `wiki <http://www.nsnam.org/wiki>`_
-* `Κώδικας Συνεισφοράς <http://www.nsnam.org/wiki/Contributed_Code>`_ σελίδα, παρόμοια με τη δημοφιλή σελίδα του |ns-2| Κώδικα Συνεισφοράς  `page <http://nsnam.isi.edu/nsnam/index.php/Contributed_Code>`_ 
+* `Σελίδα Κώδικα Συνεισφοράς <http://www.nsnam.org/wiki/Contributed_Code>`_, παρόμοια με τη δημοφιλή σελίδα του |ns-2| Κώδικα Συνεισφοράς  `σελίδα <http://nsnam.isi.edu/nsnam/index.php/Contributed_Code>`_ 
 * Άνοιξε `bug tracker <http://www.nsnam.org/bugzilla>`_
 
 ..
