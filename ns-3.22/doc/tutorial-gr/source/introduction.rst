@@ -94,18 +94,24 @@
 	  more modular in this regard.  Several external animators and
 	  data analysis and visualization tools can be used with |ns3|.  However,
 	  users should expect to work at the command line and with C++ and/or
-	  Python software development tools. 
-	* |ns3| is primarily used on Linux systems, although support exists
-	  for FreeBSD, Cygwin (for Windows), and native Windows Visual Studio
-	  support is in the process of being developed. 
-	* |ns3| is not an officially supported software product of any company.
-	  Support for |ns3| is done on a best-effort basis on the 
-	  ns-3-users mailing list.
+	  Python software development tools.
 	  
 Υπάρχουν πολλά εργαλεία προσομοίωσης για μελέτες προσομοίωσης του δικτύου. Παρακάτω είναι μερικά χαρακτηριστικά γνωρίσματα του |ns-3| σε αντίθεση με άλλα εργαλεία.
 
 * Ο |ns-3| έχει σχεδιαστεί ως ένα σύνολο βιβλιοθηκών που μπορούν να συνδυαστούν μεταξύ τους και επίσης με άλλες εξωτερικές βιβλιοθήκες λογισμικού. Ενώ ορισμένες πλατφόρμες προσομοίωσης παρέχουν στους χρήστες με ένα ενιαίο, ολοκληρωμένο γραφικό περιβάλλον χρήστη στις οποίες είναι όλες οι εργασίες που πραγματοποιούνται, ο |ns-3| είναι περισσότερο σπονδυλωτός στο θέμα αυτό. Αρκετά εξωτερικά animators και ανάλυση δεδομένων και τα εργαλεία οπτικοποίησης μπορούν να χρησιμοποιηθούν με τον |ns-3|. Ωστόσο, οι χρήστες θα πρέπει να περιμένουμε για να εργαστούν στη γραμμή εντολών και με C++ και/ή Python εργαλεία ανάπτυξης λογισμικού.
+
+..	  
+	* |ns3| is primarily used on Linux systems, although support exists
+	  for FreeBSD, Cygwin (for Windows), and native Windows Visual Studio
+	  support is in the process of being developed.
+	  
 * Ο |ns-3| χρησιμοποιείται κυρίως σε συστήματα Linux, αν και υπάρχει υποστήριξη για το FreeBSD, Cygwin (για Windows), και η υποστήριξη του Windows Visual Studio είναι στη διαδικασία της προετοιμασίας.
+
+..	  
+	* |ns3| is not an officially supported software product of any company.
+	  Support for |ns3| is done on a best-effort basis on the 
+	  ns-3-users mailing list.
+
 * Ο | ns-3 | δεν είναι επίσημα προϊόν λογισμικού κάποιας εταιρείας. Υποστήριξη για τον | ns-3 | γίνεται με βάση λίστα με την καλύτερη δυνατή προσπάθεια για τους |ns-3| χρήστες.
 
 .. 
@@ -156,16 +162,22 @@
 	* |ns3| is actively maintained with an active, responsive users mailing 
 	  list, while |ns2| is only lightly maintained and has not seen
 	  significant development in its main code tree for over a decade.
+	  
+* Ο |ns-3| διατηρείται ενεργός με μία ενεργό, ενημεροτική λίστα χρηστών, ενώ ο |ns-2| διατηρείται λιγότερο καθώς δεν έχει δεί σημαντική εξέλιξη στον κεντρικό κώδικα του για πάνω από μια δεκαετία.
+
+..
 	* |ns3| provides features not available in |ns2|, such as a implementation
 	  code execution environment (allowing users to run real implementation
 	  code in the simulator)
+	  
+* Ο |ns-3| παρέχει λειτουργίες που δεν είναι διαθέσιμες στον |ns-2|, όπως ένα περιβάλλον εκτέλεσης κώδικα εφαρμογής (επιτρέποντας στους χρήστες να τρέχουν τον πραγματικό κώδικα της εφαρμογής στον προσομοιωτή).
+
+..
 	* |ns3| provides a lower base level of abstraction compared with |ns2|,
 	  allowing it to align better with how real systems are put together.
 	  Some limitations found in |ns2| (such as supporting multiple types of
 	  interfaces on nodes correctly) have been remedied in |ns3|.
 	  
-* Ο |ns-3| διατηρείται ενεργός με μία ενεργό, αποκρινόμενη λίστα αλληλογραφίας χρηστών, ενώ ο |ns-2| διατηρείται λιγότερο καθώς δεν έχει δεί σημαντική εξέλιξη στον κεντρικό κώδικα του για πάνω από μια δεκαετία.
-* Ο |ns-3| παρέχει λειτουργίες που δεν είναι διαθέσιμες στον |ns-2|, όπως ένα περιβάλλον εκτέλεσης κώδικα εφαρμογής (επιτρέποντας στους χρήστες να τρέχουν τον πραγματικό κώδικα της εφαρμογής στον προσομοιωτή).
 * Ο |ns-3| παρέχει ένα χαμηλότερο επίπεδο βάσης της αφαίρεσης σε σύγκριση με |ns-2|, επιτρέποντάς τον να προσαρμοστεί καλύτερα με το πώς πραγματικά τα συστήματα τοποθετούνται μαζί. Κάποιοι περιορισμοί που βρέθηκαν στον |ns-2| (όπως η σωστή υποστήριξη πολλαπλών τύπων διεπαφών στους κόμβους) έχουν διορθωθεί στον |ns-3|.
 
 ..
@@ -177,7 +189,9 @@
 	whole Linux networking stack can be encapsulated in an |ns3| node,
 	using the Direct Code Execution (DCE) framework.  |ns2|
 	models can sometimes be ported to |ns3|, particularly if they have been
-	implemented in C++.  
+	implemented in C++.
+	
+Ο |ns-2| έχει ένα πιο διαφοροποιημένο σύνολο που συνέβαλαν στις ενότητες από ό,τι κάνει ο |ns-3|, λόγω της μακράς ιστορίας του. Ωστόσο, ο |ns-3| έχει πιο λεπτομερή μοντέλα σε διάφορες δημοφιλείς περιοχές της έρευνας (συμπεριλαμβανομένων εξελιγμένα μοντέλα LTE και WiFi), και η υποστήριξη της εφαρμογής του κώδικα αναγνωρίζει ένα πολύ ευρύ φάσμα μοντέλων υψηλής πιστότητας. Οι χρήστες μπορούν να εκπλαγούν όταν μάθουν ότι ολόκληρη η στοίβα δικτύου του Linux μπορεί να περιοριστεί σε ένα |ns-3| κόμβο, χρησιμοποιώντας την άμεση εκτέλεση κώδικα (Direct Code Execution - DCE) πλαίσιο. Τα μοντέλα του |ns-2| μπορούν μερικές φορές να μεταφερθούν και στον |ns-3|, συγκεκριμένα όταν έχουν υλοποιηθεί σε C++.
 
 ..
 	If in doubt, a good guideline would be to look at both simulators (as
@@ -185,9 +199,14 @@
 	for your research, but keep in mind that your experience may be better
 	in using the tool that is being actively developed and 
 	maintained (|ns3|).
+	
+Σε περίπτωση αμφιβολίας, μια καλή συμβουλή θα ήταν να δούμε τους δύο προσομοιωτές (καθώς και άλλους προσομοιωτές), και κυρίως τα διαθέσιμα μοντέλα για την έρευνά σας, αλλά να έχετε κατά νου ότι η εμπειρία σας μπορεί να είναι καλύτερη χρησιμοποιώντας το εργαλείο που είανι ενεργά αναπτυσσόμενο και διατηρείται (|ns-3|).
 
 ..
-Contributing
+	Contributing
+	
+Συνεισφορά
+**********
 
 ..
 	|ns3| is a research and educational simulator, by and for the 
@@ -195,7 +214,10 @@ Contributing
 	community to develop new models, debug or maintain existing ones, and share 
 	results.  There are a few policies that we hope will encourage people to 
 	contribute to |ns3| like they have for |ns2|:
+	
+Ο |ns-3| είναι ένας ερευνητικός και εκπαιδευτικός προσομοιωτής, από και για την ερευνητική κοινότητα. Θα βασίζεται στις τρέχουσες εισφορές της κοινότητας για την ανάπτυξη νέων μοντέλων, διόρθωση ή διατήρηση των υπαρχόντων, και το μοίρασμα των αποτελεσμάτων. Υπάρχουν λίγες πολιτικές που ελπίζουμε ότι θα ενθαρρύνει τους ανθρώπους να συμβάλλουν στον |ns-3| όπως έχουν συμβάλλει για τον |ns-2|:
 
+..
 	* Open source licensing based on GNU GPLv2 compatibility
 	* `wiki
 	  <http://www.nsnam.org/wiki>`_
@@ -205,7 +227,13 @@ Contributing
 	  <http://nsnam.isi.edu/nsnam/index.php/Contributed_Code>`_ 
 	* Open `bug tracker
 	  <http://www.nsnam.org/bugzilla>`_
+	  
+* Αδειοδότηση ανοιχτού κώδικα με βάση τη συμβατότητα του GNU GPLv2
+* `wiki <http://www.nsnam.org/wiki>`_
+* `Κώδικας Συνεισφοράς <http://www.nsnam.org/wiki/Contributed_Code>`_ σελίδα, παρόμοια με τη δημοφιλή σελίδα του |ns-2| Κώδικα Συνεισφοράς  `page <http://nsnam.isi.edu/nsnam/index.php/Contributed_Code>`_ 
+* Άνοιξε `bug tracker <http://www.nsnam.org/bugzilla>`_
 
+..
 	We realize that if you are reading this document, contributing back to 
 	the project is probably not your foremost concern at this point, but
 	we want you to be aware that contributing is in the spirit of the project and
@@ -213,15 +241,28 @@ Contributing
 	with |ns3| (e.g. "this tutorial section was not clear..."), 
 	reports of stale documentation, etc. are much appreciated. 
 	
-	Tutorial Organization
-	*********************
+Αντιλαμβανόμαστε ότι, αν διαβάζετε αυτό το έγγραφο, συμβάλλοντας πίσω στο έργο είναι πιθανόν να μην είναι η κύρια ανησυχία σας σε αυτό το σημείο, αλλά θέλουμε να γνωρίζετε ότι η συνεισφορά είναι στο πνεύμα του έργου και ότι ακόμη και η πράξη της εγκατάλειψής μας μια σημείωση για την πρώιμη εμπειρία σας με |ns-3| (π.χ. «αυτό το τμήμα του οδηγού δεν ήταν σαφές ..."), reports σχετικά με το έγγραφο που εργάζεστε, κλπ. θα ήταν εκτιμήσιμο.
 
+..
+	Tutorial Organization
+	
+Οδηγός Οργάνωσης
+****************
+
+..
 	The tutorial assumes that new users might initially follow a path such as the
 	following:
+	
+Ο οδηγός υποθέτει ότι οι νέοι χρήστες αρχικά θα ακολουθήσουν μία απο τις παρακάτω ιστοσελίδες:
 
+..
 	* Try to download and build a copy;
 	* Try to run a few sample programs;
 	* Look at simulation output, and try to adjust it.
+	
+* Προσπαθήστε να κατεβάσετε και να χτίσετε ένα αντίγραφο,
+* Προσπαθήστε να τρέξετε μερικά δείγματα-προγράμματα,
+* Κοιτάξτε στην έξοδο προσομοίωσης, και να προσπαθήστε να το ρυθμίσετε.
 
 	As a result, we have tried to organize the tutorial along the above
 	broad sequences of events.
