@@ -163,7 +163,7 @@
 	  list, while |ns2| is only lightly maintained and has not seen
 	  significant development in its main code tree for over a decade.
 	  
-* Ο |ns-3| διατηρείται ενεργός με μία ενεργό, ενημεροτική λίστα χρηστών, ενώ ο |ns-2| διατηρείται λιγότερο καθώς δεν έχει δεί σημαντική εξέλιξη στον κεντρικό κώδικα του για πάνω από μια δεκαετία.
+* Ο |ns-3| διατηρείται ενεργός με μία ενεργό, ενημερωτική λίστα χρηστών, ενώ ο |ns-2| διατηρείται λιγότερο καθώς δεν έχει δεί σημαντική εξέλιξη στον κεντρικό κώδικα του για πάνω από μια δεκαετία.
 
 ..
 	* |ns3| provides features not available in |ns2|, such as a implementation
