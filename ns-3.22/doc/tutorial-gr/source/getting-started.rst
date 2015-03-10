@@ -40,32 +40,40 @@
 	to undertake the job of making pre-built libraries and packages for 
 	operating systems, please contact the ns-developers mailing list.
 	
-Ο |ns-3| διανέμεται ως πηγαίος κώδικας, που σημαίνει ότι ο στόχος του συστήματος πρέπει να έχει ένα 
-περιβάλλον ανάπτυξης λογισμικού για την κατασκευή αρχικά των βιβλιοθηκών, μετά χτίζετε το πρόγραμμα του χρήστη. 
-Ο |ns-3| θα μπορούσε αρχικά να
-διανέμεται ως προ-κατασκευασμένες βιβλιοθήκες για επιλεγμένα συστήματα, και στο
-μέλλον μπορεί να διανεμηθεί με αυτόν τον τρόπο, αλλά προς το παρόν, πολλοί χρήστες
-πραγματικά κάνουν τη δουλειά τους με την επεξεργασία του |ns-3| όπως είναι, έτσι έχοντας τον πηγαίο
-κώδικα γύρω από την ανοικοδόμηση οι βιβλιοθήκες είναι χρήσιμες. Αν κάποιος θα ήθελε
-να αναλάβει την δουλειά προ-χτίζοντας βιβλιοθήκες και πακέτα για
-λειτουργικά συστήματα, παρακαλούμε επικοινωνήστε με τους NS-προγραμματιστές λίστα.
+Ο |ns-3| διανέμεται ως πηγαίος κώδικας, που σημαίνει ότι ο στόχος του συστήματος πρέπει να έχει ένα περιβάλλον ανάπτυξης λογισμικού για την κατασκευή αρχικά των βιβλιοθηκών, μετά χτίζετε το πρόγραμμα του χρήστη. Ο |ns-3| θα μπορούσε αρχικά να διανέμεται ως προ-κατασκευασμένες βιβλιοθήκες για επιλεγμένα συστήματα, και στο μέλλον μπορεί να διανεμηθεί με αυτόν τον τρόπο, αλλά προς το παρόν, πολλοί χρήστες πραγματικά κάνουν τη δουλειά τους με την επεξεργασία του |ns-3| όπως είναι, έτσι έχοντας τον πηγαίο κώδικα γύρω από την ανοικοδόμηση οι βιβλιοθήκες είναι χρήσιμες. Αν κάποιος θα ήθελε να αναλάβει την δουλειά προ-χτίζοντας βιβλιοθήκες και πακέτα για λειτουργικά συστήματα, παρακαλούμε επικοινωνήστε με τους NS-προγραμματιστές στην ενημερωτική λίστα.
 
-In the following, we'll look at two ways of downloading and building
-|ns3|.  The first is to download and build an official release
-from the main web site.  The second is to fetch and build development
-copies of |ns3|.  We'll walk through both examples since the tools
-involved are slightly different.
+..
+	In the following, we'll look at two ways of downloading and building
+	|ns3|.  The first is to download and build an official release
+	from the main web site.  The second is to fetch and build development
+	copies of |ns3|.  We'll walk through both examples since the tools
+	involved are slightly different.
+	
+Στη συνέχεια, θα δούμε δύο τρόπους για τη λήψη και την οικοδόμηση του |ns-3|. Το πρώτο είναι να κατεβάσετε και να οικοδομήσετε μια επίσημη έκδοση από την κύρια ιστοσελίδα. Το δεύτερο είναι να φέρετε και να οικοδομήσετε την ανάπτυξη αντιγράφων του |ns-3|. Θα δούμε δύο παραδείγματα καθώς τα εργαλεία που περιέχονται είναι λίγο διαφορετικά.
 
-Downloading |ns3|
-*****************
+..
+	Downloading |ns3|
+	
+Κατεβάζοντας τον |ns-3|
+***********************
 
-The |ns3| system as a whole is a fairly complex system and has a
-number of dependencies on other components.  Along with the systems you will
-most likely deal with every day (the GNU toolchain, Mercurial, a text
-editor) you will need to ensure that a number of additional libraries are
-present on your system before proceeding.  |ns3| provides a wiki
-page that includes pages with many useful hints and tips.
-One such page is the "Installation" page,
+..
+	The |ns3| system as a whole is a fairly complex system and has a
+	number of dependencies on other components.  Along with the systems you will
+	most likely deal with every day (the GNU toolchain, Mercurial, a text
+	editor) you will need to ensure that a number of additional libraries are
+	present on your system before proceeding.  |ns3| provides a wiki
+	page that includes pages with many useful hints and tips.
+	One such page is the "Installation" page,
+	http://www.nsnam.org/wiki/Installation.
+
+Ο |ns-3| σύστημα στο σύνολό του είναι ένα αρκετά πολύπλοκο σύστημα και έχει ένα
+αριθμός των εξαρτήσεων από άλλες συνιστώσες. Μαζί με τα συστήματα που θα
+πιο πιθανό deal με κάθε μέρα (η εργαλειοθήκη GNU, Mercurial, ένα κείμενο
+editor) θα πρέπει να βεβαιωθείτε ότι ο αριθμός των επιπλέον βιβλιοθήκες
+παρουσιάσει στο σύστημά σας πριν προχωρήσετε. | NS3 | παρέχει ένα wiki
+σελίδα που περιλαμβάνει σελίδες με πολλές χρήσιμες συμβουλές και υποδείξεις.
+Μια τέτοια σελίδα είναι η σελίδα «Εγκατάσταση»,
 http://www.nsnam.org/wiki/Installation.
 
 The "Prerequisites" section of this wiki page explains which packages are 
