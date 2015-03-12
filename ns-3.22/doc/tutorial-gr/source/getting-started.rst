@@ -69,38 +69,56 @@
 
 Το σύστημα του |ns-3| στο σύνολό του είναι ένα αρκετά πολύπλοκο σύστημα και έχει έναν αριθμό εξαρτήσεων από άλλες συνιστώσες. Μαζί με τα συστήματα που πιθανότατα θα ασχολείστε κάθε μέρα (η εργαλειοθήκη GNU, Mercurial, έναν επεξεργαστή κειμένου - editor) θα χρειαστεί να εξασφαλίσετε ότι είναι παρών στο σύστημά σας πριν προχωρήσετε μια σειρά από πρόσθετες βιβλιοθήκες. Ο |ns-3| παρέχει μία wiki σελίδα που περιλαμβάνει σελίδες με πολλές χρήσιμες συμβουλές και υποδείξεις. Μια τέτοια σελίδα είναι η σελίδα «Εγκατάσταση», http://www.nsnam.org/wiki/Installation.
 
-The "Prerequisites" section of this wiki page explains which packages are 
-required to support common |ns3| options, and also provides the 
-commands used to install them for common Linux variants.  Cygwin users will
-have to use the Cygwin installer (if you are a Cygwin user, you used it to
-install Cygwin). 
+..
+	The "Prerequisites" section of this wiki page explains which packages are 
+	required to support common |ns3| options, and also provides the 
+	commands used to install them for common Linux variants.  Cygwin users will
+	have to use the Cygwin installer (if you are a Cygwin user, you used it to
+	install Cygwin). 
 
-You may want to take this opportunity to explore the |ns3| wiki 
-a bit since there really is a wealth of information there. 
+Η ενότητα "Προϋποθέσεις" αυτής της σελίδας του wiki εξηγεί ποια πακέτα απαιτούνται για την υποστήριξη κοινών επιλογών |ns-3|, και επίσης παρέχει τις εντολές που χρησιμοποιούνται για την εγκατάσταση των κοινών παραλλαγών του Linux. Οι χρήστες του Cygwin θα πρέπει να χρησιμοποιήσουν το πρόγραμμα εγκατάστασης Cygwin (αν είστε χρήστης Cygwin, το χρησιμοποιήσατε για να εγκαταστήστε Cygwin).
 
-From this point forward, we are going to assume that the reader is working in
-Linux or a Linux emulation environment (Linux, Cygwin, etc.) and has the GNU
-toolchain installed and verified along with the prerequisites mentioned 
-above.  We are also going to assume that you have Mercurial and Waf installed
-and running on the target system.
+..
+	You may want to take this opportunity to explore the |ns3| wiki 
+	a bit since there really is a wealth of information there. 
 
-The |ns3| code is available in Mercurial repositories on the server
-http://code.nsnam.org.  You can also download a tarball release at
-http://www.nsnam.org/release/, or you can work with repositories
-using Mercurial.  We recommend using Mercurial unless there's a good reason
-not to.  See the end of this section for instructions on how to get a tarball
-release.
+Μπορεί να θέλετε να εκμεταλλευτείτε αυτή την ευκαιρία για να εξερευνήσετε τον |ns-3| στο wiki λίγο δεδομένου ότι υπάρχει πραγματικά μια πληθώρα πληροφοριών εκεί.
 
-The simplest way to get started using Mercurial repositories is to use the
-``ns-3-allinone`` environment.  This is a set of scripts that manages the 
-downloading and building of various subsystems of |ns3| for you.  We 
-recommend that you begin your |ns3| work in this environment.
+..
+	From this point forward, we are going to assume that the reader is working in
+	Linux or a Linux emulation environment (Linux, Cygwin, etc.) and has the GNU
+	toolchain installed and verified along with the prerequisites mentioned 
+	above.  We are also going to assume that you have Mercurial and Waf installed
+	and running on the target system.
+	
+Από αυτό το σημείο προς τα εμπρός, πρόκειται να υποθέσουμε ότι ο αναγνώστης εργάζεται σε Linux ή σε ένα περιβάλλον εξομοίωσης Linux (Linux, Cygwin, κ.λπ.) και έχει εγκατεστημένη την GNU εργαλειοθήκη και έχει επαληθεύσει μαζί με τις προϋποθέσεις που αναφέρονται παραπάνω. Επίσης, πρόκειται να υποθέσουμε ότι έχετε το Mercurial και το Waf εγκατεστημένο και τρέχουν στο κυρίως σύστημα.
 
-One practice is to create a directory called ``workspace`` in one's home 
-directory under which one can keep local Mercurial repositories.  
-Any directory name will do, but we'll assume that ``workspace`` is used
-herein (note:  ``repos`` may also be used in some documentation as
-an example directory name).  
+..
+	The |ns3| code is available in Mercurial repositories on the server
+	http://code.nsnam.org.  You can also download a tarball release at
+	http://www.nsnam.org/release/, or you can work with repositories
+	using Mercurial.  We recommend using Mercurial unless there's a good reason
+	not to.  See the end of this section for instructions on how to get a tarball
+	release.
+	
+Ο |ns-3| κώδικας είναι διαθέσιμος σε Mercurial αποθετήρια στον διακομιστή http://code.nsnam.org. Μπορείτε επίσης να κατεβάσετε μία tarball(συμπιεσμένη) έκδοση στο http://www.nsnam.org/release/, ή μπορείτε να εργαστείτε με τα αρχεία καταγραφής(αποθετήρια) χρησιμοποιώντας Mercurial. Σας προτείνουμε να χρησιμοποιείτε το Mercurial, εκτός αν υπάρχει ένας καλός λόγος για να μην τον χρησιμοποιήσετε. Δείτε το τέλος αυτής της ενότητας για οδηγίες σχετικά με το πώς να πάρετε μία συμπιεσμένη έκδοση.
+
+..
+	The simplest way to get started using Mercurial repositories is to use the
+	``ns-3-allinone`` environment.  This is a set of scripts that manages the 
+	downloading and building of various subsystems of |ns3| for you.  We 
+	recommend that you begin your |ns3| work in this environment.
+
+Ο απλούστερος τρόπος για να ξεκινήσετε τη χρήση αποθετήρια του Mercurial είναι να χρησιμοποιήσετε το `` ns-3-allinone`` περιβάλλον. Πρόκειται για μια σειρά από σενάρια που διαχειρίζεται το κατέβασμα και την κατασκευή των διαφόρων υποσυστημάτων του |ns-3| για σένα. Συνιστούμε να ξεκινήσετε την εργασία |ns-3| σε αυτό το περιβάλλον.
+
+..
+	One practice is to create a directory called ``workspace`` in one's home 
+	directory under which one can keep local Mercurial repositories.  
+	Any directory name will do, but we'll assume that ``workspace`` is used
+	herein (note:  ``repos`` may also be used in some documentation as
+	an example directory name).  
+	
+Μια πρακτική είναι να δημιουργήσετε ένα κατάλογο με το όνομα `` workspace`` στην αρχή κάποιου καταλόγου βάσει του οποίου μπορεί κανείς να κρατήσει τα τοπικά Mercurial αποθετήρια. Κάθε όνομα καταλόγου θα κάνει, αλλά υποθέτουμε ότι το `` workspace`` χρησιμοποιείται εδώ (σημειώστε: `` repos`` μπορεί επίσης να χρησιμοποιηθεί σε κάποια τεκμηρίωση ως ένα όνομα καταλόγου παράδειγμα).
 
 Downloading |ns3| Using a Tarball
 +++++++++++++++++++++++++++++++++
