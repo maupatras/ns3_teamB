@@ -526,8 +526,11 @@
 
   $ ./bake.py show
 
-This will list out the various dependencies of the packages you are
-trying to build.
+..
+	This will list out the various dependencies of the packages you are
+	trying to build.
+	
+Αυτό θα εμφανίσει τις διάφορες εξαρτήσεις των πακέτων που προσπαθούμε να οικοδομήσουμε.
 
 Building with Waf
 +++++++++++++++++
