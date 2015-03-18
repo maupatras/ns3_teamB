@@ -547,34 +547,35 @@
 	build |ns3|.  So, to proceed, please change your working directory to 
 	the |ns3| directory that you have initially built.
 
-Μέχρι αυτό το σημείο, έχουμε χρησιμοποιήσει είτε το σενάριο `build.py`, ή το εργαλείο `bake`, για 
-να ξεκινήσετε την οικοδόμηση του |ns3|. Τα εργαλεία αυτά είναι χρήσιμα για την ανάπτυξη του |ns3| και την 
-υποστήριξη βιβλιοθηκών, και καλούν στο |ns3| κατάλογος να καλέσετε το Waf χτίσει εργαλείο για να 
-κάνει το πραγματικό κτίριο. Οι περισσότεροι χρήστες μετάβαση γρήγορα να χρησιμοποιούν άμεσα Waf να 
-διαμορφώσετε και να οικοδομήσουμε |ns3|. Έτσι, για να προχωρήσει, παρακαλούμε να αλλάξετε τον κατάλογο 
-εργασίας σας στο |ns3| κατάλογος που έχετε αρχικά κατασκευαστεί.
+Μέχρι αυτό το σημείο, έχουμε χρησιμοποιήσει είτε το σενάριο `build.py`, ή το εργαλείο `bake`, για να ξεκινήσετε την οικοδόμηση του |ns3|. Τα εργαλεία αυτά είναι χρήσιμα για την ανάπτυξη του |ns3| και την υποστήριξη βιβλιοθηκών, και καλούν μέσω του καταλόγου του |ns3| το εργαλείο Waf να κάνει την πραγματική οικοδόμηση. Οι περισσότεροι χρήστες κάνουν την μετάβαση γρήγορα χρησιμοποιώντας άμεσα τον Waf για να διαμορφώσουν και να οικοδομήσουμε τον |ns3|. Έτσι, για να προχωρήσει, παρακαλούμε να αλλάξετε τον κατάλογο εργασίας σας με τον κατάλογο του |ns3| που έχετε αρχικά κατασκευάσει.
 
-It's not 
-strictly required at this point, but it will be valuable to take a slight
-detour and look at how to make changes to the configuration of the project.
-Probably the most useful configuration change you can make will be to 
-build the optimized version of the code.  By default you have configured
-your project to build the debug version.  Let's tell the project to 
-make an optimized build.  To explain to Waf that it should do optimized
-builds that include the examples and tests, you will need to execute the 
-following commands::
+..
+	It's not 
+	strictly required at this point, but it will be valuable to take a slight
+	detour and look at how to make changes to the configuration of the project.
+	Probably the most useful configuration change you can make will be to 
+	build the optimized version of the code.  By default you have configured
+	your project to build the debug version.  Let's tell the project to 
+	make an optimized build.  To explain to Waf that it should do optimized
+	builds that include the examples and tests, you will need to execute the 
+	following commands::
+
+Δεν είναι απολύτως απαραίτητο σε αυτό το σημείο, αλλά θα είναι χρήσιμο να κάνουμε μια μικρή παράκαμψη και να δούμε πώς να κάνετε αλλαγές στη διαμόρφωση της εργασίας. Ίσως η πιο χρήσιμη αλλαγή ρυθμίσεων που μπορείτε να κάνετε θα είναι να οικοδομήσετε τη βελτιστοποιημένη έκδοση του κώδικα. Από προεπιλογή έχετε ρυθμίσει την εργασία σας να χτίσει την έκδοση εντοπισμού σφαλμάτων. Ας πούμε ότι θα φτιάξουμε μία βελτιστοποιημένη κατασκευή για την εργασία. Για να εξηγήσουμε στο Waf ότι θα πρέπει να βελτιστοποιηθούν οι εκδόσεις που περιλαμβάνουν τα παραδείγματα και τις δοκιμές, θα πρέπει να εκτελέσετε τις ακόλουθες εντολές::
 
   $ ./waf clean
   $ ./waf --build-profile=optimized --enable-examples --enable-tests configure
 
-This runs Waf out of the local directory (which is provided as a convenience
-for you).  The first command to clean out the previous build is not 
-typically strictly necessary but is good practice (but see `Build Profiles`_,
-below); it will remove the
-previously built libraries and object files found in directory ``build/``. 
-When the project is reconfigured and the build system checks for various 
-dependencies, you should see
-output that looks similar to the following::
+...
+	This runs Waf out of the local directory (which is provided as a convenience
+	for you).  The first command to clean out the previous build is not 
+	typically strictly necessary but is good practice (but see `Build Profiles`_,
+	below); it will remove the
+	previously built libraries and object files found in directory ``build/``. 
+	When the project is reconfigured and the build system checks for various 
+	dependencies, you should see
+	output that looks similar to the following::
+
+Αυτό τρέχει τον Waf έξω από τον τοπικό κατάλογο (το οποίο παρέχεται ως διευκόλυνση για εσάς). Η πρώτη εντολή για να καθαρίσετε την προηγούμενη κατασκευή δεν είναι απολύτως αναγκαία, αλλά είναι καλή πρακτική (αλλά δείτε παρακάτω `Build Profiles`_, ), θα καταργήσει τις προηγούμενες κατασκευασμένες βιβλιοθήκες και τα αρχεία αντικειμένων που βρέθηκαν στον κατάλογο ``build/``. Όταν το έργο έχει αναδιαμορφωθεί και το σύστημα κατασκευής ελέγχει για διάφορες εξαρτήσεις, θα πρέπει να δείτε κάτι που μοιάζει με το παρακάτω::
 
   Setting top to                           : .
   Setting out to                           : build 
@@ -651,17 +652,27 @@ output that looks similar to the following::
   GNU Scientific Library (GSL)  : enabled
   'configure' finished successfully (1.944s)
 
-Note the last part of the above output.  Some |ns3| options are not enabled by
-default or require support from the underlying system to work properly.
-For instance, to enable XmlTo, the library libxml-2.0 must be found on the
-system.  If this library were not found, the corresponding |ns3| feature 
-would not be enabled and a message would be displayed.  Note further that there is 
-a feature to use the program ``sudo`` to set the suid bit of certain programs.
-This is not enabled by default and so this feature is reported as "not enabled."
+..
+	Note the last part of the above output.  Some |ns3| options are not enabled by
+	default or require support from the underlying system to work properly.
+	For instance, to enable XmlTo, the library libxml-2.0 must be found on the
+	system.  If this library were not found, the corresponding |ns3| feature 
+	would not be enabled and a message would be displayed.  Note further that there is 
+	a feature to use the program ``sudo`` to set the suid bit of certain programs.
+	This is not enabled by default and so this feature is reported as "not enabled."
 
-Now go ahead and switch back to the debug build that includes the examples and tests.
+Σημειώστε το τελευταίο μέρος της παραπάνω εξόδου. Μερικά | ns3 | επιλογές δεν είναι 
+ενεργοποιημένη από προεπιλογή ή απαιτούν υποστήριξη από το υποκείμενο σύστημα για να λειτουργήσει 
+σωστά. Για παράδειγμα, για να μπορέσει XmlTo, τη βιβλιοθήκη LibXML-2.0 πρέπει να βρεθεί στο σύστημα. 
+Αν δεν βρεθεί αυτή η βιβλιοθήκη, το αντίστοιχο | ns3 | χαρακτηριστικό δεν θα πρέπει να ενεργοποιηθεί και 
+ένα μήνυμα θα εμφανιστεί. Σημειώστε, επίσης, ότι υπάρχει ένα χαρακτηριστικό για να χρησιμοποιήσετε το 
+πρόγραμμα `` sudo`` να ρυθμίσετε το suid κομμάτι ορισμένων προγραμμάτων. Αυτό δεν είναι ενεργοποιημένη από 
+προεπιλογή και έτσι αυτό το χαρακτηριστικό αναφέρεται ως "δεν είναι ενεργοποιημένη."
 
-::
+..
+	Now go ahead and switch back to the debug build that includes the examples and tests.
+
+Τώρα συνεχίστε και να επιστρέψετε στην κατασκευή εντοπισμού σφαλμάτων που περιλαμβάνει τα παραδείγματα και δοκιμές.::
 
   $ ./waf clean
   $ ./waf --build-profile=debug --enable-examples --enable-tests configure
