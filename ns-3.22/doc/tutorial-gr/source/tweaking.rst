@@ -293,44 +293,84 @@ that knowledge to get some interesting information out of the
   UdpEchoClientApplication:DoDispose()
   UdpEchoClientApplication:~UdpEchoClient()
 
-The additional debug information provided by the application is from
-the NS_LOG_FUNCTION level.  This shows every time a function in the application
-is called during script execution.  Generally, use of (at least)
-NS_LOG_FUNCTION(this) in member functions is preferred. Use
-NS_LOG_FUNCTION_NOARGS() only in static functions.  Note, however, that there
-are no requirements in the |ns3| system that models must support any particular
-logging  functionality.  The decision regarding how much information is logged
-is left to the individual model developer.  In the case of the echo
-applications, a good deal of log output is available.
+..
+	The additional debug information provided by the application is from
+	the NS_LOG_FUNCTION level.  This shows every time a function in the application
+	is called during script execution.  Generally, use of (at least)
+	NS_LOG_FUNCTION(this) in member functions is preferred. Use
+	NS_LOG_FUNCTION_NOARGS() only in static functions.  Note, however, that there
+	are no requirements in the |ns3| system that models must support any particular
+	logging  functionality.  The decision regarding how much information is logged
+	is left to the individual model developer.  In the case of the echo
+	applications, a good deal of log output is available.
 
-You can now see a log of the function calls that were made to the application.
-If you look closely you will notice a single colon between the string 
-``UdpEchoClientApplication`` and the method name where you might have 
-expected a C++ scope operator (``::``).  This is intentional.  
+Η πρόσθετη πληροφορία αποσφαλμάτωσης που παρέχεται από την εφαρμογή 
+βρίσκεται στο επίπεδο NS_LOG_FUNCTION. Αυτή εμφανίζεται κάθε φορά που καλείται
+μια συνάρτηση της εφαρμογής. Γενικά η χρήση της NS_LOG_FUNCTION(this)
+ενδείκνυται σε member functions, ενώ η NS_LOG_FUNCTION_NOARGS() σε static 
+functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δεν υπάρχει η απαίτηση τα
+μοντέλα να υποστηρίζουν κάποια συγκεκριμένη λειτουργία καταγραφής. Η 
+απόφαση για το εύρος της πληροφορίας που καταγράφεται, επαφίεται στον 
+προγραμματιστή του μοντέλου. Σε περίπτωση εφαρμογής echo, ένα μεγάλο
+μέρος της εξόδου καταγραφής είναι διαθέσιμο.
 
-The name is not actually a class name, it is a logging component name.  When 
-there is a one-to-one correspondence between a source file and a class, this 
-will generally be the class name but you should understand that it is not 
-actually a class name, and there is a single colon there instead of a double
-colon to remind you in a relatively subtle way to conceptually separate the 
-logging component name from the class name.
+..
+	You can now see a log of the function calls that were made to the application.
+	If you look closely you will notice a single colon between the string 
+	``UdpEchoClientApplication`` and the method name where you might have 
+	expected a C++ scope operator (``::``).  This is intentional.  
 
-It turns out that in some cases, it can be hard to determine which method
-actually generates a log message.  If you look in the text above, you may
-wonder where the string "``Received 1024 bytes from 10.1.1.2``" comes
-from.  You can resolve this by OR'ing the ``prefix_func`` level into the
-``NS_LOG`` environment variable.  Try doing the following,
+
+Μπορείτε να δείτε μια καταγραφή των κλήσεων σε συναρτήσεις που έγιναν
+στην εφαρμογή. Αν κοιτάξετε προσεκτικά, θα παρατηρήσετε μια μονή στήλη μεταξύ του
+αλφαριθμητικού ``UdpEchoClientApplication`` και του ονόματος της μεθόδου, αντί 
+του τελεστή ``::`` της C++ που θα περιμένατε. Αυτό γίνεται εσκεμμένα.
+
+..
+	The name is not actually a class name, it is a logging component name.  When 
+	there is a one-to-one correspondence between a source file and a class, this 
+	will generally be the class name but you should understand that it is not 
+	actually a class name, and there is a single colon there instead of a double
+	colon to remind you in a relatively subtle way to conceptually separate the 
+	logging component name from the class name.
+
+Το όνομα δεν είναι στην πραγματικότητα το όνομα μιας κλάσης, αλλά το όνομα
+του στοιχείου καταγραφής. Όταν υπάρχει αντιστοίχηση 1-προς-1 μεταξύ του 
+αρχείου πηγής και της κλάσης, το όνομα θα είναι γενικά ίδιο με της κλάσης. Η 
+μονή στήλη χρησιμοποιείται αντί της διπλής για να διαχωρίσει το στοιχείο 
+καταγραφής από το όνομα της κλάσης.
+
+..
+	It turns out that in some cases, it can be hard to determine which method
+	actually generates a log message.  If you look in the text above, you may
+	wonder where the string "``Received 1024 bytes from 10.1.1.2``" comes
+	from.  You can resolve this by OR'ing the ``prefix_func`` level into the
+	``NS_LOG`` environment variable.  Try doing the following,
+
+Σε μερικές περιπτώσεις είναι δύσκολο να προσδιορίσεις ποια μέθοδος ακριβώς
+παράγει ένα μήνυμα καταγραφής. Αν κοιτάξετε το παραπάνω κείμενο, ίσως 
+αναρωτιέστε από που προέρχεται το αλφαριθμητικό "``Received 1024 bytes from 
+10.1.1.2``". Μπορείτε να λύσετε την απορία σας μέσω του επιπέδου ``prefix_func``
+στη μεταβλητή συστήματος ``NS_LOG``. Δοκιμάστε το παρακάτω,
 
 .. sourcecode:: bash
 
   $ export 'NS_LOG=UdpEchoClientApplication=level_all|prefix_func'
 
-Note that the quotes are required since the vertical bar we use to indicate an
-OR operation is also a Unix pipe connector.
+..
+	Note that the quotes are required since the vertical bar we use to indicate an
+	OR operation is also a Unix pipe connector.
 
-Now, if you run the script you will see that the logging system makes sure 
-that every message from the given log component is prefixed with the component
-name.
+Σημειώστε ότι τα εισαγωγικά χρειάζονται, αφού η κάθετη στήλη χρησιμοποιείται 
+στο Unix για να υποδείξει τον τελεστή Ή.
+
+..
+	Now, if you run the script you will see that the logging system makes sure 
+	that every message from the given log component is prefixed with the component
+	name.
+
+Τώρα αν τρέξετε το σενάριο, θα παρατηρήσετε ότι το σύστημα καταγραφής προσθέτει
+σε κάθε μήνυμα ένα πρόθεμα με το όνομα του στοιχείου.
 
 .. sourcecode:: bash
 
@@ -350,24 +390,40 @@ name.
   UdpEchoClientApplication:DoDispose()
   UdpEchoClientApplication:~UdpEchoClient()
 
-You can now see all of the messages coming from the UDP echo client application
-are identified as such.  The message "Received 1024 bytes from 10.1.1.2" is
-now clearly identified as coming from the echo client application.  The 
-remaining message must be coming from the UDP echo server application.  We 
-can enable that component by entering a colon separated list of components in
-the NS_LOG environment variable.
+..
+	You can now see all of the messages coming from the UDP echo client application
+	are identified as such.  The message "Received 1024 bytes from 10.1.1.2" is
+	now clearly identified as coming from the echo client application.  The 
+	remaining message must be coming from the UDP echo server application.  We 
+	can enable that component by entering a colon separated list of components in
+	the NS_LOG environment variable.
 
+Μπορείτε να ταυτοποιήσετε τώρα όλα τα μηνύματα που προέρχονται από την εφαρμογή 
+πελάτη UDP echo. Το μήνυμα "Received 1024 bytes from 10.1.1.2" φαίνεται τώρα ξεκάθαρα 
+ότι προέρχεται από την εφαρμογή του πελάτη. Αντίστοιχα το άλλο μήνυμα προέρχεται από 
+την εφαρμογή του εξυπηρετητή UDP echo. Μπορούμε να ενεργοποιήσουμε το στοιχείο αυτό, 
+προσθέτοντας μια λίστα στοιχείων στη μεταβλητή περιβάλλοντος NS_LOG.
+ 
 .. sourcecode:: bash
 
   $ export 'NS_LOG=UdpEchoClientApplication=level_all|prefix_func:
                  UdpEchoServerApplication=level_all|prefix_func'
 
-Warning:  You will need to remove the newline after the ``:`` in the
-example text above which is only there for document formatting purposes.
+..
+	Warning:  You will need to remove the newline after the ``:`` in the
+	example text above which is only there for document formatting purposes.
 
-Now, if you run the script you will see all of the log messages from both the
-echo client and server applications.  You may see that this can be very useful
-in debugging problems.
+Προσοχή: Θα χρειαστεί να αφαιρέσετε τη νέα γραμμή μετά το ``:`` στο παραπάνω κείμενο του 
+παραδείγματος, το οποίο υπάρχει απλά για λόγους μορφοποίησης.
+
+..
+	Now, if you run the script you will see all of the log messages from both the
+	echo client and server applications.  You may see that this can be very useful
+	in debugging problems.
+
+Αν τρέξετε το σενάριο τώρα, θα παρατηρήσετε όλα τα μηνύματα τόσο από την εφαρμογή του
+πελάτη όσο και του εξυπηρετητή. Αυτό μπορεί να αποδειχτεί πολύ χρήσιμο σε 
+περιπτώσεις προβλημάτων αποσφαλμάτωσης.
 
 .. sourcecode:: bash
 
