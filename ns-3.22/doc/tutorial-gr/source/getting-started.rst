@@ -54,7 +54,7 @@
 ..
 	Downloading |ns3|
 	
-Κατεβάζοντας τον |ns-3|
+Κατεβάζοντας τον |ns3|
 ***********************
 
 ..
@@ -324,7 +324,8 @@
 ..
 	You should see something like the following,
 	
-Θα πρέπει να δείτε κάτι όπως παρακάτω,::
+Θα πρέπει να δείτε κάτι όπως παρακάτω,
+::
 
    > Python - OK
    > GNU C++ compiler - OK
@@ -394,7 +395,7 @@
 ..
 	Building |ns3|
 
-Χτίζοντας τον |ns-3|
+Χτίζοντας τον |ns3|
 ********************
 
 ..
@@ -412,7 +413,7 @@
 	configuration and work with |ns3| will typically involve using the
 	native |ns3| build system, Waf, to be introduced later in this tutorial.  
 	
-Δουλεύοντας απο μία έκδοση tarball, η πρώτη φορά που θα κατασκευάσετε την εργασία |ns-3| μπορείτε να δημιουργήσετε χρησιμοποιώντας ένα εύχρηστο πρόγραμμα που θα βρείτε στον κατάλογο ``allinone``. Αυτό το πρόγραμμα ονομάζεται ``build.py``. Αυτό το πρόγραμμα θα πάρει την ρυθμισμένη εργασία για εσάς στο πιο χρήσιμο τρόπο. Ωστόσο, παρακαλούμε να σημειώσετε ότι πιο προηγμένες ρυθμίσεις και εργασίες με τον |ns-3| τυπικά περιλαμβάνει τη χρήση του φυσικού συστήματος κατασκευής |ns-3|, Waf, στο οποίο θα εισαχθούμε αργότερα στον οδηγό αυτό.
+Δουλεύοντας απο μία έκδοση tarball, η πρώτη φορά που θα κατασκευάσετε την εργασία |ns3| μπορείτε να δημιουργήσετε χρησιμοποιώντας ένα εύχρηστο πρόγραμμα που θα βρείτε στον κατάλογο ``allinone``. Αυτό το πρόγραμμα ονομάζεται ``build.py``. Αυτό το πρόγραμμα θα πάρει την ρυθμισμένη εργασία για εσάς στο πιο χρήσιμο τρόπο. Ωστόσο, παρακαλούμε να σημειώσετε ότι πιο προηγμένες ρυθμίσεις και εργασίες με τον |ns3| τυπικά περιλαμβάνει τη χρήση του φυσικού συστήματος κατασκευής |ns3|, Waf, στο οποίο θα εισαχθούμε αργότερα στον οδηγό αυτό.
 
 ..
 	If you downloaded
@@ -432,7 +433,7 @@
 	|ns3| without examples and tests, or eliminate the modules that
 	are not necessary for your work, if you wish.
 
-Επειδή εργαζόμαστε με παραδείγματα και δοκιμές σε αυτόν τον οδηγό, και επειδή δεν έχουν κατασκευαστεί από προεπιλογή στον |ns-3|, τα ορίσματα για build.py λέει να τα κατασκευάσουμε για εμάς. Το πρόγραμμα, επίσης, αποτυγχάνει την οικοδόμηση όλων των διαθέσιμων ενοτήτων. Αργότερα, μπορείτε να χτίσετε τον |ns-3| χωρίς παραδείγματα και δοκιμές, ή την εξάλειψη των ενοτήτων που δεν είναι απαραίτητα για την εργασία σας, εάν το επιθυμείτε.
+Επειδή εργαζόμαστε με παραδείγματα και δοκιμές σε αυτόν τον οδηγό, και επειδή δεν έχουν κατασκευαστεί από προεπιλογή στον |ns3|, τα ορίσματα για build.py λέει να τα κατασκευάσουμε για εμάς. Το πρόγραμμα, επίσης, αποτυγχάνει την οικοδόμηση όλων των διαθέσιμων ενοτήτων. Αργότερα, μπορείτε να χτίσετε τον |ns3| χωρίς παραδείγματα και δοκιμές, ή την εξάλειψη των ενοτήτων που δεν είναι απαραίτητα για την εργασία σας, εάν το επιθυμείτε.
 
 ..
 	You will see lots of typical compiler output messages displayed as the build
@@ -481,7 +482,7 @@
 	simulator did not build successfully or that it will provide wrong 
 	results for the modules listed as being built.
 
-Αυτό σημαίνει απλά ότι κάποιες ενότητες του |ns-3| που έχουν εξαρτήσεις σε εξωτερικές βιβλιοθήκες μπορεί να μην έχουν κατασκευαστεί, ή ότι η διαμόρφωση ζήτησε συγκεκριμένα να μην τις κατασκευάσει. Αυτό δεν σημαίνει ότι ο προσομοιωτής δεν έχτισε με επιτυχία ή ότι θα παρέχει λανθασμένα αποτελέσματα για τις ενότητες που αναφέρονται καθώς χτίζονται.
+Αυτό σημαίνει απλά ότι κάποιες ενότητες του |ns3| που έχουν εξαρτήσεις σε εξωτερικές βιβλιοθήκες μπορεί να μην έχουν κατασκευαστεί, ή ότι η διαμόρφωση ζήτησε συγκεκριμένα να μην τις κατασκευάσει. Αυτό δεν σημαίνει ότι ο προσομοιωτής δεν έχτισε με επιτυχία ή ότι θα παρέχει λανθασμένα αποτελέσματα για τις ενότητες που αναφέρονται καθώς χτίζονται.
 
 ..
 	Building with bake
@@ -493,7 +494,7 @@
 	If you used bake above to fetch source code from project repositories, you
 	may continue to use it to build |ns3|.  Type 
 
-Εάν χρησιμοποιείτε bake παραπάνω για να φέρετε τον πηγαίο κώδικα από τα αποθετήρια εργασιών, μπορείτε να συνεχίσετε να το χρησιμοποιήσετε για να οικοδομήσετε τον |ns-3|. Πληκτρολογήστε::
+Εάν χρησιμοποιείτε bake παραπάνω για να φέρετε τον πηγαίο κώδικα από τα αποθετήρια εργασιών, μπορείτε να συνεχίσετε να το χρησιμοποιήσετε για να οικοδομήσετε τον |ns3|. Πληκτρολογήστε::
 
   $ ./bake.py build
 
@@ -654,72 +655,91 @@
 	a feature to use the program ``sudo`` to set the suid bit of certain programs.
 	This is not enabled by default and so this feature is reported as "not enabled."
 
-Σημειώστε το τελευταίο μέρος της παραπάνω εξόδου. Μερικά | ns3 | επιλογές δεν είναι 
-ενεργοποιημένη από προεπιλογή ή απαιτούν υποστήριξη από το υποκείμενο σύστημα για να λειτουργήσει 
-σωστά. Για παράδειγμα, για να μπορέσει XmlTo, τη βιβλιοθήκη LibXML-2.0 πρέπει να βρεθεί στο σύστημα. 
-Αν δεν βρεθεί αυτή η βιβλιοθήκη, το αντίστοιχο | ns3 | χαρακτηριστικό δεν θα πρέπει να ενεργοποιηθεί και 
-ένα μήνυμα θα εμφανιστεί. Σημειώστε, επίσης, ότι υπάρχει ένα χαρακτηριστικό για να χρησιμοποιήσετε το 
-πρόγραμμα `` sudo`` να ρυθμίσετε το suid κομμάτι ορισμένων προγραμμάτων. Αυτό δεν είναι ενεργοποιημένη από 
-προεπιλογή και έτσι αυτό το χαρακτηριστικό αναφέρεται ως "δεν είναι ενεργοποιημένη."
+Σημειώστε το τελευταίο μέρος της παραπάνω εξόδου. Μερικές επιλογές στον |ns3| δεν είναι ενεργοποιημένες από προεπιλογή ή απαιτούν υποστήριξη από το υποκείμενο σύστημα για να λειτουργήσει σωστά. Για παράδειγμα, για να ενεργοποιήσετε τον XmlTo, η βιβλιοθήκη LibXML-2.0 πρέπει να βρεθεί στο σύστημα. Αν δεν βρεθεί αυτή η βιβλιοθήκη, το αντίστοιχο χαρακτηριστικό του |ns3| δεν θα έπρεπε να ενεργοποιηθεί και ένα μήνυμα θα εμφανιστεί. Σημειώστε, επίσης, ότι υπάρχει ένα χαρακτηριστικό για να χρησιμοποιήσετε το πρόγραμμα ``sudo`` να ρυθμίσετε το suid κομμάτι ορισμένων προγραμμάτων. Αυτό δεν είναι ενεργοποιημένο από προεπιλογή και έτσι αυτό το χαρακτηριστικό αναφέρεται ως "όχι ενεργοποιημένο."("not enabled.")
 
 ..
 	Now go ahead and switch back to the debug build that includes the examples and tests.
 
-Τώρα συνεχίστε και να επιστρέψετε στην κατασκευή εντοπισμού σφαλμάτων που περιλαμβάνει τα παραδείγματα και δοκιμές.::
+Τώρα συνεχίστε και επιστρέψετε στην κατασκευή εντοπισμού σφαλμάτων που περιλαμβάνει τα παραδείγματα και δοκιμές.::
 
   $ ./waf clean
   $ ./waf --build-profile=debug --enable-examples --enable-tests configure
 
-The build system is now configured and you can build the debug versions of 
-the |ns3| programs by simply typing
+..
+	The build system is now configured and you can build the debug versions of 
+	the |ns3| programs by simply typing
 
-::
+Το σύστημα κατασκευής είναι τώρα ρυθμισμένο και μπορείτε να χτίσετε τις debug εκδόσεις των προγραμμάτων |ns3| απλά πληκτρολογώντας::
 
   $ ./waf
 
-Okay, sorry, I made you build the |ns3| part of the system twice,
-but now you know how to change the configuration and build optimized code.
+..
+	Okay, sorry, I made you build the |ns3| part of the system twice,
+	but now you know how to change the configuration and build optimized code.
 
-The build.py script discussed above supports also the ``--enable-examples``
-and ``enable-tests`` arguments, but in general, does not directly support
-other waf options; for example, this will not work:
+Εντάξει, συγγνώμη, σας έκανα να φτιάξετε το μέρος του συστήματος |ns3| δύο φορές, αλλά τώρα ξέρετε πώς να αλλάξετε τη διαμόρφωση και την κατασκευή για βελτιστοποιημένο κώδικα.
 
+..
+	The build.py script discussed above supports also the ``--enable-examples``
+	and ``enable-tests`` arguments, but in general, does not directly support
+	other waf options; for example, this will not work:
+
+Το σενάριο build.py συζητήθηκε παραπάνω, υποστηρίζει επίσης τα ``--enable-examples`` και ``enable-tests`` ορίσματα, αλλά σε γενικές γραμμές, δεν υποστηρίζει άμεσα άλλες WAF επιλογές, για παράδειγμα, αυτό δεν θα λειτουργήσει:
 ::
 
   $ ./build.py --disable-python
 
-will result in
+..
+	will result in
 
+θα οδηγήσει σε
 ::
 
   build.py: error: no such option: --disable-python
 
-However, the special operator ``--`` can be used to pass additional
-options through to waf, so instead of the above, the following will work:
+..
+	However, the special operator ``--`` can be used to pass additional
+	options through to waf, so instead of the above, the following will work:
 
+Ωστόσο, ο ειδικός φορέας ``--`` μπορεί να χρησιμοποιηθεί για να περάσουν επιπλέον 
+επιλογές μέσω του WAF, έτσι ώστε αντί των ανωτέρω, τα ακόλουθα θα λειτουργήσουν:
 ::
 
   $ ./build.py -- --disable-python   
 
-as it generates the underlying command ``./waf configure --disable-python``.
+..
+	as it generates the underlying command ``./waf configure --disable-python``.
 
-Here are a few more introductory tips about Waf.
+δεδομένου ότι δημιουργεί τη βασική εντολή ``./waf configure --disable-python``.
 
-Configure vs. Build
-===================
+..
+	Here are a few more introductory tips about Waf.
+	
+Εδώ είναι λίγο περισσότερες εισαγωγικές συμβουλές για τον Waf.
 
-Some Waf commands are only meaningful during the configure phase and some commands are valid
-in the build phase.  For example, if you wanted to use the emulation 
-features of |ns3|, you might want to enable setting the suid bit using
-sudo as described above.  This turns out to be a configuration-time command, and so 
-you could reconfigure using the following command that also includes the examples and tests.
+..
+	Configure vs. Build
+	
+Ρύθμιση(Διαμόρφωση) εναντίον Κατασκευής
+=======================================
 
+..
+	Some Waf commands are only meaningful during the configure phase and some commands are valid
+	in the build phase.  For example, if you wanted to use the emulation 
+	features of |ns3|, you might want to enable setting the suid bit using
+	sudo as described above.  This turns out to be a configuration-time command, and so 
+	you could reconfigure using the following command that also includes the examples and tests.
+
+Μερικές εντολές του Waf έχουν νόημα μόνο κατά τη διάρκεια της φάσης της παραμετροποίησης και κάποιες εντολές ισχύουν κατά τη φάση της κατασκευής. Για παράδειγμα, αν θέλετε να χρησιμοποιήσετε τις λειτουργίες της εξομοίωσης του |ns3|, ίσως πρέπει να ενεργοποιήσετε αυτήν την ρύθμιση του κομματιού suid χρησιμοποιώντας την εντολή sudo, όπως περιγράφεται παραπάνω. Αυτό αποδεικνύεται ότι είναι μια εντολή διαμόρφωσης χρόνου, και έτσι θα μπορείτε να αναμορφώσετε χρησιμοποιώντας την ακόλουθη εντολή, που περιλαμβάνει επίσης τα παραδείγματα και δοκιμές.
 ::
 
   $ ./waf configure --enable-sudo --enable-examples --enable-tests
 
-If you do this, Waf will have run sudo to change the socket creator programs of the
-emulation code to run as root.
+..
+	If you do this, Waf will have run sudo to change the socket creator programs of the
+	emulation code to run as root.
+
+Αν το κάνετε αυτό, Waf θα έχουν εξαντληθεί sudo για να αλλάξει τα προγράμματα υποδοχή δημιουργός του κώδικα εξομοίωσης να εκτελούνται ως root.
 
 There are many other configure- and build-time options
 available in Waf.  To explore these options, type::
