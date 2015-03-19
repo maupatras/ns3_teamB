@@ -580,64 +580,98 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 απρόβλεπτο. Αν χρησιμοποιήσετε απλά τον debugger, μπορείτε να παραβλέψετε τελείως
 μια απρόβλεπτη συμπεριφορά. Με την καταγραφή μπορούμε να την εντοπίσουμε γρήγορα.
 
-Adding Logging to your Code
-+++++++++++++++++++++++++++
-You can add new logging to your simulations by making calls to the log 
-component via several macros.  Let's do so in the ``myfirst.cc`` script we
-have in the ``scratch`` directory.
+..
+	Adding Logging to your Code
+	+++++++++++++++++++++++++++
+	You can add new logging to your simulations by making calls to the log 
+	component via several macros.  Let's do so in the ``myfirst.cc`` script we
+	have in the ``scratch`` directory.
+	
+	Recall that we have defined a logging component in that script:
 
-Recall that we have defined a logging component in that script:
+Προσθήκη Καταγραφής σε Κώδικα
++++++++++++++++++++++++++++++
+Μπορείτε να προσθέσετε νέες καταγραφές στις εξομοιώσεις σας καλώντας το στοιχείο
+καταγραφής μέσω διαφόρων μακροεντολών. Ας το επιχειρήσουμε στο σενάριο εξομοίωσης
+``myfirst.cc`` που βρίσκεται στον φάκελο ``scratch``.
+
+Θυμηθείτε ότι έχουμε ορίσει ένα στοιχείο καταγραφής σε εκείνο το σενάριο:
 
 ::
 
   NS_LOG_COMPONENT_DEFINE ("FirstScriptExample");
+..
+	You now know that you can enable all of the logging for this component by
+	setting the ``NS_LOG`` environment variable to the various levels.  Let's
+	go ahead and add some logging to the script.  The macro used to add an 
+	informational level log message is ``NS_LOG_INFO``.  Go ahead and add one 
+	(just before we start creating the nodes) that tells you that the script is 
+	"Creating Topology."  This is done as in this code snippet,
 
-You now know that you can enable all of the logging for this component by
-setting the ``NS_LOG`` environment variable to the various levels.  Let's
-go ahead and add some logging to the script.  The macro used to add an 
-informational level log message is ``NS_LOG_INFO``.  Go ahead and add one 
-(just before we start creating the nodes) that tells you that the script is 
-"Creating Topology."  This is done as in this code snippet,
+	Open ``scratch/myfirst.cc`` in your favorite editor and add the line,
 
-Open ``scratch/myfirst.cc`` in your favorite editor and add the line,
+Γνωρίζετε τώρα ότι μπορείτε να ενεργοποιήσετε όλες τις δυνατές καταγραφές
+για αυτό το στοιχείο, θέτοντας τη μεταβλητή περιβάλλοντος ``NS_LOG`` σε 
+κάποιο επίπεδο. Ας προχωρήσουμε στην προσθήκη καταγραφής στο σενάριο. Η
+μακροεντολή που προσθέτει καταγραφή σε επίπεδο πληροφοριακών μηνυμάτων 
+είναι η ``NS_LOG_INFO``. Θέλουμε να προσθέσουμε ένα μήνυμα (πριν αρχίσουμε 
+να δημιουργούμε κόμβους) που αναφέρει ότι το σενάριο δημιουργεί μια τοπολογία 
+"Creating Topology". Αυτό γίνεται όπως δείχνουμε στον παρακάτω κώδικα,
 
+Ανοίξτε το ``scratch/myfirst.cc`` σε έναν επεξεργαστή κειμένου και προσθέστε
+τη γραμμή,
 ::
 
   NS_LOG_INFO ("Creating Topology");
 
-right before the lines,
-
+..
+	right before the lines,
+αμέσως πριν από τις γραμμές,
 ::
 
   NodeContainer nodes;
   nodes.Create (2);
 
-Now build the script using waf and clear the ``NS_LOG`` variable to turn 
-off the torrent of logging we previously enabled:
+..
+	Now build the script using waf and clear the ``NS_LOG`` variable to turn 
+	off the torrent of logging we previously enabled:
+Τώρα ας οικοδομήσουμε το σενάριο χρησιμοποιώντας το waf και καθαρίζοντας τη
+μεταβλητή ``NS_LOG`` ώστε να απενεργοποιήσουμε το torrent της καταγραφής που 
+είχαμε προηγουμένως ενεργοποιήσει:
 
 .. sourcecode:: bash
 
   $ ./waf
   $ export NS_LOG=
 
-Now, if you run the script, 
+..
+	Now, if you run the script, 
+Αν τρέξετε το σενάριο τώρα,
 
 .. sourcecode:: bash
 
   $ ./waf --run scratch/myfirst
 
-you will ``not`` see your new message since its associated logging 
-component (``FirstScriptExample``) has not been enabled.  In order to see your
-message you will have to enable the ``FirstScriptExample`` logging component
-with a level greater than or equal to ``NS_LOG_INFO``.  If you just want to 
-see this particular level of logging, you can enable it by,
+..
+	you will ``not`` see your new message since its associated logging 
+	component (``FirstScriptExample``) has not been enabled.  In order to see your
+	message you will have to enable the ``FirstScriptExample`` logging component
+	with a level greater than or equal to ``NS_LOG_INFO``.  If you just want to 
+	see this particular level of logging, you can enable it by,
+δεν θα δείτε το νέο μήνυμα, αφού το σχετικό στοιχείο καταγραφής 
+(``FirstScriptExample``) δεν έχει ενεργοποιηθεί. Για να δείτε το μήνυμά σας 
+θα πρέπει να το ενεργοποιήσετε με επίπεδο καταγραφής μεγαλύτερο ή ίσο με 
+``NS_LOG_INFO``. Αν θέλετε απλά να δείτε το συγκεκριμένο επίπεδο καταγραφής,
+μπορείτε να το ενεργοποιήσετε ως εξής,
 
 .. sourcecode:: bash
 
   $ export NS_LOG=FirstScriptExample=info
 
-If you now run the script you will see your new "Creating Topology" log
-message,
+..
+	If you now run the script you will see your new "Creating Topology" log
+	message,
+Αν τρέξετε τώρα το σενάριο, θα δείτε το μήνυμα καταγραφής "Creating Topology",
 
 .. sourcecode:: bash
 
