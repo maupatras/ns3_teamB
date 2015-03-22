@@ -3,39 +3,77 @@
 
 .. _BuildingTopologies:
 
-Building Topologies
--------------------
+.. Building Topologies
 
-Building a Bus Network Topology
-*******************************
+Δημιουργία Τοπολογιών
+---------------------
 
-In this section we are going to expand our mastery of |ns3| network 
-devices and channels to cover an example of a bus network.  |ns3|
-provides a net device and channel we call CSMA (Carrier Sense Multiple Access).
+.. Building a Bus Network Topology
 
-The |ns3| CSMA device models a simple network in the spirit of 
-Ethernet.  A real Ethernet uses CSMA/CD (Carrier Sense Multiple Access with 
-Collision Detection) scheme with exponentially increasing backoff to contend 
-for the shared transmission medium.  The |ns3| CSMA device and 
-channel models only a subset of this.
+Δημιουργώντας μια Τοπολογία Δικτύο Αρτηρίας
+*******************************************
 
-Just as we have seen point-to-point topology helper objects when constructing
-point-to-point topologies, we will see equivalent CSMA topology helpers in
-this section.  The appearance and operation of these helpers should look 
-quite familiar to you.
+..
+	In this section we are going to expand our mastery of |ns3| network 
+	devices and channels to cover an example of a bus network.  |ns3|
+	provides a net device and channel we call CSMA (Carrier Sense Multiple Access).
+	
+Σε αυτή την ενότητα πρόκειται να επεκτείνουμε την ικανότητά μας να διαχειριζόμαστε
+τις συσκευές δικτύου του |ns3| και τα κανάλια ώστε να καλύψουμε ένα παράδειγμα ενός δικτύου
+αρτηρίας. O |ns3| παρέχει μια δικτυακή συσκευή και ένα κανάλι που εμείς αποκαλούμε CSMA
+(Carrier Sense Multiple Access). 
 
-We provide an example script in our examples/tutorial} directory.  This script
-builds on the ``first.cc`` script and adds a CSMA network to the 
-point-to-point simulation we've already considered.  Go ahead and open 
-``examples/tutorial/second.cc`` in your favorite editor.  You will have already seen
-enough |ns3| code to understand most of what is going on in this 
-example, but we will go over the entire script and examine some of the output.
+..
+	The |ns3| CSMA device models a simple network in the spirit of 
+	Ethernet.  A real Ethernet uses CSMA/CD (Carrier Sense Multiple Access with 
+	Collision Detection) scheme with exponentially increasing backoff to contend 
+	for the shared transmission medium.  The |ns3| CSMA device and 
+	channel models only a subset of this.
+	
+Η CSMA συσκευή του |ns3| μοντελοποιεί ένα απλό δίκτυο στο πνεύμα του Ethernet.
+Ένα πραγματικό Ethernet χρησιμοποιεί το CSMA/CD (Carrier Sense Multiple Access with 
+Collision Detection) σχήμα με εκθετικά αυξανόμενη οπισθοχώρηση για τη διεκδίκηση του
+διαμοιραζόμενου μέσου μετάδοσης. Η CSMA συσκευή του |ns3| και το αντίστοιχο κανάλι 
+μοντελοποιούν μόνο ένα υποσύνολο από αυτά. 
 
-Just as in the ``first.cc`` example (and in all ns-3 examples) the file
-begins with an emacs mode line and some GPL boilerplate.
+..
+	Just as we have seen point-to-point topology helper objects when constructing
+	point-to-point topologies, we will see equivalent CSMA topology helpers in
+	this section.  The appearance and operation of these helpers should look 
+	quite familiar to you.
+	
+Όπως έχουμε δει τα αντικείμενα βοηθών για τοπολογίες σημείου-προς-σημείο όταν κατασκευάζαμε
+τέτοιες τοπολογίες, θα δούμε ισοδύναμους CSMA βοηθούς τοπολογίας σε αυτή την ενότητα. Η 
+εμφάνιση και η λειτουργία αυτών των βοηθών θα πρέπει να σας φαίνεται αρκετά οικεία.
 
-The actual code begins by loading module include files just as was done in the
-``first.cc`` example.
+..
+	We provide an example script in our examples/tutorial} directory.  This script
+	builds on the ``first.cc`` script and adds a CSMA network to the 
+	point-to-point simulation we've already considered.  Go ahead and open 
+	``examples/tutorial/second.cc`` in your favorite editor.  You will have already seen
+	enough |ns3| code to understand most of what is going on in this 
+	example, but we will go over the entire script and examine some of the output.
+	
+Παραθέτουμε ένα παραδειγματικό σενάριο στον κατάλογο examples/tutorial. Το σενάριο αυτό
+χτίζει πάνω στο σενάριο ``first.cc`` και προσθέτει ένα δίκτυο CSMA στην προσομοίωση
+σημείου-προς-σημείο που έχουμε ήδη εξετάσει. Ανοίξτε το ``examples/tutorial/second.cc``
+στον επεξεργαστή κειμένου της προτίμησής σας. Θα πρέπει να έχετε ήδη δει αρκετό κώδικα του 
+|ns3| ώστε να καταλαβαίνετε τα περισσότερα από αυτά που συμβαίνουν σε αυτό το παράδειγμα, αλλά
+εμείς θα δούμε ολόκληρο το σενάριο και θα εξετάσουμε κάποια από τα αποτελέσματα.
+
+..
+	Just as in the ``first.cc`` example (and in all ns-3 examples) the file
+	begins with an emacs mode line and some GPL boilerplate.
+	
+Όπως και στο παράδειγμα του ``first.cc`` (και σε όλα τα παραδείγματα του ns-3) το αρχείο
+ξεκινάει με μια γραμμή κατάστασης για τον emacs και κάποιες κοινές δηλώσεις GPL.
+
+..
+	The actual code begins by loading module include files just as was done in the
+	``first.cc`` example.
+	
+Ο πραγματικός κώδικας ξεκινάει με τη φόρτωση αρχείων include ενοτήτων, όπως έγινε
+και στο παράδειγμα ``first.cc`` example.
 
 ::
 
@@ -47,17 +85,31 @@ The actual code begins by loading module include files just as was done in the
   #include "ns3/applications-module.h"
   #include "ns3/ipv4-global-routing-helper.h"
 
-One thing that can be surprisingly useful is a small bit of ASCII art that
-shows a cartoon of the network topology constructed in the example.  You will
-find a similar "drawing" in most of our examples.
+..
+	One thing that can be surprisingly useful is a small bit of ASCII art that
+	shows a cartoon of the network topology constructed in the example.  You will
+	find a similar "drawing" in most of our examples.
+	
+Ένα πράγμα που μπορεί να είναι εκπληκτικά χρήσιμο είναι ένα μικρό κομμάτι τέχνης σε
+ASCII, το οποίο δείχνει ένα σχεδιάκι της τοπολογίας δικτύου που κατασκευάζεται στο
+παράδειγμα. Θα βρείτε ένα παρόμοιο "σχέδιο" στα περισσότερα από τα παραδείγματά μας.
 
-In this case, you can see that we are going to extend our point-to-point
-example (the link between the nodes n0 and n1 below) by hanging a bus network
-off of the right side.  Notice that this is the default network topology 
-since you can actually vary the number of nodes created on the LAN.  If you
-set nCsma to one, there will be a total of two nodes on the LAN (CSMA 
-channel) --- one required node and one "extra" node.  By default there are
-three "extra" nodes as seen below:
+..
+	In this case, you can see that we are going to extend our point-to-point
+	example (the link between the nodes n0 and n1 below) by hanging a bus network
+	off of the right side.  Notice that this is the default network topology 
+	since you can actually vary the number of nodes created on the LAN.  If you
+	set nCsma to one, there will be a total of two nodes on the LAN (CSMA 
+	channel) --- one required node and one "extra" node.  By default there are
+	three "extra" nodes as seen below:
+	
+Σε αυτήν την περίπτωση, μπορείτε να δείτε ότι πρόκειται να επεκτείνουμε το παράδειγμά
+μας από σημείο-προς-σημείο (ο σύνδεσμος μεταξύ των κόμβων n0 και n1 παρακάτω) συνδέοντας 
+ένα δίκτυο αρτηρίας στη δεξιά του πλευρά. Παρατηρήστε ότι αυτή είναι η προεπιλεγμένη
+τοπολογία δικτύου καθώς μπορείτε ουσιαστικά να αλλάξετε τον αριθμό των κόμβων που 
+δημιουργούνται στο LAN. Εάν θέσετε τη nCsma στην τιμή ένα, θα υπάρχουν συνολικά δύο 
+κόμβοι στο LAN (CSMA κανάλι) --- ένας απαιτούμενος κόμβος και ένας "επιπλέον" κόμβος. Εξ
+ορισμού υπάρχουν τρεις "επιπλέον" κόμβοι όπως φαίνεται παρακάτω:
 
 ::
 
@@ -69,8 +121,13 @@ three "extra" nodes as seen below:
 //                    ================
 //                      LAN 10.1.2.0
 
-Then the ns-3 namespace is ``used`` and a logging component is defined.
-This is all just as it was in ``first.cc``, so there is nothing new yet.
+..
+	Then the ns-3 namespace is ``used`` and a logging component is defined.
+	This is all just as it was in ``first.cc``, so there is nothing new yet.
+	
+Έπειτα ``χρησιμοποιείται`` ο χώρος ονομάτων του ns-3 και ορίζεται ένας component
+καταγραφής. Όλα αυτά είναι όπως ήταν και στο ``first.cc``, οπότε δεν υπάρχει κάτι
+καινούργιο ακόμα.
 
 ::
   
@@ -78,20 +135,39 @@ This is all just as it was in ``first.cc``, so there is nothing new yet.
   
   NS_LOG_COMPONENT_DEFINE ("SecondScriptExample");
 
-The main program begins with a slightly different twist.  We use a verbose
-flag to determine whether or not the ``UdpEchoClientApplication`` and
-``UdpEchoServerApplication`` logging components are enabled.  This flag
-defaults to true (the logging components are enabled) but allows us to turn
-off logging during regression testing of this example.
+..
+	The main program begins with a slightly different twist.  We use a verbose
+	flag to determine whether or not the ``UdpEchoClientApplication`` and
+	``UdpEchoServerApplication`` logging components are enabled.  This flag
+	defaults to true (the logging components are enabled) but allows us to turn
+	off logging during regression testing of this example.
+	
+Το κυρίως πρόγραμμα ξεκινά με λίγο διαφορετική εξέλιξη. Χρησιμοποιούμε μια σημαία
+verbose για να καθορίσουμε εάν θα ενεργοποιηθούν οι component καταγραφής των
+``UdpEchoClientApplication`` και ``UdpEchoServerApplication``. Αυτή η σημαία 
+τίθεται εξ ορισμού ως αληθής (οι component καταγραφής είναι ενεργοποιημένοι) αλλά μας
+επιτρέπει να απενεργοποιήσουμε την καταγραφή κατά τη διάρκεια της προς-τα-πίσω δοκιμής
+αυτού του παραδείγματος.
 
-You will see some familiar code that will allow you to change the number
-of devices on the CSMA network via command line argument.  We did something
-similar when we allowed the number of packets sent to be changed in the section
-on command line arguments.  The last line makes sure you have at least one
-"extra" node.
+..
+	You will see some familiar code that will allow you to change the number
+	of devices on the CSMA network via command line argument.  We did something
+	similar when we allowed the number of packets sent to be changed in the section
+	on command line arguments.  The last line makes sure you have at least one
+	"extra" node.
+	
+Θα δείτε μερικό οικείο κώδικα ο οποίος θα σας επιτρέψει να αλλάξετε τον αριθμό
+των συσκευών στο CSMA δίκτυο μέσω ορισμάτων στη γραμμή εντολών. Κάναμε κάτι παρόμοιο
+όταν επιτρέψαμε να αλλάξει ο αριθμός των πακέτων που στέλνονται στην ενότητα με τα
+ορίσματα της γραμμής εντολών. Η τελευταία γραμμή διασφαλίζει ότι έχετε τουλάχιστον
+έναν "επιπλέον" κόμβο.
 
-The code consists of variations of previously covered API so you should be
-entirely comfortable with the following code at this point in the tutorial.
+..
+	The code consists of variations of previously covered API so you should be
+	entirely comfortable with the following code at this point in the tutorial.
+	
+Ο κώδικας αποτελείται από παραλλαγές API που έχουμε εξετάσει πιο πριν οπότε θα 
+πρέπει να είστε πλήρως άνετοι με τον ακόλουθο κώδικα σε αυτό το σημείο του οδηγού.
 
 ::
 
@@ -112,18 +188,28 @@ entirely comfortable with the following code at this point in the tutorial.
 
   nCsma = nCsma == 0 ? 1 : nCsma;
 
-The next step is to create two nodes that we will connect via the 
-point-to-point link.  The ``NodeContainer`` is used to do this just as was
-done in ``first.cc``.
+..
+	The next step is to create two nodes that we will connect via the 
+	point-to-point link.  The ``NodeContainer`` is used to do this just as was
+	done in ``first.cc``.
+	
+Το επόμενο βήμα είναι η δημιουργία δύο κόμβων τους οποίους θα συνδέσουμε μέσω
+ενός συνδέσμου σημείου-προς-σημείο. Ο ``NodeContainer`` χρησιμοποιείται για να 
+το κάνει αυτό, ακριβώς όπως και το έκανε και στο ``first.cc``.
 
 ::
 
   NodeContainer p2pNodes;
   p2pNodes.Create (2);
 
-Next, we declare another ``NodeContainer`` to hold the nodes that will be
-part of the bus (CSMA) network.  First, we just instantiate the container
-object itself.  
+..
+	Next, we declare another ``NodeContainer`` to hold the nodes that will be
+	part of the bus (CSMA) network.  First, we just instantiate the container
+	object itself.  
+	
+Έπειτα, δηλώνουμε άλλον ένα ``NodeContainer`` ο οποίος θα περιέχει τους κόμβους
+που θα είναι μέρος του δικτύου αρτηρίας (CSMA). Αρχικά, πρέπει να δημιουργήσουμε
+το αντικείμενο container αυτό καθαυτό.
 
 ::
 
@@ -131,19 +217,36 @@ object itself.
   csmaNodes.Add (p2pNodes.Get (1));
   csmaNodes.Create (nCsma);
 
-The next line of code ``Gets`` the first node (as in having an index of one)
-from the point-to-point node container and adds it to the container of nodes
-that will get CSMA devices.  The node in question is going to end up with a 
-point-to-point device *and* a CSMA device.  We then create a number of 
-"extra" nodes that compose the remainder of the CSMA network.  Since we 
-already have one node in the CSMA network -- the one that will have both a
-point-to-point and CSMA net device, the number of "extra" nodes means the
-number nodes you desire in the CSMA section minus one.
+..
+	The next line of code ``Gets`` the first node (as in having an index of one)
+	from the point-to-point node container and adds it to the container of nodes
+	that will get CSMA devices.  The node in question is going to end up with a 
+	point-to-point device *and* a CSMA device.  We then create a number of 
+	"extra" nodes that compose the remainder of the CSMA network.  Since we 
+	already have one node in the CSMA network -- the one that will have both a
+	point-to-point and CSMA net device, the number of "extra" nodes means the
+	number nodes you desire in the CSMA section minus one.
+	
+Η επόμενη γραμμή κώδικα ``παίρνει`` τον πρώτο κόμβο (δηλαδή σα να έχει ένα ευρετήριο
+που να περιέχει έναν) από το container κόμβων σημείου-προς-σημείο και τον προσθέτει
+στο container των κόμβων που θα δεχτούν τις CSMA συσκευές. Ο εν λόγω κόμβος πρόκειται
+να καταλήξει μια συσκευή σημείου-προς-σημείο *και* μια CSMA συσκευή. Έπειτα δημιουργούμε
+έναν αριθμό από "επιπλέον" κόμβους που συνθέτουν το υπόλοιπο του CSMA δικτύου. Δεδομένου ότι
+έχουμε ήδη έναν κόμβο στο CSMA δίκτυο -- εκείνον που θα έχει και μια δικτυακή συσκευή
+σημείου-προς-σημείο και μια CSMA, ο αριθμός των "επιπλέον" κόμβων ισούται με τον αριθμό
+των κόμβων που επιθυμείτε στο κομμάτι του CSMA πλην ενός.
 
-The next bit of code should be quite familiar by now.  We instantiate a
-``PointToPointHelper`` and set the associated default ``Attributes`` so
-that we create a five megabit per second transmitter on devices created using
-the helper and a two millisecond delay on channels created by the helper.
+..
+	The next bit of code should be quite familiar by now.  We instantiate a
+	``PointToPointHelper`` and set the associated default ``Attributes`` so
+	that we create a five megabit per second transmitter on devices created using
+	the helper and a two millisecond delay on channels created by the helper.
+	
+Το επόμενο κομμάτι κώδικα θα πρέπει να σας είναι πολύ οικείο ως εδώ. Δημιουργούμε έναν
+``PointToPointHelper`` και καθορίζουμε τα σχετικά προεπιλεγμένα ``Attributes`` έτσι ώστε
+να δημιουργήσουμε έναν πομπό με ταχύτητα μετάδοσης πέντε megabit ανά δευτερόλεπτο στις 
+συσκευές που δημιουργήθηκαν με τη χρήση του βοηθού και μια καθυστέρηση δύο μιλιδευτερολέπτων
+στα κανάλια που δημιουργήθηκαν από τον βοηθό. 
 
 ::
 
@@ -154,21 +257,39 @@ the helper and a two millisecond delay on channels created by the helper.
   NetDeviceContainer p2pDevices;
   p2pDevices = pointToPoint.Install (p2pNodes);
 
-We then instantiate a ``NetDeviceContainer`` to keep track of the 
-point-to-point net devices and we ``Install`` devices on the 
-point-to-point nodes.
+..
+	We then instantiate a ``NetDeviceContainer`` to keep track of the 
+	point-to-point net devices and we ``Install`` devices on the 
+	point-to-point nodes.
+	
+Έπειτα δημιουργούμε ένα ``NetDeviceContainer`` για να καταγράφει τις δικτυακές
+συσκευές σημείου-προς-σημείο και ``εγκαθιστούμε`` τις συσκευές στους κόμβους
+σημείου-προς-σημείο.
 
-We mentioned above that you were going to see a helper for CSMA devices and
-channels, and the next lines introduce them.  The ``CsmaHelper`` works just
-like a ``PointToPointHelper``, but it creates and connects CSMA devices and
-channels.  In the case of a CSMA device and channel pair, notice that the data
-rate is specified by a *channel* ``Attribute`` instead of a device 
-``Attribute``.  This is because a real CSMA network does not allow one to mix,
-for example, 10Base-T and 100Base-T devices on a given channel.  We first set 
-the data rate to 100 megabits per second, and then set the speed-of-light delay
-of the channel to 6560 nano-seconds (arbitrarily chosen as 1 nanosecond per foot
-over a 100 meter segment).  Notice that you can set an ``Attribute`` using 
-its native data type.
+..
+	We mentioned above that you were going to see a helper for CSMA devices and
+	channels, and the next lines introduce them.  The ``CsmaHelper`` works just
+	like a ``PointToPointHelper``, but it creates and connects CSMA devices and
+	channels.  In the case of a CSMA device and channel pair, notice that the data
+	rate is specified by a *channel* ``Attribute`` instead of a device 
+	``Attribute``.  This is because a real CSMA network does not allow one to mix,
+	for example, 10Base-T and 100Base-T devices on a given channel.  We first set 
+	the data rate to 100 megabits per second, and then set the speed-of-light delay
+	of the channel to 6560 nano-seconds (arbitrarily chosen as 1 nanosecond per foot
+	over a 100 meter segment).  Notice that you can set an ``Attribute`` using 
+	its native data type.
+	
+Σημειώσαμε προηγουμένως ότι πρόκειται να δείτε έναν βοηθό για CSMA συσκευές και 
+κανάλια, και οι επόμενες γραμμές εισάγουν αυτά τα στοιχεία. Ο ``CsmaHelper`` λειτουργεί
+όπως ένας ``PointToPointHelper``, μόνο που δημιουργεί και συνδέει CSMA συσκευές και 
+κανάλια. Στην περίπτωση ενός ζεύγους CSMA συσκευής και καναλιού, παρατηρήστε ότι ο
+ρυθμός δεδομένων καθορίζεται μέσω ενός ``Attribute`` του *καναλιού* αντί για κάποιο
+`Attribute`` της συσκευής. Αυτό συμβαίνει επειδή ένα πραγματικό CSMA δίκτυο δεν επιτρέπει
+την ανάμειξη, για παράδειγμα, συσκευών 10Base-T και 100Base-T σε ένα δεδομένο κανάλι. Πρώτα
+θέτουμε το ρυθμό δεδομένων στα 100 megabit ανά δευτερόλεπτο, και μετά θέτουμε την καθυστέρηση
+του καναλιού στα 6560 νανοδευτερόλεπτα (έχοντας επιλέξει αυθαίρετα ότι χρειάζεται 1
+νανοδευτερόλεπτο ανά πόδι αντί ανά τμήματα 100 μέτρων). Σημειώστε ότι μπορείτε να καθορίσετε
+ένα ``Attribute`` χρησιμοποιώντας τον ενδογενή τύπο δεδομένων του.
 
 ::
 
@@ -179,15 +300,27 @@ its native data type.
   NetDeviceContainer csmaDevices;
   csmaDevices = csma.Install (csmaNodes);
 
-Just as we created a ``NetDeviceContainer`` to hold the devices created by
-the ``PointToPointHelper`` we create a ``NetDeviceContainer`` to hold 
-the devices created by our ``CsmaHelper``.  We call the ``Install`` 
-method of the ``CsmaHelper`` to install the devices into the nodes of the
-``csmaNodes NodeContainer``.
+..
+	Just as we created a ``NetDeviceContainer`` to hold the devices created by
+	the ``PointToPointHelper`` we create a ``NetDeviceContainer`` to hold 
+	the devices created by our ``CsmaHelper``.  We call the ``Install`` 
+	method of the ``CsmaHelper`` to install the devices into the nodes of the
+	``csmaNodes NodeContainer``.
+	
+Με τον ίδιο τρόπο που δημιουργήσαμε ένα ``NetDeviceContainer`` ώστε να περιέχει τις
+συσκευές που δημιουργούνται από τον ``PointToPointHelper``, έτσι δημιουργούμε ένα 
+``NetDeviceContainer`` για να περιέχει τις συσκευές που δημιουργούνται από τον ``CsmaHelper``
+μας. Καλούμε τη μέθοδο ``Install`` του ``CsmaHelper`` ώστε να εγκαταστήσουμε τις συσκευές
+στους κόμβους του ``csmaNodes NodeContainer``.
 
-We now have our nodes, devices and channels created, but we have no protocol
-stacks present.  Just as in the ``first.cc`` script, we will use the
-``InternetStackHelper`` to install these stacks.
+..
+	We now have our nodes, devices and channels created, but we have no protocol
+	stacks present.  Just as in the ``first.cc`` script, we will use the
+	``InternetStackHelper`` to install these stacks.
+	
+Τώρα έχουμε δημιουργήσει τους κόμβους μας, τις συσκευές και τα κανάλια μας, αλλά δεν έχουμε
+καθόλου στοίβες πρωτοκόλλου εγκατεστημένες. Όπως και στο σενάριο του ``first.cc``, θα 
+χρησιμοποιήσουμε τον ``InternetStackHelper`` για να εγκαταστησουμε αυτές τις στοίβες.
 
 ::
 
@@ -195,15 +328,27 @@ stacks present.  Just as in the ``first.cc`` script, we will use the
   stack.Install (p2pNodes.Get (0));
   stack.Install (csmaNodes);
 
-Recall that we took one of the nodes from the ``p2pNodes`` container and
-added it to the ``csmaNodes`` container.  Thus we only need to install 
-the stacks on the remaining ``p2pNodes`` node, and all of the nodes in the
-``csmaNodes`` container to cover all of the nodes in the simulation.
+..
+	Recall that we took one of the nodes from the ``p2pNodes`` container and
+	added it to the ``csmaNodes`` container.  Thus we only need to install 
+	the stacks on the remaining ``p2pNodes`` node, and all of the nodes in the
+	``csmaNodes`` container to cover all of the nodes in the simulation.
 
-Just as in the ``first.cc`` example script, we are going to use the 
-``Ipv4AddressHelper`` to assign IP addresses to our device interfaces.
-First we use the network 10.1.1.0 to create the two addresses needed for our
-two point-to-point devices.
+Θυμηθείτε ότι πήραμε έναν από τους κόμβους από το container ``p2pNodes`` και τον
+προσθέσαμε στο container ``csmaNodes``. Έτσι χρειάζεται μόνο να εγκαταστήσουμε 
+τις στοίβες στον εναπομείναντα κόμβου του ``p2pNodes``, και σε όλους τους κόμβους
+του container ``csmaNodes`` ώστε να καλύψουμε όλους τους κόμβους της προσομοίωσης.
+
+..
+	Just as in the ``first.cc`` example script, we are going to use the 
+	``Ipv4AddressHelper`` to assign IP addresses to our device interfaces.
+	First we use the network 10.1.1.0 to create the two addresses needed for our
+	two point-to-point devices.
+	
+Όπως και στο παράδειγμα του ``first.cc``, πρόκειται να χρησιμοποιήσουμε τον 
+``Ipv4AddressHelper`` για την ανάθεση των IP διευθύνσεων στις διεπαφές των συσκευών
+μας. Αρχικά χρησιμοποιούμε το δίκτυο 10.1.1.0 για να δημιουργήσουμε τις δύο
+διευθύνσεις που χρειάζονται για τις δύο σημείο-προς-σημείο συσκευές μας.
 
 ::
 
@@ -212,15 +357,28 @@ two point-to-point devices.
   Ipv4InterfaceContainer p2pInterfaces;
   p2pInterfaces = address.Assign (p2pDevices);
 
-Recall that we save the created interfaces in a container to make it easy to
-pull out addressing information later for use in setting up the applications.
+..
+	Recall that we save the created interfaces in a container to make it easy to
+	pull out addressing information later for use in setting up the applications.
+	
+Θυμηθείτε ότι αποθηκεύουμε τις δημιουργημένες διεπαφές σε ένα container ώστε να κάνουμε
+πιο εύκολη την ανάκτηση πληροφορίας διευθυνσιοδότησης αργότερα, για χρήση κατά το στήσιμο
+των εφαρμογών.
 
-We now need to assign IP addresses to our CSMA device interfaces.  The 
-operation works just as it did for the point-to-point case, except we now
-are performing the operation on a container that has a variable number of 
-CSMA devices --- remember we made the number of CSMA devices changeable by 
-command line argument.  The CSMA devices will be associated with IP addresses 
-from network number 10.1.2.0 in this case, as seen below.
+..
+	We now need to assign IP addresses to our CSMA device interfaces.  The 
+	operation works just as it did for the point-to-point case, except we now
+	are performing the operation on a container that has a variable number of 
+	CSMA devices --- remember we made the number of CSMA devices changeable by 
+	command line argument.  The CSMA devices will be associated with IP addresses 
+	from network number 10.1.2.0 in this case, as seen below.
+	
+Τώρα πρέπει να αναθέσουμε IP διευθύνσεις στις διεπαφές των CSMA συσκευών μας. Η 
+λειτουργία πραγματοποιείται όπως και στην περίπτωση σημείου-προς-σημείο, με τη διαφορά
+ότι τώρα πραγματοποιούμε τη λειτουργία σε ένα container μπυο έχει ένα μεταβλητό αριθμό
+από CSMA συσκευές --- θυμηθείτε ότι κάναμε τον αριθμό των CSMA συσκευών μεταβλητό μέσω
+ορίσματος στη γραμμή εντολών. Οι CSMA συσκευές θα συσχετιστούν σε αυτήν την περίπτωση
+με τις IP διευθύνσεις από τη διεύθυνση δικτύου 10.1.2.0, όπως βλέπετε παρακάτω.
 
 ::
 
@@ -228,17 +386,29 @@ from network number 10.1.2.0 in this case, as seen below.
   Ipv4InterfaceContainer csmaInterfaces;
   csmaInterfaces = address.Assign (csmaDevices);
 
-Now we have a topology built, but we need applications.  This section is
-going to be fundamentally similar to the applications section of 
-``first.cc`` but we are going to instantiate the server on one of the 
-nodes that has a CSMA device and the client on the node having only a 
-point-to-point device.
+..
+	Now we have a topology built, but we need applications.  This section is
+	going to be fundamentally similar to the applications section of 
+	``first.cc`` but we are going to instantiate the server on one of the 
+	nodes that has a CSMA device and the client on the node having only a 
+	point-to-point device.
 
-First, we set up the echo server.  We create a ``UdpEchoServerHelper`` and
-provide a required ``Attribute`` value to the constructor which is the server
-port number.  Recall that this port can be changed later using the 
-``SetAttribute`` method if desired, but we require it to be provided to
-the constructor.
+Τώρα έχουμε δημιουργήσει μια τοπολογία, αλλά χρειαζόμαστε εφαρμογές. Αυτή η ενότητα
+θα είναι κατά βάση παρόμοια με το τμήμα των εφαρμογών στο ``first.cc`` αλλά εδώ θα 
+εκκινήσουμε τον εξυπηρετητή σε έναν από τους κόμβους ο οποίος έχει μια CSMA συσκευή 
+και ο πελάτης στον κόμβο που έχει μόνο μία συσκευή σημείου-προς-σημείο.
+
+..
+	First, we set up the echo server.  We create a ``UdpEchoServerHelper`` and
+	provide a required ``Attribute`` value to the constructor which is the server
+	port number.  Recall that this port can be changed later using the 
+	``SetAttribute`` method if desired, but we require it to be provided to
+	the constructor.
+
+Αρχικά, στήνουμε έναν εξυπηρετητή echo. Δημιουργούμε έναν ``UdpEchoServerHelper`` και
+παρέχουμε μια απαιτούμενη τιμή για ``Attribute`` στον δημιουργό η οποία είναι ο αριθμός
+port του εξυπηρετητή. Θυμηθείτε ότι αυτό το port μπορεί να αλλάξει αργότερα, εάν το επιθυμείτε, 
+με τη χρήση της μεθόδου ``SetAttribute``, αλλά εμείς απαιτούμε να δίνεται ως όρισμα στον δημιουργό.
 
 ::
 
@@ -248,22 +418,39 @@ the constructor.
   serverApps.Start (Seconds (1.0));
   serverApps.Stop (Seconds (10.0));
 
-Recall that the ``csmaNodes NodeContainer`` contains one of the 
-nodes created for the point-to-point network and ``nCsma`` "extra" nodes. 
-What we want to get at is the last of the "extra" nodes.  The zeroth entry of
-the ``csmaNodes`` container will be the point-to-point node.  The easy
-way to think of this, then, is if we create one "extra" CSMA node, then it
-will be at index one of the ``csmaNodes`` container.  By induction,
-if we create ``nCsma`` "extra" nodes the last one will be at index 
-``nCsma``.  You see this exhibited in the ``Get`` of the first line of 
-code.
+..
+	Recall that the ``csmaNodes NodeContainer`` contains one of the 
+	nodes created for the point-to-point network and ``nCsma`` "extra" nodes. 
+	What we want to get at is the last of the "extra" nodes.  The zeroth entry of
+	the ``csmaNodes`` container will be the point-to-point node.  The easy
+	way to think of this, then, is if we create one "extra" CSMA node, then it
+	will be at index one of the ``csmaNodes`` container.  By induction,
+	if we create ``nCsma`` "extra" nodes the last one will be at index 
+	``nCsma``.  You see this exhibited in the ``Get`` of the first line of 
+	code.
+	
+Θυμηθείτε ότι ο ``csmaNodes NodeContainer`` περιέχει έναν από τους κόμβους που 
+δημιουργήθηκαν στο δίκτυο σημείου-προς-σημείο και ``nCsma`` "επιπλέον" κόμβους.
+Εκεί που θέλουμε να φτάσουμε είναι στον τελευταίο από τους "επιπλέον" κόμβους. Οπότε,
+ο εύκολος τρόπος για να το σκεφτούμε είναι πως εάν δημιουργήσουμε έναν "επιπλέον" CSMA κόμβο,
+τότε αυτός θα βρίσκεται στην πρώτη θέση του container ``csmaNodes``. Επαγωγικά, εάν 
+δημιουργήσουμε ``nCsma`` "επιπλέον" κόμβους ο τελευταίος θα είναι στη θέση ``nCsma``.
+Μπορείτε να το δείτε αυτό στο ``Get`` της πρώτης γραμμής του κώδικα.
 
-The client application is set up exactly as we did in the ``first.cc``
-example script.  Again, we provide required ``Attributes`` to the 
-``UdpEchoClientHelper`` in the constructor (in this case the remote address
-and port).  We tell the client to send packets to the server we just installed
-on the last of the "extra" CSMA nodes.  We install the client on the 
-leftmost point-to-point node seen in the topology illustration.
+..
+	The client application is set up exactly as we did in the ``first.cc``
+	example script.  Again, we provide required ``Attributes`` to the 
+	``UdpEchoClientHelper`` in the constructor (in this case the remote address
+	and port).  We tell the client to send packets to the server we just installed
+	on the last of the "extra" CSMA nodes.  We install the client on the 
+	leftmost point-to-point node seen in the topology illustration.
+	
+Η εφαρμογή του πελάτη εγκαθίσταται ακριβώς όπως και στο σενάριο του ``first.cc``. Ξανά,
+παρέχουμε τα απαιτούμενα ``Attributes`` στον ``UdpEchoClientHelper`` μέσα στον δημιουργό
+(σε αυτή την περίπτωση την απομακρυσμένη διεύθυνση και το port). Λέμε στον πελάτη να
+στέλνει πακέτα στον εξυπηρετητή που μόλις έχουμε εγκαταστήσει στον τελευταίο από τους
+"επιπλέον" CSMA κόμβους. Εγκαθιστούμε τον πελάτη στον αριστερότερο κόμβο του σημείου-προς-σημείο
+κομματιού που φαίνεται στην απεικόνιση της τοπολογίας.
 
 ::
 
@@ -276,56 +463,104 @@ leftmost point-to-point node seen in the topology illustration.
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
 
-Since we have actually built an internetwork here, we need some form of 
-internetwork routing.  |ns3| provides what we call global routing to
-help you out.  Global routing takes advantage of the fact that the entire 
-internetwork is accessible in the simulation and runs through the all of the
-nodes created for the simulation --- it does the hard work of setting up routing 
-for you without having to configure routers.
+..
+	Since we have actually built an internetwork here, we need some form of 
+	internetwork routing.  |ns3| provides what we call global routing to
+	help you out.  Global routing takes advantage of the fact that the entire 
+	internetwork is accessible in the simulation and runs through the all of the
+	nodes created for the simulation --- it does the hard work of setting up routing 
+	for you without having to configure routers.
+	
+Καθώς έχουμε στήσει στην ουσία ένα διαδίκτυο εδώ, χρειαζόμαστε κάποια μορφή διαδικτυακής
+δρομολόγησης. Ο |ns3| παρέχει αυτό που εμείς αποκαλούμε ως καθολική δρομολόγηση προκειμένου
+να σας βοηθήσει. Η καθολική δρομολόγηση εκμεταλλεύεται το γεγονός ότι ολόκληρο το διαδίκτυο
+είναι προσβάσισμο μέσα στην προσομοίωση και εκτελείται διαμέσου όλων των κόμβων που
+έχουν δημιουργηθεί για την προσομοίωση --- αναλαμβάνει την δύσκολη δουλειά του καθορισμού της
+δρομολόγησης για εσάς χωρίς να χρειάζεται να ρυθμίσετε δρομολογητές.
 
-Basically, what happens is that each node behaves as if it were an OSPF router
-that communicates instantly and magically with all other routers behind the
-scenes.  Each node generates link advertisements and communicates them 
-directly to a global route manager which uses this global information to 
-construct the routing tables for each node.  Setting up this form of routing
-is a one-liner:
+..
+	Basically, what happens is that each node behaves as if it were an OSPF router
+	that communicates instantly and magically with all other routers behind the
+	scenes.  Each node generates link advertisements and communicates them 
+	directly to a global route manager which uses this global information to 
+	construct the routing tables for each node.  Setting up this form of routing
+	is a one-liner:
+	
+Βασικά, αυτό που συμβαίνει είναι ότι κάθε κόμβος συμπεριφέρεται σα να ήταν ένας δρομολογητής
+OSPF ο οποίος επικοινωνεί άμεσα και μαγικά με όλους τους άλλους δρομολογητές στο παρασκήνιο.
+Κάθε κόμβος παράγει δηλώσεις των συνδέσεων και τις μεταδίδει κατευθείαν σε έναν διαχειριστή 
+καθολικής δρομολόγησης ο οποίος χρησιμοποιεί αυτή την καθολική πληροφορία για να κατασκευάσει
+τους πίνακες δρομολόγησης σε κάθε κόμβο. Η εγκατάσταση μιας τέτοιας μορφής δρομολόγησης γίνεται
+σε μία γραμμή:
 
 ::
 
   Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 
-Next we enable pcap tracing.  The first line of code to enable pcap tracing 
-in the point-to-point helper should be familiar to you by now.  The second
-line enables pcap tracing in the CSMA helper and there is an extra parameter
-you haven't encountered yet.
+..
+	Next we enable pcap tracing.  The first line of code to enable pcap tracing 
+	in the point-to-point helper should be familiar to you by now.  The second
+	line enables pcap tracing in the CSMA helper and there is an extra parameter
+	you haven't encountered yet.
+	
+Έπειτα ενεργοποιούμε την καταγραφή pcap. Η πρώτη γραμμή του κώδικα που ενεργοποιεί την
+καταγραφή pcap στον βοηθό σημείου-προς-σημείο θα πρέπει να σας είναι οικεία μέχρι τώρα.
+Η δεύτερη γραμμή ενεργοποιεί την καταγραφή pcap στον CSMA βοηθό και υπάρχει μία επιπλέον
+παράμετρος που δεν έχετε συναντήσει ακόμα.
 
 ::
 
   pointToPoint.EnablePcapAll ("second");
   csma.EnablePcap ("second", csmaDevices.Get (1), true);
 
-The CSMA network is a multi-point-to-point network.  This means that there 
-can (and are in this case) multiple endpoints on a shared medium.  Each of 
-these endpoints has a net device associated with it.  There are two basic
-alternatives to gathering trace information from such a network.  One way 
-is to create a trace file for each net device and store only the packets
-that are emitted or consumed by that net device.  Another way is to pick 
-one of the devices and place it in promiscuous mode.  That single device
-then "sniffs" the network for all packets and stores them in a single
-pcap file.  This is how ``tcpdump``, for example, works.  That final 
-parameter tells the CSMA helper whether or not to arrange to capture 
-packets in promiscuous mode.  
+..
+	The CSMA network is a multi-point-to-point network.  This means that there 
+	can (and are in this case) multiple endpoints on a shared medium.  Each of 
+	these endpoints has a net device associated with it.  There are two basic
+	alternatives to gathering trace information from such a network.  One way 
+	is to create a trace file for each net device and store only the packets
+	that are emitted or consumed by that net device.  Another way is to pick 
+	one of the devices and place it in promiscuous mode.  That single device
+	then "sniffs" the network for all packets and stores them in a single
+	pcap file.  This is how ``tcpdump``, for example, works.  That final 
+	parameter tells the CSMA helper whether or not to arrange to capture 
+	packets in promiscuous mode.
+	
+Το CSMA δίκτυο είναι ένα πολλαπλό σημείο-προς-σημείο δίκτυο. Αυτό σημαίνει ότι
+μπορούν να υπάρχουν (και όντως υπάρχουν σε αυτήν την περίπτωση) πολλαπλά τερματικά σημεία
+σε ένα κοινόχρηστο μέσο. Κάθε ένα από αυτά τα τερματικά σημεία έχει μια δικτυακή συσκευή
+που συσχετίζεται με αυτό. Υπάρχουν δύο βασικές εναλλακτικ για τη συλλογή πληροφορίας ιχνών
+από ένα τέτοιο δίκτυο. Η μία είναι η δημιουργία ενός αρχείου καταγραφής για κάθε μία δικτυακή
+συσκευή και η αποθήκευση μόνο των πακέτων που μεταδίδονται ή καταναλώνονται από αυτήν την
+δικτυακή συσκευή. Μια άλλη εναλλακτική είναι η επιλογή μίας από τις συσκευές και η μετάβασή της
+σε μεικτή κατάσταση. Έτσι, αυτή μόνο η συσκευή "παρακολουθεί" (sniff) το δίκτυο για όλα τα πακέτα
+και τα αποθηκεύει σε ένα μοναδικό αρχείο pcap. Με αυτόν τον τρόπο λειτουργεί, για παράδειγμα, το
+``tcpdump``. Εκείνη η τελική παράμετρος λέει στον CSMA βοηθό εάν πρέπει ή όχι να κανονίσει να
+δεσμεύει πακέτα σε μεικτή κατάσταση.
 
-In this example, we are going to select one of the devices on the CSMA
-network and ask it to perform a promiscuous sniff of the network, thereby
-emulating what ``tcpdump`` would do.  If you were on a Linux machine
-you might do something like ``tcpdump -i eth0`` to get the trace.  
-In this case, we specify the device using ``csmaDevices.Get(1)``, 
-which selects the first device in the container.  Setting the final
-parameter to true enables promiscuous captures.
+..
+	In this example, we are going to select one of the devices on the CSMA
+	network and ask it to perform a promiscuous sniff of the network, thereby
+	emulating what ``tcpdump`` would do.  If you were on a Linux machine
+	you might do something like ``tcpdump -i eth0`` to get the trace.  
+	In this case, we specify the device using ``csmaDevices.Get(1)``, 
+	which selects the first device in the container.  Setting the final
+	parameter to true enables promiscuous captures.
+	
+Σε αυτό το παράδειγμα, θα επιλέξουμε μία από τις συσκευές στο CSMA δίκτυο και θα της
+ζητήσουμε να εκτελέσει μία μεικτή παρακολούθηση (promiscuous sniff) του δικτύου, 
+προσομοιώνοντας έτσι αυτό που θα έκανε το ``tcpdump``. Εάν ήσασταν σε ένα μηχάνημα με Linux
+θα μπορούσατε να δώσετε την εντολή ``tcpdump -i eth0`` προκειμένου να πάρετε τα ίχνη.
+Σε αυτήν την περίπτωση, προσδιορίζουμε τη συσκευή χρησιμοποιώντας την ``csmaDevices.Get(1)``, 
+η οποία επιλέγει την πρώτη συσκευή στο container. Θέτοντας την τελευταία παράμετρο ως αληθή
+ενεργοποιούνται οι μεικτές δεσμεύεσεις.
 
-The last section of code just runs and cleans up the simulation just like
-the ``first.cc`` example.
+..
+	The last section of code just runs and cleans up the simulation just like
+	the ``first.cc`` example.
+	
+Το τελευταίο μέρος του κώδικα απλά τρέχει και καθαρίζει μετά την προσομοίωση όπως 
+και στο παράδειγμα του ``first.cc``.
 
 ::
 
@@ -334,34 +569,57 @@ the ``first.cc`` example.
     return 0;
   }
 
-In order to run this example, copy the ``second.cc`` example script into 
-the scratch directory and use waf to build just as you did with
-the ``first.cc`` example.  If you are in the top-level directory of the
-repository you just type,
+..
+	In order to run this example, copy the ``second.cc`` example script into 
+	the scratch directory and use waf to build just as you did with
+	the ``first.cc`` example.  If you are in the top-level directory of the
+	repository you just type,
+	
+Προκειμένου να εκτελέσετε αυτό το παράδειγμα, αντιγράψτε το παράδειγμα σεναρίου του 
+``second.cc`` στον κατάλογο scratch και χρησιμοποιήστε το waf για το build όπως κάνατε
+και στο παράδειγμα ``first.cc``. Εάν είστε στον κατάλογο υψηλότερου-επιπέδου του αποθετηρίου
+απλά πληκτρολογήστε,
 
 .. sourcecode:: bash
 
   $ cp examples/tutorial/second.cc scratch/mysecond.cc
   $ ./waf
 
-Warning:  We use the file ``second.cc`` as one of our regression tests to
-verify that it works exactly as we think it should in order to make your
-tutorial experience a positive one.  This means that an executable named 
-``second`` already exists in the project.  To avoid any confusion
-about what you are executing, please do the renaming to ``mysecond.cc``
-suggested above.
+..
+	Warning:  We use the file ``second.cc`` as one of our regression tests to
+	verify that it works exactly as we think it should in order to make your
+	tutorial experience a positive one.  This means that an executable named 
+	``second`` already exists in the project.  To avoid any confusion
+	about what you are executing, please do the renaming to ``mysecond.cc``
+	suggested above.
+	
+Προειδοποίηση: χρησιμοποιούμε το αρχείο ``second.cc`` ως ένα από τα τεστ οπισθοδρόμησής μας
+προκειμένου να επικυρώσουμε ότι δουλεύει όπως ακριβώς πιστεύουμε ότι πρέπει να δουλεύει, ώστε
+η εμπειρία σας με τον παρόντα οδηγό να είναι θετική. Αυτό σημαίνει ότι υπάρχει ήδη ένα
+εκτελέσιμο αρχείο με το όνομα ``second`` σε αυτό το project. Για να αποφύγετε οποιαδήποτε
+σύγχυση σχετικά με το τι εκτελείτε, παρακαλούμε κάντε τη μετονομασία σε ``mysecond.cc`` που 
+προτείνεται παραπάνω.
 
-If you are following the tutorial religiously (you are, aren't you) you will
-still have the NS_LOG variable set, so go ahead and clear that variable and
-run the program.
+..
+	If you are following the tutorial religiously (you are, aren't you) you will
+	still have the NS_LOG variable set, so go ahead and clear that variable and
+	run the program.
+	
+Εάν ακολουθείτε αυτόν τον οδηγό με θρησκευτική ευλάβεια (το κάνετε, έτσι δεν είναι;) θα
+έχετε ακόμα τη μεταβλητή NS_LOG τεθειμένη, οπότε καθαρίστε αυτή τη μεταβλητή και
+εκτελέστε το πρόγραμμα.
 
 .. sourcecode:: bash
 
   $ export NS_LOG=
   $ ./waf --run scratch/mysecond
 
-Since we have set up the UDP echo applications to log just as we did in 
-``first.cc``, you will see similar output when you run the script.
+..
+	Since we have set up the UDP echo applications to log just as we did in 
+	``first.cc``, you will see similar output when you run the script.
+
+Δεδομένου ότι έχουμε στήσει τις εφαρμογές UDP echo για καταγραφή, ακριβώς όπως κάναμε
+και στο ``first.cc``, θα δείτε μια παρόμοια έξοδο όταν τρέξετε το σενάριο.
 
 .. sourcecode:: text
 
@@ -372,44 +630,79 @@ Since we have set up the UDP echo applications to log just as we did in
   Received 1024 bytes from 10.1.1.1
   Received 1024 bytes from 10.1.2.4
 
-Recall that the first message, "``Sent 1024 bytes to 10.1.2.4``," is the 
-UDP echo client sending a packet to the server.  In this case, the server
-is on a different network (10.1.2.0).  The second message, "``Received 1024 
-bytes from 10.1.1.1``," is from the UDP echo server, generated when it receives
-the echo packet.  The final message, "``Received 1024 bytes from 10.1.2.4``,"
-is from the echo client, indicating that it has received its echo back from
-the server.
+..
+	Recall that the first message, "``Sent 1024 bytes to 10.1.2.4``," is the 
+	UDP echo client sending a packet to the server.  In this case, the server
+	is on a different network (10.1.2.0).  The second message, "``Received 1024 
+	bytes from 10.1.1.1``," is from the UDP echo server, generated when it receives
+	the echo packet.  The final message, "``Received 1024 bytes from 10.1.2.4``,"
+	is from the echo client, indicating that it has received its echo back from
+	the server.
+	
+Θυμηθείτε ότι το πρώτο μήνυμα, "``Sent 1024 bytes to 10.1.2.4``", είναι ο UDP echo πελάτης
+που στέλνει ένα πακέτο στον εξυπηρετητή. Στην προκειμένη περίπτωση, ο εξυπηρετητής είναι
+σε ένα διαφορετικό δίκτυο (10.1.2.0). Το δεύτερο μήνυμα, ``Received 1024 bytes from 10.1.1.1``", 
+είναι από τον UDP echo εξυπηρετητή, και δημιουργήθηκε όταν αυτός έλαβε το echo πακέτο. Το τελικό
+μήνυμα, "``Received 1024 bytes from 10.1.2.4``", είναι από τον echo πελάτη, και δείχνει ότι αυτός
+έχει λάβει το echo μήνυμα από τον εξυπηρετητή.
 
-If you now go and look in the top level directory, you will find three trace 
-files:
+..
+	If you now go and look in the top level directory, you will find three trace 
+	files:
+	
+Εάν τώρα πάτε και δείτε στον κατάλογο του υψηλότερου επιπέδου, θα βρείτε τρία αρχεία καταγραφής
+ιχνών:
 
 .. sourcecode:: text
 
   second-0-0.pcap  second-1-0.pcap  second-2-0.pcap
 
-Let's take a moment to look at the naming of these files.  They all have the 
-same form, ``<name>-<node>-<device>.pcap``.  For example, the first file
-in the listing is ``second-0-0.pcap`` which is the pcap trace from node 
-zero, device zero.  This is the point-to-point net device on node zero.  The 
-file ``second-1-0.pcap`` is the pcap trace for device zero on node one,
-also a point-to-point net device; and the file ``second-2-0.pcap`` is the
-pcap trace for device zero on node two.
+..
+	Let's take a moment to look at the naming of these files.  They all have the 
+	same form, ``<name>-<node>-<device>.pcap``.  For example, the first file
+	in the listing is ``second-0-0.pcap`` which is the pcap trace from node 
+	zero, device zero.  This is the point-to-point net device on node zero.  The 
+	file ``second-1-0.pcap`` is the pcap trace for device zero on node one,
+	also a point-to-point net device; and the file ``second-2-0.pcap`` is the
+	pcap trace for device zero on node two.
+	
+Ας δούμε για μια στιγμή την ονομασία αυτών των αρχείων. Όλα έχουν την ίδια μορφή,
+``<name>-<node>-<device>.pcap``. Για παράδειγμα, το πρώτο αρχείο στην παραπάνω απαρίθμηση
+είναι το ``second-0-0.pcap``, το οποίο είναι το αρχείο ιχνών pcap από τον κόμβο μηδέν, από
+τη συσκευή μηδέν. Αυή είναι η συσκευή σημείου-προς-σημείο στον κόμβο μηδέν. Το αρχείο
+``second-1-0.pcap`` είναι το αρχείο ιχνών pcap για τη συσκευή μηδέν στον κόμβο ένα, η οποία
+είναι επίσης μια δικτυακή συσκευή σημείου-προς-σημείο. Και το αρχείο ``second-2-0.pcap`` είναι
+το αρχείο ιχνών pcap για τη συσκευή μηδέν στον κόμβο δύο.
 
-If you refer back to the topology illustration at the start of the section, 
-you will see that node zero is the leftmost node of the point-to-point link
-and node one is the node that has both a point-to-point device and a CSMA 
-device.  You will see that node two is the first "extra" node on the CSMA
-network and its device zero was selected as the device to capture the 
-promiscuous-mode trace.
+..
+	If you refer back to the topology illustration at the start of the section, 
+	you will see that node zero is the leftmost node of the point-to-point link
+	and node one is the node that has both a point-to-point device and a CSMA 
+	device.  You will see that node two is the first "extra" node on the CSMA
+	network and its device zero was selected as the device to capture the 
+	promiscuous-mode trace.
+	
+Εάν ανατρέξετε πίσω στην απεικόνιση της τοπολογίας στην αρχή αυτής της ενότητας,
+θα δείτε ότι ο κόμβος μηδέν είναι ο αριστερότερος κόμβος στη σύνδεση σημείου-προς-σημείο
+και ο κόμβος ένα είναι ο κόμβος που έχει και μια σημείο-προς-σημείο συσκευή και μια 
+CSMA συσκευή. Θα δείτε ότι ο κόμβος δύο είναι ο πρώτος "επιπλέον" κόμβος στο CSMA
+δίκτυο και ότι η συσκευή μηδέν του έχει επιλεγεί ως η συσκευή που θα καταγράψει τα 
+ίχνη στην μεικτή κατάσταση.
 
-Now, let's follow the echo packet through the internetwork.  First, do a 
-tcpdump of the trace file for the leftmost point-to-point node --- node zero.
+..
+	Now, let's follow the echo packet through the internetwork.  First, do a 
+	tcpdump of the trace file for the leftmost point-to-point node --- node zero.
+	
+Τώρα, ας ακολουθήσουμε το echo πακέτο μέσα στο διαδίκτυο. Αρχικά, εκτελέστε το tcpdump 
+του αρχείου ιχνών για τον αριστερότερο κόμβο σημείου-προς-σημείο --- τον κόμβο μηδέν.
 
 .. sourcecode:: bash
 
   $ tcpdump -nn -tt -r second-0-0.pcap
 
-You should see the contents of the pcap file displayed:
+.. You should see the contents of the pcap file displayed:\
+
+Θα πρέπει να σας εμφανιστούν τα περιεχόμενα του αρχείου pcap:
 
 .. sourcecode:: text
 
@@ -417,19 +710,31 @@ You should see the contents of the pcap file displayed:
   2.000000 IP 10.1.1.1.49153 > 10.1.2.4.9: UDP, length 1024
   2.017607 IP 10.1.2.4.9 > 10.1.1.1.49153: UDP, length 1024
 
-The first line of the dump indicates that the link type is PPP (point-to-point)
-which we expect.  You then see the echo packet leaving node zero via the 
-device associated with IP address 10.1.1.1 headed for IP address
-10.1.2.4 (the rightmost CSMA node).  This packet will move over the 
-point-to-point link and be received by the point-to-point net device on node 
-one.  Let's take a look:
+..
+	The first line of the dump indicates that the link type is PPP (point-to-point)
+	which we expect.  You then see the echo packet leaving node zero via the 
+	device associated with IP address 10.1.1.1 headed for IP address
+	10.1.2.4 (the rightmost CSMA node).  This packet will move over the 
+	point-to-point link and be received by the point-to-point net device on node 
+	one.  Let's take a look:
+	
+Η πρώτη γραμμή του αποτελέσματος δείχνει ότι ο τύπος σύνδεσης είναι PPP (point-to-point ή
+σημείο-προς-σημείο) κάτι το οποίο αναμέναμε. Έπειτα θα δείτε ότι το echo πακέτο φεύγει από
+τον κόμβο μηδέν μέσω της συσκευής που αντιστοιχίζεται στην IP διεύθυνση 10.1.1.1 με κατεύθυνση
+προς την IP διεύθυνση 10.1.2.4 (ο δεξιότερος κόμβος του CSMA). Αυτό το πακέτο θα κινηθεί πάνω από 
+τη σύνδεση σημείου-προς-σημείο και θα παραληφθεί από τη δικτυακή συσκευή σημείου-προς-σημείο στον
+κόμβο ένα. Ας ρίξουμε μια ματιά:
 
 .. sourcecode:: bash
 
   $ tcpdump -nn -tt -r second-1-0.pcap
 
-You should now see the pcap trace output of the other side of the point-to-point
-link:
+..
+	You should now see the pcap trace output of the other side of the point-to-point
+	link:
+	
+Θα πρέπει τώρα να βλέπετε το αποτέλεσμα των ιχνών pcap της άλλης πλευράς του συνδέσμου
+σημείου-προς-σημείο:
 
 .. sourcecode:: text
 
@@ -437,20 +742,33 @@ link:
   2.003686 IP 10.1.1.1.49153 > 10.1.2.4.9: UDP, length 1024
   2.013921 IP 10.1.2.4.9 > 10.1.1.1.49153: UDP, length 1024
 
-Here we see that the link type is also PPP as we would expect.  You see the
-packet from IP address 10.1.1.1 (that was sent at 2.000000 seconds) headed 
-toward IP address 10.1.2.4 appear on this interface.  Now, internally to this 
-node, the packet will be forwarded to the CSMA interface and we should see it 
-pop out on that device headed for its ultimate destination.  
+..
+	Here we see that the link type is also PPP as we would expect.  You see the
+	packet from IP address 10.1.1.1 (that was sent at 2.000000 seconds) headed 
+	toward IP address 10.1.2.4 appear on this interface.  Now, internally to this 
+	node, the packet will be forwarded to the CSMA interface and we should see it 
+	pop out on that device headed for its ultimate destination.
+	
+Εδώ βλέπουμε ότι ο τύπος σύνδεσης είναι επίσης PPP όπως θα περιμέναμε. Βλέπετε ότι το πακέτο
+από την IP διεύθυνση 10.1.1.1 (το οποίο στάλθηκε τη χρονική στιγμή 2.000000 δευτερολέπτων) 
+με κατεύθυνση προς την IP διεύθυνση 10.1.2.4 εμφανίστηκε στη διεπαφή αυτή. Τώρα, εσωτερικά σε 
+αυτόν τον κόμβο, το πακέτο θα προωθηθεί στη διεπαφή CSMA και θα πρέπει να το δούμε να εξέρχεται
+από τη συσκευή με κατεύθυνση προς τον τελικό του προορισμό.
 
-Remember that we selected node 2 as the promiscuous sniffer node for the CSMA
-network so let's then look at second-2-0.pcap and see if its there.
+..
+	Remember that we selected node 2 as the promiscuous sniffer node for the CSMA
+	network so let's then look at second-2-0.pcap and see if its there.
+	
+Θυμηθείτε ότι επιλέξαμε τον κόμβο 2 ως τον κόμβο που θα παρακολουθήσει (promiscuous sniffer) 
+το CSMA δίκτυο, οπότε ας δούμε στο second-2-0.pcap για να διαπιστώσουμε αν είναι εκεί.
 
 .. sourcecode:: bash
 
   $ tcpdump -nn -tt -r second-2-0.pcap
 
-You should now see the promiscuous dump of node two, device zero:
+.. You should now see the promiscuous dump of node two, device zero:
+
+Θα πρέπει να βλέπετε τώρα τα αποτελέσματα για τον κόμβο δύο, και τη συσκευή μηδέν:
 
 .. sourcecode:: text
 
@@ -462,55 +780,87 @@ You should now see the promiscuous dump of node two, device zero:
   2.013828 ARP, Reply 10.1.2.1 is-at 00:00:00:00:00:03, length 50
   2.013921 IP 10.1.2.4.9 > 10.1.1.1.49153: UDP, length 1024
 
-As you can see, the link type is now "Ethernet".  Something new has appeared,
-though.  The bus network needs ``ARP``, the Address Resolution Protocol.
-Node one knows it needs to send the packet to IP address 10.1.2.4, but it
-doesn't know the MAC address of the corresponding node.  It broadcasts on the
-CSMA network (ff:ff:ff:ff:ff:ff) asking for the device that has IP address
-10.1.2.4.  In this case, the rightmost node replies saying it is at MAC address
-00:00:00:00:00:06.  Note that node two is not directly involved in this 
-exchange, but is sniffing the network and reporting all of the traffic it sees.
+..
+	As you can see, the link type is now "Ethernet".  Something new has appeared,
+	though.  The bus network needs ``ARP``, the Address Resolution Protocol.
+	Node one knows it needs to send the packet to IP address 10.1.2.4, but it
+	doesn't know the MAC address of the corresponding node.  It broadcasts on the
+	CSMA network (ff:ff:ff:ff:ff:ff) asking for the device that has IP address
+	10.1.2.4.  In this case, the rightmost node replies saying it is at MAC address
+	00:00:00:00:00:06.  Note that node two is not directly involved in this 
+	exchange, but is sniffing the network and reporting all of the traffic it sees.
+	
+Όπως μπορείτε να δείτε, ο τύπος σύνδεσης είναι τώρα "Ethernet". Κάτι νέο έχει προκύψει,
+ωστόσο. Το δίκτυο αρτηρίας χρειάζεται το ``ARP``, το Πρωτόκολλο Ανάλυσης Διευθύνσεων 
+(Address Resolution Protocol). Ο κόμβος ένα γνωρίζει ότι χρειάζεται να στείλει το πακέτο
+στην IP διεύθυνση 10.1.2.4, αλλά δεν ξέρει τη MAC διεύθυνση του αντίστοιχοι κόμβου. Εκπέμπει
+στο δίκτυο CSMA (ff:ff:ff:ff:ff:ff) αναζητώντας τη συσκευή η οποία έχει IP διεύθυνση 10.1.2.4. 
+Σε αυτήν την περίπτωση, ο δεξιότερος κόμβος απαντάει λέγοντας ότι βρίσκεται στη MAC διεύθυνση
+00:00:00:00:00:06. Σημειώστε ότι ο κόμβος δύο δεν εμπλέκεται άμεσα σε αυτήν την ανταλλαγή, αλλά
+παρακολουθεί το δίκτυο και αναφέρει κάθε κίνηση που ανιχνεύει.
 
-This exchange is seen in the following lines,
+.. This exchange is seen in the following lines,
+
+Η ανταλλαγή αυτή φαίνεται στις ακόλουθες γραμμές,
 
 .. sourcecode:: text
 
   2.007698 ARP, Request who-has 10.1.2.4 (ff:ff:ff:ff:ff:ff) tell 10.1.2.1, length 50
   2.007710 ARP, Reply 10.1.2.4 is-at 00:00:00:00:00:06, length 50
 
-Then node one, device one goes ahead and sends the echo packet to the UDP echo
-server at IP address 10.1.2.4. 
+..
+	Then node one, device one goes ahead and sends the echo packet to the UDP echo
+	server at IP address 10.1.2.4. 
+	
+Τότε η συσκευή ένα στον κόμβο ένα προχωρά και στέλνει το echo πακέτο στον UDP echo εξυπηρετητή
+στην IP διεύθυνση 10.1.2.4.
 
 .. sourcecode:: text
 
   2.007803 IP 10.1.1.1.49153 > 10.1.2.4.9: UDP, length 1024
 
-The server receives the echo request and turns the packet around trying to send
-it back to the source.  The server knows that this address is on another network
-that it reaches via IP address 10.1.2.1.  This is because we initialized global
-routing and it has figured all of this out for us.  But, the echo server node
-doesn't know the MAC address of the first CSMA node, so it has to ARP for it
-just like the first CSMA node had to do.
+..
+	The server receives the echo request and turns the packet around trying to send
+	it back to the source.  The server knows that this address is on another network
+	that it reaches via IP address 10.1.2.1.  This is because we initialized global
+	routing and it has figured all of this out for us.  But, the echo server node
+	doesn't know the MAC address of the first CSMA node, so it has to ARP for it
+	just like the first CSMA node had to do.
+	
+Ο εξυπηρετητής λαμβάνει το αίτημα echo και αντιστρέφει την κατεύθυνση του πακέτου προσπαθώντας
+να το στείλει πίσω στην πηγή. Ο εξυπηρετητής γνωρίζει ότι αυτή η διεύθυνση είναι σε ένα άλλο
+δίκτυο το οποίο μπορεί να προσπελάσει μέσω της IP διεύθυνσης 10.1.2.1. Αυτό συμβαίνει επειδή 
+έχουμε ενεργοποιήσει την καθολική δρομολόγηση και τα έχει ξεκαθαρίσει όλα αυτά εκ μέρους μας. Αλλά,
+ο κόμβος του echo εξυπηρετητή δεν γνωρίζει τη MAC διεύθυνση του πρώτου CSMA κόμβου, οπότε πρέπει να
+εκτελέσει το πρωτόκολλο ARP όπως χρειάστηκε να κάνει και ο πρώτος CSMA κόμβος.
 
 .. sourcecode:: text
 
   2.013815 ARP, Request who-has 10.1.2.1 (ff:ff:ff:ff:ff:ff) tell 10.1.2.4, length 50
   2.013828 ARP, Reply 10.1.2.1 is-at 00:00:00:00:00:03, length 50
 
-The server then sends the echo back to the forwarding node.
+.. The server then sends the echo back to the forwarding node.
+
+Ο εξυπηρετητής στέλνει τότε το echo πίσω στον κόμβο προώθησης.
 
 .. sourcecode:: text
 
   2.013921 IP 10.1.2.4.9 > 10.1.1.1.49153: UDP, length 1024
 
-Looking back at the rightmost node of the point-to-point link,
+.. Looking back at the rightmost node of the point-to-point link,
+
+Κοιτώντας πίσω στον δεξιότερο κόμβο του συνδέσμου σημείου-προς-σημείο,
 
 .. sourcecode:: bash
 
   $ tcpdump -nn -tt -r second-1-0.pcap
 
-You can now see the echoed packet coming back onto the point-to-point link as
-the last line of the trace dump.
+..
+	You can now see the echoed packet coming back onto the point-to-point link as
+	the last line of the trace dump.
+	
+Μπορείτε να δείτε τώρα το πακέτο που έχει γίνει echo να επιστρέφει μέσω του συνδέσμου
+σημείου-προς-σημείο στην τελευταία γραμμή των αποτελεσμάτων καταγραφής.
 
 .. sourcecode:: text
 
@@ -518,13 +868,18 @@ the last line of the trace dump.
   2.003686 IP 10.1.1.1.49153 > 10.1.2.4.9: UDP, length 1024
   2.013921 IP 10.1.2.4.9 > 10.1.1.1.49153: UDP, length 1024
 
-Lastly, you can look back at the node that originated the echo
+.. Lastly, you can look back at the node that originated the echo
+
+Τέλος, μπορείτε να δείτε πίσω στον κόμβο που ξεκίνησε το echo
 
 .. sourcecode:: bash
 
   $ tcpdump -nn -tt -r second-0-0.pcap
 
-and see that the echoed packet arrives back at the source at 2.007602 seconds,
+.. and see that the echoed packet arrives back at the source at 2.007602 seconds,
+
+και να διαπιστώσετε ότι το πακέτο που έγινε echo φτάνει πίσω στην πηγή τη χρονική στιγμή
+των 2.007602 δευτερολέπτων,
 
 .. sourcecode:: text
 
@@ -532,17 +887,26 @@ and see that the echoed packet arrives back at the source at 2.007602 seconds,
   2.000000 IP 10.1.1.1.49153 > 10.1.2.4.9: UDP, length 1024
   2.017607 IP 10.1.2.4.9 > 10.1.1.1.49153: UDP, length 1024
 
-Finally, recall that we added the ability to control the number of CSMA devices
-in the simulation by command line argument.  You can change this argument in
-the same way as when we looked at changing the number of packets echoed in the
-``first.cc`` example.  Try running the program with the number of "extra" 
-devices set to four:
+.. 
+	Finally, recall that we added the ability to control the number of CSMA devices
+	in the simulation by command line argument.  You can change this argument in
+	the same way as when we looked at changing the number of packets echoed in the
+	``first.cc`` example.  Try running the program with the number of "extra" 
+	devices set to four:
+	
+Εν τέλει, θυμηθείτε ότι προσθέσαμε την δυνατότητα ελέγχου του αριθμού των CSMA συσκευών
+στη προσομοίωση μέσω ορίσματος στη γραμμή εντολών. Μπορείτε να αλλάξετε αυτό το όρισμα με τον
+ίδιο τρόπο όπως τότε που εξετάσαμε την αλλαγή του αριθμού των πακέτων που γίνονται echo στο 
+παράδειγμα ``first.cc``. Δοκιμάστε να τρέξετε το πρόγραμμα με το αριθμό των "επιπλέον" συσκευών
+να είναι ίσος με τέσσερεις:
 
 .. sourcecode:: bash
 
   $ ./waf --run "scratch/mysecond --nCsma=4"
 
-You should now see,
+.. You should now see,
+
+Θα πρέπει τώρα να βλέπετε,
 
 .. sourcecode:: text
 
@@ -554,18 +918,33 @@ You should now see,
   At time 2.0118s server sent 1024 bytes to 10.1.1.1 port 49153
   At time 2.02461s client received 1024 bytes from 10.1.2.5 port 9
 
-Notice that the echo server has now been relocated to the last of the CSMA
-nodes, which is 10.1.2.5 instead of the default case, 10.1.2.4.
+..
+	Notice that the echo server has now been relocated to the last of the CSMA
+	nodes, which is 10.1.2.5 instead of the default case, 10.1.2.4.
+	
+Παρατηρήστε ότι ο εξυπηρετητής echo έχει επανατοποθετηθεί πλέον στον τελευταίο από τους CSMA κόμβους, ο οποίος είναι στη διεύθυνση 10.1.2.5 αντί της προεπιλεγμένης, 10.1.2.4.
 
-It is possible that you may not be satisfied with a trace file generated by
-a bystander in the CSMA network.  You may really want to get a trace from
-a single device and you may not be interested in any other traffic on the 
-network.  You can do this fairly easily.
+..
+	It is possible that you may not be satisfied with a trace file generated by
+	a bystander in the CSMA network.  You may really want to get a trace from
+	a single device and you may not be interested in any other traffic on the 
+	network.  You can do this fairly easily.
+	
+Είναι πιθανό να μην είστε ικανοποιημένοι με ένα αρχείο καταγραφής που δημιουργείται
+από έναν παρατηρητή στο CSMA δίκτυο. Μπορεί να μη θέλετε πραγματικά να λάβετε ίχνη από
+μια μόνο συσκευή και μπορεί να μην ενδιαφέρεστε για κάποια άλλη κίνηση στο δίκτυο. Αυτό
+μπορείτε να το κάνετε αρκετά εύκολα.
 
-Let's take a look at ``scratch/mysecond.cc`` and add that code enabling us
-to be more specific.  ``ns-3`` helpers provide methods that take a node
-number and device number as parameters.  Go ahead and replace the 
-``EnablePcap`` calls with the calls below.
+..
+	Let's take a look at ``scratch/mysecond.cc`` and add that code enabling us
+	to be more specific.  ``ns-3`` helpers provide methods that take a node
+	number and device number as parameters.  Go ahead and replace the 
+	``EnablePcap`` calls with the calls below.
+	
+Ας δούμε το ``scratch/mysecond.cc`` και ας προσθέσουμε εκείνον τον κώδικα που θα μας 
+επιτρέψει να είμαστε πιο συγκεκριμένη. Οι βοηθοί του ``ns-3`` παρέχουν μεθόδους που δέχονται
+έναν αριθμό κόμβου και έναν αριθμό συσκευής ως παραμέτρους. Προχωρήστε και αντικαταστήστε τις
+κλήσεις ``EnablePcap`` με τις παρακάτω κλήσεις.
 
 ::
 
@@ -573,51 +952,93 @@ number and device number as parameters.  Go ahead and replace the
   csma.EnablePcap ("second", csmaNodes.Get (nCsma)->GetId (), 0, false);
   csma.EnablePcap ("second", csmaNodes.Get (nCsma-1)->GetId (), 0, false);
 
-We know that we want to create a pcap file with the base name "second" and
-we also know that the device of interest in both cases is going to be zero,
-so those parameters are not really interesting.
+..
+	We know that we want to create a pcap file with the base name "second" and
+	we also know that the device of interest in both cases is going to be zero,
+	so those parameters are not really interesting.
+	
+Γνωρίζουμε ότι θέλουμε να δημιουργήσουμε ένα αρχείο pcap με το βασικό όνομα "second" και
+επίσης γνωρίζουμε ότι η συσκευή που μας ενδιαφέρει και στις δύο περιπτώσεις πρόκειται να είναι
+η μηδέν, κατά συνέπεια οι παράμετροι δεν είναι και πολύ ενδιαφέρουσες.
 
-In order to get the node number, you have two choices:  first, nodes are 
-numbered in a monotonically increasing fashion starting from zero in the 
-order in which you created them.  One way to get a node number is to figure 
-this number out "manually" by contemplating the order of node creation.  
-If you take a look at the network topology illustration at the beginning of 
-the file, we did this for you and you can see that the last CSMA node is 
-going to be node number ``nCsma + 1``.  This approach can become 
-annoyingly difficult in larger simulations.  
+..
+	In order to get the node number, you have two choices:  first, nodes are 
+	numbered in a monotonically increasing fashion starting from zero in the 
+	order in which you created them.  One way to get a node number is to figure 
+	this number out "manually" by contemplating the order of node creation.  
+	If you take a look at the network topology illustration at the beginning of 
+	the file, we did this for you and you can see that the last CSMA node is 
+	going to be node number ``nCsma + 1``.  This approach can become 
+	annoyingly difficult in larger simulations.  
+	
+Προκειμένου να βρείτε τον αριθμό του κόμβου, έχετε δύο επιλογές: πρώτον, οι κόμβοι είναι
+αριθμημένοι με μονοτονικά αύξοντα τρόπο, ξεκινώντας από το μηδέν με τη σειρά σύμφωνα με την
+οποία τους δημιουργείτε. Ένας τρόπος για να πάρετε τον αριθμό ενός κόμβου είναι να βρείτε
+τον αριθμό αυτόν "μηχανικά" μελετώντας τη σειρά της δημιουργίας των κόμβων. Εάν ρίξετε μια ματιά
+στην απεικόνιση της τοπολογίας του δικτύου στην αρχή του αρχείου, θα δείτε ότι το κάναμε ήδη αυτό
+για εσάς και θα διαπιστώσετε ότι ο τελευταίος CSMA κόμβος είναι ο κόμβος με τον αριθμό
+``nCsma + 1``. Αυτή η προσέγγιησ μπορεί να καταστεί ενοχλητικά δύσκολη σε μεγαλύτερες 
+προσομοιώσεις.
 
-An alternate way, which we use here, is to realize that the
-``NodeContainers`` contain pointers to |ns3| ``Node`` Objects.
-The ``Node`` Object has a method called ``GetId`` which will return that
-node's ID, which is the node number we seek.  Let's go take a look at the 
-Doxygen for the ``Node`` and locate that method, which is further down in 
-the |ns3| core code than we've seen so far; but sometimes you have to
-search diligently for useful things.
+..
+	An alternate way, which we use here, is to realize that the
+	``NodeContainers`` contain pointers to |ns3| ``Node`` Objects.
+	The ``Node`` Object has a method called ``GetId`` which will return that
+	node's ID, which is the node number we seek.  Let's go take a look at the 
+	Doxygen for the ``Node`` and locate that method, which is further down in 
+	the |ns3| core code than we've seen so far; but sometimes you have to
+	search diligently for useful things.
+	
+Ένας εναλλακτικός τρόπος, τον οποίο χρησιμοποιούμε εδώ, είναι το να διαπιστώσετε ότι οι 
+``NodeContainers`` περιέχουν δείκτες προς αντικείμενα ``Node`` του |ns3|. Το αντικείμενο
+``Node`` έχει μια μέθοδο που ονομάζεται ``GetId``, η οποία επιστρέφει την ID του κόμβου,
+η οποία είναι ο αριθμός του κόμβου που ψάχνουμε. Ας πάμε να δούμε στο Doxygen για το
+``Node`` και ας εντοπίσουμε αυτή τη μέθοδο, η οποία βρίσκεται στο χαμηλότερο επίπεδο του
+πυρήνα του |ns3| που έχουμε φτάσει μέχρι στιγμής. Μα κάποιες φορές χρειάζεται να ψάχνετε
+επιμελώς για χρήσιμα πράγματα.
 
-Go to the Doxygen documentation for your release (recall that you can find it
-on the project web site).  You can get to the ``Node`` documentation by
-looking through at the "Classes" tab and scrolling down the "Class List" 
-until you find ``ns3::Node``.  Select ``ns3::Node`` and you will be taken
-to the documentation for the ``Node`` class.  If you now scroll down to the
-``GetId`` method and select it, you will be taken to the detailed 
-documentation for the method.  Using the ``GetId`` method can make 
-determining node numbers much easier in complex topologies.
+..
+	Go to the Doxygen documentation for your release (recall that you can find it
+	on the project web site).  You can get to the ``Node`` documentation by
+	looking through at the "Classes" tab and scrolling down the "Class List" 
+	until you find ``ns3::Node``.  Select ``ns3::Node`` and you will be taken
+	to the documentation for the ``Node`` class.  If you now scroll down to the
+	``GetId`` method and select it, you will be taken to the detailed 
+	documentation for the method.  Using the ``GetId`` method can make 
+	determining node numbers much easier in complex topologies.
+	
+Μεταβείτε στην τεκμηρίωση του Doxygen για την έκδοσή σας (θυμηθείτε ότι μπορείτε να τη βρείτε
+στον ιστότοπο του project). Μπορείτε να βρείτε την τεκμηρίωση του ``Node`` ψάχνοντας στην
+καρτέλα "Classes" και κατεβαίνοντας κάτω στην "Class List" μέχρι να βρείτε το ``ns3::Node``.
+Επιλέξτε το ``ns3::Node`` και θα μεταβείτε στην τεκμηρίωση για την κλάση ``Node``. Εάν κατεβείτε
+κάτω στη μέθοδο ``GetId`` και την επιλέξετε, θα μεταβείτε σε μια λεπτομερή τεκμηρίωση της μεθόδου
+αυτής. Η χρήση της μεθόδου ``GetId`` μπορεί να κάνει τον προσδιορισμό του αριθμού ενός κόμβου
+πολύ ευκολότερο σε πολύπλοκες τοπολογίες.
 
-Let's clear the old trace files out of the top-level directory to avoid confusion
-about what is going on,
+..
+	Let's clear the old trace files out of the top-level directory to avoid confusion
+	about what is going on,
+	
+Ας διαγράψουμε τα παλιά αρχεία καταγραφής από τον κατάλογο υψηλότερου επιπέδου ώστε να αποφύγουμε
+οποιαδήποτε σύγχυση σχετικά με το τι συμβαίνει,
 
 .. sourcecode:: bash
 
   $ rm *.pcap
   $ rm *.tr
 
-If you build the new script and run the simulation setting ``nCsma`` to 100,
+.. If you build the new script and run the simulation setting ``nCsma`` to 100,
+
+Εάν κάνετε build το νέο σενάριο και εκτελέσετε την προσομοίωση θέτοντας τη μεταβλητή 
+``nCsma`` στο 100,
 
 .. sourcecode:: bash
 
   $ ./waf --run "scratch/mysecond --nCsma=100"
 
-you will see the following output:
+.. you will see the following output:
+
+Θα δείτε την ακόλουθη έξοδο:
 
 .. sourcecode:: text
 
@@ -629,32 +1050,55 @@ you will see the following output:
   At time 2.0068s server sent 1024 bytes to 10.1.1.1 port 49153
   At time 2.01761s client received 1024 bytes from 10.1.2.101 port 9
 
-Note that the echo server is now located at 10.1.2.101 which corresponds to
-having 100 "extra" CSMA nodes with the echo server on the last one.  If you
-list the pcap files in the top level directory you will see,
+..
+	Note that the echo server is now located at 10.1.2.101 which corresponds to
+	having 100 "extra" CSMA nodes with the echo server on the last one.  If you
+	list the pcap files in the top level directory you will see,
+	
+Σημειώστε ότι ο echo εξυπηρετητής βρίσκεται τώρα στη διεύθυνση 10.1.2.101, το οποίο οφείλεται
+στο ότι έχουμε 100 "επιπλέον" CSMA κόμβους, μαζί με τον echo εξυπηρετητή που βρίσκεται στον
+τελευταίο από αυτούς. Εάν ζητήσετε τη λίστα με τα αρχεία pcap στον κατάλογο υψηλότερου επιπέδου
+θα δείτε,
 
 .. sourcecode:: text
 
   second-0-0.pcap  second-100-0.pcap  second-101-0.pcap
 
-The trace file ``second-0-0.pcap`` is the "leftmost" point-to-point device
-which is the echo packet source.  The file ``second-101-0.pcap`` corresponds
-to the rightmost CSMA device which is where the echo server resides.  You may 
-have noticed that the final parameter on the call to enable pcap tracing on the 
-echo server node was false.  This means that the trace gathered on that node
-was in non-promiscuous mode.
+..
+	The trace file ``second-0-0.pcap`` is the "leftmost" point-to-point device
+	which is the echo packet source.  The file ``second-101-0.pcap`` corresponds
+	to the rightmost CSMA device which is where the echo server resides.  You may 
+	have noticed that the final parameter on the call to enable pcap tracing on the 
+	echo server node was false.  This means that the trace gathered on that node
+	was in non-promiscuous mode.
+	
+Το αρχείο καταγραφής ``second-0-0.pcap`` είναι η "αριστερότερη" συσκευή σημείου-προς-σημείο
+η οποία είναι η πηγή του πακέτου echo. Το αρχείο ``second-101-0.pcap`` αντιστοιχεί στην
+δεξιότερη CSMA συσκευή στην οποία βρίσκεται ο εξυπηρετητής echo. Μπορεί να παρατηρήσατε 
+ότι η τελευταία παράμετρος κατά την κλήση για ενεργοποίηση της pcap καταγραφής στον κόμβο του
+echo εξυπηρετητή είναι τεθειμένη ως ψευδής. Αυτό σημαίνει ότι τα ίχνη που συγκεντρώνονται σε
+αυτόν τον κόμβο ήταν σε μη-μεικτή κατάσταση.
 
-To illustrate the difference between promiscuous and non-promiscuous traces, we
-also requested a non-promiscuous trace for the next-to-last node.  Go ahead and
-take a look at the ``tcpdump`` for ``second-100-0.pcap``.
+..
+	To illustrate the difference between promiscuous and non-promiscuous traces, we
+	also requested a non-promiscuous trace for the next-to-last node.  Go ahead and
+	take a look at the ``tcpdump`` for ``second-100-0.pcap``.
+	
+Για να διευκρινίσουμε τη διαφορά μεταξύ μεικτών και μη-μεικτών ιχνών, ζητήσαμε επιπλέον 
+ένα μη-μεικτό ίχνος για τον κόμβο δίπλα από τον τελευταίο. Ρίξτε μια ματιά στο ``tcpdump``
+για το αρχείο ``second-100-0.pcap``.
 
 .. sourcecode:: bash
 
   $ tcpdump -nn -tt -r second-100-0.pcap
 
-You can now see that node 100 is really a bystander in the echo exchange.  The
-only packets that it receives are the ARP requests which are broadcast to the
-entire CSMA network.
+..
+	You can now see that node 100 is really a bystander in the echo exchange.  The
+	only packets that it receives are the ARP requests which are broadcast to the
+	entire CSMA network.
+	
+Μπορείτε τώρα να δείτε ότι ο κόμβος 100 είναι πράγματι ένας παρατηρητής κατά την ανταλλαγή echo. 
+Τα μόνα πακέτα που λαμβάνει είναι οι αιτήσεις ARP οι οποίες εκπέμπονται σε όλο το CSMA δίκτυο.
 
 .. sourcecode:: text
 
@@ -662,13 +1106,17 @@ entire CSMA network.
   2.006698 ARP, Request who-has 10.1.2.101 (ff:ff:ff:ff:ff:ff) tell 10.1.2.1, length 50
   2.013815 ARP, Request who-has 10.1.2.1 (ff:ff:ff:ff:ff:ff) tell 10.1.2.101, length 50
 
-Now take a look at the ``tcpdump`` for ``second-101-0.pcap``.
+.. Now take a look at the ``tcpdump`` for ``second-101-0.pcap``.
+
+Δείτε τώρα το ``tcpdump`` για το αρχείο ``second-101-0.pcap``.
 
 .. sourcecode:: bash
 
   $ tcpdump -nn -tt -r second-101-0.pcap
 
-You can now see that node 101 is really the participant in the echo exchange.
+.. You can now see that node 101 is really the participant in the echo exchange.
+
+Μπορείτε τώρα να δείτε ότι ο κόμβος 101 είναι πραγματικά ο παραλήπτης της ανταλλαγής echo.
 
 .. sourcecode:: text
 
