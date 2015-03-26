@@ -357,16 +357,18 @@
 Ειδικότερα, λήψη εργαλείων όπως το Mercurial, CVS, GIT και Bazaar είναι οι κυριότερες ανησυχίες μας σε αυτό το σημείο, διότι μας επιτρέπουν να φέρουν τον κώδικα. Παρακαλώ εγκαταστήστε τα εργαλεία που λείπουν σε αυτό το στάδιο, με το συνήθη τρόπο για το σύστημά σας (αν είστε σε θέση), ή επικοινωνήστε με τον διαχειριστή του συστήματός σας, όπως απαιτείται για την εγκατάσταση αυτών των εργαλείων.
 
 ..
-	Next, try to download the software::
+	Next, try to download the software
 	
-Μετά, προσπαθήστε να κατεβάσετε το λογισμικό::
+Μετά, προσπαθήστε να κατεβάσετε το λογισμικό
+::
 
   $ ./bake.py download
 
 ..
-	should yield something like::
+	should yield something like
 	
-θα πρέπει να δώσει κάτι, όπως ::
+θα πρέπει να δώσει κάτι, όπως 
+::
 
    >> Searching for system dependency pygoocanvas - OK
    >> Searching for system dependency python-dev - OK
@@ -379,10 +381,11 @@
 
 ..
 	The above suggests that three sources have been downloaded.  Check the
-	``source`` directory now and type ``ls``; one should see::
+	``source`` directory now and type ``ls``; one should see
 
 Απο τα ανωτέρω προκύπτει ότι οι τρείς πηγές έχουν ληφθεί. Ελέγξτε τώρα τον κατάλογο
-``source`` και πληκτρολογείστε `` ls``, πρέπει να φανεί ::
+``source`` και πληκτρολογείστε ``ls``, πρέπει να φανεί 
+::
 
   $ ls
   netanim-3.105  ns-3.22  pybindgen-0.16.0.886
@@ -419,9 +422,10 @@
 	If you downloaded
 	using a tarball you should have a directory called something like 
 	``ns-allinone-3.22`` under your ``~/workspace`` directory.  
-	Type the following::
+	Type the following
 
-Αν έχετε κατεβάσει χρησιμοποιώντας ένα tarball θα πρέπει να έχετε έναν κατάλογο που ονομάζεται ``ns-allinone-3.22`` κάτω από τον κατάλογο ``~ / workspace``. Πληκτρολογήστε την ακόλουθη εντολή ::
+Αν έχετε κατεβάσει χρησιμοποιώντας ένα tarball θα πρέπει να έχετε έναν κατάλογο που ονομάζεται ``ns-allinone-3.22`` κάτω από τον κατάλογο ``~/workspace``. Πληκτρολογήστε την ακόλουθη εντολή
+::
 
   $ ./build.py --enable-examples --enable-tests
 
@@ -438,9 +442,10 @@
 ..
 	You will see lots of typical compiler output messages displayed as the build
 	script builds the various pieces you downloaded.  Eventually you should see the
-	following::
+	following
 
-Θα δείτε πολλά μηνύματα εξόδου τυπικού compiler να εμφανίζονται όσο το σενάριο κατασκευής χτίζει τα διάφορα κομμάτια που κατεβάσατε. Ενδεχομένως να δείτε το παρακάτω::
+Θα δείτε πολλά μηνύματα εξόδου τυπικού compiler να εμφανίζονται όσο το σενάριο κατασκευής χτίζει τα διάφορα κομμάτια που κατεβάσατε. Ενδεχομένως να δείτε το παρακάτω
+::
 
    Waf: Leaving directory `/path/to/workspace/ns-allinone-3.22/ns-3.22/build'
    'build' finished successfully (6m25.032s)
@@ -467,9 +472,10 @@
    Leaving directory `./ns-3.22'
 
 ..
-	Regarding the portion about modules not built::
+	Regarding the portion about modules not built
 
-Όσον αφορά το τμήμα σχετικά με τις ενότητες δεν χτίστηκε::
+Όσον αφορά το τμήμα σχετικά με τις ενότητες δεν χτίστηκε
+::
 
   Modules not built (see ns-3 tutorial for explanation):
   brite                     click                     openflow                 
@@ -501,14 +507,15 @@
 ..
 	and you should see something like
 
-και θα πρέπει να δείτε::
+και θα πρέπει να δείτε
+::
 
   >> Building pybindgen-0.16.0.886 - OK
   >> Building netanim-3.105 - OK
   >> Building ns-3.22 - OK
 
 ..
-	*Hint:  you can also perform both steps, download and build by calling 'bake.py deploy'.*
+	Hint:  you can also perform both steps, download and build by calling 'bake.py deploy'.
 
 *Συμβουλή: Μπορείτε επίσης να εκτελέσετε δύο βήματα, να κατεβάσετε και να οικοδομήσετε καλώντας 'bake.py deploy'.*
 
