@@ -18,51 +18,90 @@
 Ιχνηλασία
 ---------
 
-Background
-**********
+..
+	Background
 
-As mentioned in :ref:`UsingTracingSystem`, the whole point
-of running an |ns3| simulation is to generate output for study.  You
-have two basic strategies to obtain output from |ns3|: using generic
-pre-defined bulk output mechanisms and parsing their content to
-extract interesting information; or somehow developing an output
-mechanism that conveys exactly (and perhaps only) the information
-wanted.
+Ιστορικό
+********
 
-Using pre-defined bulk output mechanisms has the advantage of not
-requiring any changes to |ns3|, but it may require writing scripts to
-parse and filter for data of interest.  Often, PCAP or ``NS_LOG``
-output messages are gathered during simulation runs and separately run
-through scripts that use ``grep``, ``sed`` or ``awk`` to parse the
-messages and reduce and transform the data to a manageable form.
-Programs must be written to do the transformation, so this does not
-come for free.  ``NS_LOG`` output is not considered part of the |ns3|
-API, and can change without warning between releases.  In addition,
-``NS_LOG`` output is only available in debug builds, so relying on it
-imposes a performance penalty.  Of course, if the information of
-interest does not exist in any of the pre-defined output mechanisms,
-this approach fails.
+..
+	As mentioned in :ref:`UsingTracingSystem`, the whole point
+	of running an |ns3| simulation is to generate output for study.  You
+	have two basic strategies to obtain output from |ns3|: using generic
+	pre-defined bulk output mechanisms and parsing their content to
+	extract interesting information; or somehow developing an output
+	mechanism that conveys exactly (and perhaps only) the information
+	wanted.
 
-If you need to add some tidbit of information to the pre-defined bulk
-mechanisms, this can certainly be done; and if you use one of the
-|ns3| mechanisms, you may get your code added as a contribution.
+Όπως αναφέρεται σε :ref:`UsingTracingSystem`, το νόημα της λειτουργίας μιας |ns3| προσομοίωσης είναι να 
+παράγει έξοδο για μελέτη. Έχετε δύο βασικές στρατηγικές για την απόκτηση εξόδου από |ns3|: τη χρήση γενικών 
+προκαθορισμένες χύμα μηχανισμούς παραγωγής και την ανάλυση του περιεχομένου τους για να εξαγάγετε ενδιαφέρουσες 
+πληροφορίες? ή με κάποιο τρόπο την ανάπτυξη ενός μηχανισμού εξόδου που αποπνέει ακριβώς (και ίσως μόνο) τις 
+πληροφορίες που ήθελε.
 
-|ns3| provides another mechanism, called Tracing, that avoids some of
-the problems inherent in the bulk output mechanisms.  It has several
-important advantages.  First, you can reduce the amount of data you
-have to manage by only tracing the events of interest to you (for
-large simulations, dumping everything to disk for post-processing can
-create I/O bottlenecks).  Second, if you use this method, you can
-control the format of the output directly so you avoid the
-postprocessing step with ``sed``, ``awk``, ``perl`` or ``python``
-scripts.  If you desire, your output can be formatted directly into a
-form acceptable by gnuplot, for example (see also
-:ref:`GnuplotHelper`).  You can add hooks in the core which can then
-be accessed by other users, but which will produce no information
-unless explicitly asked to do so.  For these reasons, we believe that
-the |ns3| tracing system is the best way to get information out of a
-simulation and is also therefore one of the most important mechanisms
-to understand in |ns3|.
+..
+	Using pre-defined bulk output mechanisms has the advantage of not
+	requiring any changes to |ns3|, but it may require writing scripts to
+	parse and filter for data of interest.  Often, PCAP or ``NS_LOG``
+	output messages are gathered during simulation runs and separately run
+	through scripts that use ``grep``, ``sed`` or ``awk`` to parse the
+	messages and reduce and transform the data to a manageable form.
+	Programs must be written to do the transformation, so this does not
+	come for free.  ``NS_LOG`` output is not considered part of the |ns3|
+	API, and can change without warning between releases.  In addition,
+	``NS_LOG`` output is only available in debug builds, so relying on it
+	imposes a performance penalty.  Of course, if the information of
+	interest does not exist in any of the pre-defined output mechanisms,
+	this approach fails.
+
+Χρήση προκαθορισμένων μηχανισμών χύμα εξόδου έχει το πλεονέκτημα ότι δεν απαιτεί αλλαγές στο | NS3 |, 
+αλλά μπορεί να απαιτήσει τη συγγραφή σεναρίων για την ανάλυση και το φίλτρο για τα δεδομένα του ενδιαφέροντος. 
+Συχνά, PCAP ή `` Οι NS_LOG`` μηνύματα εξόδου που συγκεντρώθηκαν κατά τη διάρκεια προσομοιώσεις και ξεχωριστά τρέχει 
+μέσα από σενάρια που χρησιμοποιούν `` grep``, `` sed`` ή `` awk`` να αναλύσει τα μηνύματα και να μειώσουν και να 
+μετατρέψει τα δεδομένα σε ένα διαχειρίσιμο μορφή. Προγράμματα πρέπει να είναι γραπτή, να κάνει τη μετατροπή, έτσι 
+αυτό δεν έρχεται δωρεάν. `` Έξοδος NS_LOG`` δεν θεωρείται μέρος της | NS3 | API, και μπορούν να αλλάξουν χωρίς 
+προειδοποίηση μεταξύ των εκδόσεων. Επιπλέον, `` έξοδος NS_LOG`` είναι διαθέσιμη μόνο σε εκδόσεις εντοπισμού σφαλμάτων, 
+ώστε να βασιστείτε σε αυτή επιβάλλει ποινή απόδοσης. Φυσικά, αν η πληροφορία που ενδιαφέρει δεν υπάρχει σε καμία από 
+τις προκαθορισμένες μηχανισμών εξόδου, η προσέγγιση αυτή αποτυγχάνει.
+
+..
+	If you need to add some tidbit of information to the pre-defined bulk
+	mechanisms, this can certainly be done; and if you use one of the
+	|ns3| mechanisms, you may get your code added as a contribution.
+
+Εάν χρειάζεστε να προσθέσετε κάποια εκλεκτός μεζές των πληροφοριών στις προκαθορισμένες χύμα μηχανισμούς, αυτό 
+σίγουρα μπορεί να γίνει? και αν χρησιμοποιήσετε ένα από τα | NS3 | μηχανισμούς, μπορείτε να πάρετε τον κωδικό σας 
+προστίθεται ως εισφορά.
+	
+..
+	|ns3| provides another mechanism, called Tracing, that avoids some of
+	the problems inherent in the bulk output mechanisms.  It has several
+	important advantages.  First, you can reduce the amount of data you
+	have to manage by only tracing the events of interest to you (for
+	large simulations, dumping everything to disk for post-processing can
+	create I/O bottlenecks).  Second, if you use this method, you can
+	control the format of the output directly so you avoid the
+	postprocessing step with ``sed``, ``awk``, ``perl`` or ``python``
+	scripts.  If you desire, your output can be formatted directly into a
+	form acceptable by gnuplot, for example (see also
+	:ref:`GnuplotHelper`).  You can add hooks in the core which can then
+	be accessed by other users, but which will produce no information
+	unless explicitly asked to do so.  For these reasons, we believe that
+	the |ns3| tracing system is the best way to get information out of a
+	simulation and is also therefore one of the most important mechanisms
+	to understand in |ns3|.
+	
+| NS3 | παρέχει έναν άλλο μηχανισμό, που ονομάζεται Tracing, που αποφεύγει ορισμένα από τα προβλήματα που συνδέονται 
+με τους μηχανισμούς χύμα εξόδου. Έχει αρκετά σημαντικά πλεονεκτήματα. Κατ 'αρχάς, μπορείτε να μειώσετε την ποσότητα 
+των δεδομένων που θα πρέπει να διαχειριστεί από μόνο τον εντοπισμό των εκδηλώσεων που σας ενδιαφέρουν (για τις μεγάλες 
+προσομοιώσεις, τα πάντα στο δίσκο για την μετα-επεξεργασία μπορεί να δημιουργήσει I / O σημεία συμφόρησης ντάμπινγκ). 
+Δεύτερον, αν χρησιμοποιείτε αυτή τη μέθοδο, μπορείτε να ελέγξετε τη μορφοποίηση της εξόδου άμεσα, έτσι ώστε να 
+αποφευχθεί το στάδιο της μετα-επεξεργασίας με `` sed``, `` awk``, `` perl`` ή `` python`` σενάρια. Αν επιθυμείτε, η 
+παραγωγή σας μπορεί να διαμορφωθεί άμεσα σε μορφή αποδεκτή από gnuplot, για παράδειγμα (βλέπε επίσης: ref: 
+`GnuplotHelper`). Μπορείτε να προσθέσετε άγκιστρα στον πυρήνα που μπορούν να προσπελαστούν από άλλους χρήστες, αλλά οι
+οποίες θα παράγουν καμία πληροφορία εκτός αν σας ζητηθεί ρητά να το πράξει. Για αυτούς τους λόγους, πιστεύουμε ότι 
+η | NS3 | σύστημα ανίχνευσης είναι ο καλύτερος τρόπος για να πάρετε πληροφορίες από μια προσομοίωση και είναι επίσης, 
+ως εκ τούτου ένας από τους πιο σημαντικούς μηχανισμούς για να καταλάβουμε σε | NS3 |.
 
 Blunt Instruments
 +++++++++++++++++
