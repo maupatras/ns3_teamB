@@ -15,17 +15,17 @@
 ..
 	* `ns-3 Doxygen <http://www.nsnam.org/doxygen/index.html>`_: Documentation of the public APIs of the simulator
 
-* `ns-3 Doxygen <http://www.nsnam.org/doxygen/index.html>`_: Τεκμηρίωση των δημόσιων APIs του προσομοιωτή
+* Στο `Doxygen του ns-3 <http://www.nsnam.org/doxygen/index.html>`_: Τεκμηρίωση των δημόσιων APIs του προσομοιωτή
 
 ..
 	* Tutorial *(this document)*, Manual, and Model Library for the `latest release <http://www.nsnam.org/documentation/latest/>`_ and `development tree <http://www.nsnam.org/ns-3-dev/documentation/>`_
 
-* Οδηγός *(το παρόν έγγραφο)*, Εγχειρίδιο, και Βιβλιοθήκη Μοντέλων για την `τελευταία έκδοση <http://www.nsnam.org/documentation/latest/>`_ και `δέντρο ανάπτυξης <http://www.nsnam.org/ns-3-dev/documentation/>`_
+* Στον Οδηγό *(το παρόν έγγραφο)*, στο Εγχειρίδιο, και στη Βιβλιοθήκη Μοντέλων για την `τελευταία έκδοση <http://www.nsnam.org/documentation/latest/>`_ και το `δέντρο ανάπτυξης <http://www.nsnam.org/ns-3-dev/documentation/>`_ του ns-3
 
 ..
 	* `ns-3 wiki <http://www.nsnam.org/wiki/Main_Page>`_
 
-* `ns-3 wiki <http://www.nsnam.org/wiki/Main_Page>`_
+* Στο `wiki του ns-3 <http://www.nsnam.org/wiki/Main_Page>`_
 
 ..
 	This document is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ for `Sphinx <http://sphinx.pocoo.org/>`_ and is maintained in the
