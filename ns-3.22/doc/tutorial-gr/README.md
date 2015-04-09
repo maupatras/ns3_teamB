@@ -13,8 +13,6 @@ both by running:
 - `sudo apt-get install python` to install Python first
 - `sudo apt-get install python-sphinx` to install Sphinx
 
-----------------------------------------------------------------------------------------------------------------------
-
 
 ## GR - Οδηγίες για make
 Εάν θέλετε να δημιουργήσετε την ελληνική έκδοση του
