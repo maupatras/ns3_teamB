@@ -15,7 +15,7 @@
 ..
 	Tracing
 
-Ιχνηλασία
+Ανίχνευση
 ---------
 
 ..
@@ -93,15 +93,15 @@
 	
 Ο |ns3| παρέχει έναν άλλο μηχανισμό, που ονομάζεται Tracing, ο οποίος αποφεύγει ορισμένα από τα προβλήματα που συνδέονται 
 με τους μηχανισμούς εξόδου bulk. Έχει αρκετά σημαντικά πλεονεκτήματα. Κατ 'αρχάς, μπορείτε να μειώσετε την ποσότητα 
-των δεδομένων που θα πρέπει να διαχειριστεί από μόνο τον εντοπισμό των εκδηλώσεων που σας ενδιαφέρουν (για τις μεγάλες 
+των δεδομένων που θα πρέπει να διαχειριστείτε από μόνο τον εντοπισμό των εκδηλώσεων που σας ενδιαφέρουν (για τις μεγάλες 
 προσομοιώσεις, τοποθετώντας τα πάντα στο δίσκο για την μετα-επεξεργασία μπορεί να δημιουργήσει I / O σημεία συμφόρησης). 
 Δεύτερον, αν χρησιμοποιείτε αυτή τη μέθοδο, μπορείτε να ελέγξετε τη μορφοποίηση της εξόδου άμεσα, έτσι ώστε να 
 αποφευχθεί το στάδιο της μετα-επεξεργασίας με ``sed``, ``awk``, ``perl`` ή ``python`` σενάρια. Αν επιθυμείτε, η 
-παραγωγή σας μπορεί να διαμορφωθεί άμεσα σε μορφή αποδεκτή από gnuplot, για παράδειγμα (βλέπε επίσης). 
+παραγωγή σας μπορεί να διαμορφωθεί άμεσα σε μορφή αποδεκτή από gnuplot, για παράδειγμα (βλέπε επίσης :ref:`GnuplotHelper`). 
 Μπορείτε να προσθέσετε άγκιστρα στον πυρήνα που μπορούν να προσπελαστούν από άλλους χρήστες, αλλά οι
-οποίες θα παράγουν καμία πληροφορία εκτός αν σας ζητηθεί ρητά να το πράξει. Για αυτούς τους λόγους, πιστεύουμε ότι 
-η |ns3| σύστημα ανίχνευσης είναι ο καλύτερος τρόπος για να πάρετε πληροφορίες από μια προσομοίωση και είναι επίσης, 
-ως εκ τούτου ένας από τους πιο σημαντικούς μηχανισμούς για να καταλάβουμε σε |ns3|.
+οποίες δε θα παράγουν καμία πληροφορία εκτός αν σας ζητηθεί ρητά να το πράξετε. Για αυτούς τους λόγους, πιστεύουμε ότι 
+το σύστημα ανίχνευσης |ns3| είναι ο καλύτερος τρόπος για να πάρετε πληροφορίες από μια προσομοίωση και είναι επίσης, 
+ως εκ τούτου ένας από τους πιο σημαντικούς μηχανισμούς για να καταλάβουμε τον |ns3|.
 
 ..
 	Blunt Instruments
@@ -129,36 +129,67 @@ Blunt Instruments
     ...
   } 
 
-Nobody is going to prevent you from going deep into the core of |ns3|
-and adding print statements.  This is insanely easy to do and, after
-all, you have complete control of your own |ns3| branch.  This will
-probably not turn out to be very satisfactory in the long term,
-though.
+..
+	Nobody is going to prevent you from going deep into the core of |ns3|
+	and adding print statements.  This is insanely easy to do and, after
+	all, you have complete control of your own |ns3| branch.  This will
+	probably not turn out to be very satisfactory in the long term,
+	though.
 
-As the number of print statements increases in your programs, the task
-of dealing with the large number of outputs will become more and more
-complicated.  Eventually, you may feel the need to control what
-information is being printed in some way, perhaps by turning on and
-off certain categories of prints, or increasing or decreasing the
-amount of information you want.  If you continue down this path you
-may discover that you have re-implemented the ``NS_LOG`` mechanism
-(see :ref:`UsingLogging`).  In order to avoid that, one of the first
-things you might consider is using ``NS_LOG`` itself.
+Κανείς δεν πρόκειται να σας αποτρέψει από το να πηγαίνετε βαθιά στον πυρήνα του |ns3| 
+και προσθέτοντας τις δηλώσεις εκτύπωσης. Αυτό είναι τρομερά εύκολο να γίνει και μετά, έχετε τον πλήρη έλεγχο του δικού σας υποκατάστημα |ns3|. Αυτό πιθανόν να μην αποδειχθεί ότι είναι ικανοποιητικό σε μακροπρόθεσμη βάση,
+όμως.
 
-We mentioned above that one way to get information out of |ns3| is to
-parse existing ``NS_LOG`` output for interesting information.  If you
-discover that some tidbit of information you need is not present in
-existing log output, you could edit the core of |ns3| and simply add
-your interesting information to the output stream.  Now, this is
-certainly better than adding your own print statements since it
-follows |ns3| coding conventions and could potentially be useful to
-other people as a patch to the existing core.
+..
+	As the number of print statements increases in your programs, the task
+	of dealing with the large number of outputs will become more and more
+	complicated.  Eventually, you may feel the need to control what
+	information is being printed in some way, perhaps by turning on and
+	off certain categories of prints, or increasing or decreasing the
+	amount of information you want.  If you continue down this path you
+	may discover that you have re-implemented the ``NS_LOG`` mechanism
+	(see :ref:`UsingLogging`).  In order to avoid that, one of the first
+	things you might consider is using ``NS_LOG`` itself.
 
-Let's pick a random example.  If you wanted to add more logging to the
-|ns3| TCP socket (``tcp-socket-base.cc``) you could just add a new
-message down in the implementation.  Notice that in
-``TcpSocketBase::ReceivedAck()`` there is no log message for the no ACK
-case.  You could simply add one, changing the code.  Here is the original::
+Καθώς ο αριθμός των καταστάσεων εκτύπωσης αυξάνει στα προγράμματά σας, το έργο
+της αντιμετώπισης του μεγάλου αριθμού των αποτελεσμάτων θα γίνονται όλο και περισσότερο
+περίπλοκα. Τελικά, μπορεί να αισθανθείτε την ανάγκη να ελέγχετε ό,τι
+πληροφορίες εκτυπώνετε με κάποιο τρόπο, ίσως ενεργοποιώντας και
+απενεργοποιώντας ορισμένες κατηγορίες εκτυπώσεις, ή αυξάνοντας ή μειώνοντας το
+την ποσότητα των πληροφοριών που θέλετε. Εάν συνεχίσουμε αυτήν την πορεία σας
+μπορεί να ανακαλύψετε ότι έχετε εκ νέου σε εφαρμογή το μηχανισμό ``NS_LOG``
+(βλέπε :ref:`UsingLogging`). Προκειμένου να αποφευχθεί αυτό, ένα από τα πρώτα
+πράγματα που θα μπορούσατε να εξετάσετε είναι να χρησιμοποιείσετε μόνο του το ``NS_LOG``.
+
+..
+	We mentioned above that one way to get information out of |ns3| is to
+	parse existing ``NS_LOG`` output for interesting information.  If you
+	discover that some tidbit of information you need is not present in
+	existing log output, you could edit the core of |ns3| and simply add
+	your interesting information to the output stream.  Now, this is
+	certainly better than adding your own print statements since it
+	follows |ns3| coding conventions and could potentially be useful to
+	other people as a patch to the existing core.
+
+Μας αναφέρθηκε παραπάνω ότι ένας τρόπος για να πάρετε πληροφορίες από τον |ns3| είναι να αναλύσει τις υπάρχουσες 
+εξόδους ``NS_LOG`` για ενδιαφέρουσες πληροφορίες. Αν ανακαλύψετε ότι κάποια tidbit των πληροφοριών που 
+χρειάζεστε δεν είναι παρών σε υφιστάμενες έξοδους αρχείων καταγραφής, μπορείτε να επεξεργαστείτε τον πυρήνα 
+του |ns3| και απλά προσθέστε ενδιαφέρουσες πληροφορίες σας στο stream εξόδου. Τώρα, αυτό είναι σίγουρα καλύτερο 
+από την προσθήκη των δικών σας δηλώσεων εκτύπωσης, δεδομένου ότι ακολουθεί ο |ns3| συμβάσεις κωδικοποίησης και 
+θα μπορούσε ενδεχομένως να είναι χρήσιμο σε άλλους ανθρώπους ως ένα patch στον υφιστάμενο πυρήνα.
+
+..
+	Let's pick a random example.  If you wanted to add more logging to the
+	|ns3| TCP socket (``tcp-socket-base.cc``) you could just add a new
+	message down in the implementation.  Notice that in
+	``TcpSocketBase::ReceivedAck()`` there is no log message for the no ACK
+	case.  You could simply add one, changing the code.  Here is the original
+	
+Ας πάρουμε ένα τυχαίο παράδειγμα. Αν θέλετε να προσθέσετε περισσότερη καταγραφή στον |ns3| υποδοχή TCP 
+(``tcp-socket-base.cc``) θα μπορούσατε απλά να προσθέσετε ένα νέο μήνυμα κάτω στην εφαρμογή. Σημειώστε 
+ότι στο ``TcpSocketBase::ReceivedAck()`` δεν υπάρχει log μήνυμα για την περίπτωση του no ACK. Θα μπορούσατε 
+απλά να προσθέσετε ένα, αλλάζοντας τον κώδικα. Εδώ είναι η αρχική 
+::
 
   /** Process the newly received ACK */
   void
@@ -172,8 +203,12 @@ case.  You could simply add one, changing the code.  Here is the original::
       }
     ...
 
-To log the no ACK case, you can add a new ``NS_LOG_LOGIC`` in the
-``if`` statement body::
+..
+	To log the no ACK case, you can add a new ``NS_LOG_LOGIC`` in the
+	``if`` statement body
+	
+Για να συνδεθείτε στην περίπτωση του no ACK, μπορείτε να προσθέσετε ένα νέο `` NS_LOG_LOGIC`` στο `` if`` σώμα δήλωσης
+::
 
   /** Process the newly received ACK */
   void
@@ -188,22 +223,37 @@ To log the no ACK case, you can add a new ``NS_LOG_LOGIC`` in the
       }
     ...
 
-This may seem fairly simple and satisfying at first glance, but
-something to consider is that you will be writing code to add
-``NS_LOG`` statements and you will also have to write code (as in
-``grep``, ``sed`` or ``awk`` scripts) to parse the log output in order
-to isolate your information.  This is because even though you have
-some control over what is output by the logging system, you only have
-control down to the log component level, which is typically an entire
-source code file.
+..
+	This may seem fairly simple and satisfying at first glance, but
+	something to consider is that you will be writing code to add
+	``NS_LOG`` statements and you will also have to write code (as in
+	``grep``, ``sed`` or ``awk`` scripts) to parse the log output in order
+	to isolate your information.  This is because even though you have
+	some control over what is output by the logging system, you only have
+	control down to the log component level, which is typically an entire
+	source code file.
 
-If you are adding code to an existing module, you will also have to
-live with the output that every other developer has found interesting.
-You may find that in order to get the small amount of information you
-need, you may have to wade through huge amounts of extraneous messages
-that are of no interest to you.  You may be forced to save huge log
-files to disk and process them down to a few lines whenever you want
-to do anything.
+Αυτό μπορεί να φαίνεται αρκετά απλό και ικανοποιητικό με την πρώτη ματιά, αλλά κάτι που πρέπει να δούμε είναι ότι θα 
+πρέπει να γράψετε κώδικα για να προσθέσετε δηλώσεις ``NS_LOG`` και θα πρέπει επίσης να γράψετε κώδικα (όπως 
+στο ``grep``, ``sed`` ή ``awk`` σενάρια) για να αναλύσει το αρχείο καταγραφής εξόδου, προκειμένου να 
+απομονώσουν τα στοιχεία σας. Αυτό οφείλεται στο γεγονός ότι, ακόμη και αν έχετε κάποιο έλεγχο πάνω στο τι 
+είναι η έξοδος από το σύστημα καταγραφής, έχετε μόνο τον έλεγχο στο συγκεκριμένο επίπεδο log, το οποίο 
+είναι συνήθως ένα ολόκληρο αρχείο πηγαίου κώδικα.
+
+..
+	If you are adding code to an existing module, you will also have to
+	live with the output that every other developer has found interesting.
+	You may find that in order to get the small amount of information you
+	need, you may have to wade through huge amounts of extraneous messages
+	that are of no interest to you.  You may be forced to save huge log
+	files to disk and process them down to a few lines whenever you want
+	to do anything.
+
+Αν θέλετε να προσθέσετε κώδικα σε μια υπάρχουσα μονάδα, θα πρέπει επίσης να ζουν με την έξοδο που κάθε άλλο 
+προγραμματιστής έχει βρει ενδιαφέρουσα. Μπορείτε να διαπιστώσετε ότι, προκειμένου να πάρει το μικρό ποσό των 
+πληροφοριών που χρειάζεστε, μπορεί να χρειαστεί να εντρυφήσω μέσα από τα τεράστια ποσά που προέρχονται από ξένες 
+μηνύματα που δεν παρουσιάζουν κανένα ενδιαφέρον για εσάς. Μπορεί να αναγκαστεί να αποθηκεύσετε τεράστια αρχεία 
+καταγραφής σε δίσκο και την επεξεργασία τους κάτω σε λίγες γραμμές κάθε φορά που θέλετε να κάνετε τίποτα.
 
 Since there are no guarantees in |ns3| about the stability of
 ``NS_LOG`` output, you may also discover that pieces of log output 
