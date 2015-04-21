@@ -401,23 +401,38 @@ Blunt Instruments
 	what is happening in the example, so we have to take a small detour
 	right away.
 
-Ας πάρουμε μερικά λεπτά και βήμα βήμα ακολουθήστε ένα απλό παράδειγμα εντοπισμού. Θα χρειαστείτε ένα μικρό ιστορικό για 
-Οπισθοκλήσεων να καταλάβουμε τι συμβαίνει στο παράδειγμα, οπότε πρέπει να πάρετε μια μικρή παράκαμψη αμέσως.
+Ας πάρουμε μερικά λεπτά και βήμα βήμα ακολουθήστε ένα απλό παράδειγμα εντοπισμού. Θα χρειαστείτε την Επανάκληση 
+να καταλάβετε τι συμβαίνει στο παράδειγμα, οπότε πρέπει να πάρετε μια μικρή παράκαμψη αμέσως.
 
-Callbacks
-~~~~~~~~~
+..
+	Callbacks
 
-The goal of the Callback system in |ns3| is to allow one piece of code
-to call a function (or method in C++) without any specific
-inter-module dependency.  This ultimately means you need some kind of
-indirection -- you treat the address of the called function as a
-variable.  This variable is called a pointer-to-function variable.
-The relationship between function and pointer-to-function is
-really no different that that of object and pointer-to-object.
+Επανάκληση
+~~~~~~~~~~
 
-In C the canonical example of a pointer-to-function is a
-pointer-to-function-returning-integer (PFI).  For a PFI taking one ``int``
-parameter, this could be declared like,
+..
+	The goal of the Callback system in |ns3| is to allow one piece of code
+	to call a function (or method in C++) without any specific
+	inter-module dependency.  This ultimately means you need some kind of
+	indirection -- you treat the address of the called function as a
+	variable.  This variable is called a pointer-to-function variable.
+	The relationship between function and pointer-to-function is
+	really no different that that of object and pointer-to-object.
+	
+Ο στόχος του συστήματος επανάκλησης |ns3| είναι να επιτρέψει σε ένα κομμάτι του κώδικα για να καλέσετε μια συνάρτηση 
+(ή μέθοδος σε C++), χωρίς καμία συγκεκριμένη μεταξύ των μονάδων της εξάρτησης. Αυτό σημαίνει ότι, τελικά, θα πρέπει να 
+έχετε κάποιο είδος του έμμεσου τύπου - που αντιμετωπίζουν τη διεύθυνση του καλούμενου λειτουργούν ως μια μεταβλητή. Η 
+μεταβλητή αυτή ονομάζεται ένα μεταβλητό δείκτη προς λειτουργία. Η σχέση μεταξύ της λειτουργίας και στη λειτουργία του 
+δείκτη είναι πραγματικά δεν διαφέρει από αυτήν του αντικειμένου και του δείκτη προς το αντικείμενο.
+
+..
+	In C the canonical example of a pointer-to-function is a
+	pointer-to-function-returning-integer (PFI).  For a PFI taking one ``int``
+	parameter, this could be declared like,
+
+Σε C, το κανονικό παράδειγμα συνάρτησης δείκτη-προς-είναι ένα
+δείκτη-προς-λειτουργία-επιστρέφουν ακέραιο (PFI). Για ΠΟΣ τη λήψη ενός ``int``
+παράμετρο, αυτό θα μπορούσε να δηλώνονται, όπως,
 
 ::
 
