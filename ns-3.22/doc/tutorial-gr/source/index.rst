@@ -1,5 +1,23 @@
 .. only:: html or latex
 
+..
+	========================================================================================
+	Current translation in Greek was done as a project of a ns3-related seminar organized by
+	Greek Free/Open Source Software Society (ellak.gr) at University of Patras in 2014.	The
+	members of the translation team were:
+		* Costas Deltouzos (costas.deltouzos@gmail.com)
+		* Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
+		* Giorgos Kaffezas (kaffezas@ceid.upatras.gr)
+		
+	The team that is responsible for keeping the translation up-to-date consists of:
+		# [name_of_team_member_1]
+		# [name_of_team_member_2]
+		# [name_of_team_member_3]
+	----------------------------------------------------------------------------------------
+	> Current file was initially translated by G. Kaffezas.
+	> Last update was performed at 2015-04-26 by G. Kaffezas.
+	========================================================================================
+
 .. ns-3 Tutorial
 
 Οδηγός του ns-3
@@ -31,7 +49,7 @@
 	This document is written in `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ for `Sphinx <http://sphinx.pocoo.org/>`_ and is maintained in the
 	``doc/tutorial`` directory of ns-3's source code.
 	
-Αυτό το έγγραφο είναι γραμμένο σε `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ για `Sphinx <http://sphinx.pocoo.org/>`_ και διατηρείται στον κατάλογο 
+Το έγγραφο αυτό είναι γραμμένο σε `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ για το `Sphinx <http://sphinx.pocoo.org/>`_ και διατηρείται στον κατάλογο 
 ``doc/tutorial`` του πηγαίου κώδικα του ns-3.
 
 .. toctree::
