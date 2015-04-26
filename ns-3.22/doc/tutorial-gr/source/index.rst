@@ -3,7 +3,7 @@
 ..
 	========================================================================================
 	Current translation in Greek was done as a project of a ns3-related seminar organized by
-	Greek Free/Open Source Software Society (ellak.gr) at University of Patras in 2014.	The
+	Greek Free/Open Source Software Society (ellak.gr) at University of Patras in 2014. The
 	members of the translation team were:
 		* Costas Deltouzos (costas.deltouzos@gmail.com)
 		* Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
