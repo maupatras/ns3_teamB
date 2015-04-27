@@ -1458,24 +1458,43 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 Μπορείτε να δείτε ότι αυτό το γεγονός ίχνος προέρχεται από `` DeviceList / 0`` η οποία είναι η
 συσκευή μηδενικής εγκατεστημένο στον κόμβο.
 
-The next string, ``$ns3::PointToPointNetDevice`` tells you what kind of 
-device is in the zeroth position of the device list for node zero.
-Recall that the operation ``+`` found at reference 00 meant that an enqueue 
-operation happened on the transmit queue of the device.  This is reflected in 
-the final segments of the "trace path" which are ``TxQueue/Enqueue``.
+..
+	The next string, ``$ns3::PointToPointNetDevice`` tells you what kind of 
+	device is in the zeroth position of the device list for node zero.
+	Recall that the operation ``+`` found at reference 00 meant that an enqueue 
+	operation happened on the transmit queue of the device.  This is reflected in 
+	the final segments of the "trace path" which are ``TxQueue/Enqueue``.
 
-The remaining sections in the trace should be fairly intuitive.  References 3-4
-indicate that the packet is encapsulated in the point-to-point protocol.  
-References 5-7 show that the packet has an IP version four header and has
-originated from IP address 10.1.1.1 and is destined for 10.1.1.2.  References
-8-9 show that this packet has a UDP header and, finally, reference 10 shows
-that the payload is the expected 1024 bytes.
+	The remaining sections in the trace should be fairly intuitive.  References 3-4
+	indicate that the packet is encapsulated in the point-to-point protocol.  
+	References 5-7 show that the packet has an IP version four header and has
+	originated from IP address 10.1.1.1 and is destined for 10.1.1.2.  References
+	8-9 show that this packet has a UDP header and, finally, reference 10 shows
+	that the payload is the expected 1024 bytes.
 
-The next line in the trace file shows the same packet being dequeued from the
-transmit queue on the same node. 
+	The next line in the trace file shows the same packet being dequeued from the
+	transmit queue on the same node. 
 
-The Third line in the trace file shows the packet being received by the net
-device on the node with the echo server. I have reproduced that event below.
+	The Third line in the trace file shows the packet being received by the net
+	device on the node with the echo server. I have reproduced that event below.
+Το επόμενο αλφαριθμητικό, ``$ns3::PointToPointNetDevice`` σας λέει τι είδους
+συσκευή είναι στη μηδενική θέση στη λίστα συσκευών για τον κόμβο μηδέν.
+Θυμηθείτε ότι η λειτουργία ``+`` στην αναφορά 00 σημαίνει ότι μια λειτουργία 
+τοποθέτησης στην ουρά συνέβη στην ουρά μεταδόσεως της συσκευής. Αυτό αντικατοπτρίζεται 
+στα τελικά τμήματα της "διαδρομής ίχνους" τα οποίο είναι ``TxQueue/Enqueue``.
+
+Τα υπόλοιπα τμήματα στο ίχνος πρέπει να είναι αρκετά έξυπνα. Οι αναφορές 3-4
+υποδεικνύουν ότι το πακέτο είναι εμφωλιασμένο στο πρωτόκολλο point-to-point.
+Οι αναφορές 5-7 δείχνουν ότι το πακέτο έχει μια επικεφαλίδα IPv4 και προήλθε από 
+τη διεύθυνση IP 10.1.1.1 και έχει προορισμό την 10.1.1.2. Οι αναφορές 8-9 δείχνουν 
+ότι αυτό το πακέτο έχει μια επικεφαλίδα UDP και, τέλος, η αναφορά 10 δείχνει
+ότι το ωφέλιμο φορτίο είναι τα αναμενόμενα 1024 bytes.
+
+Η επόμενη γραμμή στο αρχείο ίχνος δείχνει το ίδιο πακέτο που απομακρύνεται από την
+ουρά μετάδοσης στον ίδιο κόμβο.
+
+Η τρίτη γραμμή στο αρχείο ίχνος δείχνει το πακέτο που λήφθηκε από τη δικτυακή συσκευή
+μέσω της αντίχησης του εξυπηρετητή. Αναπαράγουμε αυτό το συμβάν παρακάτω.
 
 .. sourcecode:: text
   :linenos:
@@ -1490,17 +1509,29 @@ device on the node with the echo server. I have reproduced that event below.
         length: 1032 49153 > 9) 
         Payload (size=1024)
 
-Notice that the trace operation is now ``r`` and the simulation time has
-increased to 2.25732 seconds.  If you have been following the tutorial steps
-closely this means that you have left the ``DataRate`` of the net devices
-and the channel ``Delay`` set to their default values.  This time should 
-be familiar as you have seen it before in a previous section.
 
-The trace source namespace entry (reference 02) has changed to reflect that
-this event is coming from node 1 (``/NodeList/1``) and the packet reception
-trace source (``/MacRx``).  It should be quite easy for you to follow the 
-progress of the packet through the topology by looking at the rest of the 
-traces in the file.
+..
+	Notice that the trace operation is now ``r`` and the simulation time has
+	increased to 2.25732 seconds.  If you have been following the tutorial steps
+	closely this means that you have left the ``DataRate`` of the net devices	
+	and the channel ``Delay`` set to their default values.  This time should 
+	be familiar as you have seen it before in a previous section.
+
+	The trace source namespace entry (reference 02) has changed to reflect that
+	this event is coming from node 1 (``/NodeList/1``) and the packet reception
+	trace source (``/MacRx``).  It should be quite easy for you to follow the 
+	progress of the packet through the topology by looking at the rest of the 
+	traces in the file.
+Παρατηρήστε ότι η λειτουργία ανίχνευσης είναι πλέον ``r`` και ο χρόνος εξομοίωσης 
+έχει αυξηθεί σε 2.25732 δευτερόλεπτα. Αν έχετε ακολουθήσει τα βήματα του οδηγού 
+προσεκτικά, αυτό σημαίνει ότι έχετε αφήσει το ``DataRate`` των δικτυακών συσκευών
+και το κανάλι `` Delay`` στις προεπιλεγμένες τιμές τους. Αυτή τη φορά θα πρέπει να
+είστε εξοικειωμένοι μια που το έχετε ξαναδεί σε προηγούμενη ενότητα.
+
+Η είσοδος χώρος ονομάτων της πηγής ίχνους (αναφορά 02) έχει αλλάξει για να 
+επισημάνει ότι το γεγονός έρχεται από τον κόμβο 1 (``/NodeList/1``) και η λήψη πακέτου
+της πηγή ίχνους (``/MacRx``). Θα πρέπει να είναι αρκετά εύκολο για σας να ακολουθήσετε
+την πρόοδο του πακέτου μέσω της τοπολογίας κοιτάζοντας τα υπόλοιπα ίχνη του αρχείου.
 
 PCAP Tracing
 ++++++++++++
