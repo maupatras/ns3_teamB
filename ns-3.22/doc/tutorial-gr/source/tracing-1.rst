@@ -420,65 +420,97 @@
 	really no different that that of object and pointer-to-object.
 	
 Ο στόχος του συστήματος επανάκλησης |ns3| είναι να επιτρέψει σε ένα κομμάτι του κώδικα να καλέσει μια συνάρτηση 
-(ή μέθοδος σε C++), χωρίς καμία συγκεκριμένη μεταξύ των μονάδων εξάρτηση. Αυτό σημαίνει ότι, τελικά, θα πρέπει να 
-έχετε κάποιο είδος του έμμεσου τύπου - που αντιμετωπίζουν τη διεύθυνση του καλούμενου λειτουργούν ως μια μεταβλητή. Η 
-μεταβλητή αυτή ονομάζεται ένα μεταβλητό δείκτη προς λειτουργία. Η σχέση μεταξύ της λειτουργίας και στη λειτουργία του 
-δείκτη είναι πραγματικά δεν διαφέρει από αυτήν του αντικειμένου και του δείκτη προς το αντικείμενο.
+(ή μέθοδο σε C++), χωρίς καμία συγκεκριμένη μεταξύ των μονάδων εξάρτηση. Αυτό σημαίνει ότι, τελικά, θα πρέπει να 
+έχετε κάποιο είδος εμμεσότητας -- αντιμετωπίζεις τη διεύθυνση της κληθήσας συνάρτησης ως μια μεταβλητή. Η 
+μεταβλητή αυτή ονομάζεται μεταβλητή(pointer-to-function). Η σχέση μεταξύ της συνάρτησης και της μεταβλητής(pointer-to-function) 
+πραγματικά δεν διαφέρει από αυτήν του αντικειμένου(object) και του δείκτη προς το αντικείμενο(pointer-to-object).
 
 ..
 	In C the canonical example of a pointer-to-function is a
 	pointer-to-function-returning-integer (PFI).  For a PFI taking one ``int``
 	parameter, this could be declared like,
 
-Σε C, το κανονικό παράδειγμα συνάρτησης δείκτη-προς-είναι ένα
-δείκτη-προς-λειτουργία-επιστρέφουν ακέραιο (PFI). Για ΠΟΣ τη λήψη ενός ``int``
-παράμετρο, αυτό θα μπορούσε να δηλώνονται, όπως,
-
+Στη C, το κανονικό παράδειγμα της μεταβλητής(pointer-to-function) δείκτη-συνάρτησης είναι ένας
+δείκτης-σε-συνάρτηση-επιστρέφοντας-ακέραιο (PFI - pointer-to-function-returning-integer). Λαμβάνοντας μία παράμετρο ``int``, 
+όπως,
 ::
 
   int (*pfi)(int arg) = 0;
 
-(But read the `C++-FAQ Section 33
-<http://www.parashift.com/c++-faq/pointers-to-members.html>`_ before
-writing code like this!)  What you get from this is a variable named
-simply ``pfi`` that is initialized to the value 0.  If you want to
-initialize this pointer to something meaningful, you have to have a
-function with a matching signature.  In this case, you could provide a
-function that looks like::
+..
+	(But read the `C++-FAQ Section 33
+	<http://www.parashift.com/c++-faq/pointers-to-members.html>`_ before
+	writing code like this!)  What you get from this is a variable named
+	simply ``pfi`` that is initialized to the value 0.  If you want to
+	initialize this pointer to something meaningful, you have to have a
+	function with a matching signature.  In this case, you could provide a
+	function that looks like
+
+(Αλλά διαβάστε το `C++-FAQ Section 33 <http://www.parashift.com/c++-faq/pointers-to-members.html>`_ πριν 
+συντάξετε κώδικα σαν αυτόν!) Αυτό που μπορείτε να πάρετε από αυτό είναι μια μεταβλητή που ονομάζεται απλά ``pfi`` που έχει 
+την τιμή 0. Αν θέλετε να αρχικοποιήσετε αυτό το δείκτη σε κάτι σημαντικό, θα πρέπει να έχετε μια συνάρτηση 
+με μια υπογραφή που να ταιριάζουν. Σε αυτήν την περίπτωση, θα μπορείτε να προσφέρετε μια συνάρτηση που μοιάζει με
+::
 
   int MyFunction (int arg) {}
 
-If you have this target, you can initialize the variable to point to
-your function::
+..
+	If you have this target, you can initialize the variable to point to
+	your function
+	
+Εάν έχετε αυτό το στόχο, μπορείτε να προετοιμάσετε τη μεταβλητή στο σημείο της συνάρτησή σας
+::
 
   pfi = MyFunction;
 
-You can then call MyFunction indirectly using the more suggestive form
-of the call::
+..
+	You can then call MyFunction indirectly using the more suggestive form
+	of the call
+
+Στη συνέχεια μπορείτε να καλέσετε την MyFunction έμμεσα χρησιμοποιώντας την πιο υποβλητική μορφή της κλήσης
+::
 
   int result = (*pfi) (1234);
 
-This is suggestive since it looks like you are dereferencing the
-function pointer just like you would dereference any pointer.
-Typically, however, people take advantage of the fact that the
-compiler knows what is going on and will just use a shorter form::
+..
+	This is suggestive since it looks like you are dereferencing the
+	function pointer just like you would dereference any pointer.
+	Typically, however, people take advantage of the fact that the
+	compiler knows what is going on and will just use a shorter form
+
+Αυτό είναι ενδεικτικό, απο τη στιγμη που διαφοροποιήστε στο δείκτη συνάρτησης ακριβώς όπως θα κάνατε την διαφορά στον 
+κάθε δείκτη. Συνήθως, όμως, οι άνθρωποι θα επωφεληθούν από το γεγονός ότι ο μεταγλωττιστής(compiler) ξέρει τι συμβαίνει και 
+θα χρησιμοποιήσει μόνο μια μικρότερη μορφή
+::
 
   int result = pfi (1234);
 
-This looks like you are calling a function named ``pfi``, but the
-compiler is smart enough to know to call through the variable ``pfi``
-indirectly to the function ``MyFunction``.
+..
+	This looks like you are calling a function named ``pfi``, but the
+	compiler is smart enough to know to call through the variable ``pfi``
+	indirectly to the function ``MyFunction``.
 
-Conceptually, this is almost exactly how the tracing system works.
-Basically, a trace sink *is* a callback.  When a trace sink expresses
-interest in receiving trace events, it adds itself as a Callback to a
-list of Callbacks internally held by the trace source.  When an
-interesting event happens, the trace source invokes its
-``operator(...)`` providing zero or more arguments.  The
-``operator(...)`` eventually wanders down into the system and does
-something remarkably like the indirect call you just saw, providing
-zero or more parameters, just as the call to ``pfi`` above passed one
-parameter to the target function ``MyFunction``.
+Αυτό μοιάζει σαν να καλείτε μια συνάρτηση που ονομάζεται ``pfi``, αλλά ο μεταγλωττιστής(compiler) είναι αρκετά έξυπνος για να ξέρει να 
+καλέσει μέσω της μεταβλητής ``pfi`` έμμεσα τη συνάρτηση ``MyFunction``.
+
+..
+	Conceptually, this is almost exactly how the tracing system works.
+	Basically, a trace sink *is* a callback.  When a trace sink expresses
+	interest in receiving trace events, it adds itself as a Callback to a
+	list of Callbacks internally held by the trace source.  When an
+	interesting event happens, the trace source invokes its
+	``operator(...)`` providing zero or more arguments.  The
+	``operator(...)`` eventually wanders down into the system and does
+	something remarkably like the indirect call you just saw, providing
+	zero or more parameters, just as the call to ``pfi`` above passed one
+	parameter to the target function ``MyFunction``.
+
+Θεωρητικά, αυτό είναι σχεδόν ακριβώς πώς λειτουργεί το σύστημα εντοπισμού. Βασικά, ένα ίχνος νεροχύτη * * είναι μια 
+επανάκλησης. Όταν ένα νεροχύτη ίχνος εκφράζει ενδιαφέρον για τη λήψη γεγονότα ίχνος, η ίδια προσθέτει ως επανάκλησης στον 
+κατάλογο των Οπισθοκλήσεων διατηρούνται εσωτερικά από την πηγή ίχνος. Όταν μια ενδιαφέρουσα εκδήλωση που συμβαίνει, η πηγή 
+ίχνος επικαλείται `` χειριστή του (...) `` παροχή μηδέν ή περισσότερα επιχειρήματα. Το `` χειριστή (...) `` περιπλανιέται 
+τελικά κάτω στο σύστημα και κάνει κάτι εντυπωσιακά, όπως η έμμεση πρόσκληση που μόλις είδατε, παρέχοντας μηδέν ή περισσότερες 
+παραμέτρους, όπως ακριβώς και η πρόσκληση για `` pfi`` παραπάνω περάσει μία παράμετρο για την η συνάρτηση στόχος `` MyFunction``.
 
 The important difference that the tracing system adds is that for each
 trace source there is an internal list of Callbacks.  Instead of just
