@@ -1533,51 +1533,89 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 της πηγή ίχνους (``/MacRx``). Θα πρέπει να είναι αρκετά εύκολο για σας να ακολουθήσετε
 την πρόοδο του πακέτου μέσω της τοπολογίας κοιτάζοντας τα υπόλοιπα ίχνη του αρχείου.
 
-PCAP Tracing
-++++++++++++
-The |ns3| device helpers can also be used to create trace files in the
-``.pcap`` format.  The acronym pcap (usually written in lower case) stands
-for packet capture, and is actually an API that includes the 
-definition of a ``.pcap`` file format.  The most popular program that can
-read and display this format is Wireshark (formerly called Ethereal).
-However, there are many traffic trace analyzers that use this packet format.
-We encourage users to exploit the many tools available for analyzing pcap
-traces.  In this tutorial, we concentrate on viewing pcap traces with tcpdump.
+..
+	PCAP Tracing
+	++++++++++++
+	The |ns3| device helpers can also be used to create trace files in the
+	``.pcap`` format.  The acronym pcap (usually written in lower case) stands
+	for packet capture, and is actually an API that includes the 
+	definition of a ``.pcap`` file format.  The most popular program that can
+	read and display this format is Wireshark (formerly called Ethereal).
+	However, there are many traffic trace analyzers that use this packet format.
+	We encourage users to exploit the many tools available for analyzing pcap
+	traces.  In this tutorial, we concentrate on viewing pcap traces with tcpdump.
 
-The code used to enable pcap tracing is a one-liner.  
+	The code used to enable pcap tracing is a one-liner.  
+Οι βοηθοί συσκευών |ns3| μπορούν επίσης να χρησιμοποιηθούν για τη δημιουργία 
+αρχείων ίχνους σε μορφή ``.pcap``. Το αρκτικόλεξο pcap αντιστοιχεί στη σύλληψη 
+πακέτων (packet capture) και συνήθως γράφεται με μικρά γράμματα. Είναι στην 
+πραγματικότητα μια διεπαφή προγράμματος που περιλαμβάνει τον ορισμό του είδους 
+αρχείου ``.pcap``. Το πιο δημοφιλές πρόγραμμα που μπορεί να εμφανίσει αυτό το είδος 
+αρχείου είναι το Wireshark (παλαιότερα ονομαζόταν Ethereal). Ωστόσο, υπάρχουν πολλοί 
+αναλυτές ίχνους κίνησης που χρησιμοποιούν αυτή τη μορφή πακέτων. Ενθαρρύνουμε τους 
+χρήστες να εκμεταλλευτούν τα πολλά διαθέσιμα εργαλεία για την ανάλυση ιχνών pcap. 
+Σε αυτόν τον οδηγό, θα επικεντρωθούμε στην προβολή ίχνών pcap με το tcpdump.
 
+Ο κωδικός που χρησιμοποιούμε για να ενεργοποιήσουμε την ιχνηλασία pcap είναι 
+μιας γραμμής.
+	
 ::
 
   pointToPoint.EnablePcapAll ("myfirst");
 
-Go ahead and insert this line of code after the ASCII tracing code we just 
-added to ``scratch/myfirst.cc``.  Notice that we only passed the string
-"myfirst," and not "myfirst.pcap" or something similar.  This is because the 
-parameter is a prefix, not a complete file name.  The helper will actually 
-create a trace file for every point-to-point device in the simulation.  The 
-file names will be built using the prefix, the node number, the device number
-and a ".pcap" suffix.
+..
+	Go ahead and insert this line of code after the ASCII tracing code we just 
+	added to ``scratch/myfirst.cc``.  Notice that we only passed the string
+	"myfirst," and not "myfirst.pcap" or something similar.  This is because the 
+	parameter is a prefix, not a complete file name.  The helper will actually 
+	create a trace file for every point-to-point device in the simulation.  The 
+	file names will be built using the prefix, the node number, the device number
+	and a ".pcap" suffix.
 
-In our example script, we will eventually see files named "myfirst-0-0.pcap" 
-and "myfirst-1-0.pcap" which are the pcap traces for node 0-device 0 and 
-node 1-device 0, respectively.
+	In our example script, we will eventually see files named "myfirst-0-0.pcap" 
+	and "myfirst-1-0.pcap" which are the pcap traces for node 0-device 0 and 
+	node 1-device 0, respectively.
 
-Once you have added the line of code to enable pcap tracing, you can run the
-script in the usual way:
+	Once you have added the line of code to enable pcap tracing, you can run the
+	script in the usual way:
+Εισάγετε αυτή τη γραμμή του κώδικα μετά τον κωδικό ιχνηλασίας ASCII που μόλις 
+προσθέσατε στο ``scratch/myfirst.cc``. Παρατηρήστε ότι έχουμε περάσει μόνο το 
+αλφαριθμητικό "myfirst," και όχι "myfirst.pcap" ή κάτι παρόμοιο. Αυτό συμβαίνει 
+επειδή η παράμετρος είναι ένα πρόθεμα, δεν είναι ένα πλήρες όνομα του αρχείου. 
+Ο βοηθός στην ουσία θα δημιουργήσει ένα αρχείο ίχνους για κάθε συσκευή point-to-point 
+στην εξομοίωση. Τα ονόματα των αρχείων θα χτιστούν χρησιμοποιώντας το πρόθεμα, 
+τον αριθμό κόμβου, τον αριθμό της συσκευής και μια κατάληξη ".pcap".
+
+Στο σενάριο του παραδείγματός μας, θα δούμε τελικά αρχεία με όνομα "myfirst-0-0.pcap"
+και "myfirst-1-0.pcap" που είναι τα ίχνη pcap για τον κόμβο 0-συσκευή 0 και
+κόμβο 1-συσκευή 0, αντίστοιχα.
+
+Μόλις έχετε προσθέσει τη γραμμή του κώδικα για να ενεργοποιήσετε την ιχνηλασία 
+pcap, μπορείτε να εκτελέσετε το σενάριο με το συνήθη τρόπο:
 
 .. sourcecode:: bash
 
   $ ./waf --run scratch/myfirst
 
-If you look at the top level directory of your distribution, you should now
-see three log files:  ``myfirst.tr`` is the ASCII trace file we have 
-previously examined.  ``myfirst-0-0.pcap`` and ``myfirst-1-0.pcap``
-are the new pcap files we just generated.  
+..
+	If you look at the top level directory of your distribution, you should now
+	see three log files:  ``myfirst.tr`` is the ASCII trace file we have 
+	previously examined.  ``myfirst-0-0.pcap`` and ``myfirst-1-0.pcap``
+	are the new pcap files we just generated.  
 
-Reading output with tcpdump
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The easiest thing to do at this point will be to use ``tcpdump`` to look
-at the ``pcap`` files.  
+	Reading output with tcpdump
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	The easiest thing to do at this point will be to use ``tcpdump`` to look
+	at the ``pcap`` files.  
+Αν κοιτάξετε στον κατάλογο κορυφής της διανομής σας, θα πρέπει τώρα να βλέπετε
+τρία αρχεία καταγραφής: ``myfirst.tr`` είναι το αρχείο ίχνους ASCII που έχουμε
+εξετάσει προηγουμένως. Τα ``myfirst-0-0.pcap`` και ``myfirst-1-0.pcap`` είναι τα 
+νέα αρχεία pcap που μόλις δημιουργήσαμε.
+
+Ανάγνωση εξόδου με tcpdump
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Το πιο εύκολο βήμα που μπορούμε κάνουμε σε αυτό το σημείο θα είναι να χρησιμοποιήσουμε 
+το ``tcpdump`` να δούμε τα ``pcap`` αρχεία.
 
 .. sourcecode:: bash
 
@@ -1591,19 +1629,36 @@ at the ``pcap`` files.
   2.257324 IP 10.1.1.1.49153 > 10.1.1.2.9: UDP, length 1024
   2.257324 IP 10.1.1.2.9 > 10.1.1.1.49153: UDP, length 1024
 
-You can see in the dump of ``myfirst-0-0.pcap`` (the client device) that the 
-echo packet is sent at 2 seconds into the simulation.  If you look at the
-second dump (``myfirst-1-0.pcap``) you can see that packet being received
-at 2.257324 seconds.  You see the packet being echoed back at 2.257324 seconds
-in the second dump, and finally, you see the packet being received back at 
-the client in the first dump at 2.514648 seconds.
+..
+	You can see in the dump of ``myfirst-0-0.pcap`` (the client device) that the 
+	echo packet is sent at 2 seconds into the simulation.  If you look at the
+	second dump (``myfirst-1-0.pcap``) you can see that packet being received
+	at 2.257324 seconds.  You see the packet being echoed back at 2.257324 seconds
+	in the second dump, and finally, you see the packet being received back at 
+	the client in the first dump at 2.514648 seconds.
 
-Reading output with Wireshark
+	Reading output with Wireshark
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	If you are unfamiliar with Wireshark, there is a web site available from which
+	you can download programs and documentation:  http://www.wireshark.org/.
+
+	Wireshark is a graphical user interface which can be used for displaying these
+	trace files.  If you have Wireshark available, you can open each of the trace
+	files and display the contents as if you had captured the packets using a
+	*packet sniffer*.
+Μπορείτε να δείτε στο dump του αρχείου ``myfirst-0-0.pcap`` (η συσκευή του πελάτη) 
+ότι η το πακέτο αντανάκλασης στέλνεται στα 2 δευτερόλεπτα στην εξομοίωση. Αν κοιτάξετε
+το δεύτερο dump (``myfirst-1-0.pcap``) μπορείτε να δείτε ότι το πακέτο λαμβάνεται
+σε 2.257324 δευτερόλεπτα. Μπορείτε να δείτε το πακέτο που αντανακλάται πίσω σε 2.257324 
+δευτερόλεπτα στο δεύτερο dump, και, τέλος, μπορείτε να δείτε το πακέτο που παραλαμβάνεται 
+πίσω στον πελάτη στο πρώτο dump σε 2.514648 δευτερόλεπτα.
+
+Ανάγνωση εξόδου με το Wireshark
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-If you are unfamiliar with Wireshark, there is a web site available from which
-you can download programs and documentation:  http://www.wireshark.org/.
+Εάν δεν είστε εξοικειωμένοι με το Wireshark, υπάρχει μια ιστοσελίδα από την οποία 
+μπορείτε να κατεβάσετε τα προγράμματα και την τεκμηρίωση: http://www.wireshark.org/.
 
-Wireshark is a graphical user interface which can be used for displaying these
-trace files.  If you have Wireshark available, you can open each of the trace
-files and display the contents as if you had captured the packets using a
-*packet sniffer*.
+Το Wireshark είναι ένα γραφικό περιβάλλον χρήστη, το οποίο μπορεί να χρησιμοποιηθεί 
+για την εμφάνιση αυτών των αρχείων ίχνους. Εάν έχετε διαθέσιμο το Wireshark, μπορείτε 
+να ανοίξετε κάθε αρχείο ίχνους και να εμφανίσετε τα περιεχόμενά του σαν να είχαν συλληφθεί 
+τα πακέτα χρησιμοποιώντας έναν οσφρηστή πακέτων (*packet sniffer*).
