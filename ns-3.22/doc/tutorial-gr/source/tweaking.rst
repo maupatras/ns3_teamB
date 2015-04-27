@@ -1357,28 +1357,52 @@ ofstream αντικείμενα που σχετίζονται με την αντ
 κατάλογο του αποθέματος και να ανοίξουμε το αρχείο ίχνους ASCII ``myfirst.tr`` 
 με τον αγαπημένο σας επεξεργαστή κειμένου.
 
-Parsing Ascii Traces
-~~~~~~~~~~~~~~~~~~~~
-There's a lot of information there in a pretty dense form, but the first thing
-to notice is that there are a number of distinct lines in this file.  It may
-be difficult to see this clearly unless you widen your window considerably.
+..
+	Parsing Ascii Traces
+	~~~~~~~~~~~~~~~~~~~~
+	There's a lot of information there in a pretty dense form, but the first thing
+	to notice is that there are a number of distinct lines in this file.  It may
+	be difficult to see this clearly unless you widen your window considerably.
 
-Each line in the file corresponds to a *trace event*.  In this case
-we are tracing events on the *transmit queue* present in every 
-point-to-point net device in the simulation.  The transmit queue is a queue 
-through which every packet destined for a point-to-point channel must pass.
-Note that each line in the trace file begins with a lone character (has a 
-space after it).  This character will have the following meaning:
+	Each line in the file corresponds to a *trace event*.  In this case
+	we are tracing events on the *transmit queue* present in every 
+	point-to-point net device in the simulation.  The transmit queue is a queue 
+	through which every packet destined for a point-to-point channel must pass.
+	Note that each line in the trace file begins with a lone character (has a 
+	space after it).  This character will have the following meaning:
+Αναλύοντας Ίχνη Ascii
+~~~~~~~~~~~~~~~~~~~~~
+Στο αρχείο αυτό υπάρχει ένα μεγάλο πλήθος πληροφοριών σε μια αρκετά πυκνή μορφή, 
+αλλά το πρώτο πράγμα που μπορείτε να παρατηρήσετε είναι ότι υπάρχει ένας πλήθος 
+από ξεχωριστές γραμμές. Ίσως είναι δύσκολο να το δείτε ξεκάθαρα αν δεν διευρύνει 
+το μέγεθος του παραθύρου σας σημαντικά.
 
-* ``+``: An enqueue operation occurred on the device queue;
-* ``-``: A dequeue operation occurred on the device queue;
-* ``d``: A packet was dropped, typically because the queue was full;
-* ``r``: A packet was received by the net device.
+Κάθε γραμμή στο αρχείο αντιστοιχεί σε ένα *ίχνος γεγονότος*. Σε αυτήν την περίπτωση
+εντοπίζουμε τα γεγονότα ιχνηλασίας στην *ουρά εκπομπής* που βρίσκεται σε κάθε
+δικτυακή συσκευή point-to-point στην εξομοίωση. Η ουρά εκπομπής είναι μια ουρά
+μέσω της οποίας πρέπει να περάσει κάθε πακέτο που προορίζεται για ένα κανάλι 
+point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχείο παρακολούθησης αρχίζει με ένα 
+μοναχικό χαρακτήρα (έχει έναν κενό χαρακτήρα αμέσως μετά). Αυτός ο χαρακτήρας 
+έχει την ακόλουθη έννοια:
+	
+..
+	* ``+``: An enqueue operation occurred on the device queue;
+	* ``-``: A dequeue operation occurred on the device queue;
+	* ``d``: A packet was dropped, typically because the queue was full;
+	* ``r``: A packet was received by the net device.
 
-Let's take a more detailed view of the first line in the trace file.  I'll 
-break it down into sections (indented for clarity) with a reference
-number on the left side:
+	Let's take a more detailed view of the first line in the trace file.  I'll 
+	break it down into sections (indented for clarity) with a reference
+	number on the left side:
+* ``+``: Μια λειτουργία τοποθέτησης στην ουρά συνέβη στην ουρά συσκευής;
+* ``-``: Μια λειτουργία απομάκρυνσης από την ουρά συνέβη στην ουρά συσκευής;
+* ``d``: Ένα πακέτο απορρίφθηκε, συνήθως επειδή η ουρά ήταν πλήρης;
+* ``r``: Ένα πακέτο παρελήφθη από την δικτυακή συσκευή.
 
+Ας ρίξουμε μια πιο λεπτομερή ματιά στην πρώτη γραμμή του αρχείου παρακολούθησης. 
+Θα την τμηματοποιήσουμε (τοποθετόντας εσοχές για λόγους σαφήνειας) με αριθμός 
+αναφοράς στην αριστερή πλευρά:
+	
 .. sourcecode:: text
   :linenos:
 
@@ -1394,25 +1418,45 @@ number on the left side:
         length: 1032 49153 > 9) 
         Payload (size=1024)
 
-The first section of this expanded trace event (reference number 0) is the 
-operation.  We have a ``+`` character, so this corresponds to an
-*enqueue* operation on the transmit queue.  The second section (reference 1)
-is the simulation time expressed in seconds.  You may recall that we asked the 
-``UdpEchoClientApplication`` to start sending packets at two seconds.  Here
-we see confirmation that this is, indeed, happening.
+..
+	The first section of this expanded trace event (reference number 0) is the 
+	operation.  We have a ``+`` character, so this corresponds to an
+	*enqueue* operation on the transmit queue.  The second section (reference 1)
+	is the simulation time expressed in seconds.  You may recall that we asked the 
+	``UdpEchoClientApplication`` to start sending packets at two seconds.  Here
+	we see confirmation that this is, indeed, happening.
 
-The next section of the example trace (reference 2) tell us which trace source
-originated this event (expressed in the tracing namespace).  You can think
-of the tracing namespace somewhat like you would a filesystem namespace.  The 
-root of the namespace is the ``NodeList``.  This corresponds to a container
-managed in the |ns3| core code that contains all of the nodes that are
-created in a script.  Just as a filesystem may have directories under the 
-root, we may have node numbers in the ``NodeList``.  The string 
-``/NodeList/0`` therefore refers to the zeroth node in the ``NodeList``
-which we typically think of as "node 0".  In each node there is a list of 
-devices that have been installed.  This list appears next in the namespace.
-You can see that this trace event comes from ``DeviceList/0`` which is the 
-zeroth device installed in the node. 
+	The next section of the example trace (reference 2) tell us which trace source
+	originated this event (expressed in the tracing namespace).  You can think
+	of the tracing namespace somewhat like you would a filesystem namespace.  The 
+	root of the namespace is the ``NodeList``.  This corresponds to a container
+	managed in the |ns3| core code that contains all of the nodes that are
+	created in a script.  Just as a filesystem may have directories under the 
+	root, we may have node numbers in the ``NodeList``.  The string 
+	``/NodeList/0`` therefore refers to the zeroth node in the ``NodeList``
+	which we typically think of as "node 0".  In each node there is a list of 
+	devices that have been installed.  This list appears next in the namespace.
+	You can see that this trace event comes from ``DeviceList/0`` which is the 
+	zeroth device installed in the node. 
+Το πρώτο τμήμα αυτού του διευρυμένου γεγονότος ίχνους (αριθμός αναφοράς 0) είναι η
+λειτουργία. Έχουμε ένα χαρακτήρα ``+``, οπότε αυτό αντιστοιχεί σε μια λειτουργία
+*τοποθέτησης στην ουρά* στην ουρά εκπομπής. Το δεύτερο τμήμα (αναφορά 1) είναι ο 
+χρόνος εξομοίωσης που εκφράζεται σε δευτερόλεπτα. Ίσως να θυμάστε ότι ζητήσαμε 
+από το ``UdpEchoClientApplication`` να ξεκινήσετε την αποστολή πακέτων στα δύο 
+δευτερόλεπτα. Εδώ βλέπουμε την επιβεβαίωση ότι αυτό πράγματι συμβαίνει.
+
+Το επόμενο τμήμα του ίχνους του παραδείγματος (αναφορά 2) μας δείχνει από ποια πηγή 
+ίχνους προήλθε αυτό το γεγονός (εκφράζεται στο χώρο ονομάτων εντοπισμού). Μπορείτε 
+να σκεφτείτε ότι ο χώρος ονομάτων του εντοπισμού είναι παρόμοιος με τον χώρο ονομάτων 
+αρχείων. Η ρίζα του χώρου ονομάτων είναι η ``NodeList``. Αυτό αντιστοιχεί σε ένα δοχείο
+διαχειρίζεται το | NS3 | κωδικός πυρήνα που περιέχει το σύνολο των κόμβων που είναι
+δημιουργήθηκε σε ένα σενάριο. Ακριβώς όπως ένα σύστημα αρχείων μπορεί να έχει καταλόγους κάτω από το
+ρίζα, μπορεί να έχουμε τους αριθμούς κόμβου στο `` NodeList``. Το κορδόνι
+`` / NodeList / 0`` αναφέρεται, επομένως, στον κόμβο μηδενικής στην `` NodeList``
+οποία συνήθως σκεφτόμαστε ως «κόμβος 0". Σε κάθε κόμβο υπάρχει μια λίστα
+συσκευές που έχουν εγκατασταθεί. Αυτή η λίστα εμφανίζεται δίπλα στο χώρο ονομάτων.
+Μπορείτε να δείτε ότι αυτό το γεγονός ίχνος προέρχεται από `` DeviceList / 0`` η οποία είναι η
+συσκευή μηδενικής εγκατεστημένο στον κόμβο.
 
 The next string, ``$ns3::PointToPointNetDevice`` tells you what kind of 
 device is in the zeroth position of the device list for node zero.
