@@ -1353,7 +1353,8 @@ API σελίδα τεκμηρίωσης.
 	``RandomWalk2dMobilityModel`` Object.  Compare the string above with
 	the string we actually used in the example code
 	
-Η τεκμηρίωση σας λέει πώς να φτάσετε στο `` RandomWalk2dMobilityModel`` αντικειμένου. Συγκρίνετε το κορδόνι πάνω από το κορδόνι που πράγματι χρησιμοποιήθηκαν στο παράδειγμα κώδικα ::
+Η τεκμηρίωση σας λέει πώς να φτάσετε στο Αντικείμενο ``RandomWalk2dMobilityModel``. Συγκρίνετε τη σειρά πάνω από τη σειρά 
+που πράγματι χρησιμοποιήσαμε στο παράδειγμα κώδικα
 ::
 
   "/NodeList/7/$ns3::MobilityModel"
@@ -1368,13 +1369,17 @@ API σελίδα τεκμηρίωσης.
 	these operations for you.  It turns out that the actual trace source
 	you are looking for is found in the base class.
 
-Η διαφορά αυτή οφείλεται στο γεγονός ότι οι δύο `` GetObject`` κλήσεις υπονοείται στη σειρά που βρίσκονται στο φάκελο. Το πρώτο, για `` $ NS3 :: MobilityModel`` θα ζητήσει τη συσσωμάτωση για την κλάση βάσης. Η δεύτερη σιωπηρή `` GetObject`` κλήση, για `` $ NS3 :: RandomWalk2dMobilityModel``, χρησιμοποιείται για να ρίχνει την κλάση βάσης για την συγκεκριμένη κατηγορία εφαρμογής. Η τεκμηρίωση δείχνει τις δύο αυτές λειτουργίες για εσάς. Αποδεικνύεται ότι η πραγματική πηγή ίχνος που ψάχνετε βρίσκεται στην βασική κλάση.
+Η διαφορά αυτή οφείλεται στο γεγονός ότι οι δύο κλήσεις ``GetObject`` υπονοούν στη σειρά που βρίσκονται στην τεκμηρίωση. Η πρώτη, 
+για ``$ns3::MobilityModel`` θα ζητήσει το σύνολα για την βάση της κλάσης. Η δεύτερη κλήση ``GetObject``, για 
+``$ns3::RandomWalk2dMobilityModel``, χρησιμοποιείται για να ρίχνει την βάση της κλάσης για την συγκεκριμένη κλάση εφαρμογής. 
+Η τεκμηρίωση δείχνει τις δύο αυτές λειτουργίες για εσάς. Αποδεικνύεται ότι η πραγματική πηγή ίχνους που ψάχνετε βρίσκεται 
+στη βάση της κλάσης.
 
 ..
 	Look further down in the "Detailed Description" section for the list
 	of trace sources.  You will find
 
-Δείτε πιο κάτω στην ενότητα "Λεπτομερής Περιγραφή" για τη λίστα των πηγών ίχνος. Θα βρείτε
+Δείτε πιο κάτω στην ενότητα "Detailed Description" για τη λίστα των πηγών ίχνους. Θα βρείτε
 
   No TraceSources are defined for this type.
   
@@ -1394,7 +1399,11 @@ API σελίδα τεκμηρίωσης.
 	Therefore the additional ``GetObject`` is not required and you simply
 	use the path
 	
-Αυτό είναι ακριβώς ό, τι χρειάζεται να ξέρετε. Η πηγή ίχνος του ενδιαφέροντος βρίσκεται σε `` NS3 :: MobilityModel`` (που ξέρατε ούτως ή άλλως). Το ενδιαφέρον πράγμα αυτό το κομμάτι του API τεκμηρίωση που λέει είναι ότι δεν χρειάζονται επιπλέον ότι πετάχτηκε στο δρόμο config παραπάνω για να φτάσουμε στην συγκεκριμένη κατηγορία, δεδομένου ότι η πηγή ίχνος είναι στην πραγματικότητα στην κατηγορία βάσης. Ως εκ τούτου, η πρόσθετη `` GetObject`` δεν απαιτείται και μπορείτε απλά να χρησιμοποιήσετε τη διαδρομή
+Αυτό είναι ακριβώς ό,τι χρειάζεται να ξέρετε. Η πηγή ίχνους του ενδιαφέροντος βρίσκεται στο ``ns3::MobilityModel`` (που 
+ξέρατε ούτως ή άλλως). Το ενδιαφέρον πράγμα σε αυτό το κομμάτι της τεκμηρίωσης του API λέει ότι δεν χρειάζονται επιπλέον 
+απορρίμματα στο μονοπάτι config παραπάνω για να φτάσουμε στην συγκεκριμένη κλάση, δεδομένου ότι η πηγή ίχνους είναι στην 
+πραγματικότητα στην βάση της κλάσης. Ως εκ τούτου, η πρόσθετη ``GetObject`` δεν απαιτείται και μπορείτε απλά να 
+χρησιμοποιήσετε τη διαδρομή
 ::
 
   "/NodeList/[i]/$ns3::MobilityModel"
@@ -1413,7 +1422,9 @@ API σελίδα τεκμηρίωσης.
 	should always try to copy someone else's working code before you start
 	to write your own.  Try something like:
 
-Παρεμπιπτόντως, ένας άλλος τρόπος για να βρείτε το δρόμο Config είναι να `` grep`` γύρω στο | NS3 | codebase για κάποιον που έχει ήδη καταλάβει. Πρέπει πάντα να προσπαθείτε να αντιγράψετε τον κώδικα κάποιου άλλου εργασίας πριν ξεκινήσετε να γράφετε τα δικά σας. Δοκιμάστε κάτι σαν:
+Παρεμπιπτόντως, ένας άλλος τρόπος για να βρείτε το μονοπάτι Config είναι το ``grep`` γύρω στον κώδικα βάσης |ns3| για κάποιον 
+που έχει ήδη καταλάβει. Πρέπει πάντα να προσπαθείτε να αντιγράψετε τον κώδικα εργασίας κάποιου άλλου πριν ξεκινήσετε να 
+γράφετε τα δικά σας. Δοκιμάστε κάτι σαν:
 
 .. sourcecode:: bash
 
@@ -1424,7 +1435,8 @@ API σελίδα τεκμηρίωσης.
 	this case, ``src/mobility/examples/main-random-topology.cc`` has
 	something just waiting for you to use
 
-και μπορείτε να βρείτε την απάντηση σας, μαζί με τον κωδικό εργασίας. Για παράδειγμα, στην περίπτωση αυτή, `` src / κινητικότητα / παραδείγματα / κύρια-τυχαία-topology.cc`` έχει κάτι σας περιμένουν για να χρησιμοποιήσετε 
+και μπορείτε να βρείτε την απάντησή σας, μαζί με τον κώδικα εργασίας. Για παράδειγμα, στην περίπτωση αυτή, 
+``src/mobility/examples/main-random-topology.cc`` έχει κάτι που σας περιμένει να χρησιμοποιήσετε 
 ::
 
   Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange", 
@@ -1433,47 +1445,69 @@ API σελίδα τεκμηρίωσης.
 ..
 	We'll return to this example in a moment.    
 
-Θα επανέλθω σε αυτό το παράδειγμα σε μια στιγμή.
+Θα επανέλθω σε αυτό το παράδειγμα σε λίγο.
       
-Callback Signatures
-+++++++++++++++++++
+..
+	Callback Signatures
 
-*Okay, I found a trace source and the Config path, how do I figure out
-what the return type and formal arguments of my callback function need
-to be?*
+Στίγματα Επανάκλησης
++++++++++++++++++++++++
 
-The easiest way is to examine the callback signature ``typedef``,
-which is given in the "Callback signature" of the trace source in the
-"Detailed Description" for the class, as shown above.
+..
+	*Okay, I found a trace source and the Config path, how do I figure out
+	what the return type and formal arguments of my callback function need
+	to be?*
 
-Repeating the "CourseChange" trace source entry from
-``ns3::RandomWalk2dMobilityModel`` we have:
+*Εντάξει, βρήκα μια πηγή ίχνους και το μονοπάτι Config, πώς μπορώ να υπολογίσω ποιος είναι ο τύπος επιστροφής και τα επίσημα 
+ορίσματα της συνάρτησης επανάκλησης μου; *
+
+..
+	The easiest way is to examine the callback signature ``typedef``,
+	which is given in the "Callback signature" of the trace source in the
+	"Detailed Description" for the class, as shown above.
+
+Ο ευκολότερος τρόπος είναι να εξετάσει το `` typedef`` υπογραφή επανάκλησης, το οποίο δίνεται στο "Τηλεφωνική υπογραφή» της πηγής ίχνος στο "Λεπτομερής Περιγραφή" της κατηγορίας, όπως φαίνεται παραπάνω.
+
+..
+	Repeating the "CourseChange" trace source entry from
+	``ns3::RandomWalk2dMobilityModel`` we have:
+	
+Η επανάληψη της "CourseChange" καταχώρηση πηγή ίχνος από `` NS3 :: RandomWalk2dMobilityModel`` έχουμε:
 
   * **CourseChange**: The value of the position and/or velocity vector
     changed.
 
     Callback signature: ``ns3::MobilityModel::CourseChangeCallback``
 
-The callback signature is given as a link to the relevant ``typedef``,
-where we find
+..
+	The callback signature is given as a link to the relevant ``typedef``,
+	where we find
+
+Η υπογραφή επανάκλησης δίνεται ως ένα σύνδεσμο με τη σχετική `` typedef``, όπου βρίσκουμε
 
   ``typedef void (* CourseChangeCallback)(const std::string context, Ptr<const MobilityModel> * model);``
 					  
   **TracedCallback** signature for course change notifications.
 
-  If the callback is connected using ``ConnectWithoutContext`` omit the
+  ..If the callback is connected using ``ConnectWithoutContext`` omit the
   ``context`` argument from the signature.
+  
+  Αν ο επανάκλησης συνδέεται με τη χρήση `` ConnectWithoutContext`` παραλείψτε το `` context`` επιχείρημα από την υπογραφή.
 
   **Parameters**:
 
       |  [in] :param:`context` The context string supplied by the Trace source.
       |  [in] :param:`model` The MobilityModel which is changing course.
 
-As above, to see this in use ``grep`` around in the |ns3| codebase for
-an example.  The example above, from
-``src/mobility/examples/main-random-topology.cc``, connects the
-"CourseChange" trace source to the ``CourseChange`` function in the
-same file::
+..
+	As above, to see this in use ``grep`` around in the |ns3| codebase for
+	an example.  The example above, from
+	``src/mobility/examples/main-random-topology.cc``, connects the
+	"CourseChange" trace source to the ``CourseChange`` function in the
+	same file
+
+Όπως και παραπάνω, για να δείτε αυτό κατά τη χρήση `` grep`` γύρω στο | NS3 | codebase για παράδειγμα. Το παραπάνω παράδειγμα, από `` src / κινητικότητα / παραδείγματα / κύρια-τυχαία-topology.cc``, συνδέει την «CourseChange" πηγή ίχνος στην `` λειτουργία CourseChange`` στο ίδιο αρχείο
+::
 
   static void
   CourseChange (std::string context, Ptr<const MobilityModel> model)
@@ -1481,35 +1515,63 @@ same file::
     ...
   }
 
-Notice that this function:
+..
+	Notice that this function:
 
-* Takes a "context" string argument, which we'll describe in a minute.
+Σημειώστε ότι αυτή η λειτουργία:
+
+..* Takes a "context" string argument, which we'll describe in a minute.
   (If the callback is connected using the ``ConnectWithoutContext``
   function the ``context`` argument will be omitted.)
-* Has the ``MobilityModel`` supplied as the last argument (or only
+  
+  * Παίρνει ένα όρισμα "πλαίσιο", το οποίο θα περιγράψουμε σε ένα λεπτό.
+(Αν ο επανάκλησης συνδέεται με τη χρήση του `` ConnectWithoutContext`` λειτουργήσει το `` context`` επιχείρημα θα πρέπει 
+να παραλείπεται.)
+
+  
+..* Has the ``MobilityModel`` supplied as the last argument (or only
   argument if ``ConnectWithoutContext`` is used).
-* Returns ``void``.
+  
+  * Έχει την `` MobilityModel`` παρέχεται ως το τελευταίο επιχείρημα (ή μόνο επιχείρημα εάν `` ConnectWithoutContext`` 
+  χρησιμοποιείται).
 
-If, by chance, the callback signature hasn't been documented, and
-there are no examples to work from, determining the right callback
-function signature can be, well, challenging to actually figure out
-from the source code.
+..* Returns ``void``.
 
-Before embarking on a walkthrough of the code, I'll be kind and just
-tell you a simple way to figure this out: The return value of your
-callback will always be ``void``.  The formal parameter list for a
-``TracedCallback`` can be found from the template parameter list in
-the declaration.  Recall that for our current example, this is in
-``mobility-model.h``, where we have previously found::
+* Επιστροφές `` void``.
+
+..
+	If, by chance, the callback signature hasn't been documented, and
+	there are no examples to work from, determining the right callback
+	function signature can be, well, challenging to actually figure out
+	from the source code.
+
+Αν, κατά τύχη, η υπογραφή επανάκλησης δεν έχει τεκμηριωθεί, και δεν υπάρχουν παραδείγματα για να εργαστούν από, τον 
+προσδιορισμό του δικαιώματος υπογραφής επανάκλησης λειτουργία μπορεί να είναι, επίσης, δύσκολο να πραγματικά να καταλάβω 
+από τον πηγαίο κώδικα.
+
+..
+	Before embarking on a walkthrough of the code, I'll be kind and just
+	tell you a simple way to figure this out: The return value of your
+	callback will always be ``void``.  The formal parameter list for a
+	``TracedCallback`` can be found from the template parameter list in
+	the declaration.  Recall that for our current example, this is in
+	``mobility-model.h``, where we have previously found
+
+Πριν να προβούν σε μια περιδιάβαση του κώδικα, θα είμαι το είδος και απλά να σας πω έναν απλό τρόπο για να το καταλάβω: Η τιμή επιστροφής της επανάκλησης σας θα είναι πάντα `` void``. Η επίσημη λίστα παραμέτρων για μια `` TracedCallback`` μπορεί να βρεθεί από τη λίστα παράμετρο προτύπου στη δήλωση. Υπενθυμίζεται ότι για το τρέχον παράδειγμα μας, αυτό είναι `` κινητικότητα-model.h``, όπου βρήκαμε προηγουμένως
+::
 
   TracedCallback<Ptr<const MobilityModel> > m_courseChangeTrace;
 
-There is a one-to-one correspondence between the template parameter
-list in the declaration and the formal arguments of the callback
-function.  Here, there is one template parameter, which is a
-``Ptr<const MobilityModel>``.  This tells you that you need a function
-that returns void and takes a ``Ptr<const MobilityModel>``.  For
-example::
+..
+	There is a one-to-one correspondence between the template parameter
+	list in the declaration and the formal arguments of the callback
+	function.  Here, there is one template parameter, which is a
+	``Ptr<const MobilityModel>``.  This tells you that you need a function
+	that returns void and takes a ``Ptr<const MobilityModel>``.  For
+	example
+
+Υπάρχει μια αντιστοιχία ένα-προς-ένα μεταξύ του καταλόγου παράμετρο προτύπου στη δήλωση και τις επίσημες επιχειρήματα της λειτουργίας επανάκλησης. Εδώ, υπάρχει μια παράμετρο προτύπου, το οποίο είναι ένα `` Ptr <const MobilityModel> ``. Αυτό σας λέει ότι χρειάζεστε μια συνάρτηση που επιστρέφει κενό και παίρνει ένα `` Ptr <const MobilityModel> ``. για παράδειγμα
+::
 
   void
   CourseChange (Ptr<const MobilityModel> model)
@@ -1517,10 +1579,14 @@ example::
     ...
   }
 
-That's all you need if you want to ``Config::ConnectWithoutContext``.
-If you want a context, you need to ``Config::Connect`` and use a
-Callback function that takes a string context, then the template
-arguments::
+..
+	That's all you need if you want to ``Config::ConnectWithoutContext``.
+	If you want a context, you need to ``Config::Connect`` and use a
+	Callback function that takes a string context, then the template
+	arguments
+
+Αυτό είναι το μόνο που χρειάζεστε, αν θέλετε να `` Config :: ConnectWithoutContext``. Αν θέλετε ένα πλαίσιο, θα πρέπει να `` Config :: Connect`` και να χρησιμοποιήσετε μια λειτουργία επανάκλησης που παίρνει ένα πλαίσιο string, τότε τα επιχειρήματα πρότυπο
+::
 
   void
   CourseChange (const std::string context, Ptr<const MobilityModel> model)
@@ -1528,9 +1594,13 @@ arguments::
     ...
   }
 
-If you want to ensure that your ``CourseChangeCallback`` function is only
-visible in your local file, you can add the keyword ``static`` and
-come up with::
+..
+	If you want to ensure that your ``CourseChangeCallback`` function is only
+	visible in your local file, you can add the keyword ``static`` and
+	come up with
+
+Αν θέλετε να εξασφαλίσετε ότι σας `` λειτουργία CourseChangeCallback`` είναι ορατή μόνο σε τοπικό αρχείο σας, μπορείτε να προσθέσετε τη λέξη-κλειδί `` static`` και να καταλήξουμε σε
+::
 
   static void
   CourseChange (const std::string path, Ptr<const MobilityModel> model)
@@ -1538,7 +1608,10 @@ come up with::
     ...
   }
 
-which is exactly what we used in the ``third.cc`` example.
+..
+	which is exactly what we used in the ``third.cc`` example.
+
+το οποίο είναι ακριβώς αυτό που χρησιμοποιείται στην `` third.cc`` παράδειγμα.
 
 Implementation
 ~~~~~~~~~~~~~~
@@ -1556,7 +1629,9 @@ understand it.
 
 The first thing we need to look at is the declaration of the trace
 source.  Recall that this is in ``mobility-model.h``, where we have
-previously found::
+previously found
+
+::
 
   TracedCallback<Ptr<const MobilityModel> > m_courseChangeTrace;
 
