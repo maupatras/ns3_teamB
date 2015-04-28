@@ -1632,45 +1632,72 @@ API σελίδα τεκμηρίωσης.
 Εφαρμογή
 ~~~~~~~~
 
-This section is entirely optional.  It is going to be a bumpy ride,
-especially for those unfamiliar with the details of templates.
-However, if you get through this, you will have a very good handle on
-a lot of the |ns3| low level idioms.
+..
+	This section is entirely optional.  It is going to be a bumpy ride,
+	especially for those unfamiliar with the details of templates.
+	However, if you get through this, you will have a very good handle on
+	a lot of the |ns3| low level idioms.
 
-So, again, let's figure out what signature of callback function is
-required for the "CourseChange" trace source.  This is going to be
-painful, but you only need to do this once.  After you get through
-this, you will be able to just look at a ``TracedCallback`` and
-understand it.
+Αυτή η ενότητα είναι εντελώς προαιρετική. Πρόκειται να είναι μια δύσκολη διαδρομή, ειδικά για όσους δεν είναι εξοικειωμένοι 
+με τις λεπτομέρειες των προτύπων. Ωστόσο, εάν μπορείτε να πάρετε μέσα από αυτό, θα έχετε μια πολύ καλή λαβή για πολλά από τα 
+|ns3| ιδιώματα χαμηλού επιπέδου.
 
-The first thing we need to look at is the declaration of the trace
-source.  Recall that this is in ``mobility-model.h``, where we have
-previously found
+..
+	So, again, let's figure out what signature of callback function is
+	required for the "CourseChange" trace source.  This is going to be
+	painful, but you only need to do this once.  After you get through
+	this, you will be able to just look at a ``TracedCallback`` and
+	understand it.
 
+Έτσι, και πάλι, ας υπολογίσουμε τι στίγμα της συνάρτησης επανάκλησης απαιτείται για την πηγή ίχνους "CourseChange". Αυτό 
+πρόκειται να είναι οδυνηρό, αλλά χρειάζεται να το κάνετε αυτό μια φορά. Μετά μπορείτε να πάρετε μέσα από αυτό, θα είστε σε 
+θέση να εξετάσετε ένα ``TracedCallback`` και να το κατανοήσετε.
+
+..
+	The first thing we need to look at is the declaration of the trace
+	source.  Recall that this is in ``mobility-model.h``, where we have
+	previously found
+
+Το πρώτο πράγμα που πρέπει να εξετάσουμε είναι η δήλωση της πηγής ίχνους. Θυμηθείτε ότι αυτό είναι ``mobility-model.h``, 
+όπου έχουμε διαπιστώσει στο παρελθόν
 ::
 
   TracedCallback<Ptr<const MobilityModel> > m_courseChangeTrace;
 
-This declaration is for a template.  The template parameter is inside
-the angle-brackets, so we are really interested in finding out what
-that ``TracedCallback<>`` is.  If you have absolutely no idea where
-this might be found, ``grep`` is your friend.
+..
+	This declaration is for a template.  The template parameter is inside
+	the angle-brackets, so we are really interested in finding out what
+	that ``TracedCallback<>`` is.  If you have absolutely no idea where
+	this might be found, ``grep`` is your friend.
 
-We are probably going to be interested in some kind of declaration in
-the |ns3| source, so first change into the ``src`` directory.  Then,
-we know this declaration is going to have to be in some kind of header
-file, so just ``grep`` for it using:
+Αυτή η δήλωση είναι για ένα πρότυπο. Η παράμετρος πρότυπο είναι μέσα στη παρένθεση, ώστε πραγματικά ενδιαφερόμαστε να 
+ανακαλύψουμε τι είναι το ``TracedCallback<>``. Αν δεν έχετε απολύτως καμία ιδέα για το πού αυτό θα μπορούσε να βρεθεί, 
+το ``grep`` είναι ο φίλος σου.
+
+..
+	We are probably going to be interested in some kind of declaration in
+	the |ns3| source, so first change into the ``src`` directory.  Then,
+	we know this declaration is going to have to be in some kind of header
+	file, so just ``grep`` for it using:
+
+Πρόκειται πιθανώς να ασχοληθούμε για κάποιο είδος δήλωσης της πηγής |ns3|, οπότε πρώτη αλλαγή στον κατάλογο ``src``. Στη 
+συνέχεια, γνωρίζουμε ότι η δήλωση αυτή θα πρέπει να είναι σε κάποιο είδος του αρχείου header, έτσι απλά ``grep`` για να το 
+χρησιμοποιείτε:
 
 .. sourcecode:: bash
 
   $ find . -name '*.h' | xargs grep TracedCallback
 
-You'll see 303 lines fly by (I piped this through ``wc`` to see how bad it
-was).  Although that may seem like a lot, that's not really a lot.  Just
-pipe the output through ``more`` and start scanning through it.  On the
-first page, you will see some very suspiciously template-looking
-stuff.
+..
+	You'll see 303 lines fly by (I piped this through ``wc`` to see how bad it
+	was).  Although that may seem like a lot, that's not really a lot.  Just
+	pipe the output through ``more`` and start scanning through it.  On the
+	first page, you will see some very suspiciously template-looking
+	stuff.
 
+Θα δείτε 303 γραμμές να πετούν από (σας δείχνω αυτό μέσω ``wc`` για να δείτε πόσο άσχημο ήταν). Αν και αυτά μπορεί να 
+φαίνονται πολλά, αλλά αυτά δεν είναι πραγματικά πολλά. Απλά διοχέτευσε την έξοδο μέσω ``more`` και ξεκινήστε τη σάρωση μέσα 
+από αυτό. Στην πρώτη σελίδα, θα δείτε κάποια πολύ ύποπτα πρότυπα - να αναζητούν πράγματα.
 ::
 
   TracedCallback<T1,T2,T3,T4,T5,T6,T7,T8>::TracedCallback ()
@@ -1687,35 +1714,58 @@ stuff.
   TracedCallback<T1,T2,T3,T4,T5,T6,T7,T8>::operator() (T1 a1, T2 a2 ...
   TracedCallback<T1,T2,T3,T4,T5,T6,T7,T8>::operator() (T1 a1, T2 a2 ...
 
-It turns out that all of this comes from the header file
-``traced-callback.h`` which sounds very promising.  You can then take
-a look at ``mobility-model.h`` and see that there is a line which
-confirms this hunch::
+..
+	It turns out that all of this comes from the header file
+	``traced-callback.h`` which sounds very promising.  You can then take
+	a look at ``mobility-model.h`` and see that there is a line which
+	confirms this hunch
+
+Αποδεικνύεται ότι όλο αυτό προέρχεται από το αρχείο κεφαλίδας ``traced-callback.h`` που ακούγεται πολύ ελπιδοφόρα. Στη 
+συνέχεια μπορείτε να ρίξετε μια ματιά στο ``mobility-model.h`` και να δούμε ότι υπάρχει μια γραμμή που επιβεβαιώνει αυτό το 
+προαίσθημα
+::
 
   #include "ns3/traced-callback.h"
 
-Of course, you could have gone at this from the other direction and
-started by looking at the includes in ``mobility-model.h`` and
-noticing the include of ``traced-callback.h`` and inferring that this
-must be the file you want.
+..
+	Of course, you could have gone at this from the other direction and
+	started by looking at the includes in ``mobility-model.h`` and
+	noticing the include of ``traced-callback.h`` and inferring that this
+	must be the file you want.
 
-In either case, the next step is to take a look at
-``src/core/model/traced-callback.h`` in your favorite editor to see
-what is happening.
+Φυσικά, θα μπορούσατε να έχετε πάει σε αυτό από την άλλη κατεύθυνση και να αρχίσετε κοιτάζοντας τα περιεχόμενα του 
+``mobility-model.h`` και παρατηρώντας το περιεχόμενο του ``traced-callback.h`` και να συμπεράνετε ότι αυτό πρέπει να είναι 
+το αρχείο που θέλετε.
 
-You will see a comment at the top of the file that should be
-comforting:
+..
+	In either case, the next step is to take a look at
+	``src/core/model/traced-callback.h`` in your favorite editor to see
+	what is happening.
 
-  An ns3::TracedCallback has almost exactly the same API as a normal
-  ns3::Callback but instead of forwarding calls to a single function
-  (as an ns3::Callback normally does), it forwards calls to a chain of
-  ns3::Callback.
+Σε κάθε περίπτωση, το επόμενο βήμα είναι να ρίξετε μια ματιά στο ``src/core/model/traced-callback.h`` στο αγαπημένο σας 
+επεξεργαστή κειμένου για να δείτε τι συμβαίνει.
 
-This should sound very familiar and let you know you are on the right
-track.
+..
+	You will see a comment at the top of the file that should be
+	comforting:
 
-Just after this comment, you will find
+Θα δείτε ένα σχόλιο στην αρχή του αρχείου που θα πρέπει να είναι παρήγορο:
 
+  	An ns3::TracedCallback has almost exactly the same API as a normal
+  	ns3::Callback but instead of forwarding calls to a single function
+  	(as an ns3::Callback normally does), it forwards calls to a chain of
+  	ns3::Callback.
+  
+..
+	This should sound very familiar and let you know you are on the right
+	track.
+
+Αυτό θα πρέπει να ακούγεται πολύ οικείο και να ξέρετε ότι είστε στο σωστό δρόμο.
+
+..
+	Just after this comment, you will find
+
+Λίγο μετά από αυτό το σχόλιο, θα βρείτε
 ::
 
   template<typename T1 = empty, typename T2 = empty, 
@@ -1726,20 +1776,32 @@ Just after this comment, you will find
   {
     ...
 
-This tells you that TracedCallback is a templated class.  It has eight
-possible type parameters with default values.  Go back and compare
-this with the declaration you are trying to understand::
+..
+	This tells you that TracedCallback is a templated class.  It has eight
+	possible type parameters with default values.  Go back and compare
+	this with the declaration you are trying to understand
+
+Αυτό σας λέει ότι TracedCallback είναι templated κλάση. Έχει οκτώ πιθανές τύπου παραμέτρους με προκαθορισμένες τιμές. 
+Πηγαίνετε πίσω και να την συγκρίνετε με τη δήλωση που προσπαθείτε να καταλάβετε
+::
 
   TracedCallback<Ptr<const MobilityModel> > m_courseChangeTrace;
 
-The ``typename T1`` in the templated class declaration corresponds to
-the ``Ptr<const MobilityModel>`` in the declaration above.  All of the
-other type parameters are left as defaults.  Looking at the
-constructor really doesn't tell you much.  The one place where you
-have seen a connection made between your Callback function and the
-tracing system is in the ``Connect`` and ``ConnectWithoutContext``
-functions.  If you scroll down, you will see a
-``ConnectWithoutContext`` method here::
+..
+	The ``typename T1`` in the templated class declaration corresponds to
+	the ``Ptr<const MobilityModel>`` in the declaration above.  All of the
+	other type parameters are left as defaults.  Looking at the
+	constructor really doesn't tell you much.  The one place where you
+	have seen a connection made between your Callback function and the
+	tracing system is in the ``Connect`` and ``ConnectWithoutContext``
+	functions.  If you scroll down, you will see a
+	``ConnectWithoutContext`` method here
+
+Το ``typename T1`` στην templated δήλωση της κλάσης αντιστοιχεί στο ``Ptr<const MobilityModel>`` στην παραπάνω δήλωση. 
+Όλες οι άλλες παράμετροι τύπου παραμένουν ως προεπιλογές. Κοιτάζοντας τον κατασκευαστή πραγματικά δεν σας λέει πολλά. Το 
+ένα μέρος όπου μπορείτε να έχετε δει μια σύνδεση μεταξύ της συνάρτησης επανάκλησής σας και το σύστημα εντοπισμού είναι σε 
+``Connect`` και οι συναρτήσεις ``ConnectWithoutContext``. Αν μετακινηθείτε προς τα κάτω, θα δείτε μια μέθοδο ``ConnectWithoutContext`` εδώ
+::
 
   template<typename T1, typename T2, 
            typename T3, typename T4,
@@ -1753,10 +1815,13 @@ functions.  If you scroll down, you will see a
     m_callbackList.push_back (cb);
   }
 
-You are now in the belly of the beast.  When the template is
-instantiated for the declaration above, the compiler will replace
-``T1`` with ``Ptr<const MobilityModel>``.
+..
+	You are now in the belly of the beast.  When the template is
+	instantiated for the declaration above, the compiler will replace
+	``T1`` with ``Ptr<const MobilityModel>``.
 
+Είστε τώρα στην κοιλιά του κτήνους. Όταν το πρότυπο έχει παραδείγματα για τη δήλωση παραπάνω, ο compiler θα αντικαταστήσει 
+τον ``T1`` με ``Ptr<const MobilityModel>``.
 ::
 
   void 
@@ -1767,19 +1832,30 @@ instantiated for the declaration above, the compiler will replace
     m_callbackList.push_back (cb);
   }
 
-You can now see the implementation of everything we've been talking
-about.  The code creates a Callback of the right type and assigns your
-function to it.  This is the equivalent of the ``pfi = MyFunction`` we
-discussed at the start of this section.  The code then adds the
-Callback to the list of Callbacks for this source.  The only thing
-left is to look at the definition of Callback.  Using the same ``grep``
-trick as we used to find ``TracedCallback``, you will be able to find
-that the file ``./core/callback.h`` is the one we need to look at.
+..
+	You can now see the implementation of everything we've been talking
+	about.  The code creates a Callback of the right type and assigns your
+	function to it.  This is the equivalent of the ``pfi = MyFunction`` we
+	discussed at the start of this section.  The code then adds the
+	Callback to the list of Callbacks for this source.  The only thing
+	left is to look at the definition of Callback.  Using the same ``grep``
+	trick as we used to find ``TracedCallback``, you will be able to find
+	that the file ``./core/callback.h`` is the one we need to look at.
 
-If you look down through the file, you will see a lot of probably
-almost incomprehensible template code.  You will eventually come to
-some API Documentation for the Callback template class, though.  Fortunately,
-there is some English:
+Μπορείτε να δείτε τώρα την εφαρμογή του όλα όσα έχουμε μιλήσει. Ο κώδικας δημιουργεί μία επανάκληση του σωστού τύπου και 
+αναθέτει τη συνάρτησή σας σε αυτό. Αυτό είναι το ισοδύναμο του ``pfi = MyFunction`` που συζητήσαμε στην αρχή του παρόντος 
+τμήματος. Ο κώδικας στη συνέχεια προσθέτει την Επανάκληση στην λίστα των Επανακλήσεων για αυτήν την πηγή. Το μόνο που μένει 
+είναι να δούμε τον ορισμό της Επανάκλησης. Χρησιμοποιώντας το ίδιο τέχνασμα ``grep`` όπως συνηθίζαμε να βρούμε ``TracedCallback``, 
+θα είστε σε θέση να βρείτε ότι το αρχείο ``./core/callback.h`` είναι αυτό που πρέπει να εξετάσουμε.
+
+..
+	If you look down through the file, you will see a lot of probably
+	almost incomprehensible template code.  You will eventually come to
+	some API Documentation for the Callback template class, though.  Fortunately,
+	there is some English:
+
+Αν κοιτάξετε κάτω από το αρχείο, θα δείτε μια πολύ πιθανώς σχεδόν ακατανόητο κώδικα προτύπου. Εσείς τελικά θα καταλήξετε σε 
+κάποια API Τεκμηρίωση για την κλάση Επανάκλησης πρότυπο, όμως. Ευτυχώς, υπάρχουν κάποια αγγλικά:
 
   **Callback** template class.
 
@@ -1789,8 +1865,10 @@ there is some English:
   * the reminaining (optional) template arguments represent the type of the subsequent arguments to the callback.
   * up to nine arguments are supported.
 
-We are trying to figure out what the
+..
+	We are trying to figure out what the
 
+Προσπαθούμε να υπολογίσουμε το
 ::
 
     Callback<void, Ptr<const MobilityModel> > cb;
