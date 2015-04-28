@@ -28,7 +28,7 @@
 		# Enea Tsanai (tsanai@ceid.upatras.gr)
 	----------------------------------------------------------------------------------------
 	> Current file was initially translated by [Vasileios Dimitropoulos].
-	> Last update was performed at 28-04-2015 by [Vasileios Dimitropoulos].
+	> Last update was performed at 30-04-2015 by [Vasileios Dimitropoulos].
 	========================================================================================
 
 ..
@@ -1494,7 +1494,7 @@ API σελίδα τεκμηρίωσης.
   	If the callback is connected using ``ConnectWithoutContext`` omit the
   ``context`` argument from the signature.
   
-  Αν ο επανάκλησης συνδέεται με τη χρήση `` ConnectWithoutContext`` παραλείψτε το `` context`` επιχείρημα από την υπογραφή.
+  Αν η επανάκληση συνδέεται με τη χρήση ``ConnectWithoutContext`` παραλείψτε το ``context`` όρισμα από το στίγμα.
 
   **Parameters**:
 
@@ -1508,7 +1508,9 @@ API σελίδα τεκμηρίωσης.
 	"CourseChange" trace source to the ``CourseChange`` function in the
 	same file
 
-Όπως και παραπάνω, για να δείτε αυτό κατά τη χρήση `` grep`` γύρω στο | NS3 | codebase για παράδειγμα. Το παραπάνω παράδειγμα, από `` src / κινητικότητα / παραδείγματα / κύρια-τυχαία-topology.cc``, συνδέει την «CourseChange" πηγή ίχνος στην `` λειτουργία CourseChange`` στο ίδιο αρχείο
+Όπως και παραπάνω, για να δείτε αυτό κατά τη χρήση ``grep`` γύρω στον κώδικα βάσης |ns3| για παράδειγμα. Το παραπάνω 
+παράδειγμα, από ``src/mobility/examples/main-random-topology.cc``, συνδέει την πηγή ίχνους "CourseChange" στην συνάρτηση 
+``CourseChange`` στο ίδιο αρχείο
 ::
 
   static void
@@ -1520,26 +1522,27 @@ API σελίδα τεκμηρίωσης.
 ..
 	Notice that this function:
 
-Σημειώστε ότι αυτή η λειτουργία:
+Σημειώστε ότι αυτή η συνάρτηση:
 
-..* Takes a "context" string argument, which we'll describe in a minute.
-  (If the callback is connected using the ``ConnectWithoutContext``
-  function the ``context`` argument will be omitted.)
+..
+	* Takes a "context" string argument, which we'll describe in a minute.
+	  (If the callback is connected using the ``ConnectWithoutContext``
+	  function the ``context`` argument will be omitted.)
   
-  * Παίρνει ένα όρισμα "πλαίσιο", το οποίο θα περιγράψουμε σε ένα λεπτό.
-(Αν ο επανάκλησης συνδέεται με τη χρήση του `` ConnectWithoutContext`` λειτουργήσει το `` context`` επιχείρημα θα πρέπει 
+  * Παίρνει ένα όρισμα (string) "περιεχόμενο", το οποίο θα περιγράψουμε σε ένα λεπτό.
+(Αν η επανάκληση συνδέεται με τη χρήση της συνάρτησης ``ConnectWithoutContext`` το όρισμα ``context`` θα πρέπει 
 να παραλείπεται.)
 
+..
+	* Has the ``MobilityModel`` supplied as the last argument (or only
+	  argument if ``ConnectWithoutContext`` is used).
   
-..* Has the ``MobilityModel`` supplied as the last argument (or only
-  argument if ``ConnectWithoutContext`` is used).
-  
-  * Έχει την `` MobilityModel`` παρέχεται ως το τελευταίο επιχείρημα (ή μόνο επιχείρημα εάν `` ConnectWithoutContext`` 
-  χρησιμοποιείται).
+  * Έχει την ``MobilityModel`` η οποία παρέχεται ως το τελευταίο όρισμα (ή μόνο το όρισμα εάν χρησιμοποιείται το ``ConnectWithoutContext``).
 
-..* Returns ``void``.
+..
+	* Returns ``void``.
 
-* Επιστροφές `` void``.
+* Επιστρέφει ``void``.
 
 ..
 	If, by chance, the callback signature hasn't been documented, and
@@ -1547,8 +1550,8 @@ API σελίδα τεκμηρίωσης.
 	function signature can be, well, challenging to actually figure out
 	from the source code.
 
-Αν, κατά τύχη, η υπογραφή επανάκλησης δεν έχει τεκμηριωθεί, και δεν υπάρχουν παραδείγματα για να εργαστούν από, τον 
-προσδιορισμό του δικαιώματος υπογραφής επανάκλησης λειτουργία μπορεί να είναι, επίσης, δύσκολο να πραγματικά να καταλάβω 
+Αν, κατά τύχη, το στίγμα επανάκλησης δεν έχει τεκμηριωθεί, και δεν υπάρχουν παραδείγματα για εργασία, καθόρισε 
+το σωστό στίγμα της συνάρτησης επανάκλησης που μπορεί να είναι, επίσης, δύσκολο πραγματικά να υπολογιστεί 
 από τον πηγαίο κώδικα.
 
 ..
@@ -1559,7 +1562,10 @@ API σελίδα τεκμηρίωσης.
 	the declaration.  Recall that for our current example, this is in
 	``mobility-model.h``, where we have previously found
 
-Πριν να προβούν σε μια περιδιάβαση του κώδικα, θα είμαι το είδος και απλά να σας πω έναν απλό τρόπο για να το καταλάβω: Η τιμή επιστροφής της επανάκλησης σας θα είναι πάντα `` void``. Η επίσημη λίστα παραμέτρων για μια `` TracedCallback`` μπορεί να βρεθεί από τη λίστα παράμετρο προτύπου στη δήλωση. Υπενθυμίζεται ότι για το τρέχον παράδειγμα μας, αυτό είναι `` κινητικότητα-model.h``, όπου βρήκαμε προηγουμένως
+Πριν προβώντας σε μια περιδιάβαση του κώδικα, θα είμαι ευθύς και απλά να σας πω έναν απλό τρόπο για να το καταλάβετε: Η 
+τιμή επιστροφής της επανάκλησής σας θα είναι πάντα ``void``. Η επίσημη λίστα παραμέτρων για μια ``TracedCallback`` μπορεί 
+να βρεθεί από τη λίστα της παραμέτρου προτύπου στη δήλωση. Υπενθυμίζεται ότι για το τρέχον παράδειγμά μας, αυτό είναι 
+``mobility-model.h``, όπου βρήκαμε προηγουμένως
 ::
 
   TracedCallback<Ptr<const MobilityModel> > m_courseChangeTrace;
