@@ -1306,9 +1306,9 @@ API σελίδα τεκμηρίωσης.
 	* **Attributes**: a list of all attributes supplied by this class.
 	* **TraceSources**: a list of all TraceSources available from this class.
 
-* ** Config Μονοπάτια **: μια λίστα των τυπικών διαδρομών Config για αυτή την κατηγορία.
-* ** ** Χαρακτηριστικά: μια λίστα με όλα τα χαρακτηριστικά που παρέχονται από αυτή την κατηγορία.
-* ** ** TraceSources: μια λίστα με όλα τα διαθέσιμα TraceSources από αυτή την κατηγορία.
+* **Config Paths**: μια λίστα των τυπικών διαδρομών Config για αυτή την κλάση.
+* **Attributes** μια λίστα με όλα τα χαρακτηριστικά που παρέχονται από αυτή την κλάση.
+* **TraceSources**: μια λίστα με όλα τα διαθέσιμα TraceSources από αυτή την κλάση.
 
 ..
 	First we'll discuss the Config paths.
@@ -1325,7 +1325,10 @@ API σελίδα τεκμηρίωσης.
 	you should now be looking at the "ns3::RandomWalk2dMobilityModel Class
 	Reference" page.
 
-Ας υποθέσουμε ότι έχετε βρει μόνο το "CourseChange" πηγή ίχνος στο «Όλα TraceSources" λίστα και θέλετε να καταλάβω πώς να συνδεθείτε σε αυτό. Ξέρετε ότι χρησιμοποιείτε (και πάλι, από το `` third.cc`` παράδειγμα) ένα `` NS3 :: RandomWalk2dMobilityModel``. Έτσι, είτε να κάνετε κλικ στο όνομα της κατηγορίας στο "Όλα TraceSources" λίστα, ή να βρείτε `` NS3 :: RandomWalk2dMobilityModel`` στην «Κατηγορία List". Είτε έτσι είτε αλλιώς θα πρέπει τώρα να εξετάσουμε τη σελίδα "NS3 :: RandomWalk2dMobilityModel κατηγορία αναφοράς".
+Ας υποθέσουμε ότι έχετε μόλις βρεί την πηγή ίχνους "CourseChange" στη λίστα "All TraceSources" και θέλετε να βρείτε πώς να 
+συνδεθείτε με αυτή. Ξέρετε ότι χρησιμοποιείτε (και πάλι, από το παράδειγμα ``third.cc``) ένα ``ns3::RandomWalk2dMobilityModel``. 
+Έτσι, είτε να κάνετε κλικ στο όνομα της κλάσης στη λίστα "All TraceSources", ή να βρείτε ``ns3::RandomWalk2dMobilityModel`` 
+στην "Class List". Είτε έτσι είτε αλλιώς θα πρέπει τώρα να εξετάσουμε τη σελίδα "ns3::RandomWalk2dMobilityModel Class Reference".
 
 ..
 	If you now scroll down to the "Detailed Description" section, after
@@ -1334,7 +1337,9 @@ API σελίδα τεκμηρίωσης.
 	the page) you will see the overall documentation for the class.
 	Continuing to scroll down, find the "Config Paths" list:
 
-Αν τώρα μετακινηθείτε προς τα κάτω στην ενότητα "Λεπτομερής Περιγραφή", μετά από τον ενοποιημένο κατάλογο των μεθόδων τάξη και τα χαρακτηριστικά (ή απλά κάντε κλικ στο "Περισσότερα ..." σύνδεσμο στο τέλος της τάξης σύντομη περιγραφή στο πάνω μέρος της σελίδας) θα δείτε τη συνολική τεκμηρίωση για την τάξη. Συνεχίζοντας να μετακινηθείτε προς τα κάτω, βρείτε το "Config Μονοπάτια" λίστα:
+Αν τώρα μετακινηθείτε προς τα κάτω στην ενότητα "Detailed Description", μετά από τον ενοποιημένη λίστα των μεθόδων και χαρακτηριστικών 
+κλάσης (ή απλά κάντε κλικ στο σύνδεσμο "More..." στο τέλος της κλάσης σύντομη περιγραφή στο πάνω μέρος της σελίδας) θα δείτε 
+τη συνολική τεκμηρίωση για την κλάση. Συνεχίζοντας προς τα κάτω, βρείτε τη λίστα "Config Paths":
 
   **Config Paths**
 
