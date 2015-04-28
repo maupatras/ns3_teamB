@@ -1459,20 +1459,21 @@ API σελίδα τεκμηρίωσης.
 	to be?*
 
 *Εντάξει, βρήκα μια πηγή ίχνους και το μονοπάτι Config, πώς μπορώ να υπολογίσω ποιος είναι ο τύπος επιστροφής και τα επίσημα 
-ορίσματα της συνάρτησης επανάκλησης μου; *
+ορίσματα της συνάρτησης επανάκλησης μου;*
 
 ..
 	The easiest way is to examine the callback signature ``typedef``,
 	which is given in the "Callback signature" of the trace source in the
 	"Detailed Description" for the class, as shown above.
 
-Ο ευκολότερος τρόπος είναι να εξετάσει το `` typedef`` υπογραφή επανάκλησης, το οποίο δίνεται στο "Τηλεφωνική υπογραφή» της πηγής ίχνος στο "Λεπτομερής Περιγραφή" της κατηγορίας, όπως φαίνεται παραπάνω.
+Ο ευκολότερος τρόπος είναι να εξετάσετε την υπογραφή επανάκλησης ``typedef``, η οποία δίνεται στη "Callback signature" της 
+πηγής ίχνους στο "Detailed Description" της κλάσης, όπως φαίνεται παραπάνω.
 
 ..
 	Repeating the "CourseChange" trace source entry from
 	``ns3::RandomWalk2dMobilityModel`` we have:
 	
-Η επανάληψη της "CourseChange" καταχώρηση πηγή ίχνος από `` NS3 :: RandomWalk2dMobilityModel`` έχουμε:
+Η επανάληψη καταχώρησης πηγής ίχνους της "CourseChange" από ``ns3::RandomWalk2dMobilityModel`` έχουμε:
 
   * **CourseChange**: The value of the position and/or velocity vector
     changed.
@@ -1483,13 +1484,14 @@ API σελίδα τεκμηρίωσης.
 	The callback signature is given as a link to the relevant ``typedef``,
 	where we find
 
-Η υπογραφή επανάκλησης δίνεται ως ένα σύνδεσμο με τη σχετική `` typedef``, όπου βρίσκουμε
+Η υπογραφή ή το στίγμα επανάκλησης δίνεται ως ένας σύνδεσμος με τη σχετική ``typedef``, όπου βρίσκουμε
 
   ``typedef void (* CourseChangeCallback)(const std::string context, Ptr<const MobilityModel> * model);``
 					  
   **TracedCallback** signature for course change notifications.
 
-  ..If the callback is connected using ``ConnectWithoutContext`` omit the
+  ..
+  	If the callback is connected using ``ConnectWithoutContext`` omit the
   ``context`` argument from the signature.
   
   Αν ο επανάκλησης συνδέεται με τη χρήση `` ConnectWithoutContext`` παραλείψτε το `` context`` επιχείρημα από την υπογραφή.
