@@ -870,16 +870,27 @@ TracedValue, ως συμβολοσειρά(string). Αυτό χρησιμοπο�
 Σύνδεση με Config
 +++++++++++++++++
 
-The ``TraceConnectWithoutContext`` call shown above in the simple
-example is actually very rarely used in the system.  More typically,
-the ``Config`` subsystem is used to select a trace source in the
-system using what is called a *Config path*.  We saw an example of
-this in the previous section where we hooked the "CourseChange" event
-when we were experimenting with ``third.cc``.
+..
+	The ``TraceConnectWithoutContext`` call shown above in the simple
+	example is actually very rarely used in the system.  More typically,
+	the ``Config`` subsystem is used to select a trace source in the
+	system using what is called a *Config path*.  We saw an example of
+	this in the previous section where we hooked the "CourseChange" event
+	when we were experimenting with ``third.cc``.
 
-Recall that we defined a trace sink to print course change information
-from the mobility models of our simulation.  It should now be a lot
-more clear to you what this function is doing::
+Η κλήση του ``TraceConnectWithoutContext`` φαίνεται στο παραπάνω απλό παράδειγμα το οποίο χρησιμοποιείται στην πραγματικότητα πολύ σπάνια 
+στο σύστημα. Πιο τυπικά, το υποσύστημα ``Config`` χρησιμοποιείται για να επιλέξετε μια πηγή ίχνους στο σύστημα, χρησιμοποιώντας 
+αυτό που ονομάζεται *Config path*. Είδαμε ένα παράδειγμα απο αυτό στην προηγούμενη ενότητα, όπου γαντζώθηκε στην 
+"CourseChange" εκδήλωση, όταν πειραματιζόμασταν με το ``third.cc``.
+
+..
+	Recall that we defined a trace sink to print course change information
+	from the mobility models of our simulation.  It should now be a lot
+	more clear to you what this function is doing
+
+Υπενθυμίζουμε ότι ορίσαμε μία καταβόθρα ίχνους για να εκτυπώσουμε πληροφορίες και να αλλάξει πληροφορίες απο την κινητικότητα 
+των μοντέλων απο την προσομοίωσή μας. Θα πρέπει τώρα να είναι πολύ πιο σαφές σε σας τι κάνει αυτή η συνάρτηση
+::
 
   void
   CourseChange (std::string context, Ptr<const MobilityModel> model)
@@ -889,10 +900,15 @@ more clear to you what this function is doing::
       " x = " << position.x << ", y = " << position.y);
   }
 
-When we connected the "CourseChange" trace source to the above trace
-sink, we used a Config path to specify the source when we arranged a
-connection between the pre-defined trace source and the new trace
-sink::
+..
+	When we connected the "CourseChange" trace source to the above trace
+	sink, we used a Config path to specify the source when we arranged a
+	connection between the pre-defined trace source and the new trace
+	sink
+
+Όταν συνδέσαμε την πηγή ίχνους "CourseChange" στην παραπάνω καταβόθρα ίχνους, χρησιμοποιήσαμε ένα Config path για να 
+προσδιορίσουμε την πηγή όταν κανονίσαμε μια σύνδεση μεταξύ της προ-καθορισμένης πηγής ίχνους και της νέας καταβόθρας ίχνους
+::
 
   std::ostringstream oss;
   oss << "/NodeList/"
@@ -901,89 +917,148 @@ sink::
 
   Config::Connect (oss.str (), MakeCallback (&CourseChange));
 
-Let's try and make some sense of what is sometimes considered
-relatively mysterious code.  For the purposes of discussion, assume
-that the Node number returned by the ``GetId()`` is "7".  In this
-case, the path above turns out to be
+..
+	Let's try and make some sense of what is sometimes considered
+	relatively mysterious code.  For the purposes of discussion, assume
+	that the Node number returned by the ``GetId()`` is "7".  In this
+	case, the path above turns out to be
 
+Ας προσπαθήσουμε να καταλάβουμε του τι θεωρείται μερικές φορές σχετικά μυστηριώδης κώδικας. Για τους 
+σκοπούς της συζήτησης, ας υποθέσουμε ότι ο αριθμός κόμβου(Node) που επιστρέφεται από το ``GetId ()`` είναι "7". Σε αυτήν την περίπτωση, 
+η διαδρομή ανωτέρω αποδεικνύεται ότι είναι
 ::
 
   "/NodeList/7/$ns3::MobilityModel/CourseChange"
 
-The last segment of a config path must be an ``Attribute`` of an
-``Object``.  In fact, if you had a pointer to the ``Object`` that has
-the "CourseChange" ``Attribute`` handy, you could write this just like
-we did in the previous example.  You know by now that we typically
-store pointers to our ``Nodes`` in a NodeContainer.  In the ``third.cc``
-example, the Nodes of interest are stored in the ``wifiStaNodes``
-NodeContainer.  In fact, while putting the path together, we used this
-container to get a ``Ptr<Node>`` which we used to call ``GetId()``.  We
-could have used this ``Ptr<Node>`` to call a Connect method
-directly::
+..
+	The last segment of a config path must be an ``Attribute`` of an
+	``Object``.  In fact, if you had a pointer to the ``Object`` that has
+	the "CourseChange" ``Attribute`` handy, you could write this just like
+	we did in the previous example.  You know by now that we typically
+	store pointers to our ``Nodes`` in a NodeContainer.  In the ``third.cc``
+	example, the Nodes of interest are stored in the ``wifiStaNodes``
+	NodeContainer.  In fact, while putting the path together, we used this
+	container to get a ``Ptr<Node>`` which we used to call ``GetId()``.  We
+	could have used this ``Ptr<Node>`` to call a Connect method
+	directly
+
+Το τελευταίο τμήμα της διαδρομής config path πρέπει να είναι ``Attribute`` ενός ``Object``. Στην πραγματικότητα, αν είχατε πρακτικά 
+ένα δείκτη στο ``Object`` που έχει το "CourseChange" ``Attribute``, θα μπορούσατε να γράψετε αυτό, ακριβώς όπως κάναμε στο 
+προηγούμενο παράδειγμα. Τυπικά αποθηκεύουμε δείκτες στους (κόμβους) ``Nodes`` σε ένα NodeContainer. Στο παράδειγμα ``third.cc``, οι κόμβοι 
+του ενδιαφέροντος είναι αποθηκευμένοι στο NodeContainer ``wifiStaNodes``. Στην πραγματικότητα, βάζοντας τη διαδρομή μαζί, 
+χρησιμοποιήσαμε αυτό το container για να πάρει ένα ``Ptr<Node>`` που είχαμε συνηθίσει να λέμε ``GetId()``. Θα μπορούσαμε να 
+χρησιμοποιήσουμε αυτό το ``Ptr<Node>`` να καλέσει άμεσα μια μέθοδο Σύνδεσης
+::
 
   Ptr<Object> theObject = wifiStaNodes.Get (nWifi - 1);
   theObject->TraceConnectWithoutContext ("CourseChange", MakeCallback (&CourseChange));
 
-In the ``third.cc`` example, we actually wanted an additional "context"
-to be delivered along with the Callback parameters (which will be
-explained below) so we could actually use the following equivalent
-code::
+..
+	In the ``third.cc`` example, we actually wanted an additional "context"
+	to be delivered along with the Callback parameters (which will be
+	explained below) so we could actually use the following equivalent
+	code
+
+Στο παράδειγμα ``third.cc``, θέλαμε πραγματικά ένα πρόσθετο "περιεχόμενο" για να παραδοθεί μαζί με τις παραμέτρους Επανάκλησης 
+(η οποία θα εξηγηθεί παρακάτω) έτσι θα μπορούσαμε να χρησιμοποιήσουμε πραγματικά τον ακόλουθο ισοδύναμο κώδικα
+::
 
   Ptr<Object> theObject = wifiStaNodes.Get (nWifi - 1);
   theObject->TraceConnect ("CourseChange", MakeCallback (&CourseChange));
 
-It turns out that the internal code for
-``Config::ConnectWithoutContext`` and ``Config::Connect`` actually
-find a ``Ptr<Object>`` and call the appropriate ``TraceConnect``
-method at the lowest level.
+..
+	It turns out that the internal code for
+	``Config::ConnectWithoutContext`` and ``Config::Connect`` actually
+	find a ``Ptr<Object>`` and call the appropriate ``TraceConnect``
+	method at the lowest level.
 
-The ``Config`` functions take a path that represents a chain of
-``Object`` pointers.  Each segment of a path corresponds to an Object
-Attribute.  The last segment is the Attribute of interest, and prior
-segments must be typed to contain or find Objects.  The ``Config``
-code parses and "walks" this path until it gets to the final segment
-of the path.  It then interprets the last segment as an ``Attribute``
-on the last Object it found while walking the path.  The ``Config``
-functions then call the appropriate ``TraceConnect`` or
-``TraceConnectWithoutContext`` method on the final Object.  Let's see
-what happens in a bit more detail when the above path is walked.
+Αυτό μας δίνει ότι ο εσωτερικός κώδικας για ``Config::ConnectWithoutContext`` και ``Config::Connect`` βρήκε πραγματικά μια 
+``Ptr<Object>`` και κάλεσε την κατάλληλη μέθοδο ``TraceConnect`` στο χαμηλότερο επίπεδο .
 
-The leading "/" character in the path refers to a so-called namespace.
-One of the predefined namespaces in the config system is "NodeList"
-which is a list of all of the nodes in the simulation.  Items in the
-list are referred to by indices into the list, so "/NodeList/7" refers
-to the eighth Node in the list of nodes created during the simulation
-(recall indices start at `0').  This reference is actually a
-``Ptr<Node>`` and so is a subclass of an ``ns3::Object``.
+..
+	The ``Config`` functions take a path that represents a chain of
+	``Object`` pointers.  Each segment of a path corresponds to an Object
+	Attribute.  The last segment is the Attribute of interest, and prior
+	segments must be typed to contain or find Objects.  The ``Config``
+	code parses and "walks" this path until it gets to the final segment
+	of the path.  It then interprets the last segment as an ``Attribute``
+	on the last Object it found while walking the path.  The ``Config``
+	functions then call the appropriate ``TraceConnect`` or
+	``TraceConnectWithoutContext`` method on the final Object.  Let's see
+	what happens in a bit more detail when the above path is walked.
 
-As described in the Object Model section of the |ns3| Manual, we make
-widespread use of object aggregation.  This allows us to form an
-association between different Objects without building a complicated
-inheritance tree or predeciding what objects will be part of a
-Node.  Each Object in an Aggregation can be reached from the other
-Objects.
+Οι συναρτήσεις του ``Config`` λαμβάνουν μια διαδρομή που αντιπροσωπεύει μια αλυσίδα από δείκτες ``Object``. Κάθε τμήμα του μονοπατιού 
+απαντάει σε ένα Χαρακτηριστικό Αντικείμενο. Το τελευταίο τμήμα είναι το Χαρακτηριστικό του ενδιαφέροντος, και πριν από τα 
+τμήματα πρέπει να είναι τυπωμένα να περιέχουν ή να βρούν Αντικείμενα. Ο κώδικας ``Config`` αναλύει και "περπατάει" αυτό το 
+μονοπάτι μέχρι να φτάσει στο τελικό τμήμα της διαδρομής. Στη συνέχεια ερμηνεύει το τελευταίο τμήμα ως ``Attribute`` στο 
+τελευταίο Αντικείμενο που βρέθηκε, περπατώντας τη διαδρομή. Οι συναρτήσεις ``Config`` τότε καλούν την κατάλληλη 
+``TraceConnect`` ή μέθοδο ``TraceConnectWithoutContext`` για το τελικό Αντικείμενο. Ας δούμε τι θα συμβεί σε λίγο 
+με περισσότερες λεπτομέρειες, όταν η παραπάνω διαδρομή περπάτησε.
 
-In our example the next path segment being walked begins with the "$"
-character.  This indicates to the config system that the segment is
-the name of an object type, so a ``GetObject`` call should be made
-looking for that type.  It turns out that the ``MobilityHelper`` used
-in ``third.cc`` arranges to Aggregate, or associate, a mobility model
-to each of the wireless ``Nodes``.  When you add the "$" you are
-asking for another Object that has presumably been previously
-aggregated.  You can think of this as switching pointers from the
-original Ptr<Node> as specified by "/NodeList/7" to its associated
-mobility model --- which is of type ``ns3::MobilityModel``.  If you
-are familiar with ``GetObject``, we have asked the system to do the
-following::
+..
+	The leading "/" character in the path refers to a so-called namespace.
+	One of the predefined namespaces in the config system is "NodeList"
+	which is a list of all of the nodes in the simulation.  Items in the
+	list are referred to by indices into the list, so "/NodeList/7" refers
+	to the eighth Node in the list of nodes created during the simulation
+	(recall indices start at `0').  This reference is actually a
+	``Ptr<Node>`` and so is a subclass of an ``ns3::Object``.
+
+Η κορυφαία χαρακτήρας "/" στη διαδρομή αναφέρεται σε ένα λεγόμενο namespace. Μία από τις προκαθορισμένες namespaces στο 
+σύστημα config είναι "NodeList", η οποία είναι μια λίστα με όλους τους κόμβους στην προσομοίωση. Τα στοιχεία στην λίστα 
+αναφέρονται στους δείκτες της λίστας, έτσι "/ NodeList / 7" αναφέρεται στον όγδοο Κόμβο στη λίστα των κόμβων που δημιουργούνται 
+κατά τη διάρκεια της προσομοίωσης (ανάκληση δεικτών ξεκινούν από το `0'). Αυτή η αναφορά είναι στην πραγματικότητα ένα 
+``Ptr<Node>`` και έτσι είναι μια υποκατηγορία ενός ``ns3::Object``.
+
+..
+	As described in the Object Model section of the |ns3| Manual, we make
+	widespread use of object aggregation.  This allows us to form an
+	association between different Objects without building a complicated
+	inheritance tree or predeciding what objects will be part of a
+	Node.  Each Object in an Aggregation can be reached from the other
+	Objects.
+
+Όπως περιγράφεται στην ενότητα Object Model της |ns3| Εγχειρίδιο(Manual), κάνουμε εκτεταμένη χρήση της συνάθροισης αντικειμένου. 
+Αυτό μας επιτρέπει να σχηματίσουμε τη σύνδεση μεταξύ διαφορετικών Αντικειμένων χωρίς την οικοδόμηση ενός δέντρου πολύπλοκης 
+κληρονομικότητας ή να προ-αποφασίσουμε ποια αντικείμενα θα είναι μέρος ενός Κόμβου. Κάθε Αντικείμενο σε ένα σύνολο μπορεί να 
+επιτευχθεί από τα άλλα Αντικείμενα.
+
+..
+	In our example the next path segment being walked begins with the "$"
+	character.  This indicates to the config system that the segment is
+	the name of an object type, so a ``GetObject`` call should be made
+	looking for that type.  It turns out that the ``MobilityHelper`` used
+	in ``third.cc`` arranges to Aggregate, or associate, a mobility model
+	to each of the wireless ``Nodes``.  When you add the "$" you are
+	asking for another Object that has presumably been previously
+	aggregated.  You can think of this as switching pointers from the
+	original Ptr<Node> as specified by "/NodeList/7" to its associated
+	mobility model --- which is of type ``ns3::MobilityModel``.  If you
+	are familiar with ``GetObject``, we have asked the system to do the
+	following
+
+Στο παράδειγμά μας, το επόμενο τμήμα της διαδρομής που έχει περπατηθεί ξεκινά με το χαρακτήρα "$". Αυτό δηλώνει στο σύστημα 
+config ότι το τμήμα είναι το όνομα ενός τύπου Αντικειμένου, ώστε η κλήση ``GetObject`` θα πρέπει να ψάχνει για αυτό το είδος. 
+Μας βγάζει ότι η ``MobilityHelper`` χρησιμοποιείται στο ``third.cc`` και κανονίζει στο σύνολο ή συνδέει, ένα μοντέλο 
+κινητικότητας σε κάθε ασύρματο Κόμβο ``Nodes``. Όταν προσθέσετε το "$" ρωτάτε για ένα άλλο Αντικείμενο που έχει πιθανώς 
+προηγουμένως αθροιστεί. Μπορείτε να σκεφτείτε αυτό ως εναλλαγή δεικτών από την αρχική Ptr<Node>, όπως καθορίζεται από το 
+"/NodeList/7" στο ίδιο συνδεδεμένο μοντέλο κινητικότητάς του --- το οποίο είναι τύπου ``ns3::MobilityModel``. Εάν είστε 
+εξοικειωμένοι με το ``GetObject``, ζητήσαμε από το σύστημα να κάνετε τα εξής
+::
 
   Ptr<MobilityModel> mobilityModel = node->GetObject<MobilityModel> ()
 
-We are now at the last Object in the path, so we turn our attention to
-the Attributes of that Object.  The ``MobilityModel`` class defines an
-Attribute called "CourseChange".  You can see this by looking at the
-source code in ``src/mobility/model/mobility-model.cc`` and searching
-for "CourseChange" in your favorite editor.  You should find
+..
+	We are now at the last Object in the path, so we turn our attention to
+	the Attributes of that Object.  The ``MobilityModel`` class defines an
+	Attribute called "CourseChange".  You can see this by looking at the
+	source code in ``src/mobility/model/mobility-model.cc`` and searching
+	for "CourseChange" in your favorite editor.  You should find
 
+Είμαστε τώρα στο τελευταίο Αντικείμενο στο μονοπάτι, έτσι ώστε να στρέψουμε την προσοχή μας προς τα Χαρακτηριστικά αυτού του 
+Αντικειμένου. Η κλάση ``MobilityModel`` ορίζει ένα Χαρακτηριστικό που ονομάζεται "CourseChange". Μπορείτε να δείτε αυτό 
+κοιτάζοντας τον πηγαίο κώδικα σε ``src/mobility/model/mobility-model.cc`` και αναζητώντας για "CourseChange" στο αγαπημένο 
+σας επεξεργαστή(editor). Θα πρέπει να βρείτε
 ::
 
   .AddTraceSource ("CourseChange",
@@ -991,26 +1066,42 @@ for "CourseChange" in your favorite editor.  You should find
                    MakeTraceSourceAccessor (&MobilityModel::m_courseChangeTrace),
                    "ns3::MobilityModel::CourseChangeCallback")
 
-which should look very familiar at this point.  
+..
+	which should look very familiar at this point. 
 
-If you look for the corresponding declaration of the underlying traced
-variable in ``mobility-model.h`` you will find
+το οποίο θα έπρεπε να φαίνεται εξοικειωμένο σε αυτό το σημείο.
 
+..
+	If you look for the corresponding declaration of the underlying traced
+	variable in ``mobility-model.h`` you will find
+
+Αν κοιτάξετε για την αντίστοιχη δήλωση της υποκείμενης εντοπισμένης μεταβλητής στο ``mobility-model.h`` θα βρείτε
 ::
 
   TracedCallback<Ptr<const MobilityModel> > m_courseChangeTrace;
 
-The type declaration ``TracedCallback`` identifies
-``m_courseChangeTrace`` as a special list of Callbacks that can be
-hooked using the Config functions described above.  The ``typedef``
-for the callback function signature is also defined in the header file::
+..
+	The type declaration ``TracedCallback`` identifies
+	``m_courseChangeTrace`` as a special list of Callbacks that can be
+	hooked using the Config functions described above.  The ``typedef``
+	for the callback function signature is also defined in the header file
+
+Ο τύπος της δήλωσης ``TracedCallback`` προσδιορίζει ``m_courseChangeTrace`` ως μία ειδική λίστα των Επανακλήσεων που μπορεί 
+να συνδεθεί με τις συναρτήσεις Config που περιγράφονται παραπάνω. Το ``typedef`` για την υπογραφή συνάρτησης επανάκλησης είναι 
+επίσης ορισμένο στο αρχείο κεφαλίδας
+::
 
   typedef void (* CourseChangeCallback)(Ptr<const MobilityModel> * model);
 
-The ``MobilityModel`` class is designed to be a base class providing a
-common interface for all of the specific subclasses.  If you search
-down to the end of the file, you will see a method defined called
-``NotifyCourseChange()``::
+..
+	The ``MobilityModel`` class is designed to be a base class providing a
+	common interface for all of the specific subclasses.  If you search
+	down to the end of the file, you will see a method defined called
+	``NotifyCourseChange()``
+
+Η κλάση ``MobilityModel`` έχει σχεδιαστεί για να είναι μια βασική κλάση που παρέχει μια κοινή διεπαφή για όλες τις συγκεκριμένες 
+υποκατηγορίες. Εάν κάνετε αναζήτηση προς τα κάτω στο τέλος του αρχείου, θα δείτε μια μέθοδο που λέγεται ``NotifyCourseChange()``
+::
 
   void
   MobilityModel::NotifyCourseChange (void) const
@@ -1018,72 +1109,137 @@ down to the end of the file, you will see a method defined called
     m_courseChangeTrace(this);
   }
 
-Derived classes will call into this method whenever they do a course
-change to support tracing.  This method invokes ``operator()`` on the
-underlying ``m_courseChangeTrace``, which will, in turn, invoke all of
-the registered Callbacks, calling all of the trace sinks that have
-registered interest in the trace source by calling a Config function.
+..
+	Derived classes will call into this method whenever they do a course
+	change to support tracing.  This method invokes ``operator()`` on the
+	underlying ``m_courseChangeTrace``, which will, in turn, invoke all of
+	the registered Callbacks, calling all of the trace sinks that have
+	registered interest in the trace source by calling a Config function.
 
-So, in the ``third.cc`` example we looked at, whenever a course change
-is made in one of the ``RandomWalk2dMobilityModel`` instances
-installed, there will be a ``NotifyCourseChange()`` call which calls
-up into the ``MobilityModel`` base class.  As seen above, this invokes
-``operator()`` on ``m_courseChangeTrace``, which in turn, calls any
-registered trace sinks.  In the example, the only code registering an
-interest was the code that provided the Config path.  Therefore, the
-``CourseChange`` function that was hooked from Node number seven will
-be the only Callback called.
+Οι παραγόμενες κλάσεις θα καλέσουν σε αυτή τη μέθοδο κάθε φορά που κάνουν μια αλλαγή πορείας για την υποστήριξη ανίχνευσης. 
+Η μέθοδος αυτή επικαλείται τον ``operator()`` σχετικά με το υποκείμενο ``m_courseChangeTrace``, το οποίο, με τη σειρά του, 
+επικαλείται το σύνολο των εγγεγραμμένων Επανακλήσεων, καλώντας όλες τις καταβόθρες ίχνους που έχουν εγγραφεί με ενδιαφέρον για 
+την πηγή ίχνους καλώντας μία συνάρτηση Config.
 
-The final piece of the puzzle is the "context".  Recall that we saw an
-output looking something like the following from ``third.cc``::
+..
+	So, in the ``third.cc`` example we looked at, whenever a course change
+	is made in one of the ``RandomWalk2dMobilityModel`` instances
+	installed, there will be a ``NotifyCourseChange()`` call which calls
+	up into the ``MobilityModel`` base class.  As seen above, this invokes
+	``operator()`` on ``m_courseChangeTrace``, which in turn, calls any
+	registered trace sinks.  In the example, the only code registering an
+	interest was the code that provided the Config path.  Therefore, the
+	``CourseChange`` function that was hooked from Node number seven will
+	be the only Callback called.
+	
+Έτσι, στο παράδειγμα ``third.cc`` κοιτάξαμε, κάθε φορά που μια αλλαγή πορείας γίνεται σε μία απο τις εγκαταστημένες περιπτώσεις ``RandomWalk2dMobilityModel``, 
+θα υπάρχει μία κλήση ``NotifyCourseChange()`` που καλεί επάνω σε μία κλάση βάσης `` MobilityModel``. Όπως είδαμε παραπάνω, 
+αυτό επικαλείται ``operator()`` στη ``m_courseChangeTrace``, η οποία με τη σειρά της, καλεί οποιαδήποτε εγγεγραμμένη 
+καταβόθρα ίχνους. Στο παράδειγμα, ο μοναδικός κώδικας, καταγράφοντας ένα ενδιαφέρον ήταν ο κώδικας που έδωσε το μονοπάτι 
+Config. Ως εκ τούτου, η συνάρτηση ``CourseChange`` που γαντζώθηκε από τον αριθμό του κόμβου επτά θα είναι η μόνη που 
+ονομάζεται Επανάκληση.
+
+..
+	The final piece of the puzzle is the "context".  Recall that we saw an
+	output looking something like the following from ``third.cc``
+
+Το τελευταίο κομμάτι του παζλ είναι το "περιεχόμενο". Υπενθυμίζουμε ότι είδαμε μια έξοδο που αναζητά κάτι σαν το παρακάτω 
+από το ``third.cc``
+::
 
   /NodeList/7/$ns3::MobilityModel/CourseChange x = 7.27897, y =
   2.22677
 
-The first part of the output is the context.  It is simply the path
-through which the config code located the trace source.  In the case
-we have been looking at there can be any number of trace sources in
-the system corresponding to any number of nodes with mobility models.
-There needs to be some way to identify which trace source is actually
-the one that fired the Callback.  The easy way is to connect with
-``Config::Connect``, instead of ``Config::ConnectWithoutContext``.
+..
+	The first part of the output is the context.  It is simply the path
+	through which the config code located the trace source.  In the case
+	we have been looking at there can be any number of trace sources in
+	the system corresponding to any number of nodes with mobility models.
+	There needs to be some way to identify which trace source is actually
+	the one that fired the Callback.  The easy way is to connect with
+	``Config::Connect``, instead of ``Config::ConnectWithoutContext``.
 
-Finding Sources
-+++++++++++++++
+Το πρώτο μέρος της εξόδου είναι το περιεχόμενο. Είναι απλά η διαδρομή μέσω της οποίας ο κώδικας config βρίσκεται στη πηγή ίχνους. 
+Στην περίπτωση που εμείς κοιτάζαμε ότι μπορεί να υπάρχει οποιοσδήποτε αριθμός των πηγών ίχνους στο σύστημα απαντά σε 
+οποιονδήποτε αριθμό των κόμβων με τα μοντέλα κινητικότητας. Πρέπει να υπάρχει κάποιος τρόπος να προσδιορίσει ποια πηγή ίχνους 
+είναι στην πραγματικότητα αυτός που έβαλε φωτιά στην Επανάκληση. Ο εύκολος τρόπος είναι να συνδέσετε με ``Config::Connect``, 
+αντί για ``Config::ConnectWithoutContext``
 
-The first question that inevitably comes up for new users of the
-Tracing system is, *"Okay, I know that there must be trace sources in
-the simulation core, but how do I find out what trace sources are
-available to me?"*
+..
+	Finding Sources
 
-The second question is, *"Okay, I found a trace source, how do I figure
-out the Config path to use when I connect to it?"*
+Βρίσκοντας Πηγές
+++++++++++++++++
 
-The third question is, *"Okay, I found a trace source and the Config
-path, how do I figure out what the return type and formal arguments of
-my callback function need to be?"*
+..
+	The first question that inevitably comes up for new users of the
+	Tracing system is, *"Okay, I know that there must be trace sources in
+	the simulation core, but how do I find out what trace sources are
+	available to me?"*
 
-The fourth question is, *"Okay, I typed that all in and got this
-incredibly bizarre error message, what in the world does it mean?"*
+Το πρώτο ερώτημα που έρχεται αναπόφευκτα για τους νέους χρήστες του συστήματος Ανίχνευσης είναι, *"Εντάξει, ξέρω ότι πρέπει 
+να υπάρχουν πηγές ίχνους στον πυρήνα προσομοίωσης, αλλά πώς μπορώ να μάθω τι ίχνους πηγές είναι διαθέσιμες για εμένα;"*
 
-We'll address each of these in turn.
+..
+	The second question is, *"Okay, I found a trace source, how do I figure
+	out the Config path to use when I connect to it?"*
 
-Available Sources
-+++++++++++++++++
+Το δεύτερο ερώτημα είναι, *"Εντάξει, βρήκα μια πηγή ίχνους, πώς μπορώ να καταλάβω το μονοπάτι Config για να χρησιμοποιήσω 
+όταν συνδεθώ σε αυτό;"*
 
-*Okay, I know that there must be trace sources in the simulation core,
-but how do I find out what trace sources are available to me?*
+..
+	The third question is, *"Okay, I found a trace source and the Config
+	path, how do I figure out what the return type and formal arguments of
+	my callback function need to be?"*
 
-The answer to the first question is found in the |ns3| API
-documentation.  If you go to the project web site, `ns-3 project
-<http://www.nsnam.org>`_, you will find a link to "Documentation" in
-the navigation bar.  If you select this link, you will be taken to our
-documentation page. There is a link to "Latest Release" that will take
-you to the documentation for the latest stable release of |ns3|.  If
-you select the "API Documentation" link, you will be taken to the
-|ns3| API documentation page.
+Το τρίτο ερώτημα είναι, *"Εντάξει, βρήκα μια πηγή ίχνους και το μονοπάτι Config, πώς μπορώ να καταλάβω ποιο είναι το είδος 
+επιστροφής και ποια πρέπει να είναι τα επίσημα ορίσματα της συνάρτησης επανάκλησής μου;"*
 
-In the sidebar you should see a hierachy that begins
+..
+	The fourth question is, *"Okay, I typed that all in and got this
+	incredibly bizarre error message, what in the world does it mean?"*
+
+Το τέταρτο ερώτημα είναι, *"Εντάξει, εγώ τα πληκτρολόγησα όλα σωστά και πήρα αυτό το απίστευτα παράξενο μήνυμα σφάλματος, τι 
+στον κόσμο σημαίνει αυτό;"*
+
+..
+	We'll address each of these in turn.
+
+Θα τις απαντήσουμε κάθε μια από αυτές με τη σειρά.
+
+..
+	Available Sources
+
+Διαθέσιμες Πηγές
+++++++++++++++++
+
+..
+	*Okay, I know that there must be trace sources in the simulation core,
+	but how do I find out what trace sources are available to me?*
+
+*Εντάξει, ξέρω ότι πρέπει να υπάρχουν πηγές ίχνους στον πυρήνα προσομοίωσης, αλλά πώς μπορώ να μάθω τι πηγές ίχνους είναι 
+διαθέσιμες για εμένα;*
+
+..
+	The answer to the first question is found in the |ns3| API
+	documentation.  If you go to the project web site, `ns-3 project
+	<http://www.nsnam.org>`_, you will find a link to "Documentation" in
+	the navigation bar.  If you select this link, you will be taken to our
+	documentation page. There is a link to "Latest Release" that will take
+	you to the documentation for the latest stable release of |ns3|.  If
+	you select the "API Documentation" link, you will be taken to the
+	|ns3| API documentation page.
+
+Η απάντηση στο πρώτο ερώτημα βρίσκεται στην τεκμηρίωση |ns3| API. Αν πάτε στην ιστοσελίδα του έργου, `ns-3 project 
+<http://www.nsnam.org>`_, θα βρείτε ένα σύνδεσμο στο "Documentation" στη γραμμή πλοήγησης. Αν επιλέξετε αυτό το σύνδεσμο, 
+θα μεταφερθείτε στη σελίδα τεκμηρίωσης. Υπάρχει μια σύνδεση με τα "Latest Release" που θα σας μεταφέρει στην τεκμηρίωση για 
+την τελευταία σταθερή έκδοση του |ns3|. Εάν επιλέξετε το σύνδεσμο "API Documentation", θα πρέπει να ληφθούν για την |ns3| 
+API σελίδα τεκμηρίωσης.
+
+..
+	In the sidebar you should see a hierachy that begins
+
+Στην πλαϊνή γραμμή θα πρέπει να δείτε μια ιεραρχία που αρχίζει
 
 *  ns-3
 
@@ -1092,56 +1248,87 @@ In the sidebar you should see a hierachy that begins
   *  All Attributes
   *  All GlobalValues
 
-The list of interest to us here is "All TraceSources".  Go ahead and
-select that link.  You will see, perhaps not too surprisingly, a list
-of all of the trace sources available in |ns3|.
+..
+	The list of interest to us here is "All TraceSources".  Go ahead and
+	select that link.  You will see, perhaps not too surprisingly, a list
+	of all of the trace sources available in |ns3|.
 
-As an example, scroll down to ``ns3::MobilityModel``.  You will find
-an entry for
+Ο κατάλογος που μας ενδιαφέρει εδώ είναι "Όλα τα TraceSources". Προχωρήστε και επιλέξτε το σύνδεσμο. Θα δείτε, ίσως όχι και τόσο έκπληξη, μια λίστα με όλες τις πηγές ίχνος διαθέσιμο σε | NS3 |.
 
+..
+	As an example, scroll down to ``ns3::MobilityModel``.  You will find
+	an entry for
+
+Ως παράδειγμα, μετακινηθείτε προς τα κάτω για να `` NS3 :: MobilityModel``. Θα βρείτε μια καταχώρηση για
 ::
 
   CourseChange: The value of the position and/or velocity vector changed 
 
-You should recognize this as the trace source we used in the
-``third.cc`` example.  Perusing this list will be helpful.
+..
+	You should recognize this as the trace source we used in the
+	``third.cc`` example.  Perusing this list will be helpful.
+	
+Θα πρέπει να αναγνωρίσουμε αυτό ως πηγή ίχνος που χρησιμοποιείται στην `` third.cc`` παράδειγμα. Περιεργάζονται τον κατάλογο αυτό θα είναι χρήσιμο.
 
-Config Paths
-++++++++++++
+..
+	Config Paths
 
-*Okay, I found a trace source, how do I figure out the Config path to
-use when I connect to it?*
+Μονοπάτια Config
+++++++++++++++++
 
-If you know which object you are interested in, the "Detailed
-Description" section for the class will list all available trace
-sources.  For example, starting from the list of "All TraceSources,"
-click on the ``ns3::MobilityModel`` link, which will take you to the
-documentation for the ``MobilityModel`` class.  Almost at the top of
-the page is a one line brief description of the class, ending in a
-link "More...".  Click on this link to skip the API summary and go to
-the "Detailed Description" of the class.  At the end of the
-description will be (up to) three lists:
+..
+	*Okay, I found a trace source, how do I figure out the Config path to
+	use when I connect to it?*
 
-* **Config Paths**: a list of typical Config paths for this class.
-* **Attributes**: a list of all attributes supplied by this class.
-* **TraceSources**: a list of all TraceSources available from this class.
+*Εντάξει, βρήκα μια πηγή ίχνος, πώς μπορώ να καταλάβω την πορεία Config για να χρησιμοποιήσετε όταν συνδέεστε σε αυτό;*
 
-First we'll discuss the Config paths.
+..
+	If you know which object you are interested in, the "Detailed
+	Description" section for the class will list all available trace
+	sources.  For example, starting from the list of "All TraceSources,"
+	click on the ``ns3::MobilityModel`` link, which will take you to the
+	documentation for the ``MobilityModel`` class.  Almost at the top of
+	the page is a one line brief description of the class, ending in a
+	link "More...".  Click on this link to skip the API summary and go to
+	the "Detailed Description" of the class.  At the end of the
+	description will be (up to) three lists:
 
-Let's assume that you have just found the "CourseChange" trace source
-in the "All TraceSources" list and you want to figure out how to
-connect to it.  You know that you are using (again, from the
-``third.cc`` example) an ``ns3::RandomWalk2dMobilityModel``.  So
-either click on the class name in the "All TraceSources" list, or find
-``ns3::RandomWalk2dMobilityModel`` in the "Class List".  Either way 
-you should now be looking at the "ns3::RandomWalk2dMobilityModel Class
-Reference" page.
+Εάν γνωρίζετε ποιο αντικείμενο που σας ενδιαφέρει, το τμήμα "Λεπτομερής Περιγραφή" για την τάξη θα εμφανίσει όλες τις διαθέσιμες πηγές ίχνος. Για παράδειγμα, ξεκινώντας από τη λίστα των "Όλες TraceSources", κάντε κλικ στο σύνδεσμο `` NS3 :: MobilityModel``, το οποίο θα σας μεταφέρει στην τεκμηρίωση για την `` MobilityModel`` τάξη. Σχεδόν στην κορυφή της σελίδας είναι μία γραμμή σύντομη περιγραφή της κατηγορίας, που καταλήγει σε ένα σύνδεσμο "Περισσότερα ...". Κάντε κλικ σε αυτό το σύνδεσμο για να παρακάμψετε την περίληψη API και πηγαίνετε στο "Λεπτομερής Περιγραφή" της κατηγορίας. Στο τέλος της περιγραφής, θα είναι (έως) τρεις καταλόγους:
 
-If you now scroll down to the "Detailed Description" section, after
-the summary list of class methods and attributes (or just click on the
-"More..." link at the end of the class brief description at the top of
-the page) you will see the overall documentation for the class.
-Continuing to scroll down, find the "Config Paths" list:
+..
+	* **Config Paths**: a list of typical Config paths for this class.
+	* **Attributes**: a list of all attributes supplied by this class.
+	* **TraceSources**: a list of all TraceSources available from this class.
+
+* ** Config Μονοπάτια **: μια λίστα των τυπικών διαδρομών Config για αυτή την κατηγορία.
+* ** ** Χαρακτηριστικά: μια λίστα με όλα τα χαρακτηριστικά που παρέχονται από αυτή την κατηγορία.
+* ** ** TraceSources: μια λίστα με όλα τα διαθέσιμα TraceSources από αυτή την κατηγορία.
+
+..
+	First we'll discuss the Config paths.
+
+Πρώτα θα συζητήσουμε τις διαδρομές Config.
+
+..
+	Let's assume that you have just found the "CourseChange" trace source
+	in the "All TraceSources" list and you want to figure out how to
+	connect to it.  You know that you are using (again, from the
+	``third.cc`` example) an ``ns3::RandomWalk2dMobilityModel``.  So
+	either click on the class name in the "All TraceSources" list, or find
+	``ns3::RandomWalk2dMobilityModel`` in the "Class List".  Either way 
+	you should now be looking at the "ns3::RandomWalk2dMobilityModel Class
+	Reference" page.
+
+Ας υποθέσουμε ότι έχετε βρει μόνο το "CourseChange" πηγή ίχνος στο «Όλα TraceSources" λίστα και θέλετε να καταλάβω πώς να συνδεθείτε σε αυτό. Ξέρετε ότι χρησιμοποιείτε (και πάλι, από το `` third.cc`` παράδειγμα) ένα `` NS3 :: RandomWalk2dMobilityModel``. Έτσι, είτε να κάνετε κλικ στο όνομα της κατηγορίας στο "Όλα TraceSources" λίστα, ή να βρείτε `` NS3 :: RandomWalk2dMobilityModel`` στην «Κατηγορία List". Είτε έτσι είτε αλλιώς θα πρέπει τώρα να εξετάσουμε τη σελίδα "NS3 :: RandomWalk2dMobilityModel κατηγορία αναφοράς".
+
+..
+	If you now scroll down to the "Detailed Description" section, after
+	the summary list of class methods and attributes (or just click on the
+	"More..." link at the end of the class brief description at the top of
+	the page) you will see the overall documentation for the class.
+	Continuing to scroll down, find the "Config Paths" list:
+
+Αν τώρα μετακινηθείτε προς τα κάτω στην ενότητα "Λεπτομερής Περιγραφή", μετά από τον ενοποιημένο κατάλογο των μεθόδων τάξη και τα χαρακτηριστικά (ή απλά κάντε κλικ στο "Περισσότερα ..." σύνδεσμο στο τέλος της τάξης σύντομη περιγραφή στο πάνω μέρος της σελίδας) θα δείτε τη συνολική τεκμηρίωση για την τάξη. Συνεχίζοντας να μετακινηθείτε προς τα κάτω, βρείτε το "Config Μονοπάτια" λίστα:
 
   **Config Paths**
 
@@ -1150,23 +1337,33 @@ Continuing to scroll down, find the "Config Paths" list:
 
   * "/NodeList/[i]/$ns3::MobilityModel/$ns3::RandomWalk2dMobilityModel"
 
-The documentation tells you how to get to the
-``RandomWalk2dMobilityModel`` Object.  Compare the string above with
-the string we actually used in the example code::
+..
+	The documentation tells you how to get to the
+	``RandomWalk2dMobilityModel`` Object.  Compare the string above with
+	the string we actually used in the example code
+	
+Η τεκμηρίωση σας λέει πώς να φτάσετε στο `` RandomWalk2dMobilityModel`` αντικειμένου. Συγκρίνετε το κορδόνι πάνω από το κορδόνι που πράγματι χρησιμοποιήθηκαν στο παράδειγμα κώδικα ::
+::
 
   "/NodeList/7/$ns3::MobilityModel"
 
-The difference is due to the fact that two ``GetObject`` calls are
-implied in the string found in the documentation.  The first, for
-``$ns3::MobilityModel`` will query the aggregation for the base class.
-The second implied ``GetObject`` call, for
-``$ns3::RandomWalk2dMobilityModel``, is used to cast the base class to
-the concrete implementation class.  The documentation shows both of
-these operations for you.  It turns out that the actual trace source
-you are looking for is found in the base class.
+..
+	The difference is due to the fact that two ``GetObject`` calls are
+	implied in the string found in the documentation.  The first, for
+	``$ns3::MobilityModel`` will query the aggregation for the base class.
+	The second implied ``GetObject`` call, for
+	``$ns3::RandomWalk2dMobilityModel``, is used to cast the base class to
+	the concrete implementation class.  The documentation shows both of
+	these operations for you.  It turns out that the actual trace source
+	you are looking for is found in the base class.
 
-Look further down in the "Detailed Description" section for the list
-of trace sources.  You will find
+Η διαφορά αυτή οφείλεται στο γεγονός ότι οι δύο `` GetObject`` κλήσεις υπονοείται στη σειρά που βρίσκονται στο φάκελο. Το πρώτο, για `` $ NS3 :: MobilityModel`` θα ζητήσει τη συσσωμάτωση για την κλάση βάσης. Η δεύτερη σιωπηρή `` GetObject`` κλήση, για `` $ NS3 :: RandomWalk2dMobilityModel``, χρησιμοποιείται για να ρίχνει την κλάση βάσης για την συγκεκριμένη κατηγορία εφαρμογής. Η τεκμηρίωση δείχνει τις δύο αυτές λειτουργίες για εσάς. Αποδεικνύεται ότι η πραγματική πηγή ίχνος που ψάχνετε βρίσκεται στην βασική κλάση.
+
+..
+	Look further down in the "Detailed Description" section for the list
+	of trace sources.  You will find
+
+Δείτε πιο κάτω στην ενότητα "Λεπτομερής Περιγραφή" για τη λίστα των πηγών ίχνος. Θα βρείτε
 
   No TraceSources are defined for this type.
   
@@ -1177,37 +1374,55 @@ of trace sources.  You will find
 
     Callback signature: ``ns3::MobilityModel::CourseChangeCallback``
 
-This is exactly what you need to know.  The trace source of interest
-is found in ``ns3::MobilityModel`` (which you knew anyway).  The
-interesting thing this bit of API Documentation tells you is that you
-don't need that extra cast in the config path above to get to the
-concrete class, since the trace source is actually in the base class.
-Therefore the additional ``GetObject`` is not required and you simply
-use the path::
+..
+	This is exactly what you need to know.  The trace source of interest
+	is found in ``ns3::MobilityModel`` (which you knew anyway).  The
+	interesting thing this bit of API Documentation tells you is that you
+	don't need that extra cast in the config path above to get to the
+	concrete class, since the trace source is actually in the base class.
+	Therefore the additional ``GetObject`` is not required and you simply
+	use the path
+	
+Αυτό είναι ακριβώς ό, τι χρειάζεται να ξέρετε. Η πηγή ίχνος του ενδιαφέροντος βρίσκεται σε `` NS3 :: MobilityModel`` (που ξέρατε ούτως ή άλλως). Το ενδιαφέρον πράγμα αυτό το κομμάτι του API τεκμηρίωση που λέει είναι ότι δεν χρειάζονται επιπλέον ότι πετάχτηκε στο δρόμο config παραπάνω για να φτάσουμε στην συγκεκριμένη κατηγορία, δεδομένου ότι η πηγή ίχνος είναι στην πραγματικότητα στην κατηγορία βάσης. Ως εκ τούτου, η πρόσθετη `` GetObject`` δεν απαιτείται και μπορείτε απλά να χρησιμοποιήσετε τη διαδρομή
+::
 
   "/NodeList/[i]/$ns3::MobilityModel"
 
-which perfectly matches the example path::
+..
+	which perfectly matches the example path
+
+που ταιριάζει απόλυτα με το παράδειγμα διαδρομή
+::
 
   "/NodeList/7/$ns3::MobilityModel"
 
-As an aside, another way to find the Config path is to ``grep`` around in
-the |ns3| codebase for someone who has already figured it out.  You
-should always try to copy someone else's working code before you start
-to write your own.  Try something like:
+..
+	As an aside, another way to find the Config path is to ``grep`` around in
+	the |ns3| codebase for someone who has already figured it out.  You
+	should always try to copy someone else's working code before you start
+	to write your own.  Try something like:
+
+Παρεμπιπτόντως, ένας άλλος τρόπος για να βρείτε το δρόμο Config είναι να `` grep`` γύρω στο | NS3 | codebase για κάποιον που έχει ήδη καταλάβει. Πρέπει πάντα να προσπαθείτε να αντιγράψετε τον κώδικα κάποιου άλλου εργασίας πριν ξεκινήσετε να γράφετε τα δικά σας. Δοκιμάστε κάτι σαν:
 
 .. sourcecode:: bash
 
   $ find . -name '*.cc' | xargs grep CourseChange | grep Connect
 
-and you may find your answer along with working code.  For example, in
-this case, ``src/mobility/examples/main-random-topology.cc`` has
-something just waiting for you to use::
+..
+	and you may find your answer along with working code.  For example, in
+	this case, ``src/mobility/examples/main-random-topology.cc`` has
+	something just waiting for you to use
+
+και μπορείτε να βρείτε την απάντηση σας, μαζί με τον κωδικό εργασίας. Για παράδειγμα, στην περίπτωση αυτή, `` src / κινητικότητα / παραδείγματα / κύρια-τυχαία-topology.cc`` έχει κάτι σας περιμένουν για να χρησιμοποιήσετε 
+::
 
   Config::Connect ("/NodeList/*/$ns3::MobilityModel/CourseChange", 
     MakeCallback (&CourseChange));
 
-We'll return to this example in a moment.    
+..
+	We'll return to this example in a moment.    
+
+Θα επανέλθω σε αυτό το παράδειγμα σε μια στιγμή.
       
 Callback Signatures
 +++++++++++++++++++
