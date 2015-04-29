@@ -1868,21 +1868,29 @@ API σελίδα τεκμηρίωσης.
 ..
 	We are trying to figure out what the
 
-Προσπαθούμε να υπολογίσουμε το
+Προσπαθούμε να καταλάβουμε τι
 ::
 
     Callback<void, Ptr<const MobilityModel> > cb;
 
-declaration means.  Now we are in a position to understand that the
-first (non-optional) template argument, ``void``, represents the
-return type of the Callback.  The second (optional) template argument,
-``Ptr<const MobilityModel>`` represents the type of the first argument
-to the callback.
+..
+	declaration means.  Now we are in a position to understand that the
+	first (non-optional) template argument, ``void``, represents the
+	return type of the Callback.  The second (optional) template argument,
+	``Ptr<const MobilityModel>`` represents the type of the first argument
+	to the callback.
 
-The Callback in question is your function to receive the trace events.
-From this you can infer that you need a function that returns ``void``
-and takes a ``Ptr<const MobilityModel>``.  For example,
+σημαίνει η δήλωση. Τώρα είμαστε σε θέση να καταλάβουμε ότι το πρώτο (μη προαιρετικό) πρότυπο όρισμα , ``void``, 
+αντιπροσωπεύει τον τύπο επιστροφής της Επανάκλησης. Το δεύτερο (προαιρετικά) πρότυπο όρισμα, ``Ptr<const MobilityModel>`` 
+αντιπροσωπεύει τον τύπο του πρώτου ορίσματος επανάκλησης.
 
+..
+	The Callback in question is your function to receive the trace events.
+	From this you can infer that you need a function that returns ``void``
+	and takes a ``Ptr<const MobilityModel>``.  For example,
+
+Η Επανάκληση σε ερώτηση είναι η συνάρτησή σας για να λαμβάνετε τα γεγονότα ίχνους. Από αυτό μπορείτε να συμπεράνετε ότι 
+χρειάζεστε μια συνάρτηση που επιστρέφει ``void`` και παίρνει ένα ``Ptr<const MobilityModel>``. Για παράδειγμα,
 ::
 
   void
@@ -1891,10 +1899,16 @@ and takes a ``Ptr<const MobilityModel>``.  For example,
     ...
   }
 
-That's all you need if you want to ``Config::ConnectWithoutContext``.
-If you want a context, you need to ``Config::Connect`` and use a
-Callback function that takes a string context.  This is because the
-``Connect`` function will provide the context for you.  You'll need::
+..
+	That's all you need if you want to ``Config::ConnectWithoutContext``.
+	If you want a context, you need to ``Config::Connect`` and use a
+	Callback function that takes a string context.  This is because the
+	``Connect`` function will provide the context for you.  You'll need
+
+Αυτό είναι το μόνο που χρειάζεστε, αν θέλετε να ``Config::ConnectWithoutContext``. Αν θέλετε ένα πλαίσιο, θα πρέπει να 
+``Config::Connect`` και να χρησιμοποιήσετε μια συνάρτηση Επανάκλησης που παίρνει ένα περιβάλλον συμβολοσειράς. Αυτό 
+οφείλεται στο γεγονός ότι η συνάρτηση ``Connect`` θα παρέχει το περιεχόμενο για εσάς. Θα χρειαστείτε
+::
 
   void
   CourseChangeCallback (std::string context, Ptr<const MobilityModel> model)
@@ -1902,9 +1916,14 @@ Callback function that takes a string context.  This is because the
     ...
   }
 
-If you want to ensure that your ``CourseChangeCallback`` is only
-visible in your local file, you can add the keyword ``static`` and
-come up with::
+..
+	If you want to ensure that your ``CourseChangeCallback`` is only
+	visible in your local file, you can add the keyword ``static`` and
+	come up with
+
+Αν θέλετε να διασφαλίσετε ότι το ``CourseChangeCallback`` είναι ορατό μόνο σε τοπικό αρχείο σας, μπορείτε να προσθέσετε τη 
+λέξη-κλειδί ``static`` και να καταλήξετε σε
+::
 
   static void
   CourseChangeCallback (std::string path, Ptr<const MobilityModel> model)
@@ -1912,29 +1931,52 @@ come up with::
     ...
   }
 
-which is exactly what we used in the ``third.cc`` example.  Perhaps
-you should now go back and reread the previous section (Take My Word
-for It).
+..
+	which is exactly what we used in the ``third.cc`` example.  Perhaps
+	you should now go back and reread the previous section (Take My Word
+	for It).
 
-If you are interested in more details regarding the implementation of
-Callbacks, feel free to take a look at the |ns3| manual.  They are one
-of the most frequently used constructs in the low-level parts of
-|ns3|.  It is, in my opinion, a quite elegant thing.
+το οποίο είναι ακριβώς αυτό που χρησιμοποιήσαμε στο παράδειγμα ``third.cc``. Ίσως θα πρέπει να πάτε πίσω και να 
+διαβάσετε πάλι την προηγούμενη ενότητα.
+
+..
+	If you are interested in more details regarding the implementation of
+	Callbacks, feel free to take a look at the |ns3| manual.  They are one
+	of the most frequently used constructs in the low-level parts of
+	|ns3|.  It is, in my opinion, a quite elegant thing.
+
+Εάν ενδιαφέρεστε για περισσότερες λεπτομέρειες σχετικά με την εφαρμογή των Επανακλήσεων, μη διστάσετε να ρίξετε μια ματιά 
+στο manual του |ns3 |. Αποτελούν ένα από τα πιο συχνά χρησιμοποιούμενα κατασκευάσματα στα τμήματα χαμηλού επιπέδου του 
+|ns3|. Είναι, κατά τη γνώμη μου, ένα πολύ κομψό πράγμα.
+
+..
+	TracedValues
 
 TracedValues
 ++++++++++++
 
-Earlier in this section, we presented a simple piece of code that used
-a ``TracedValue<int32_t>`` to demonstrate the basics of the tracing
-code.  We just glossed over the what a TracedValue really is and how
-to find the return type and formal arguments for the callback.
+..
+	Earlier in this section, we presented a simple piece of code that used
+	a ``TracedValue<int32_t>`` to demonstrate the basics of the tracing
+	code.  We just glossed over the what a TracedValue really is and how
+	to find the return type and formal arguments for the callback.
 
-As we mentioned, the file, ``traced-value.h`` brings in the required
-declarations for tracing of data that obeys value semantics.  In
-general, value semantics just means that you can pass the object
-itself around, rather than passing the address of the object.  We
-extend that requirement to include the full set of assignment-style
-operators that are pre-defined for plain-old-data (POD) types:
+Νωρίτερα σε αυτή την ενότητα, παρουσιάσαμε ένα απλό κομμάτι του κώδικα που χρησιμοποιείται στο ``TracedValue<int32_t>`` να 
+αποδείξει τα βασικά στοιχεία του κώδικα ανίχνευσης. Εμείς απλά προσπαθήσαμε να καταλάβουμε το τι είναι πραγματικά η TracedValue 
+και πώς να βρείτε τον τύπο επιστροφής και τα επίσημα ορίσματα για την επανάκληση.
+
+..
+	As we mentioned, the file, ``traced-value.h`` brings in the required
+	declarations for tracing of data that obeys value semantics.  In
+	general, value semantics just means that you can pass the object
+	itself around, rather than passing the address of the object.  We
+	extend that requirement to include the full set of assignment-style
+	operators that are pre-defined for plain-old-data (POD) types:
+
+Όπως αναφέραμε, το αρχείο, ``traced-value.h`` φέρνει στις απαιτούμενες δηλώσεις για τον εντοπισμό των δεδομένων που υπακούει 
+στη σημασιολογική αξία. Σε γενικές γραμμές, η σημασιολογική αξία απλά σημαίνει ότι μπορείτε να περάσετε το ίδιο το αντικείμενο 
+γύρω του, αντί να περάσεις την διεύθυνση του αντικειμένου. Επεκτείνουμε την απαίτηση να συμπεριλάβουμε το σύνολο των φορέων 
+ανάθεσης-στιλ που είναι προκαθορισμένα σε plain-old-data (POD) τύπους:
 
   +---------------------+---------------------+
   | ``operator=`` (assignment)                |
@@ -1954,78 +1996,131 @@ operators that are pre-defined for plain-old-data (POD) types:
   | ``operator%=``      | ``operator^=``      |
   +---------------------+---------------------+
 
-What this all really means is that you will be able to trace all
-changes made using those operators to a C++ object which has value
-semantics.
+..
+	What this all really means is that you will be able to trace all
+	changes made using those operators to a C++ object which has value
+	semantics.
 
-The ``TracedValue<>`` declaration we saw above provides the
-infrastructure that overloads the operators mentioned above and drives
-the callback process.  On use of any of the operators above with a
-``TracedValue`` it will provide both the old and the new value of that
-variable, in this case an ``int32_t`` value.  By inspection of the
-``TracedValue`` declaration, we know the trace sink function will have
-arguments ``(const int32_t oldValue, const int32_t newValue)``.  The
-return type for a ``TracedValue`` callback function is always
-``void``, so the expected callback signature will be::
+Αυτό σημαίνει πραγματικά ότι θα είστε σε θέση να εντοπίζετε όλες τις αλλαγές που γίνονται με τη χρήση των εν λόγω φορέων σε 
+αντικείμενο C++ που έχει σημασιολογική αξία.
+
+..
+	The ``TracedValue<>`` declaration we saw above provides the
+	infrastructure that overloads the operators mentioned above and drives
+	the callback process.  On use of any of the operators above with a
+	``TracedValue`` it will provide both the old and the new value of that
+	variable, in this case an ``int32_t`` value.  By inspection of the
+	``TracedValue`` declaration, we know the trace sink function will have
+	arguments ``(const int32_t oldValue, const int32_t newValue)``.  The
+	return type for a ``TracedValue`` callback function is always
+	``void``, so the expected callback signature will be
+
+Η δήλωση ``TracedValue<>`` που είδαμε παραπάνω παρέχει την υποδομή που επιβαρύνει τους φορείς που αναφέρονται ανωτέρω και 
+κινεί τη διαδικασία επανάκλησης. Σχετικά με τη χρήση οποιουδήποτε από τα παραπάνω φορέων με ένα ``TracedValue`` θα παρέχει 
+τόσο την παλιά όσο και τη νέα τιμή της μεταβλητής, σε αυτή την περίπτωση μία αξία ``int32_t``. Με την επιθεώρηση της δήλωσης 
+``TracedValue``, γνωρίζουμε ότι η συνάρτηση της καταβόθρας ίχνους θα έχει ορίσματα ``(const int32_t oldValue, const int32_t newValue)``. 
+Ο τύπος επιστροφής για μία συνάρτηση Επανάκλησης ``TracedValue`` είναι πάντα ``void``, έτσι ώστε το αναμενόμενο στίγμα Επανάκλησης θα είναι
+::
 
   void (* TracedValueCallback)(const int32_t oldValue, const int32_t newValue);
 
-The ``.AddTraceSource`` in the ``GetTypeId`` method provides the
-"hooks" used for connecting the trace source to the outside world
-through the Config system.  We already discussed the first three
-agruments to ``AddTraceSource``: the Attribute name for the Config
-system, a help string, and the address of the TracedValue class data
-member.
+..
+	The ``.AddTraceSource`` in the ``GetTypeId`` method provides the
+	"hooks" used for connecting the trace source to the outside world
+	through the Config system.  We already discussed the first three
+	agruments to ``AddTraceSource``: the Attribute name for the Config
+	system, a help string, and the address of the TracedValue class data
+	member.
 
-The final string argument, "ns3::Traced::Value::Int32" in the example,
-is the name of a ``typedef`` for the callback function signature.  We
-require these signatures to be defined, and give the fully qualified
-type name to ``AddTraceSource``, so the API documentation can link a
-trace source to the function signature.  For TracedValue the signature
-is straightforward; for TracedCallbacks we've already seen the API
-docs really help.
+Το ``.AddTraceSource`` στη μέθοδο ``GetTypeId`` παρέχει το "αγκίστρι" που χρησιμοποιείται για τη σύνδεση της πηγής ίχνους με 
+τον έξω κόσμο μέσω του συστήματος Config. Έχουμε ήδη συζητήσει τα τρία πρώτα ορίσματα στο ``AddTraceSource``: το όνομα του 
+Χαρακτηριστικού για το σύστημα Config, μια συμβολοσειρά βοήθεια, και τη διεύθυνση του μέλους κλάσης δεδομένων TracedValue.
 
-Real Example
-************
+..
+	The final string argument, "ns3::Traced::Value::Int32" in the example,
+	is the name of a ``typedef`` for the callback function signature.  We
+	require these signatures to be defined, and give the fully qualified
+	type name to ``AddTraceSource``, so the API documentation can link a
+	trace source to the function signature.  For TracedValue the signature
+	is straightforward; for TracedCallbacks we've already seen the API
+	docs really help.
 
-Let's do an example taken from one of the best-known books on TCP
-around.  "TCP/IP Illustrated, Volume 1: The Protocols," by W. Richard
-Stevens is a classic.  I just flipped the book open and ran across a
-nice plot of both the congestion window and sequence numbers versus
-time on page 366.  Stevens calls this, "Figure 21.10. Value of cwnd
-and send sequence number while data is being transmitted."  Let's just
-recreate the cwnd part of that plot in |ns3| using the tracing system
-and ``gnuplot``.
+Το τελευταίο όρισμα συμβολοσειρών, στο παράδειγμα "ns3::Traced::Value::Int32", είναι το όνομα ενός ``typedef`` για το 
+στίγμα της συνάρτησης επανάκλησης. Χρειαζόμαστε αυτές τις υπογραφές-στίγματα που θα καθοριστούν, και να δώσουμε το πλήρως 
+αναγνωρισμένο όνομα τύπου στο ``AddTraceSource``, έτσι ώστε η τεκμηρίωση API μπορεί να συνδέσει μια πηγή ίχνους στο 
+στίγμα της συνάρτησης. Για το στίγμα TracedValue είναι απλό, για TracedCallbacks έχουμε ήδη δει τα API Έγγραφα που πραγματικά 
+βοηθούν.
 
-Available Sources
-+++++++++++++++++
+..
+	Real Example
 
-The first thing to think about is how we want to get the data out.
-What is it that we need to trace?  So let's consult "All Trace
-Sources" list to see what we have to work with.  Recall that this is
-found in the |ns3| API Documentation.  If you scroll through the list,
-you will eventually find:
+Πραγματικό Παράδειγμα
+*********************
+
+..
+	Let's do an example taken from one of the best-known books on TCP
+	around.  "TCP/IP Illustrated, Volume 1: The Protocols," by W. Richard
+	Stevens is a classic.  I just flipped the book open and ran across a
+	nice plot of both the congestion window and sequence numbers versus
+	time on page 366.  Stevens calls this, "Figure 21.10. Value of cwnd
+	and send sequence number while data is being transmitted."  Let's just
+	recreate the cwnd part of that plot in |ns3| using the tracing system
+	and ``gnuplot``.
+
+Ας κάνουμε ένα παράδειγμα από ένα βιβλίο, από τα πιο γνωστά βιβλία σχετικά με το πρωτόκολλο TCP γύρω. Είναι ένα κλασικό βιβλίο 
+"TCP/IP Illustrated, Volume 1: The Protocols," από τον W. Richard Stevens. Απλά άφησα το βιβλίο ανοιχτό και έτρεξα ένα 
+ωραίο σύνολο αριθμών τόσο το παράθυρο συμφόρησης όσο και τη σειρά συναρτήσει του χρόνου στη σελίδα 366. Ο Stevens το αποκαλεί 
+αυτό "Figure 21.10. Value of cwnd and send sequence number while data is being transmitted." Ας δημιουργήσουμε πάλι το μέρος 
+cwnd αυτού του συνόλου σε |ns3| με τη χρήση του συστήματος εντοπισμού και ``gnuplot``.
+
+..
+	Available Sources
+
+Διαθέσιμες Πηγές
+++++++++++++++++
+
+..
+	The first thing to think about is how we want to get the data out.
+	What is it that we need to trace?  So let's consult "All Trace
+	Sources" list to see what we have to work with.  Recall that this is
+	found in the |ns3| API Documentation.  If you scroll through the list,
+	you will eventually find:
+
+Το πρώτο πράγμα που πρέπει να σκεφτούμε είναι το πώς θέλουμε να βγάλουμε τα στοιχεία έξω. Τι είναι αυτό που χρειαζόμαστε 
+να εντοπίσουμε; Ας συμβουλευτούμε τη λίστα "All Trace Sources" για να δούμε με τι θα εργαστούμε. Θυμηθείτε ότι αυτό 
+βρίσκεται στο |ns3| API Documentation. Αν μετακινηθείτε μέσα στη λίστα, θα βρείτε τελικά:
 
   **ns3::TcpNewReno**
 
   * **CongestionWindow**: The TCP connection's congestion window
   * **SlowStartThreshold**: TCP slow start threshold (bytes)
 
-It turns out that the |ns3| TCP implementation lives (mostly) in the
-file ``src/internet/model/tcp-socket-base.cc`` while congestion
-control variants are in files such as
-``src/internet/model/tcp-newreno.cc``.  If you don't know this *a
-priori*, you can use the recursive ``grep`` trick:
+..
+	It turns out that the |ns3| TCP implementation lives (mostly) in the
+	file ``src/internet/model/tcp-socket-base.cc`` while congestion
+	control variants are in files such as
+	``src/internet/model/tcp-newreno.cc``.  If you don't know this *a
+	priori*, you can use the recursive ``grep`` trick:
+
+Αποδεικνύεται ότι η |ns3| TCP implementation υπάρχει (κυρίως) στο αρχείο ``src/internet/model/tcp-socket-base.cc`` ενώ 
+οι παραλλαγές ελέγχου συμφόρησης στα αρχεία, όπως ``src/internet/model/tcp-newreno.cc``. Αν δεν γνωρίζετε αυτό το *a priori*, 
+μπορείτε να χρησιμοποιήσετε το αναδρομικό ``grep`` τέχνασμα:
 
 .. sourcecode:: bash
 
   $ find . -name '*.cc' | xargs grep -i tcp
 
-You will find page after page of instances of tcp pointing you to that
-file.
+..
+	You will find page after page of instances of tcp pointing you to that
+	file.
 
-Bringing up the class documentation for ``TcpNewReno`` and skipping to
-the list of TraceSources you will find
+Θα βρείτε τη σελίδα μετά τη σελίδα των περιεχομένων του TCP που δείχνουν προς αυτό το αρχείο.
+
+..
+	Bringing up the class documentation for ``TcpNewReno`` and skipping to
+	the list of TraceSources you will find
+
+Φέρνοντας την τεκμηρίωση της κλάσης για ``TcpNewReno`` και παρακάμπτοντας τη λίστα των TraceSources θα βρείτε
 
   **TraceSources**
 
@@ -2033,59 +2128,85 @@ the list of TraceSources you will find
 
     Callback signature:  **ns3::Traced::Value::Uint322Callback**
 
-Clicking on the callback ``typedef`` link we see the signature
-you now know to expect::
+..
+	Clicking on the callback ``typedef`` link we see the signature
+	you now know to expect
+
+Κάνοντας κλικ στο σύνδεσμο επανάκλησης ``typedef`` βλέπουμε την υπογραφή και ξέρουμε τώρα να περιμένουμε
+::
 
     typedef void(* ns3::Traced::Value::Int32Callback)(const int32_t oldValue, const int32_t newValue)
 
-You should now understand this code completely.  If we have a pointer
-to the ``TcpNewReno``, we can ``TraceConnect`` to the
-"CongestionWindow" trace source if we provide an appropriate callback
-target.  This is the same kind of trace source that we saw in the
-simple example at the start of this section, except that we are
-talking about ``uint32_t`` instead of ``int32_t``.  And we know
-that we have to provide a callback function with that signature.
+..
+	You should now understand this code completely.  If we have a pointer
+	to the ``TcpNewReno``, we can ``TraceConnect`` to the
+	"CongestionWindow" trace source if we provide an appropriate callback
+	target.  This is the same kind of trace source that we saw in the
+	simple example at the start of this section, except that we are
+	talking about ``uint32_t`` instead of ``int32_t``.  And we know
+	that we have to provide a callback function with that signature.
 
-Finding Examples
-++++++++++++++++
+Θα πρέπει να καταλάβετε τώρα αυτόν τον κώδικα εντελώς. Αν έχουμε ένα δείκτη προς το ``TcpNewReno``, μπορούμε να
+``TraceConnect`` στη πηγή ίχνους "CongestionWindow" αν παρέχουμε τον κατάλληλο στόχο επανάκλησης. Αυτό είναι το ίδιο είδος 
+της πηγής ίχνους που είδαμε στο απλό παράδειγμα κατά την έναρξη του παρόντος τμήματος, εκτός από το ότι μιλάμε για 
+``uint32_t`` αντί ``int32_t``. Και ξέρουμε ότι πρέπει να παρέχουμε μια συνάρτηση επανάκλησης με αυτή την υπογραφή.
 
-It's always best to try and find working code laying around that you
-can modify, rather than starting from scratch.  So the first order of
-business now is to find some code that already hooks the
-"CongestionWindow" trace source and see if we can modify it.  As
-usual, ``grep`` is your friend:
+..
+	Finding Examples
+
+Βρίσκοντας Παραδείγματα
++++++++++++++++++++++++
+
+..
+	It's always best to try and find working code laying around that you
+	can modify, rather than starting from scratch.  So the first order of
+	business now is to find some code that already hooks the
+	"CongestionWindow" trace source and see if we can modify it.  As
+	usual, ``grep`` is your friend:
+
+Είναι πάντα καλύτερο να προσπαθήσουμε να βρούμε τον κώδικα που δουλεύει, και μπορείτε να τροποποιήσετε, αντί να αρχίσετε από 
+το μηδέν. Έτσι, η πρώτη σειρά των εργασιών είναι τώρα να βρει κάποιο κωδικό που ενώνεται ήδη το "CongestionWindow" πηγή ίχνος και να δούμε αν μπορούμε να το τροποποιήσετε. Ως συνήθως, `` grep`` είναι ο φίλος σας:
 
 .. sourcecode:: bash
 
   $ find . -name '*.cc' | xargs grep CongestionWindow
 
-This will point out a couple of promising candidates: 
-``examples/tcp/tcp-large-transfer.cc`` and 
-``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc``.
+..
+	This will point out a couple of promising candidates: 
+	``examples/tcp/tcp-large-transfer.cc`` and 
+	``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc``.
 
-We haven't visited any of the test code yet, so let's take a look
-there.  You will typically find that test code is fairly minimal, so
-this is probably a very good bet.  Open
-``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc`` in your favorite editor
-and search for "CongestionWindow".  You will find,
+Αυτό θα επισημάνω μερικά ελπιδοφόρα υποψήφιοι: `` παραδείγματα / TCP / tcp-μεγάλες-transfer.cc`` και `` src / test / ns3tcp / ns3tcp-cwnd-test-suite.cc``.
+
+..
+	We haven't visited any of the test code yet, so let's take a look
+	there.  You will typically find that test code is fairly minimal, so
+	this is probably a very good bet.  Open
+	``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc`` in your favorite editor
+	and search for "CongestionWindow".  You will find,
+
+Δεν έχουν επισκεφθεί κάποιο από τα κώδικα δοκιμής ακόμα, οπότε ας ρίξουμε μια ματιά εκεί. Θα βρείτε συνήθως ότι ο κώδικας της δοκιμής είναι αρκετά χαμηλές, έτσι αυτό είναι ίσως ένα πολύ καλό στοίχημα. Ανοίξτε `` src / test / ns3tcp / ns3tcp-cwnd-test-suite.cc`` στο αγαπημένο σας επεξεργαστή και την αναζήτηση για "CongestionWindow". Θα βρείτε,
 
 ::
 
   ns3TcpSocket->TraceConnectWithoutContext ("CongestionWindow", 
     MakeCallback (&Ns3TcpCwndTestCase1::CwndChange, this));
 
-This should look very familiar to you.  We mentioned above that if we
-had a pointer to the ``TcpNewReno``, we could ``TraceConnect`` to the
-"CongestionWindow" trace source.  That's exactly what we have here; so
-it turns out that this line of code does exactly what we want.  Let's
-go ahead and extract the code we need from this function
-(``Ns3TcpCwndTestCase1::DoRun (void)``).  If you look at this
-function, you will find that it looks just like an |ns3| script.  It
-turns out that is exactly what it is.  It is a script run by the test
-framework, so we can just pull it out and wrap it in ``main`` instead
-of in ``DoRun``.  Rather than walk through this, step, by step, we
-have provided the file that results from porting this test back to a
-native |ns3| script -- ``examples/tutorial/fifth.cc``.
+..
+	This should look very familiar to you.  We mentioned above that if we
+	had a pointer to the ``TcpNewReno``, we could ``TraceConnect`` to the
+	"CongestionWindow" trace source.  That's exactly what we have here; so
+	it turns out that this line of code does exactly what we want.  Let's
+	go ahead and extract the code we need from this function
+	(``Ns3TcpCwndTestCase1::DoRun (void)``).  If you look at this
+	function, you will find that it looks just like an |ns3| script.  It
+	turns out that is exactly what it is.  It is a script run by the test
+	framework, so we can just pull it out and wrap it in ``main`` instead
+	of in ``DoRun``.  Rather than walk through this, step, by step, we
+	have provided the file that results from porting this test back to a
+	native |ns3| script -- ``examples/tutorial/fifth.cc``.
+
+Αυτό θα πρέπει να εξετάσουμε πολύ γνωστά σε σας. Μας αναφέρθηκε παραπάνω ότι αν είχαμε ένα δείκτη προς το `` TcpNewReno``, θα μπορούσαμε να `` TraceConnect`` στο "CongestionWindow" πηγή ίχνος. Αυτό είναι ακριβώς αυτό που έχουμε εδώ? Έτσι, αποδεικνύεται ότι αυτή η γραμμή του κώδικα κάνει ακριβώς αυτό που θέλουμε. Ας πάμε μπροστά και να εξάγουν τον κωδικό που χρειαζόμαστε από τη λειτουργία αυτή (`` Ns3TcpCwndTestCase1 :: DoRun (void) ``). Αν κοιτάξετε αυτή τη λειτουργία, θα διαπιστώσετε ότι μοιάζει ακριβώς όπως ένα | NS3 | σενάριο. Αποδεικνύεται ότι είναι ακριβώς αυτό που είναι. Πρόκειται για ένα σενάριο που εκτελείται από το πλαίσιο της δοκιμής, ώστε να μπορούμε να το τραβήξει ακριβώς έξω και τυλίξτε το σε `` main`` αντί για `` DoRun``. Αντί να περπατήσετε μέσα από αυτό, βήμα, βήμα, έχουμε την προϋπόθεση ότι το αρχείο που προκύπτει από porting αυτό το τεστ πίσω σε μια μητρική | NS3 | σενάριο - `` παραδείγματα / φροντιστήριο / fifth.cc``.
 
 Dynamic Trace Sources
 +++++++++++++++++++++
