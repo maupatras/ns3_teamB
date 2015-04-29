@@ -2643,7 +2643,8 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 	look at ``src/network/model/application.cc`` and you will find
 
 Ίσως γνωρίζετε ήδη ότι οι κλάσεις ``Device`` και ``Application`` κληρονομούν από την κλάση ``Object`` και 
-έτσι το επόμενο βήμα θα είναι να εξετάσουμε τι συμβαίνει όταν καλείται το ``Application::DoInitialize``. Ρίξτε μια ματιά σε `` src / δίκτυο / μοντέλο / application.cc`` και θα βρείτε
+έτσι το επόμενο βήμα θα είναι να εξετάσουμε τι συμβαίνει όταν καλείται το ``Application::DoInitialize``. Ρίξτε μια ματιά σε 
+``src/network/model/application.cc`` και θα βρείτε
 ::
 
   void
@@ -2681,20 +2682,39 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 	the ``Application``.  These calls are designed to start and stop the
 	flow of data from the ``Application``
 
-
-Εδώ, θα έρθει τελικά στο τέλος της διαδρομής. Αν έχετε κράτησε όλο ευθεία, όταν εφαρμόζετε ένα | NS3 | `` Application``, νέα εφαρμογή σας κληρονομεί από την κλάση `` Application``. Μπορείτε παρακάμψετε τις `StartApplication`` και` `` μεθόδους StopApplication`` και παρέχει μηχανισμούς για την εκκίνηση και τη διακοπή της ροής των δεδομένων από το νέο `` Application`` σας. Όταν ένας κόμβος δημιουργείται στην προσομοίωση, προστίθεται σε ένα παγκόσμιο `` NodeList``. Η πράξη της προσθήκης ενός κόμβου σε αυτό το `` NodeList`` προκαλεί μια εκδήλωση προσομοιωτή που έχει προγραμματιστεί για το χρόνο μηδέν το οποίο καλεί την `` μέθοδο Κόμβος :: Initialize`` του νέο κόμβο που θα καλείται όταν ξεκινά η προσομοίωση. Δεδομένου ότι ένας κόμβος κληρονομεί από `` Object``, αυτό απαιτεί το `` μέθοδο Αντικείμενο :: Initialize`` στον κόμβο που, με τη σειρά του, καλεί τις `` μεθόδους DoInitialize`` για όλα τα `` Objects`` συγκεντρώνονται σε Ο κόμβος (σκεφτείτε μοντέλα κινητικότητας). Από την Κόμβος `` Object`` έχει παρακαμφθεί `` DoInitialize``, η μέθοδος καλείται όταν ξεκινά η προσομοίωση. Το `` Κόμβος :: μέθοδο DoInitialize`` καλεί τα `` Initialize`` μεθόδους όλων των `` Applications`` στον κόμβο. Από `` Applications`` είναι επίσης `` Objects``, αυτό προκαλεί `` Εφαρμογή :: DoInitialize`` να ονομάζεται. Όταν `` Εφαρμογή :: DoInitialize`` ονομάζεται, θα χρονοδιαγράμματα εκδηλώσεις για το `` StartApplication`` και `` StopApplication`` καλεί την `` Application``. Αυτές οι κλήσεις έχουν σχεδιαστεί για να ξεκινήσει και να σταματήσει τη ροή των δεδομένων από τις `` Application``
+Εδώ,ερχόμαστε τελικά στο τέλος της διαδρομής. Αν το έχετε κρατήσει όλο "ευθεία", όταν εφαρμόζετε ένα |ns3| ``Application``, 
+η νέα εφαρμογή σας κληρονομεί από την κλάση ``Application``. Μπορείτε να παρακάμψετε τις μεθόδους ``StartApplication`` και 
+``StopApplication`` και παρέχει μηχανισμούς για την εκκίνηση και τη διακοπή της ροής των δεδομένων από το νέο ``Application`` σας. 
+Όταν ένας Κόμβος δημιουργείται στην προσομοίωση, προστίθεται σε ένα παγκόσμιο ``NodeList``. Η πράξη της προσθήκης ενός Κόμβου 
+σε αυτό το ``NodeList`` προκαλεί ένα γεγονώς του προσομοιωτή που έχει προγραμματιστεί για το χρόνο μηδέν το οποίο καλεί την 
+μέθοδο ``Node::Initialize`` από το νέο προστιθέμενο κόμβο που θα καλείται όταν ξεκινά η προσομοίωση. Δεδομένου ότι ο Κόμβος 
+κληρονομεί από ``Object``, αυτό καλεί τη μέθοδο ``Object::Initialize`` στον κόμβο που, με τη σειρά του, καλεί τις μεθόδους 
+``DoInitialize`` για όλα τα ``Objects`` που συγκεντρώνονται σε κόμβους (σκεφτείτε μοντέλα κινητικότητας). Δεδομένου ότι ο 
+Κόμβος ``Object`` έχει παρακαμφθεί το ``DoInitialize``, η μέθοδος καλείται όταν ξεκινά η προσομοίωση. Η μέθοδος ``Node::DoInitialize`` 
+καλεί τις μεθόδους ``Initialize`` όλων των ``Applications`` στον κόμβο. Δεδομένου ότι τα ``Applications`` είναι επίσης 
+``Objects``, αυτό προκαλεί να καλείται το ``Application::DoInitialize``. Όταν καλείται το ``Application::DoInitialize``, 
+προγραμματίζει τα γεγονότα για το ``StartApplication`` και το ``StopApplication`` καλεί την ``Application``. Αυτές οι 
+κλήσεις έχουν σχεδιαστεί για να ξεκινήσει και να σταματήσει τη ροή των δεδομένων από τις ``Application``
 
 .
 	This has been another fairly long journey, but it only has to be made
 	once, and you now understand another very deep piece of |ns3|.
 
-Αυτό ήταν ένα άλλο αρκετά μακρύ ταξίδι, αλλά έχει μόνο να γίνει μια φορά, και καταλαβαίνετε τώρα ένα άλλο πολύ βαθύ κομμάτι | NS3 |.
+Αυτό ήταν ένα άλλο αρκετά μακρύ ταξίδι, αλλά χρειάζεται να γίνει μια φορά, και καταλαβαίνετε τώρα ένα άλλο πολύ βαθύ 
+κομμάτι του |ns3|.
 
-The MyApp Application
-~~~~~~~~~~~~~~~~~~~~~
+..
+	The MyApp Application
 
-The ``MyApp`` ``Application`` needs a constructor and a destructor, of
-course::
+Η Εφαρμογή MyApp
+~~~~~~~~~~~~~~~~
+
+..
+	The ``MyApp`` ``Application`` needs a constructor and a destructor, of
+	course
+
+Το ``MyApp`` ``Application`` χρειάζεται έναν κατασκευαστή και καταστροφέα, φυσικά
+::
 
   MyApp::MyApp ()
     : m_socket (0),
@@ -2713,9 +2733,12 @@ course::
     m_socket = 0;
   }
 
-The existence of the next bit of code is the whole reason why we wrote
-this ``Application`` in the first place.
+..
+	The existence of the next bit of code is the whole reason why we wrote
+	this ``Application`` in the first place.
 
+Η ύπαρξη του επόμενου κομματιού του κώδικα είναι ολόκληρος λόγος για τον οποίο γράψαμε αυτό το 
+``Application`` στην πρώτη θέση.
 ::
 
   void
@@ -2729,14 +2752,19 @@ this ``Application`` in the first place.
     m_dataRate = dataRate;
   }
   
-This code should be pretty self-explanatory.  We are just initializing
-member variables.  The important one from the perspective of tracing
-is the ``Ptr<Socket> socket`` which we needed to provide to the
-application during configuration time.  Recall that we are going to
-create the ``Socket`` as a ``TcpSocket`` (which is implemented by
-``TcpNewReno``) and hook its "CongestionWindow" trace source before
-passing it to the ``Setup`` method.
+..
+	This code should be pretty self-explanatory.  We are just initializing
+	member variables.  The important one from the perspective of tracing
+	is the ``Ptr<Socket> socket`` which we needed to provide to the
+	application during configuration time.  Recall that we are going to
+	create the ``Socket`` as a ``TcpSocket`` (which is implemented by
+	``TcpNewReno``) and hook its "CongestionWindow" trace source before
+	passing it to the ``Setup`` method.
 
+Αυτός ο κώδικας θα πρέπει να είναι αρκετά αυτονόητος. Κάνουμε αρχικοποίηση μεταβλητών μέλους. Το σημαντικό από την άποψη 
+του εντοπισμού είναι η ``Ptr<Socket> socket`` που χρειαζόμασταν για να παρέχει στην εφαρμογή κατά τη διάρκεια της ρύθμισης. 
+Υπενθυμίζουμε ότι πρόκειται να δημιουργήσουμε το ``Socket`` ως ``TcpSocket`` (το οποίο υλοποιείται από το ``TcpNewReno``) 
+και πιάνεται απο την πηγή ίχνους του "CongestionWindow" πριν από τη διοχέτευση προς την μέθοδο ``Setup``.
 ::
 
   void
@@ -2749,23 +2777,34 @@ passing it to the ``Setup`` method.
     SendPacket ();
   }
 
-The above code is the overridden implementation
-``Application::StartApplication`` that will be automatically called by
-the simulator to start our ``Application`` running at the appropriate
-time.  You can see that it does a ``Socket`` ``Bind`` operation.  If
-you are familiar with Berkeley Sockets this shouldn't be a surprise.
-It performs the required work on the local side of the connection just
-as you might expect.  The following ``Connect`` will do what is
-required to establish a connection with the TCP at ``Address`` m_peer.
-It should now be clear why we need to defer a lot of this to
-simulation time, since the ``Connect`` is going to need a fully
-functioning network to complete.  After the ``Connect``, the
-``Application`` then starts creating simulation events by calling
-``SendPacket``.
+..
+	The above code is the overridden implementation
+	``Application::StartApplication`` that will be automatically called by
+	the simulator to start our ``Application`` running at the appropriate
+	time. You can see that it does a ``Socket`` ``Bind`` operation.  If
+	you are familiar with Berkeley Sockets this shouldn't be a surprise.
+	It performs the required work on the local side of the connection just
+	as you might expect.  The following ``Connect`` will do what is
+	required to establish a connection with the TCP at ``Address`` m_peer.
+	It should now be clear why we need to defer a lot of this to
+	simulation time, since the ``Connect`` is going to need a fully
+	functioning network to complete.  After the ``Connect``, the
+	``Application`` then starts creating simulation events by calling
+	``SendPacket``.
 
-The next bit of code explains to the ``Application`` how to stop
-creating simulation events.
+Ο παραπάνω κώδικας είναι ο προσπελάσιμος της εφαρμογή ``Application::StartApplication`` που θα κληθεί αυτόματα από τον 
+προσομοιωτή για να ξεκινήσει η ``Application`` να τρέχει την κατάλληλη στιγμή. Μπορείτε να δείτε ότι κάνει μία λειτουργία ``Socket`` 
+``Bind``. Εάν είστε εξοικειωμένοι με Berkeley Sockets αυτό δεν πρέπει να αποτελεί έκπληξη. Εκτελεί τις απαιτούμενες εργασίες 
+για την τοπική πλευρά της σύνδεσης ακριβώς όπως μπορείτε να φανταστείτε. Το ακόλουθο ``Connect`` θα κάνει ό,τι χρειάζεται 
+για να δημιουργήσει μια σύνδεση με το TCP σε ``Address`` m_peer. Θα πρέπει τώρα να είναι σαφές για ποιό λόγο θα πρέπει να 
+αναβάλει πολύ αυτό το χρόνο προσομοίωσης, αφού ο ``Connect`` θα χρειαστεί ένα πλήρως λειτουργικό δίκτυο για να ολοκληρωθεί. 
+Μετά τον ``Connect``, η ``Application`` ξεκινά στη συνέχεια τη δημιουργία γεγονότων προσομοίωσης καλώντας ``SendPacket``.
 
+..
+	The next bit of code explains to the ``Application`` how to stop
+	creating simulation events.
+
+Το επόμενο κομμάτι του κώδικα εξηγεί στο ``Application`` πώς να σταματήσουμε να δημιουργούμε γεγονότα προσομοίωσης.
 ::
 
   void
@@ -2784,22 +2823,36 @@ creating simulation events.
       }
   }
 
-Every time a simulation event is scheduled, an ``Event`` is created.
-If the ``Event`` is pending execution or executing, its method
-``IsRunning`` will return ``true``.  In this code, if ``IsRunning()``
-returns true, we ``Cancel`` the event which removes it from the
-simulator event queue.  By doing this, we break the chain of events
-that the ``Application`` is using to keep sending its ``Packets`` and
-the ``Application`` goes quiet.  After we quiet the ``Application`` we
-``Close`` the socket which tears down the TCP connection.
+..
+	Every time a simulation event is scheduled, an ``Event`` is created.
+	If the ``Event`` is pending execution or executing, its method
+	``IsRunning`` will return ``true``.  In this code, if ``IsRunning()``
+	returns true, we ``Cancel`` the event which removes it from the
+	simulator event queue.  By doing this, we break the chain of events
+	that the ``Application`` is using to keep sending its ``Packets`` and
+	the ``Application`` goes quiet.  After we quiet the ``Application`` we
+	``Close`` the socket which tears down the TCP connection.
 
-The socket is actually deleted in the destructor when the ``m_socket =
-0`` is executed.  This removes the last reference to the underlying
-Ptr<Socket> which causes the destructor of that Object to be called.
+Κάθε φορά που μια εκδήλωση προσομοίωσης έχει προγραμματιστεί, ένα ``Event`` δημιουργείται. Αν το ``Event`` εκκρεμεί η 
+εκτέλεσή του, η μέθοδος της ``IsRunning`` θα επιστρέψει ``true``. Σε αυτόν τον κώδικα, αν ``IsRunning()`` επιστρέφει true, 
+εμείς ``Cancel`` το γεγονός που αφαιρεί από την ουρά του προσομοιωτή εκδήλωσης. Με τον τρόπο αυτό, θα σπάσει την αλυσίδα 
+των γεγονότων που η ``Application`` χρησιμοποιεί για να κρατήσει την αποστολή ``Packets`` και η ``Application`` πηγαίνει 
+ήσυχη. Αφού ηρεμήσει η ``Application`` εμείς ``Close`` την υποδοχή που κατεδαφίζει τη σύνδεση TCP.
 
-Recall that ``StartApplication`` called ``SendPacket`` to start the
-chain of events that describes the ``Application`` behavior.
+..
+	The socket is actually deleted in the destructor when the ``m_socket =
+	0`` is executed.  This removes the last reference to the underlying
+	Ptr<Socket> which causes the destructor of that Object to be called.
 
+Η υποδοχή είναι στην πραγματικότητα διαγραμένη από τον καταστροφέα, όταν η ``m_socket = 0`` εκτελείται. Αυτό αφαιρεί την 
+τελευταία αναφορά στην υποκείμενη Ptr<Socket> που προκαλεί τον καταστροφέα του αντικειμένου που πρόκειται να κληθεί.
+
+..
+	Recall that ``StartApplication`` called ``SendPacket`` to start the
+	chain of events that describes the ``Application`` behavior.
+
+Υπενθυμίζουμε ότι ``StartApplication`` κάλεσε ``SendPacket`` για να ξεκινήσει η αλυσίδα των γεγονότων που περιγράφει τη συμπεριφορά 
+``Application``.
 ::
 
   void
@@ -2814,15 +2867,23 @@ chain of events that describes the ``Application`` behavior.
       }
   }
 
-Here, you see that ``SendPacket`` does just that.  It creates a
-``Packet`` and then does a ``Send`` which, if you know Berkeley
-Sockets, is probably just what you expected to see.
+..
+	Here, you see that ``SendPacket`` does just that.  It creates a
+	``Packet`` and then does a ``Send`` which, if you know Berkeley
+	Sockets, is probably just what you expected to see.
 
-It is the responsibility of the ``Application`` to keep scheduling the
-chain of events, so the next lines call ``ScheduleTx`` to schedule
-another transmit event (a ``SendPacket``) until the ``Application``
-decides it has sent enough.
+Εδώ, μπορείτε να δείτε ότι ``SendPacket`` κάνει ακριβώς αυτό. Δημιουργεί ένα ``Packet`` και στη συνέχεια κάνει ένα ``Send`` 
+η οποία, αν ξέρετε Berkeley Sockets, είναι πιθανώς ακριβώς αυτό που περιμένατε να δείτε.
 
+..
+	It is the responsibility of the ``Application`` to keep scheduling the
+	chain of events, so the next lines call ``ScheduleTx`` to schedule
+	another transmit event (a ``SendPacket``) until the ``Application``
+	decides it has sent enough.
+
+Είναι ευθύνη του ``Application`` να κρατήσει τον προγραμματισμό της αλυσίδας των γεγονότων, έτσι ώστε οι επόμενες γραμμές 
+καλούν τη ``ScheduleTx`` να προγραμματίσει μια άλλη περίπτωση μετάδοσης (μία ``SendPacket``) μέχρι το ``Application`` 
+αποφασίσει ότι έχει στείλει αρκετά.
 ::
 
   void
@@ -2835,14 +2896,23 @@ decides it has sent enough.
       }
   }
 
-Here, you see that ``ScheduleTx`` does exactly that.  If the
-``Application`` is running (if ``StopApplication`` has not been
-called) it will schedule a new event, which calls ``SendPacket``
-again.  The alert reader will spot something that also trips up new
-users.  The data rate of an ``Application`` is just that.  It has
-nothing to do with the data rate of an underlying ``Channel``.  This
-is the rate at which the ``Application`` produces bits.  It does not
-take into account any overhead for the various protocols or channels
-that it uses to transport the data.  If you set the data rate of an
-``Application`` to the same data rate as your underlying ``Channel``
-you will eventually get a buffer overflow.
+..
+	Here, you see that ``ScheduleTx`` does exactly that.  If the
+	``Application`` is running (if ``StopApplication`` has not been
+	called) it will schedule a new event, which calls ``SendPacket``
+	again.  The alert reader will spot something that also trips up new
+	users.  The data rate of an ``Application`` is just that.  It has
+	nothing to do with the data rate of an underlying ``Channel``.  This
+	is the rate at which the ``Application`` produces bits.  It does not
+	take into account any overhead for the various protocols or channels
+	that it uses to transport the data.  If you set the data rate of an
+	``Application`` to the same data rate as your underlying ``Channel``
+	you will eventually get a buffer overflow.
+
+Εδώ, μπορείτε να δείτε ότι το ``ScheduleTx`` κάνει ακριβώς αυτό. Εάν η ``Application`` τρέχει (αν το ``StopApplication`` δεν 
+έχει κληθεί) θα προγραμματίσετε μια νέα εκδήλωση, η οποία καλεί ``SendPacket`` ξανά. Ο αναγνώστης προειδοποίησης θα 
+εντοπίσει κάτι που σκοντάφτουν και νέοι χρήστες. Ο ρυθμός δεδομένων ενός ``Application`` είναι ακριβώς αυτός. Δεν έχει 
+τίποτε να κάνει με το ρυθμό δεδομένων ενός υποκείμενου ``Channel``. Αυτός είναι ο ρυθμός με τον οποίο η ``Application`` 
+παράγει κομμάτια(bits). Δεν λαμβάνει υπόψη οποιαδήποτε επιβάρυνση για τα διάφορα πρωτόκολλα ή τα κανάλια που χρησιμοποιεί 
+για τη μεταφορά των δεδομένων. Εάν ορίσετε το ρυθμό δεδομένων ενός ``Application`` στον ίδιο ρυθμό μετάδοσης δεδομένων ως 
+υποκείμενο ``Channel`` θα υπερχειλίσει η μνήμης σας.
