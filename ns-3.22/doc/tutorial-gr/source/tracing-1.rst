@@ -2696,7 +2696,7 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 προγραμματίζει τα γεγονότα για το ``StartApplication`` και το ``StopApplication`` καλεί την ``Application``. Αυτές οι 
 κλήσεις έχουν σχεδιαστεί για να ξεκινήσει και να σταματήσει τη ροή των δεδομένων από τις ``Application``
 
-.
+..
 	This has been another fairly long journey, but it only has to be made
 	once, and you now understand another very deep piece of |ns3|.
 
