@@ -2448,120 +2448,172 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 	These methods are automatically called when ``MyApp`` is required to
 	start and stop sending data during the simulation.
 
-Starting/Stopping Applications
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+..
+	Starting/Stopping Applications
 
-It is worthwhile to spend a bit of time explaining how events actually
-get started in the system.  This is another fairly deep explanation,
-and can be ignored if you aren't planning on venturing down into the
-guts of the system.  It is useful, however, in that the discussion
-touches on how some very important parts of |ns3| work and exposes
-some important idioms.  If you are planning on implementing new
-models, you probably want to understand this section.
+Ξεκινώντας/Σταματώντας Εφαρμογών
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The most common way to start pumping events is to start an
-``Application``.  This is done as the result of the following
-(hopefully) familar lines of an |ns3| script::
+..
+	It is worthwhile to spend a bit of time explaining how events actually
+	get started in the system.  This is another fairly deep explanation,
+	and can be ignored if you aren't planning on venturing down into the
+	guts of the system.  It is useful, however, in that the discussion
+	touches on how some very important parts of |ns3| work and exposes
+	some important idioms.  If you are planning on implementing new
+	models you probably want to understand this section.
+
+Αξίζει τον κόπο να περάσετε λίγο χρόνο εξηγώντας πώς τα γεγονότα πραγματικά ξεκίνησαν στο σύστημα. Αυτή είναι μία άλλη 
+αρκετά βαθιά εξήγηση, και μπορεί να αγνοηθεί αν δεν κάνετε σχεδιασμό για τα εγχειρήματα μέσα στα σπλάχνα του συστήματος. 
+Είναι χρήσιμο, ωστόσο, ότι η συζήτηση αγγίζει σχετικά με το πώς ορισμένα πολύ σημαντικά μέρη εργασίας στον |ns3| και 
+εκθέτει κάποια σημαντικά ιδιώματα. Εάν σχεδιάζετε για την εφαρμογή νέων μοντέλων ίσως πρέπει να καταλάβετε αυτή την ενότητα.
+
+..
+	The most common way to start pumping events is to start an
+	``Application``.  This is done as the result of the following
+	(hopefully) familar lines of an |ns3| script
+	
+Ο πιο συνηθισμένος τρόπος για να ξεκινήσετε την άντληση των γεγονότων είναι να ξεκινήσει μια ``Application``. Αυτό γίνεται 
+ως αποτέλεσμα των ακόλουθων (ελπίζουμε) οικείων γραμμών του σεναρίου |ns3|
+::
 
   ApplicationContainer apps = ...
   apps.Start (Seconds (1.0));
   apps.Stop (Seconds (10.0));
 
-The application container code (see
-``src/network/helper/application-container.h`` if you are interested)
-loops through its contained applications and calls,
+..
+	The application container code (see
+	``src/network/helper/application-container.h`` if you are interested)
+	loops through its contained applications and calls,
 
+Ο κώδικας της εφαρμογής (βλέπε ``src/network/helper/application-container.h`` αν σας ενδιαφέρει) κάνει επαναλήψεις μέσω 
+των εφαρμογών και των κλήσεών του,
 ::
 
   app->SetStartTime (startTime);
 
-as a result of the ``apps.Start`` call and
+..
+	as a result of the ``apps.Start`` call and
 
+ως αποτέλεσμα της κλήσης ``apps.Start`` και
 ::
 
   app->SetStopTime (stopTime);
 
-as a result of the ``apps.Stop`` call.
+..
+	as a result of the ``apps.Stop`` call.
 
-The ultimate result of these calls is that we want to have the
-simulator automatically make calls into our ``Applications`` to tell
-them when to start and stop.  In the case of ``MyApp``, it inherits
-from class ``Application`` and overrides ``StartApplication``, and
-``StopApplication``.  These are the functions that will be called by
-the simulator at the appropriate time.  In the case of ``MyApp`` you
-will find that ``MyApp::StartApplication`` does the initial ``Bind``,
-and ``Connect`` on the socket, and then starts data flowing by calling
-``MyApp::SendPacket``.  ``MyApp::StopApplication`` stops generating
-packets by cancelling any pending send events then closes the socket.
+ως αποτέλεσμα της κλήσης ``apps.Stop``.
 
-One of the nice things about |ns3| is that you can completely ignore
-the implementation details of how your ``Application`` is
-"automagically" called by the simulator at the correct time.  But
-since we have already ventured deep into |ns3| already, let's go for
-it.
+..
+	The ultimate result of these calls is that we want to have the
+	simulator automatically make calls into our ``Applications`` to tell
+	them when to start and stop.  In the case of ``MyApp``, it inherits
+	from class ``Application`` and overrides ``StartApplication``, and
+	``StopApplication``.  These are the functions that will be called by
+	the simulator at the appropriate time.  In the case of ``MyApp`` you
+	will find that ``MyApp::StartApplication`` does the initial ``Bind``,
+	and ``Connect`` on the socket, and then starts data flowing by calling
+	``MyApp::SendPacket``.  ``MyApp::StopApplication`` stops generating
+	packets by cancelling any pending send events then closes the socket.
 
-If you look at ``src/network/model/application.cc`` you will find that
-the ``SetStartTime`` method of an ``Application`` just sets the member
-variable ``m_startTime`` and the ``SetStopTime`` method just sets
-``m_stopTime``.  From there, without some hints, the trail will
-probably end.
+Το τελικό αποτέλεσμα αυτών των προσκλήσεων είναι ότι θέλουμε να έχουμε τον προσομοιωτή κάνει αυτόματα τις κλήσεις σε μας `` Applications`` να τους πει πότε θα ξεκινήσει και να σταματήσει. Στην περίπτωση της `` MyApp``, κληρονομεί από την κλάση `` Application`` και παρακάμπτει `` StartApplication``, και `` StopApplication``. Αυτά είναι τα καθήκοντα που θα κληθούν από τον προσομοιωτή την κατάλληλη στιγμή. Στην περίπτωση της `` MyApp`` θα διαπιστώσετε ότι `` MyApp :: StartApplication`` κάνει την αρχική `` Bind``, και `` Connect`` στην υποδοχή και στη συνέχεια ξεκινά ροή δεδομένων καλώντας `` MyApp :: SendPacket``. `` MyApp :: StopApplication`` σταματήσει να παράγει πακέτα, ακυρώνοντας κάθε εκκρεμούσα στείλετε συμβάντα στη συνέχεια κλείνει την υποδοχή.
 
-The key to picking up the trail again is to know that there is a
-global list of all of the nodes in the system.  Whenever you create a
-node in a simulation, a pointer to that Node is added to the global
-``NodeList``.
+..
+	One of the nice things about |ns3| is that you can completely ignore
+	the implementation details of how your ``Application`` is
+	"automagically" called by the simulator at the correct time.  But
+	since we have already ventured deep into |ns3| already, let's go for
+	it.
 
-Take a look at ``src/network/model/node-list.cc`` and search for
-``NodeList::Add``.  The public static implementation calls into a
-private implementation called ``NodeListPriv::Add``.  This is a
-relatively common idom in |ns3|.  So, take a look at
-``NodeListPriv::Add``.  There you will find,
+Ένα από τα ωραία πράγματα για | NS3 | είναι ότι μπορείτε να αγνοήσετε εντελώς τις λεπτομέρειες εφαρμογής του πώς σας `` Application`` είναι "automagically" που ονομάζεται από τον προσομοιωτή στο σωστό χρόνο. Αλλά δεδομένου ότι έχουμε ήδη αποτολμήσει βαθιά μέσα | NS3 | ήδη, ας πάμε για αυτό.
 
+..
+	If you look at ``src/network/model/application.cc`` you will find that
+	the ``SetStartTime`` method of an ``Application`` just sets the member
+	variable ``m_startTime`` and the ``SetStopTime`` method just sets
+	``m_stopTime``.  From there, without some hints, the trail will
+	probably end.
+
+Αν κοιτάξετε `` src / δίκτυο / μοντέλο / application.cc`` θα διαπιστώσετε ότι η `` SetStartTime`` μέθοδο ένα `` Application`` θέτει μόνο τη μεταβλητή μέλος `` m_startTime`` και το `` SetStopTime `` μέθοδος καθορίζει ακριβώς `` m_stopTime``. Από εκεί, χωρίς κάποιες συμβουλές, η διαδρομή θα καταλήξουμε πιθανόν.
+
+..
+	The key to picking up the trail again is to know that there is a
+	global list of all of the nodes in the system.  Whenever you create a
+	node in a simulation, a pointer to that Node is added to the global
+	``NodeList``.
+
+Το κλειδί για να πάρει το μονοπάτι ξανά είναι να γνωρίζουμε ότι υπάρχει μια παγκόσμια λίστα με όλους τους κόμβους του συστήματος. Κάθε φορά που δημιουργείτε ένα κόμβο σε μια προσομοίωση, ένας δείκτης σε αυτόν τον κόμβο προστίθεται στο παγκόσμιο `` NodeList``.
+
+..
+	Take a look at ``src/network/model/node-list.cc`` and search for
+	``NodeList::Add``.  The public static implementation calls into a
+	private implementation called ``NodeListPriv::Add``.  This is a
+	relatively common idom in |ns3|.  So, take a look at
+	``NodeListPriv::Add``.  There you will find,
+
+Ρίξτε μια ματιά σε `` src / δίκτυο / μοντέλο / κόμβο-list.cc`` και ψάξτε για `` NodeList :: Add``. Η δημόσια στατική εφαρμογή καλεί σε μια ιδιωτική εφαρμογή που ονομάζεται `` NodeListPriv :: Add``. Αυτό είναι ένα σχετικά κοινό IDOM σε | NS3 |. Έτσι, ρίξτε μια ματιά στο `` NodeListPriv :: Add``. Εκεί θα βρείτε,
 ::
 
   Simulator::ScheduleWithContext (index, TimeStep (0), &Node::Initialize, node);
 
-This tells you that whenever a Node is created in a simulation, as
-a side-effect, a call to that node's ``Initialize`` method is
-scheduled for you that happens at time zero.  Don't read too much into
-that name, yet.  It doesn't mean that the Node is going to start doing
-anything, it can be interpreted as an informational call into the
-Node telling it that the simulation has started, not a call for
-action telling the Node to start doing something.
+..
+	This tells you that whenever a Node is created in a simulation, as
+	a side-effect, a call to that node's ``Initialize`` method is
+	scheduled for you that happens at time zero.  Don't read too much into
+	that name, yet.  It doesn't mean that the Node is going to start doing
+	anything, it can be interpreted as an informational call into the
+	Node telling it that the simulation has started, not a call for
+	action telling the Node to start doing something.
 
-So, ``NodeList::Add`` indirectly schedules a call to
-``Node::Initialize`` at time zero to advise a new Node that the
-simulation has started.  If you look in ``src/network/model/node.h``
-you will, however, not find a method called ``Node::Initialize``.  It
-turns out that the ``Initialize`` method is inherited from class
-``Object``.  All objects in the system can be notified when the
-simulation starts, and objects of class Node are just one kind of
-those objects.
+Αυτό σας λέει ότι κάθε φορά που ένας κόμβος δημιουργείται σε μια προσομοίωση, ως παρενέργεια, μια κλήση στο ότι κόμβου `` μέθοδος Initialize`` έχει προγραμματιστεί για εσάς που συμβαίνει σε χρόνο μηδέν. Μην διαβάζει πάρα πολύ σε αυτό το όνομα, ακόμα. Αυτό δεν σημαίνει ότι ο κόμβος πρόκειται να αρχίσουν να κάνουν κάτι, αυτό μπορεί να ερμηνευθεί ως μια ενημερωτική κλήση στον Κόμβο λέγοντάς του ότι η προσομοίωση έχει ξεκινήσει, δεν είναι μια πρόσκληση για δράση λέει ο κόμβος να αρχίσει να κάνει κάτι.
 
-Take a look at ``src/core/model/object.cc`` next and search for
-``Object::Initialize``.  This code is not as straightforward as you
-might have expected since |ns3| ``Objects`` support aggregation.  The
-code in ``Object::Initialize`` then loops through all of the objects
-that have been aggregated together and calls their ``DoInitialize``
-method.  This is another idiom that is very common in |ns3|, sometimes
-called the "template design pattern.": a public non-virtual API
-method, which stays constant across implementations, and that calls a
-private virtual implementation method that is inherited and
-implemented by subclasses.  The names are typically something like
-``MethodName`` for the public API and ``DoMethodName`` for the private
-API.
+..
+	So, ``NodeList::Add`` indirectly schedules a call to
+	``Node::Initialize`` at time zero to advise a new Node that the
+	simulation has started.  If you look in ``src/network/model/node.h``
+	you will, however, not find a method called ``Node::Initialize``.  It
+	turns out that the ``Initialize`` method is inherited from class
+	``Object``.  All objects in the system can be notified when the
+	simulation starts, and objects of class Node are just one kind of
+	those objects.
 
-This tells us that we should look for a ``Node::DoInitialize`` method
-in ``src/network/model/node.cc`` for the method that will continue our
-trail.  If you locate the code, you will find a method that loops
-through all of the devices in the Node and then all of the
-applications in the Node calling ``device->Initialize`` and
-``application->Initialize`` respectively.
+Έτσι, `` NodeList :: Add`` έμμεσα χρονοδιαγράμματα μια κλήση για να `` Κόμβος :: Initialize`` σε χρόνο μηδέν να συμβουλεύει ένα νέο κόμβο που η προσομοίωση έχει ξεκινήσει. Αν κοιτάξετε στο `` src / δίκτυο / μοντέλο / node.h`` θα, ωστόσο, να βρούμε μια μέθοδο που ονομάζεται `` Κόμβος :: Initialize``. Αποδεικνύεται ότι η `` μέθοδος Initialize`` κληρονομείται από την κλάση `` Object``. Όλα τα αντικείμενα του συστήματος μπορεί να ενημερώνεται όταν αρχίζει η προσομοίωση, και τα αντικείμενα της κλάσης Node είναι μόνο ένα είδος αυτών των αντικειμένων.
 
-You may already know that classes ``Device`` and ``Application`` both
-inherit from class ``Object`` and so the next step will be to look at
-what happens when ``Application::DoInitialize`` is called.  Take a
-look at ``src/network/model/application.cc`` and you will find::
+..
+	Take a look at ``src/core/model/object.cc`` next and search for
+	``Object::Initialize``.  This code is not as straightforward as you
+	might have expected since |ns3| ``Objects`` support aggregation.  The
+	code in ``Object::Initialize`` then loops through all of the objects
+	that have been aggregated together and calls their ``DoInitialize``
+	method.  This is another idiom that is very common in |ns3|, sometimes
+	called the "template design pattern.": a public non-virtual API
+	method, which stays constant across implementations, and that calls a
+	private virtual implementation method that is inherited and
+	implemented by subclasses.  The names are typically something like
+	``MethodName`` for the public API and ``DoMethodName`` for the private
+	API.
+
+Ρίξτε μια ματιά σε `` src / core / μοντέλο / object.cc`` επόμενη και την αναζήτηση για `` Αντικείμενο :: Initialize``. Αυτός ο κωδικός δεν είναι τόσο απλή όσο μπορεί να έχετε αναμένεται από το | NS3 | `` Objects`` συνάθροιση υποστήριξη. Ο κώδικας στη `` Αντικείμενο :: Initialize`` βρόχους στη συνέχεια μέσω όλων των αντικειμένων που έχουν συγκεντρωτικά μαζί και καλεί `` μέθοδό τους DoInitialize``. Αυτό είναι άλλο ένα ιδίωμα που είναι πολύ συχνή σε | NS3 |, μερικές φορές ονομάζεται: μια δημόσια μέθοδο μη-εικονική API, το οποίο παραμένει σταθερό σε όλη εφαρμογές, και ότι απαιτεί μια ιδιωτική μέθοδος εικονικής εφαρμογής που κληρονόμησε και να εφαρμοστεί «πρότυπο σχεδιασμού πρότυπο." με υποκατηγορίες. Τα ονόματα είναι συνήθως κάτι σαν `` MethodName`` για το κοινό API και `` DoMethodName`` για τον ιδιωτικό API.
+
+..
+	This tells us that we should look for a ``Node::DoInitialize`` method
+	in ``src/network/model/node.cc`` for the method that will continue our
+	trail.  If you locate the code, you will find a method that loops
+	through all of the devices in the Node and then all of the
+	applications in the Node calling ``device->Initialize`` and
+	``application->Initialize`` respectively.
+
+Αυτό μας λέει ότι πρέπει να κοιτάξουμε για μια `` μέθοδο Κόμβος :: DoInitialize`` στο `` src / δίκτυο / μοντέλο / node.cc`` για τη μέθοδο που θα συνεχίσει ίχνος μας. Εάν εντοπίσετε τον κωδικό, θα βρείτε μια μέθοδο που βρόχους μέσα από όλες τις συσκευές στον κόμβο και στη συνέχεια όλες τις εφαρμογές στον κόμβο καλώντας `` συσκευή-> Initialize`` και `` Εφαρμογές-> Initialize`` αντίστοιχα.
+
+..
+	You may already know that classes ``Device`` and ``Application`` both
+	inherit from class ``Object`` and so the next step will be to look at
+	what happens when ``Application::DoInitialize`` is called.  Take a
+	look at ``src/network/model/application.cc`` and you will find
+
+Ίσως γνωρίζετε ήδη ότι οι τάξεις `` Device`` και `` Application`` τόσο κληρονομήσει από την κατηγορία `` Object`` και έτσι το επόμενο βήμα θα είναι να εξετάσουμε τι συμβαίνει όταν `` Εφαρμογή :: DoInitialize`` ονομάζεται. Ρίξτε μια ματιά σε `` src / δίκτυο / μοντέλο / application.cc`` και θα βρείτε
+::
 
   void
   Application::DoInitialize (void)
@@ -2574,31 +2626,38 @@ look at ``src/network/model/application.cc`` and you will find::
     Object::DoInitialize ();
   }
 
-Here, we finally come to the end of the trail.  If you have kept it
-all straight, when you implement an |ns3| ``Application``, your new
-application inherits from class ``Application``.  You override the
-``StartApplication`` and ``StopApplication`` methods and provide
-mechanisms for starting and stopping the flow of data out of your new
-``Application``.  When a Node is created in the simulation, it is
-added to a global ``NodeList``.  The act of adding a Node to this
-``NodeList`` causes a simulator event to be scheduled for time zero
-which calls the ``Node::Initialize`` method of the newly added
-Node to be called when the simulation starts.  Since a Node
-inherits from ``Object``, this calls the ``Object::Initialize`` method
-on the Node which, in turn, calls the ``DoInitialize`` methods on
-all of the ``Objects`` aggregated to the Node (think mobility
-models).  Since the Node ``Object`` has overridden
-``DoInitialize``, that method is called when the simulation starts.
-The ``Node::DoInitialize`` method calls the ``Initialize`` methods of
-all of the ``Applications`` on the node.  Since ``Applications`` are
-also ``Objects``, this causes ``Application::DoInitialize`` to be
-called.  When ``Application::DoInitialize`` is called, it schedules
-events for the ``StartApplication`` and ``StopApplication`` calls on
-the ``Application``.  These calls are designed to start and stop the
-flow of data from the ``Application``
+..
+	Here, we finally come to the end of the trail.  If you have kept it
+	all straight, when you implement an |ns3| ``Application``, your new
+	application inherits from class ``Application``.  You override the
+	``StartApplication`` and ``StopApplication`` methods and provide
+	mechanisms for starting and stopping the flow of data out of your new
+	``Application``.  When a Node is created in the simulation, it is
+	added to a global ``NodeList``.  The act of adding a Node to this
+	``NodeList`` causes a simulator event to be scheduled for time zero
+	which calls the ``Node::Initialize`` method of the newly added
+	Node to be called when the simulation starts.  Since a Node
+	inherits from ``Object``, this calls the ``Object::Initialize`` method
+	on the Node which, in turn, calls the ``DoInitialize`` methods on
+	all of the ``Objects`` aggregated to the Node (think mobility
+	models).  Since the Node ``Object`` has overridden
+	``DoInitialize``, that method is called when the simulation starts.
+	The ``Node::DoInitialize`` method calls the ``Initialize`` methods of
+	all of the ``Applications`` on the node.  Since ``Applications`` are
+	also ``Objects``, this causes ``Application::DoInitialize`` to be
+	called.  When ``Application::DoInitialize`` is called, it schedules
+	events for the ``StartApplication`` and ``StopApplication`` calls on
+	the ``Application``.  These calls are designed to start and stop the
+	flow of data from the ``Application``
 
-This has been another fairly long journey, but it only has to be made
-once, and you now understand another very deep piece of |ns3|.
+
+Εδώ, θα έρθει τελικά στο τέλος της διαδρομής. Αν έχετε κράτησε όλο ευθεία, όταν εφαρμόζετε ένα | NS3 | `` Application``, νέα εφαρμογή σας κληρονομεί από την κλάση `` Application``. Μπορείτε παρακάμψετε τις `StartApplication`` και` `` μεθόδους StopApplication`` και παρέχει μηχανισμούς για την εκκίνηση και τη διακοπή της ροής των δεδομένων από το νέο `` Application`` σας. Όταν ένας κόμβος δημιουργείται στην προσομοίωση, προστίθεται σε ένα παγκόσμιο `` NodeList``. Η πράξη της προσθήκης ενός κόμβου σε αυτό το `` NodeList`` προκαλεί μια εκδήλωση προσομοιωτή που έχει προγραμματιστεί για το χρόνο μηδέν το οποίο καλεί την `` μέθοδο Κόμβος :: Initialize`` του νέο κόμβο που θα καλείται όταν ξεκινά η προσομοίωση. Δεδομένου ότι ένας κόμβος κληρονομεί από `` Object``, αυτό απαιτεί το `` μέθοδο Αντικείμενο :: Initialize`` στον κόμβο που, με τη σειρά του, καλεί τις `` μεθόδους DoInitialize`` για όλα τα `` Objects`` συγκεντρώνονται σε Ο κόμβος (σκεφτείτε μοντέλα κινητικότητας). Από την Κόμβος `` Object`` έχει παρακαμφθεί `` DoInitialize``, η μέθοδος καλείται όταν ξεκινά η προσομοίωση. Το `` Κόμβος :: μέθοδο DoInitialize`` καλεί τα `` Initialize`` μεθόδους όλων των `` Applications`` στον κόμβο. Από `` Applications`` είναι επίσης `` Objects``, αυτό προκαλεί `` Εφαρμογή :: DoInitialize`` να ονομάζεται. Όταν `` Εφαρμογή :: DoInitialize`` ονομάζεται, θα χρονοδιαγράμματα εκδηλώσεις για το `` StartApplication`` και `` StopApplication`` καλεί την `` Application``. Αυτές οι κλήσεις έχουν σχεδιαστεί για να ξεκινήσει και να σταματήσει τη ροή των δεδομένων από τις `` Application``
+
+.
+	This has been another fairly long journey, but it only has to be made
+	once, and you now understand another very deep piece of |ns3|.
+
+Αυτό ήταν ένα άλλο αρκετά μακρύ ταξίδι, αλλά έχει μόνο να γίνει μια φορά, και καταλαβαίνετε τώρα ένα άλλο πολύ βαθύ κομμάτι | NS3 |.
 
 The MyApp Application
 ~~~~~~~~~~~~~~~~~~~~~
