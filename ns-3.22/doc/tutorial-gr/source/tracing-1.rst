@@ -2165,7 +2165,8 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 	usual, ``grep`` is your friend:
 
 Είναι πάντα καλύτερο να προσπαθήσουμε να βρούμε τον κώδικα που δουλεύει, και μπορείτε να τροποποιήσετε, αντί να αρχίσετε από 
-το μηδέν. Έτσι, η πρώτη σειρά των εργασιών είναι τώρα να βρει κάποιο κωδικό που ενώνεται ήδη το "CongestionWindow" πηγή ίχνος και να δούμε αν μπορούμε να το τροποποιήσετε. Ως συνήθως, `` grep`` είναι ο φίλος σας:
+το μηδέν. Έτσι, η πρώτη σειρά των εργασιών είναι τώρα να βρείτε κάποιο κώδικα που ενώνεται ήδη στη πηγή ίχνους 
+"CongestionWindow"  και να δούμε αν μπορούμε να το τροποποιήσουμε. Ως συνήθως, ο ``grep`` είναι ο φίλος σας:
 
 .. sourcecode:: bash
 
@@ -2176,7 +2177,7 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 	``examples/tcp/tcp-large-transfer.cc`` and 
 	``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc``.
 
-Αυτό θα επισημάνω μερικά ελπιδοφόρα υποψήφιοι: `` παραδείγματα / TCP / tcp-μεγάλες-transfer.cc`` και `` src / test / ns3tcp / ns3tcp-cwnd-test-suite.cc``.
+Θα επισημάνω μερικούς ελπιδοφόρους υποψηφίους: ``examples/tcp/tcp-large-transfer.cc`` και ``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc``.
 
 ..
 	We haven't visited any of the test code yet, so let's take a look
@@ -2185,7 +2186,9 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 	``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc`` in your favorite editor
 	and search for "CongestionWindow".  You will find,
 
-Δεν έχουν επισκεφθεί κάποιο από τα κώδικα δοκιμής ακόμα, οπότε ας ρίξουμε μια ματιά εκεί. Θα βρείτε συνήθως ότι ο κώδικας της δοκιμής είναι αρκετά χαμηλές, έτσι αυτό είναι ίσως ένα πολύ καλό στοίχημα. Ανοίξτε `` src / test / ns3tcp / ns3tcp-cwnd-test-suite.cc`` στο αγαπημένο σας επεξεργαστή και την αναζήτηση για "CongestionWindow". Θα βρείτε,
+Δεν έχουμε επισκεφθεί κάποιο κώδικα δοκιμής ακόμα, οπότε ας ρίξουμε μια ματιά εκεί. Θα βρείτε συνήθως ότι ο κώδικας της 
+δοκιμής είναι αρκετά μηδαμινός, έτσι αυτό είναι ίσως ένα πολύ καλό στοίχημα. Ανοίξτε ``src/test/ns3tcp/ns3tcp-cwnd-test-suite.cc`` 
+στο αγαπημένο σας επεξεργαστή και αναζητήστε για "CongestionWindow". Θα βρείτε,
 
 ::
 
@@ -2206,65 +2209,124 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 	have provided the file that results from porting this test back to a
 	native |ns3| script -- ``examples/tutorial/fifth.cc``.
 
-Αυτό θα πρέπει να εξετάσουμε πολύ γνωστά σε σας. Μας αναφέρθηκε παραπάνω ότι αν είχαμε ένα δείκτη προς το `` TcpNewReno``, θα μπορούσαμε να `` TraceConnect`` στο "CongestionWindow" πηγή ίχνος. Αυτό είναι ακριβώς αυτό που έχουμε εδώ? Έτσι, αποδεικνύεται ότι αυτή η γραμμή του κώδικα κάνει ακριβώς αυτό που θέλουμε. Ας πάμε μπροστά και να εξάγουν τον κωδικό που χρειαζόμαστε από τη λειτουργία αυτή (`` Ns3TcpCwndTestCase1 :: DoRun (void) ``). Αν κοιτάξετε αυτή τη λειτουργία, θα διαπιστώσετε ότι μοιάζει ακριβώς όπως ένα | NS3 | σενάριο. Αποδεικνύεται ότι είναι ακριβώς αυτό που είναι. Πρόκειται για ένα σενάριο που εκτελείται από το πλαίσιο της δοκιμής, ώστε να μπορούμε να το τραβήξει ακριβώς έξω και τυλίξτε το σε `` main`` αντί για `` DoRun``. Αντί να περπατήσετε μέσα από αυτό, βήμα, βήμα, έχουμε την προϋπόθεση ότι το αρχείο που προκύπτει από porting αυτό το τεστ πίσω σε μια μητρική | NS3 | σενάριο - `` παραδείγματα / φροντιστήριο / fifth.cc``.
+Αυτό θα έπρεπε να είναι γνωστό σε σας. ναφερθήκαμε παραπάνω ότι αν είχαμε ένα δείκτη στο ``TcpNewReno``, θα μπορούσαμε να 
+``TraceConnect`` στη πηγή ίχνους "CongestionWindow". Αυτό είναι ακριβώς αυτό που έχουμε εδώ. Έτσι, αποδεικνύεται ότι αυτή η 
+γραμμή του κώδικα κάνει ακριβώς αυτό που θέλουμε. Ας πάμε μπροστά και να εξάγουμε τον κώδικα που χρειαζόμαστε από τη συνάρτηση 
+αυτή (``Ns3TcpCwndTestCase1::DoRun (void)``). Αν κοιτάξετε αυτή τη συνάρτηση, θα διαπιστώσετε ότι μοιάζει ακριβώς όπως ένα 
+σενάριο |ns3|. Αποδεικνύεται ότι είναι ακριβώς αυτό που είναι. Πρόκειται για ένα σενάριο που εκτελείται από το πλαίσιο της 
+δοκιμής, ώστε να μπορούμε να το τραβήξουμε ακριβώς έξω και να το τυλίξουμε σε ``main`` αντί για ``DoRun``. Αντί να 
+περπατήσετε μέσα από αυτό, βήμα, βήμα, παρέχουμε το αρχείο που προκύπτει από το porting της δοκιμής πίσω 
+σε ένα μητρικό σενάριο |ns3| -- ``examples/tutorial/fifth.cc``.
 
-Dynamic Trace Sources
+..
+	Dynamic Trace Sources
+
+Δυναμικές Πηγές Εντοπισμού
+++++++++++++++++++++++++++
+
+..
+	The ``fifth.cc`` example demonstrates an extremely important rule that
+	you must understand before using any kind of trace source: you must
+	ensure that the target of a ``Config::Connect`` command exists before
+	trying to use it.  This is no different than saying an object must be
+	instantiated before trying to call it.  Although this may seem obvious
+	when stated this way, it does trip up many people trying to use the
+	system for the first time.
+
+Το παράδειγμα `` fifth.cc`` καταδεικνύει ένα εξαιρετικά σημαντικό κανόνα που πρέπει να καταλάβετε πριν από τη χρήση κάθε 
+είδους πηγή ίχνους: θα πρέπει να βεβαιωθείτε ότι ο στόχος της εντολής ``Config::Connect`` υπάρχει πριν προσπαθήσετε να το 
+χρησιμοποιήσετε. Αυτό δεν είναι διαφορετικό από το να λέμε ένα αντικείμενο πρέπει να αρχικοποιείται πριν προσπαθήσετε να το 
+καλέσετε. Αν και αυτό μπορεί να φαίνεται προφανές, όταν δηλώθηκε αυτός ο τρόπος, κάνοντας τρικλοποδιά σε πολλούς ανθρώπους 
+που προσπαθούν να χρησιμοποιήσουν το σύστημα για πρώτη φορά.
+
+..
+	Let's return to basics for a moment.  There are three basic execution
+	phases that exist in any |ns3| script.  The first phase is
+	sometimes called "Configuration Time" or "Setup Time," and exists
+	during the period when the ``main`` function of your script is
+	running, but before ``Simulator::Run`` is called.  The second phase
+	is sometimes called "Simulation Time" and exists during
+	the time period when ``Simulator::Run`` is actively executing its
+	events.  After it completes executing the simulation,
+	``Simulator::Run`` will return control back to the ``main`` function.
+	When this happens, the script enters what can be called the "Teardown
+	Phase," which is when the structures and objects created during setup
+	are taken apart and released.
+
+Ας επιστρέψουμε στα βασικά για μια στιγμή. Υπάρχουν τρεις βασικές φάσεις εκτέλεσης που υπάρχουν σε κάθε σενάριο |ns3|. Η 
+πρώτη φάση μερικές φορές ονομάζεται "Configuration Time" ή "Setup Time", και υπάρχει κατά τη διάρκεια της περιόδου, όταν η 
+συνάρτηση ``main`` από το σενάριό σας τρέχει, αλλά πριν ο ``Simulator::Run`` έχει καλεστεί. Η δεύτερη φάση μερικές φορές 
+ονομάζεται "Simulation Time" και υπάρχει κατά τη διάρκεια της χρονικής περιόδουπου είναι ενεργά εκτελέσιμα τα γεγονότα του 
+``Simulator::Run``. Μετά την ολοκλήρωση της εκτέλεσης της προσομοίωσης, ``Simulator::Run`` θα επιστρέψει στον έλεγχο πίσω 
+στη συνάρτηση ``main``. Όταν συμβαίνει αυτό, τα σενάρια εισέρχονται σε αυτό το τι μπορεί να ονομάζεται "Teardown Phase", η 
+οποία είναι όταν οι κατασκευές και τα αντικείμενα που δημιουργήθηκαν κατά τη διάρκεια της εγκατάστασης ληφθούν χώρια 
+και κυκλοφορήσουν.
+
+..
+	Perhaps the most common mistake made in trying to use the tracing
+	system is assuming that entities constructed dynamically *during
+	simulation time* are available during configuration time.  In
+	particular, an |ns3| ``Socket`` is a dynamic object often created by
+	``Applications`` to communicate between ``Nodes``.  An |ns3|
+	``Application`` always has a "Start Time" and a "Stop Time" associated
+	with it.  In the vast majority of cases, an ``Application`` will not
+	attempt to create a dynamic object until its ``StartApplication``
+	method is called at some "Start Time".  This is to ensure that the
+	simulation is completely configured before the app tries to do
+	anything (what would happen if it tried to connect to a Node that
+	didn't exist yet during configuration time?).  As a result, during the
+	configuration phase you can't connect a trace source to a trace sink
+	if one of them is created dynamically during the simulation.
+
+Ίσως το πιο κοινό λάθος που γίνεται στην προσπάθειά τους να χρησιμοποιήσουν το σύστημα εντοπισμού υποθέτει ότι οι οντότητες 
+που δημιουργούνται δυναμικά *κατά τη διάρκεια της προσομοίωσης* είναι διαθέσιμες κατά τη διάρκεια της ρύθμισης. Ειδικότερα, 
+ένας ``Socket`` |ns3| είναι ένα δυναμικό αντικείμενο που δημιουργείται συχνά από ``Applications`` που επικοινωνούν μεταξύ 
+``Nodes``. Ένα ``Application`` |ns3| έχει πάντα ένα "Start Time" και ένα "Stop Time" που συνδέονται με αυτό. Στη συντριπτική 
+πλειονότητα των περιπτώσεων, ένα ``Application`` δεν θα επιχειρήσει να δημιουργήσει ένα δυναμικό αντικείμενο έως ότου 
+η μέθοδός του ``StartApplication`` καλείται σε κάποιο "Start Time". Αυτό γίνεται για να εξασφαλιστεί ότι η προσομοίωση είναι 
+πλήρως διαμορφωμένη πριν το App προσπαθήσει να κάνει κάτι (ό,τι θα συνέβαινε αν προσπαθούσε να συνδεθεί σε έναν κόμβο που δεν 
+υπήρχε ακόμα κατά τη διάρκεια της ρύθμισης). Ως αποτέλεσμα, κατά τη διάρκεια της φάσης διαμόρφωσης δεν μπορείτε να συνδέσετε 
+μια πηγή ίχνους σε μία καταβόθρα ίχνους αν μία από αυτές δημιουργείται δυναμικά κατά τη διάρκεια της προσομοίωσης.
+
+..
+	The two solutions to this connundrum are
+
+Οι δύο λύσεις για αυτό το connundrum είναι
+
+..
+	#. Create a simulator event that is run after the dynamic object is
+	   created and hook the trace when that event is executed; or
+	#. Create the dynamic object at configuration time, hook it then, and
+	   give the object to the system to use during simulation time.
+
+#. Δημιουργήστε ένα συμβάν προσομοιωτή που εκτελείται μετά το δυναμικό αντικείμενο που έχει δημιουργηθεί και συνδέστε το ίχνος, 
+όταν εκτελείται αυτό το γεγονός, ή
+#. Δημιουργήστε το δυναμικό αντικείμενο κατά το χρόνο διαμόρφωσης, κρατήστε'το στη συνέχεια, και δώστε το αντικείμενο στο 
+σύστημα για να το χρησιμοποιήσει κατά τη διάρκεια της προσομοίωσης.
+
+..
+	We took the second approach in the ``fifth.cc`` example.  This
+	decision required us to create the ``MyApp`` ``Application``, the
+	entire purpose of which is to take a ``Socket`` as a parameter.
+
+Πήραμε τη δεύτερη προσέγγιση στο παράδειγμα ``fifth.cc``. Αυτή η απόφαση μας απαίτησε να δημιουργήσουμε το ``MyApp`` ``Application``, 
+ο ολόκληρος σκοπός της οποίας είναι να ρίξετε μια ``Socket`` ως παράμετρο.
+
+..
+	Walkthrough: ``fifth.cc``
+
+Πέρασμα: ``fifth.cc``
 +++++++++++++++++++++
 
-The ``fifth.cc`` example demonstrates an extremely important rule that
-you must understand before using any kind of trace source: you must
-ensure that the target of a ``Config::Connect`` command exists before
-trying to use it.  This is no different than saying an object must be
-instantiated before trying to call it.  Although this may seem obvious
-when stated this way, it does trip up many people trying to use the
-system for the first time.
+..
+	Now, let's take a look at the example program we constructed by
+	dissecting the congestion window test.  Open
+	``examples/tutorial/fifth.cc`` in your favorite editor.  You should
+	see some familiar looking code
 
-Let's return to basics for a moment.  There are three basic execution
-phases that exist in any |ns3| script.  The first phase is
-sometimes called "Configuration Time" or "Setup Time," and exists
-during the period when the ``main`` function of your script is
-running, but before ``Simulator::Run`` is called.  The second phase
-is sometimes called "Simulation Time" and exists during
-the time period when ``Simulator::Run`` is actively executing its
-events.  After it completes executing the simulation,
-``Simulator::Run`` will return control back to the ``main`` function.
-When this happens, the script enters what can be called the "Teardown
-Phase," which is when the structures and objects created during setup
-are taken apart and released.
-
-Perhaps the most common mistake made in trying to use the tracing
-system is assuming that entities constructed dynamically *during
-simulation time* are available during configuration time.  In
-particular, an |ns3| ``Socket`` is a dynamic object often created by
-``Applications`` to communicate between ``Nodes``.  An |ns3|
-``Application`` always has a "Start Time" and a "Stop Time" associated
-with it.  In the vast majority of cases, an ``Application`` will not
-attempt to create a dynamic object until its ``StartApplication``
-method is called at some "Start Time".  This is to ensure that the
-simulation is completely configured before the app tries to do
-anything (what would happen if it tried to connect to a Node that
-didn't exist yet during configuration time?).  As a result, during the
-configuration phase you can't connect a trace source to a trace sink
-if one of them is created dynamically during the simulation.
-
-The two solutions to this connundrum are
-
-#. Create a simulator event that is run after the dynamic object is
-   created and hook the trace when that event is executed; or
-#. Create the dynamic object at configuration time, hook it then, and
-   give the object to the system to use during simulation time.
-
-We took the second approach in the ``fifth.cc`` example.  This
-decision required us to create the ``MyApp`` ``Application``, the
-entire purpose of which is to take a ``Socket`` as a parameter.
-
-Walkthrough: ``fifth.cc``
-+++++++++++++++++++++++++
-
-Now, let's take a look at the example program we constructed by
-dissecting the congestion window test.  Open
-``examples/tutorial/fifth.cc`` in your favorite editor.  You should
-see some familiar looking code::
+Τώρα, ας ρίξουμε μια ματιά στο πρόγραμμα παράδειγμα που κατασκευάσαμε με ανατομή το τεστ παράθυρο συμφόρησης. Ανοίξτε το 
+``examples/tutorial/fifth.cc`` στο αγαπημένο σας επεξεργαστή. Θα πρέπει να δείτε κάποιο γνωστό κώδικα
+::
 
   /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
   /*
@@ -2293,10 +2355,13 @@ see some familiar looking code::
   
   NS_LOG_COMPONENT_DEFINE ("FifthScriptExample");
 
-This has all been covered, so we won't rehash it.  The next lines of
-source are the network illustration and a comment addressing the
-problem described above with ``Socket``.
+..
+	This has all been covered, so we won't rehash it.  The next lines of
+	source are the network illustration and a comment addressing the
+	problem described above with ``Socket``.
 
+Όλα αυτά έχουν καλυφθεί, γι 'αυτό δεν θα το αναμασήσουμε. Οι επόμενες γραμμές του κώδικα είναι η εικόνα του δικτύου και 
+ένα σχόλιο αντιμετώπισης του προβλήματος που περιγράφηκε παραπάνω με το ``Socket``.
 ::
 
   // ===========================================================================
@@ -2334,12 +2399,18 @@ problem described above with ``Socket``.
   // ===========================================================================
   //
 
-This should also be self-explanatory.  
+..
+	This should also be self-explanatory.  
 
-The next part is the declaration of the ``MyApp`` ``Application`` that
-we put together to allow the ``Socket`` to be created at configuration
-time.
+Αυτό θα πρέπει επίσης να είναι αυτονόητο.
 
+..
+	The next part is the declaration of the ``MyApp`` ``Application`` that
+	we put together to allow the ``Socket`` to be created at configuration
+	time.
+
+Το επόμενο μέρος είναι η δήλωση του ``MyApp`` ``Application`` που έχουμε βάλει μαζί για να καταστεί δυνατή η ``Socket`` για να 
+δημιουργηθούν κατά το χρόνο διαμόρφωσης.
 ::
 
   class MyApp : public Application
@@ -2369,12 +2440,13 @@ time.
     uint32_t        m_packetsSent;
   };
 
-You can see that this class inherits from the |ns3| ``Application``
-class.  Take a look at ``src/network/model/application.h`` if you are
-interested in what is inherited.  The ``MyApp`` class is obligated to
-override the ``StartApplication`` and ``StopApplication`` methods.
-These methods are automatically called when ``MyApp`` is required to
-start and stop sending data during the simulation.
+..
+	You can see that this class inherits from the |ns3| ``Application``
+	class.  Take a look at ``src/network/model/application.h`` if you are
+	interested in what is inherited.  The ``MyApp`` class is obligated to
+	override the ``StartApplication`` and ``StopApplication`` methods.
+	These methods are automatically called when ``MyApp`` is required to
+	start and stop sending data during the simulation.
 
 Starting/Stopping Applications
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
