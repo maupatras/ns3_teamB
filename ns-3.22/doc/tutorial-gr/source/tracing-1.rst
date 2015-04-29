@@ -2296,11 +2296,14 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 ..
 	#. Create a simulator event that is run after the dynamic object is
 	   created and hook the trace when that event is executed; or
-	#. Create the dynamic object at configuration time, hook it then, and
-	   give the object to the system to use during simulation time.
-
+	
 #. Δημιουργήστε ένα συμβάν προσομοιωτή που εκτελείται μετά το δυναμικό αντικείμενο που έχει δημιουργηθεί και συνδέστε το ίχνος, 
 όταν εκτελείται αυτό το γεγονός, ή
+
+..
+	#. Create the dynamic object at configuration time, hook it then, and
+	   give the object to the system to use during simulation time.
+	   
 #. Δημιουργήστε το δυναμικό αντικείμενο κατά το χρόνο διαμόρφωσης, κρατήστε'το στη συνέχεια, και δώστε το αντικείμενο στο 
 σύστημα για να το χρησιμοποιήσει κατά τη διάρκεια της προσομοίωσης.
 
