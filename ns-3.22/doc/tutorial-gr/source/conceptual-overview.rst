@@ -534,7 +534,7 @@ O προσομοιωτής |ns3| υπάγεται στην Γενική Άδει
 .. Ns3 Namespace
 
 Χώρος Ονομάτων του ns-3
-++++++++++++++++++++++
++++++++++++++++++++++++
 ..
 	The next line in the ``first.cc`` script is a namespace declaration.
 

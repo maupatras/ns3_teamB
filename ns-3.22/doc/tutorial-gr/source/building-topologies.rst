@@ -21,9 +21,9 @@
 	========================================================================================
 
 
-.. _BuildingTopologies:
-
 .. Building Topologies
+
+.. _BuildingTopologies:
 
 Δημιουργία Τοπολογιών
 ---------------------
@@ -31,7 +31,7 @@
 .. Building a Bus Network Topology
 
 Δημιουργώντας μια Τοπολογία Δικτύου Αρτηρίας
-*******************************************
+********************************************
 
 ..
 	In this section we are going to expand our mastery of |ns3| network 

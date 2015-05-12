@@ -20,10 +20,12 @@
 	========================================================================================
 
 Μικρορυθμίσεις
---------
+--------------
+
+.. _UsingLogging:
 
 Χρησιμοποιώντας την Ενότητα Καταγραφής
-************************
+**************************************
 
 ..
 	We have already taken a brief look at the |ns3| logging module while
@@ -36,7 +38,7 @@
 
 
 Σύνοψη Καταγραφής
-++++++++++++++++
++++++++++++++++++
 ..
   Many large systems support some kind of message logging facility, and 
   |ns3| is not an exception.  In some cases, only error messages are 
@@ -132,25 +134,24 @@ NS_LOG_INFO, ενώ ενεργοποιώντας το LOG_LEVEL_INFO θα παρ
 από τις μακροεντολές NS_LOG_DEBUG, NS_LOG_WARN και NS_LOG_ERROR.
 
 ..
-We also provide an unconditional logging macro that is always displayed,
-irrespective of logging levels or component selection.
+	We also provide an unconditional logging macro that is always displayed,
+	irrespective of logging levels or component selection.
 
 Επίσης παρέχεται μια μακροεντολή καταγραφής χωρίς περιορισμούς, ανεξάρτητη από τα 
 επίπεδα καταγραφής ή την επιλογή συστατικού στοιχείου.
 
 ..
-* NS_LOG_UNCOND -- Log the associated message unconditionally (no associated
-  log level).
+	* NS_LOG_UNCOND -- Log the associated message unconditionally (no associated
+	  log level).
   
-* NS_LOG_UNCOND -- Καταγραφή του μηνύματος χωρίς περιορισμούς (κανένα σχετικό 
-επίπεδο καταγραφής).
+* NS_LOG_UNCOND -- Καταγραφή του μηνύματος χωρίς περιορισμούς (κανένα σχετικό επίπεδο καταγραφής).
 
 ..
-  Each level can be requested singly or cumulatively; and logging can be set 
-  up using a shell environment variable (NS_LOG) or by logging system function 
-  call.  As was seen earlier in the tutorial, the logging system has Doxygen 
-  documentation and now would be a good time to peruse the Logging Module 
-  documentation if you have not done so.
+	  Each level can be requested singly or cumulatively; and logging can be set 
+	  up using a shell environment variable (NS_LOG) or by logging system function 
+	  call.  As was seen earlier in the tutorial, the logging system has Doxygen 
+	  documentation and now would be a good time to peruse the Logging Module 
+	  documentation if you have not done so.
 
 Το κάθε επίπεδο μπορεί να ζητηθεί μεμονωμένο ή σε συνδυασμό με τα άλλα. Η καταγραφή
 αντίστοιχα μπορεί να ρυθμιστεί μέσω μιας μεταβλητής του περιβάλλοντος φλοιού 
@@ -159,9 +160,9 @@ irrespective of logging levels or component selection.
 είναι χρήσιμο να μελετήσετε την τεκμηρίωση της Ενότητας Καταγραφής.
 
 ..
-Now that you have read the documentation in great detail, let's use some of
-that knowledge to get some interesting information out of the 
-``scratch/myfirst.cc`` example script you have already built.
+	Now that you have read the documentation in great detail, let's use some of
+	that knowledge to get some interesting information out of the 
+	``scratch/myfirst.cc`` example script you have already built.
 
 Αφού έχετε διαβάσει την τεκμηρίωση σε μεγάλο βαθμό, είναι ώρα να χρησιμοποιήσουμε
 αυτή τη γνώση για να εξάγουμε μερικές χρήσιμες πληροφορίες από το παράδειγμα 
@@ -176,7 +177,8 @@ that knowledge to get some interesting information out of the
 	did previously,
 
 Ενεργοποίηση Καταγραφής
-++++++++++++++++
++++++++++++++++++++++++
+
 Μπορούμε να χρησιμοποιήσουμε τη μεταβλητή συστήματος NS_LOG για να ενεργοποιήσουμε 
 επιπλέον λειτουργίες καταγραφής, αλλά ας τρέξουμε αρχικά το παρακάτω σενάριο
 
@@ -600,6 +602,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 Προσθήκη Καταγραφής σε Κώδικα
 +++++++++++++++++++++++++++++
+
 Μπορείτε να προσθέσετε νέες καταγραφές στις εξομοιώσεις σας καλώντας το στοιχείο
 καταγραφής μέσω διαφόρων μακροεντολών. Ας το επιχειρήσουμε στο σενάριο εξομοίωσης
 ``myfirst.cc`` που βρίσκεται στον φάκελο ``scratch``.
@@ -609,6 +612,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ::
 
   NS_LOG_COMPONENT_DEFINE ("FirstScriptExample");
+  
 ..
 	You now know that you can enable all of the logging for this component by
 	setting the ``NS_LOG`` environment variable to the various levels.  Let's
@@ -635,7 +639,9 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 ..
 	right before the lines,
+	
 αμέσως πριν από τις γραμμές,
+
 ::
 
   NodeContainer nodes;
@@ -644,6 +650,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	Now build the script using waf and clear the ``NS_LOG`` variable to turn 
 	off the torrent of logging we previously enabled:
+
 Τώρα ας οικοδομήσουμε το σενάριο χρησιμοποιώντας το waf και καθαρίζοντας τη
 μεταβλητή ``NS_LOG`` ώστε να απενεργοποιήσουμε το torrent της καταγραφής που 
 είχαμε προηγουμένως ενεργοποιήσει:
@@ -655,6 +662,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 ..
 	Now, if you run the script, 
+
 Αν τρέξετε το σενάριο τώρα,
 
 .. sourcecode:: bash
@@ -667,6 +675,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	message you will have to enable the ``FirstScriptExample`` logging component
 	with a level greater than or equal to ``NS_LOG_INFO``.  If you just want to 
 	see this particular level of logging, you can enable it by,
+
 δεν θα δείτε το νέο μήνυμα, αφού το σχετικό στοιχείο καταγραφής 
 (``FirstScriptExample``) δεν έχει ενεργοποιηθεί. Για να δείτε το μήνυμά σας 
 θα πρέπει να το ενεργοποιήσετε με επίπεδο καταγραφής μεγαλύτερο ή ίσο με 
@@ -680,6 +689,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	If you now run the script you will see your new "Creating Topology" log
 	message,
+
 Αν τρέξετε τώρα το σενάριο, θα δείτε το μήνυμα καταγραφής "Creating Topology",
 
 .. sourcecode:: bash
@@ -704,13 +714,15 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	Overriding Default Attributes
 	+++++++++++++++++++++++++++++
-Παρακάμπτοντας Προκαθορισμένα Ορίσματα
 
+Παρακάμπτοντας Προκαθορισμένα Ορίσματα
+++++++++++++++++++++++++++++++++++++++
 ..
 	Another way you can change how |ns3| scripts behave without editing
 	and building is via *command line arguments.*  We provide a mechanism to 
 	parse command line arguments and automatically set local and global variables
 	based on those arguments.
+
 Ένας άλλος τρόπος που μπορείτε να αλλάξετε τον τρόπο που τα |ns3| σενάρια 
 συμπεριφέρονται, χωρίς να χρειάζεται επεξεργασία και οικοδόμηση, είναι μέσω 
 *ορισμάτων γραμμής εντολών*. Παρέχουμε ένα μηχανισμό που να αναλύσει τα ορίσματα 
@@ -721,6 +733,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	The first step in using the command line argument system is to declare the
 	command line parser.  This is done quite simply (in your main program) as
 	in the following code,
+
 Το πρώτο βήμα για τη χρήση του συστήματος ορισμάτων γραμμής εντολών, είναι 
 να δηλώσουμε τον αναλυτή γραμμής εντολών. Αυτό γίνεται πολύ απλά (στο κύριο 
 πρόγραμμα σας) όπως στον ακόλουθο κώδικα,
@@ -744,6 +757,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	ahead and add that two lines of code to the ``scratch/myfirst.cc`` script at
 	the start of ``main``.  Go ahead and build the script and run it, but ask 
 	the script for help in the following way,
+
 Αυτό το απλό απόσπασμα δύο γραμμών είναι πραγματικά πολύ χρήσιμο από μόνο του.
 Ανοίγει την πόρτα για τα συστήματα καθολικών μεταβλητών και ``Attributes`` του 
 |ns3|. Προσθέστε αυτές τις δύο γραμμές κώδικα στο σενάριο ``scratch/first.cc`` 
@@ -759,11 +773,13 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	line argument ``--PrintHelp`` to the script.  The quotes are required to 
 	sort out which program gets which argument.  The command line parser will
 	now see the ``--PrintHelp`` argument and respond with,
+
 Αυτό θα ζητήσει από τον Waf να τρέξει το σενάριο ``scratch/myfirst`` και 
 να περάσει το όρισμα γραμμής εντολών ``--PrintHelp`` στο σενάριο. Τα εισαγωγικά
 απαιτούνται για να ορίσουμε ποιο από τα προγράμματα παίρνει το κάθε όρισμα. Ο 
 αναλυτής της γραμμής εντολών θα δει το όρισμα ``--PrintHelp`` και θα αποκριθεί 
 με,
+
 .. sourcecode:: bash
 
   Waf: Entering directory `/home/craigdo/repos/ns-3-allinone/ns-3-dev/build'
@@ -782,6 +798,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	Let's focus on the ``--PrintAttributes`` option.  We have already hinted
 	at the |ns3| ``Attribute`` system while walking through the 
 	``first.cc`` script.  We looked at the following lines of code,
+
 Ας επικεντρωθούμε στην επιλογή ``--PrintAttributes``. Έχουμε ήδη υπαινιχθεί 
 για το σύστημα ``Ορισμάτων`` |ns3| ενώ ακολουθούσαμε βήμα-βήμα το σενάριο
 ``first.cc``. Αν κοιτάξουμε τις ακόλουθες γραμμές κώδικα,
@@ -798,12 +815,14 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	listing says that we should provide a ``TypeId``.  This corresponds to the
 	class name of the class to which the ``Attributes`` belong.  In this case it
 	will be ``ns3::PointToPointNetDevice``.  Let's go ahead and type in,
+
 παρατηρούμε ότι το ``DataRate`` είναι στην πραγματικότητα ένα ``Όρισμα`` 
 του `PointToPointNetDevice``. Ας χρησιμοποιήσουμε τον αναλυτή ορισμάτων 
 γραμμής εντολών για να παρατήσουμε τα ``Attributes`` του PointToPointNetDevice. 
 Η λίστα βοήθειας αναφέρει ότι πρέπει να παρέχουμε ένα ``TypeId``. Αυτό 
 αντιστοιχεί στο όνομα της κλάσης στην οποία ανήκουν τα ``Attributes``. Σε 
 αυτή την περίπτωση θα είναι ``ns3::PointToPointNetDevice``. Αν το τυπώσουμε,
+
 .. sourcecode:: bash
 
   $ ./waf --run "scratch/myfirst --PrintAttributes=ns3::PointToPointNetDevice"
@@ -811,6 +830,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	The system will print out all of the ``Attributes`` of this kind of net device.
 	Among the ``Attributes`` you will see listed is,
+
 Το σύστημα θα τυπώσει όλα τα ``Attributes`` αυτού του είδους συσκευών δικτύου.
 Μεταξύ των ``Attributes`` θα δείτε είναι και το ακόλουθο,
 	
@@ -829,6 +849,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 	Your script should now just declare the ``PointToPointHelper`` and not do 
 	any ``set`` operations as in the following example,
+
 Αυτή είναι η προεπιλεγμένη τιμή που θα χρησιμοποιηθεί όταν δημιουργείται 
 στο σύστημα μία ``PointToPointNetDevice``. Εμείς παρακάμψαμε αυτή την 
 προεπιλογή με την ρύθμιση ``Attribute`` στο ``PointToPointHelper``. Ας 
@@ -857,6 +878,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	Go ahead and build the new script with Waf (``./waf``) and let's go back 
 	and enable some logging from the UDP echo server application and turn on the 
 	time prefix.
+
 Ας οικοδομήσουμε το νέο σενάριο με Waf (``./waf``) επιτρέποντας κάποια 
 καταγραφή από την εφαρμογή διακομιστή UDP echo και ενεργοποιώντας το πρόθεμα
 ώρας.
@@ -867,6 +889,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 ..
 	If you run the script, you should now see the following output,
+
 Αν τρέξουμε το σενάριο, θα πρέπει να δούμε την ακόλουθη έξοδο,
 	
 .. sourcecode:: bash
@@ -887,6 +910,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	Recall that the last time we looked at the simulation time at which the packet
 	was received by the echo server, it was at 2.00369 seconds.
+
 Θυμηθείτε ότι την τελευταία φορα που είδαμε το χρόνο εξομοίωσης όπου το
 πακέτο παρελήφθηκε από τον διακομιστή, ήταν στα 2.00369 δευτερόλεπτα.
 	
@@ -902,6 +926,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	If we were to provide a new ``DataRate`` using the command line, we could 
 	speed our simulation up again.  We do this in the following way, according to
 	the formula implied by the help item:
+
 Τώρα λαμβάνει το πακέτο στα 2.25732 δευτερόλεπτα. Η αλαγή αυτή οφείλεται στη 
 μείωση του ρυθμού μετάδοσης του ``PointToPointNetDevice`` από τα 5 megabits ανά 
 δευτερόλεπτο στην προκαθορισμένη τιμή των 32768 bits ανά δευτερόλεπτο.
@@ -921,6 +946,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	the speed-of-light delay of the channel as well.  We can ask the command line 
 	system to print out the ``Attributes`` of the channel just like we did for
 	the net device:
+
 Αυτό θα ορίσει την προκαθορισμένη τιμή του ``DataRate`` ``Attribute`` πάλι σε 
 5 megabits ανά δευτερόλεπτο. Εκπλαγήκατε από το αποτέλεσμα; Φαίνεται ότι για 
 να επαναφέρουμε την αρχική συμπεριφορά του σεναρίου, θα πρέπει να ρυθμίσουμε 
@@ -935,6 +961,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	We discover the ``Delay`` ``Attribute`` of the channel is set in the following
 	way:
+
 Ανακαλύπτουμε ότι το ``Delay`` ``Attribute`` του καναλιού είναι ενεργοποιημένο 
 με τον ακόλουθο τρόπο:
 	
@@ -945,6 +972,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 ..
 	We can then set both of these default values through the command line system,
+
 Μπορούμε λοιπόν να θέσουμε και τις δύο προκαθορισμένες τιμές μέσω του 
 συστήματος γραμμής εντολών,
 	
@@ -957,6 +985,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	in which case we recover the timing we had when we explicitly set the
 	``DataRate`` and ``Delay`` in the script:
+
 όπου επαναφέρουμε τον χρονισμό που είχαμε όταν θέσαμε το ``DataRate`` και το
 ``Delay`` στο σενάριο:
 	
@@ -989,6 +1018,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	you should be able to control the number of packets echoed from the command 
 	line.  Since we're nice folks, we'll tell you that your command line should 
 	end up looking something like,
+
 Σημειώστε ότι το πακέτο λαμβάνεται και πάλι από το διακομιστή στα 2.00369 
 δευτερόλεπτα. Στην ουσία θα μπορούσαμε να ορίσουμε με αυτόν τον τρόπο οποιαδήποτε 
 από τα ``Attributes`` τα οποία χρησιμοποιούνται στο σενάριο. Ειδικότερα, θα μπορούσαμε
@@ -1027,6 +1057,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 Συνδέοντας τις δικές σας τιμές
 ++++++++++++++++++++++++++++++
+
 Μπορείτε να προσθέσετε τις δικές σας συνδέσεις στο σύστημα γραμμής εντολών. 
 Αυτό γίνεται με έναν απλό τρόπο, απλά χρησιμοποιώντας τη μέθοδο ``AddValue``
 στον αναλυτή γραμμής εντολών.
@@ -1058,6 +1089,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	Scroll down to the point in the script where we set the ``MaxPackets``
 	``Attribute`` and change it so that it is set to the variable ``nPackets``
 	instead of the constant ``1`` as is shown below.
+
 Κυλήστε το σενάριο προς τα κάτω μέχρι το σημείο όπου θέτουμε το όρισμα 
 ``MaxPackets`` και αλλάξτε το έτσι ώστε να δείχνει στη μεταβλητή ``nPackets``
 αντί να παίρνει την τιμή 1 όπως δείχνουμε παρακάτω,
@@ -1071,6 +1103,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	should see your new ``User Argument`` listed in the help display.
 
 	Try,
+
 Τώρα αν τρέξετε το σενάριο και παρέχετε το όρισμα ``--PrintHelp``, θα 
 μπορείτε να δείτε στην οθόνη βοήθειας το νέο σας ``User Argument``.
 
@@ -1095,6 +1128,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 ..
 	If you want to specify the number of packets to echo, you can now do so by
 	setting the ``--nPackets`` argument in the command line,
+
 Αν θέλετε να καθορίσετε τον αριθμό των πακέτων που αντανακλώνται, μπορείτε 
 να θέσετε το όρισμα ``--nPackets`` στην γραμμή εντολών,
 	
@@ -1104,6 +1138,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 ..
 	You should now see
+
 Θα πρέπει να εμφανίζεται τώρα
 	
 .. sourcecode:: bash
@@ -1134,6 +1169,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	they will automatically be available for setting by your users through the
 	command line system.  If you are a script author, you can add new variables to 
 	your scripts and hook them into the command line system quite painlessly.
+
 Έχετε αντανακλάσει τώρα δύο πακέτα. Φαίνεται ιδιαίτερα εύκολο, έτσι δεν είναι;
 
 Αν είστε ένας χρήστης |ns3| λοιπόν, μπορείτε να χρησιμοποιείτε το σύστημα 
@@ -1145,8 +1181,6 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 σενάριά σας και να τις συνδέετε στο σύστημα γραμμής εντολών χωρίς ιδιαίτερο 
 κόπο.
 
-.. _UsingTracingSystem:
-
 ..
 	Using the Tracing System
 	************************
@@ -1155,6 +1189,9 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	the |ns3| tracing system is a primary mechanism for this.  Since 
 	|ns3| is a C++ program, standard facilities for generating output 
 	from C++ programs could be used:  
+
+.. _UsingTracingSystem:
+
 Χρησιμοποιώντας το Σύστημα Ιχνηλασίας
 *************************************
 
@@ -1191,6 +1228,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	modifying the core of the simulator;
 	* Advanced users can modify the simulator core to add new tracing sources
 	and sinks.
+
 Θα μπορούσατε ακόμη και να χρησιμοποιήσετε τη μονάδα καταγραφής για να 
 προσθέσετε κάποια δομή στη λύση σας. Υπάρχουν πολλά γνωστά προβλήματα που 
 δημιουργούνται από τέτοιες προσεγγίσεις και έτσι παρέχουμε ένα υποσύστημα 
@@ -1199,15 +1237,16 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 
 Οι βασικοί στόχοι του συστήματος ανίχνευσης του |ns3| είναι:
 
-* Για τα βασικά του καθήκοντα, το σύστημα ανίχνευσης θα πρέπει να επιτρέπει 
-στο χρήστη να παράγει τυποποιημένη ιχνηλασία για δημοφιλείς πηγές ιχνηλασίας, 
-και να προσαρμόζει ποια αντικείμενα δημιουργούν την ιχνηλασία;
-* Οι μέσοι χρήστες θα πρέπει να είναι σε θέση να επεκτείνουν το σύστημα 
-ιχνηλασίας ώστε να τροποποιούν τη μορφή εξόδου που παράγεται, ή να εισάγουν 
-νέες πηγές ιχνηλασίας, χωρίς να αλλάζουν τον πυρήνα του προσομοιωτή;
-* Οι προχωρημένοι χρήστες μπορούν να τροποποιήσουν τον πυρήνα προσομοιωτή 
-ώστε να προσθέτουν νέες πηγές και καταβόθρες ιχνηλασίας. 
-	
+* 	Για τα βασικά του καθήκοντα, το σύστημα ανίχνευσης θα πρέπει να επιτρέπει
+	στο χρήστη να παράγει τυποποιημένη ιχνηλασία για δημοφιλείς πηγές ιχνηλασίας,
+	και να προσαρμόζει ποια αντικείμενα δημιουργούν την ιχνηλασία;
+*	Οι μέσοι χρήστες θα πρέπει να είναι σε θέση να επεκτείνουν το σύστημα
+	ιχνηλασίας ώστε να τροποποιούν τη μορφή εξόδου που παράγεται, ή να εισάγουν
+	νέες πηγές ιχνηλασίας, χωρίς να αλλάζουν τον πυρήνα του προσομοιωτή;
+*	Οι προχωρημένοι χρήστες μπορούν να τροποποιήσουν τον πυρήνα προσομοιωτή
+	ώστε να προσθέτουν νέες πηγές και καταβόθρες ιχνηλασίας. 
+
+
 ..
 	The |ns3| tracing system is built on the concepts of independent 
 	tracing sources and tracing sinks, and a uniform mechanism for connecting
@@ -1234,6 +1273,7 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 	show how they may be customized with little user effort.  See the ns-3 manual
 	or how-to sections for information on advanced tracing configuration including
 	extending the tracing namespace and creating new tracing sources.
+
 Το σύστημα ιχνηλασίας |ns3| είναι χτισμένο στις έννοιες των ανεξάρτητων πηγών 
 και καταβοθρών ιχνηλασίας, και ενός ενιαίου μηχανισμού για τη σύνδεση πηγών σε 
 καταβόθρες. Οι πηγές ίχνους είναι οντότητες οι οποίες μπορούν να σηματοδοτήσουν 
@@ -1276,8 +1316,10 @@ ns-3 ή τις ενότητες how-to για πληροφορίες σχετι�
 	Let's just jump right in and add some ASCII tracing output to our 
 	``scratch/myfirst.cc`` script.  Right before the call to 
 	``Simulator::Run ()``, add the following lines of code:
+
 Ιχνηλασία Ascii
 +++++++++++++++
+
 Το |ns3| παρέχει λειτουργικότητα βοήθειας που συμπεριλαμβάνει το σύστημα 
 ιχνηλασίας χαμηλού επιπέδου για να σας βοηθήσει με τις λεπτομέρειες που 
 εμπλέκονται στη διαμόρφωση μερικών ευκατανόητων ιχνών πακέτων. Αν ενεργοποιήσετε 
@@ -1315,6 +1357,7 @@ ns-3 ή τις ενότητες how-to για πληροφορίες σχετι�
 	the popular trace points that log "+", "-", "d", and "r" events.
 
 	You can now build the script and run it from the command line:
+
 Όπως και σε πολλά άλλα ιδιώματα |ns3|, αυτός ο κώδικας χρησιμοποιεί ένα βοηθητικό 
 αντικείμενο για να δημιουργήσει ίχνη ASCII. Η δεύτερη γραμμή περιέχει δύο ένθετες 
 κλήσεις μεθόδων. Η "εσωτερική" μέθοδος, ``CreateFileStream()`` χρησιμοποιεί ένα 
@@ -1353,6 +1396,7 @@ ofstream αντικείμενα που σχετίζονται με την αντ
 	``--cwd`` option of Waf to specify this.  We have not done so, thus we 
 	need to change into the top level directory of our repo and take a look at 
 	the ASCII trace file ``myfirst.tr`` in your favorite editor.
+
 Ακριβώς όπως έχετε ήδη δει πολλές φορές, θα δείτε κάποια μηνύματα από το Waf και 
 στη συνέχεια το μήνυμα  "'build' finished successfully" με κάποιο αριθμό μηνυμάτων 
 από το πρόγραμμα εκτέλεσης.
@@ -1379,8 +1423,10 @@ ofstream αντικείμενα που σχετίζονται με την αντ
 	through which every packet destined for a point-to-point channel must pass.
 	Note that each line in the trace file begins with a lone character (has a 
 	space after it).  This character will have the following meaning:
+
 Αναλύοντας Ίχνη Ascii
 ~~~~~~~~~~~~~~~~~~~~~
+
 Στο αρχείο αυτό υπάρχει ένα μεγάλο πλήθος πληροφοριών σε μια αρκετά πυκνή μορφή, 
 αλλά το πρώτο πράγμα που μπορείτε να παρατηρήσετε είναι ότι υπάρχει ένας πλήθος 
 από ξεχωριστές γραμμές. Ίσως είναι δύσκολο να το δείτε ξεκάθαρα αν δεν διευρύνει 
@@ -1403,6 +1449,7 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 	Let's take a more detailed view of the first line in the trace file.  I'll 
 	break it down into sections (indented for clarity) with a reference
 	number on the left side:
+
 * ``+``: Μια λειτουργία τοποθέτησης στην ουρά συνέβη στην ουρά συσκευής;
 * ``-``: Μια λειτουργία απομάκρυνσης από την ουρά συνέβη στην ουρά συσκευής;
 * ``d``: Ένα πακέτο απορρίφθηκε, συνήθως επειδή η ουρά ήταν πλήρης;
@@ -1447,6 +1494,7 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 	devices that have been installed.  This list appears next in the namespace.
 	You can see that this trace event comes from ``DeviceList/0`` which is the 
 	zeroth device installed in the node. 
+
 Το πρώτο τμήμα αυτού του διευρυμένου γεγονότος ίχνους (αριθμός αναφοράς 0) είναι η
 λειτουργία. Έχουμε ένα χαρακτήρα ``+``, οπότε αυτό αντιστοιχεί σε μια λειτουργία
 *τοποθέτησης στην ουρά* στην ουρά εκπομπής. Το δεύτερο τμήμα (αναφορά 1) είναι ο 
@@ -1486,6 +1534,7 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 
 	The Third line in the trace file shows the packet being received by the net
 	device on the node with the echo server. I have reproduced that event below.
+
 Το επόμενο αλφαριθμητικό, ``$ns3::PointToPointNetDevice`` σας λέει τι είδους
 συσκευή είναι στη μηδενική θέση στη λίστα συσκευών για τον κόμβο μηδέν.
 Θυμηθείτε ότι η λειτουργία ``+`` στην αναφορά 00 σημαίνει ότι μια λειτουργία 
@@ -1531,6 +1580,7 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 	trace source (``/MacRx``).  It should be quite easy for you to follow the 
 	progress of the packet through the topology by looking at the rest of the 
 	traces in the file.
+
 Παρατηρήστε ότι η λειτουργία ανίχνευσης είναι πλέον ``r`` και ο χρόνος εξομοίωσης 
 έχει αυξηθεί σε 2.25732 δευτερόλεπτα. Αν έχετε ακολουθήσει τα βήματα του οδηγού 
 προσεκτικά, αυτό σημαίνει ότι έχετε αφήσει το ``DataRate`` των δικτυακών συσκευών
@@ -1555,6 +1605,7 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 	traces.  In this tutorial, we concentrate on viewing pcap traces with tcpdump.
 
 	The code used to enable pcap tracing is a one-liner.  
+
 Οι βοηθοί συσκευών |ns3| μπορούν επίσης να χρησιμοποιηθούν για τη δημιουργία 
 αρχείων ίχνους σε μορφή ``.pcap``. Το αρκτικόλεξο pcap αντιστοιχεί στη σύλληψη 
 πακέτων (packet capture) και συνήθως γράφεται με μικρά γράμματα. Είναι στην 
@@ -1587,6 +1638,7 @@ point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχε�
 
 	Once you have added the line of code to enable pcap tracing, you can run the
 	script in the usual way:
+
 Εισάγετε αυτή τη γραμμή του κώδικα μετά τον κωδικό ιχνηλασίας ASCII που μόλις 
 προσθέσατε στο ``scratch/myfirst.cc``. Παρατηρήστε ότι έχουμε περάσει μόνο το 
 αλφαριθμητικό "myfirst," και όχι "myfirst.pcap" ή κάτι παρόμοιο. Αυτό συμβαίνει 
@@ -1616,6 +1668,7 @@ pcap, μπορείτε να εκτελέσετε το σενάριο με το �
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	The easiest thing to do at this point will be to use ``tcpdump`` to look
 	at the ``pcap`` files.  
+
 Αν κοιτάξετε στον κατάλογο κορυφής της διανομής σας, θα πρέπει τώρα να βλέπετε
 τρία αρχεία καταγραφής: ``myfirst.tr`` είναι το αρχείο ίχνους ASCII που έχουμε
 εξετάσει προηγουμένως. Τα ``myfirst-0-0.pcap`` και ``myfirst-1-0.pcap`` είναι τα 
@@ -1655,6 +1708,7 @@ pcap, μπορείτε να εκτελέσετε το σενάριο με το �
 	trace files.  If you have Wireshark available, you can open each of the trace
 	files and display the contents as if you had captured the packets using a
 	*packet sniffer*.
+
 Μπορείτε να δείτε στο dump του αρχείου ``myfirst-0-0.pcap`` (η συσκευή του πελάτη) 
 ότι η το πακέτο αντανάκλασης στέλνεται στα 2 δευτερόλεπτα στην εξομοίωση. Αν κοιτάξετε
 το δεύτερο dump (``myfirst-1-0.pcap``) μπορείτε να δείτε ότι το πακέτο λαμβάνεται
@@ -1663,7 +1717,8 @@ pcap, μπορείτε να εκτελέσετε το σενάριο με το �
 πίσω στον πελάτη στο πρώτο dump σε 2.514648 δευτερόλεπτα.
 
 Ανάγνωση εξόδου με το Wireshark
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Εάν δεν είστε εξοικειωμένοι με το Wireshark, υπάρχει μια ιστοσελίδα από την οποία 
 μπορείτε να κατεβάσετε τα προγράμματα και την τεκμηρίωση: http://www.wireshark.org/.
 
