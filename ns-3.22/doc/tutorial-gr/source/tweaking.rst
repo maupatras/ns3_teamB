@@ -1,14 +1,23 @@
 .. include:: replace.txt
 .. highlight:: cpp
+..
 	========================================================================================
-	Translated for Greeks by the students of a seminar ns-3 in University of Patras.
-	
+	Current translation in Greek was done as a project of a ns3-related seminar organized by
+	Greek Free/Open Source Software Society (ellak.gr) at University of Patras in 2014. The
+	members of the translation team were:
+		* Costas Deltouzos (costas.deltouzos@gmail.com)
+		* Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
+		* Giorgos Kaffezas (kaffezas@ceid.upatras.gr)
 		
-	* Giorgos Kaffezas (kaffezas@ceid.upatras.gr);
-	* Costas Deltouzos (costas.deltouzos@gmail.com);
-	* Vasileios Dimitropoulos (vasdimitrop@upatras.gr).
+	The team that is responsible for keeping the translation up-to-date consists of:
+		# Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
+		# Giorgos Kaffezas (kaffezas@ceid.upatras.gr)
+		# Nikos Stathopoulos (stathopou@ceid.upatras.gr)
+		# Enea Tsanai (tsanai@ceid.upatras.gr)
+	----------------------------------------------------------------------------------------
+	> Current file was initially translated by Costas Deltouzos.
+	> Last update was performed at 2015-04-27 by Costas Deltouzos.
 	========================================================================================
-
 
 Μικρορυθμίσεις
 --------
@@ -103,7 +112,7 @@
 * LOG_INFO --- Καταγραφή πληροφοριακών μηνυμάτων για την πρόοδο του προγράμματος (σχετική μακροεντολή: NS_LOG_INFO);
 * LOG_FUNCTION --- Καταγραφή ενός μηνύματος περιγραφής για κάθε συνάρτηση που καλείται (δύο σχετικές μακροεντολές: NS_LOG_FUNCTION, που χρησιμοποιείται για member functions, και NS_LOG_FUNCTION_NOARGS, που χρησιμοποιείται για static functions);
 * LOG_LOGIC -- Καταγραφή μηνυμάτων που περιγράφουν τη λογική ροή μέσα σε μια συνάρτηση (σχετική μακροεντολή: NS_LOG_LOGIC);
-* LOG_ALL --- Καταγραφή όλων των παραπάνω (καμμία σχετική μακροεντολή).
+* LOG_ALL --- Καταγραφή όλων των παραπάνω (καμία σχετική μακροεντολή).
 
 ..
   For each LOG_TYPE there is also LOG_LEVEL_TYPE that, if used, enables
@@ -235,7 +244,7 @@ that knowledge to get some interesting information out of the
 
 Αυτή η γραμμή κώδικα ενεργοποιεί το επίπεδο καταγραφής ``LOG_LEVEL_INFO``. Όταν
 περάσουμε κάποια παράμετρο επιπέδου καταγραφής, στην ουσία ενεργοποιούμε το 
-συγκεκριμένο επίπεδο και όλα τα χαμηλότερά του. Στο συγκεκριμέο παράδειγμα, ενεργοποιούμε
+συγκεκριμένο επίπεδο και όλα τα χαμηλότερά του. Στο συγκεκριμένο παράδειγμα, ενεργοποιούμε
 τα ``NS_LOG_INFO``, ``NS_LOG_DEBUG``, ``NS_LOG_WARN`` και ``NS_LOG_ERROR``. Μπορούμε
 να αυξήσουμε το επίπεδο καταγραφής και να πάρουμε περισσότερες πληροφορίες χωρίς να 
 χρειαστεί να αλλάξουμε το σενάριο και να επαναμεταγλωτίσσουμε, αν θέσουμε τη μεταβλητή
@@ -303,7 +312,7 @@ that knowledge to get some interesting information out of the
 functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δεν υπάρχει η απαίτηση τα
 μοντέλα να υποστηρίζουν κάποια συγκεκριμένη λειτουργία καταγραφής. Η 
 απόφαση για το εύρος της πληροφορίας που καταγράφεται, επαφίεται στον 
-προγραμματιστή του μοντέλου. Σε περίπτωση εφαρμογής echo, ένα μεγάλο
+προγραμματιστή του μοντέλου. Σε περίπτωση εφαρμογής αντανάκλασης, ένα μεγάλο
 μέρος της εξόδου καταγραφής είναι διαθέσιμο.
 
 ..
@@ -520,8 +529,8 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 Μπορείτε να παρακολουθήσετε την πρόοδο της εξομοίωσης από την κλήση 
 ``ScheduleTransmit`` στον πελάτη, που καλεί την ``Send`` στην επανάκληση 
 ``HandleRead`` στην εφαρμογή του εξυπηρετητή. Σημειώστε ότι ο παρερχόμενος 
-χρόνος για την αποστολή του πακέτου στη σύνδεση είναι 3.69 sec. Μπορείτε να 
-δείτε επίσης το μήνυμα καταγραφής του εξυπηρετητή που αναφέρει ότι το πακέτο
+χρόνος για την αποστολή του πακέτου στη σύνδεση είναι 3.69 δευτερόλεπτα. Μπορείτε 
+να δείτε επίσης το μήνυμα καταγραφής του εξυπηρετητή που αναφέρει ότι το πακέτο
 έφυγε και στη συνέχεια, μετά από την καθυστέρηση του καναλιού, βλέπετε την
 άφιξη του πακέτου στον πελάτη μέσω της μεθόδου ``HandleRead``.
 
@@ -572,12 +581,12 @@ functions. Σημειώστε όμως ότι στο σύστημα |ns3|, δε�
 πρόβλημα και δεν έχω την παραμικρή ιδέα που βρίσκεται το λάθος. Μπορώ να 
 ακολουθήσω τη ροή της εκτέλεσης του κώδικα πολύ εύκολα χωρίς να χρειάζεται να 
 θέσω σημεία διακοπής (breakpoints) ή να εξετάσω βήμα-βήμα τον κώδικα στον
-debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγαπημένο μου επεξεργαστή κειμένου
+αποσφαλματωτή. Μπορώ απλά να ανοίξω την έξοδο στον αγαπημένο μου επεξεργαστή κειμένου
 και να ψάξω για πράγματα που περιμένω να συμβαίνουν, αλλά και για πράγματα που
 δεν περιμένω να συμβαίνουν. Όταν έχω μια γενική ιδέα του τι πάει λάθος, μεταβαίνω 
-σε έναν debugger για μια πλήρη εξέταση του προβλήματος. Αυτού του είδους η
+σε έναν αποσφαλματωτή για μια πλήρη εξέταση του προβλήματος. Αυτού του είδους η
 έξοδος μπορεί να είναι ιδιαίτερα χρήσιμη όταν το σενάριο κάνει κάτι τελείως
-απρόβλεπτο. Αν χρησιμοποιήσετε απλά τον debugger, μπορείτε να παραβλέψετε τελείως
+απρόβλεπτο. Αν χρησιμοποιήσετε απλά τον αποσφαλματωτή, μπορείτε να παραβλέψετε τελείως
 μια απρόβλεπτη συμπεριφορά. Με την καταγραφή μπορούμε να την εντοπίσουμε γρήγορα.
 
 ..
@@ -792,7 +801,7 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 παρατηρούμε ότι το ``DataRate`` είναι στην πραγματικότητα ένα ``Όρισμα`` 
 του `PointToPointNetDevice``. Ας χρησιμοποιήσουμε τον αναλυτή ορισμάτων 
 γραμμής εντολών για να παρατήσουμε τα ``Attributes`` του PointToPointNetDevice. 
-Η λίστα βοήθειας αναφέρει ότι πρέπει να παρέχουμε ένα `` TypeId``. Αυτό 
+Η λίστα βοήθειας αναφέρει ότι πρέπει να παρέχουμε ένα ``TypeId``. Αυτό 
 αντιστοιχεί στο όνομα της κλάσης στην οποία ανήκουν τα ``Attributes``. Σε 
 αυτή την περίπτωση θα είναι ``ns3::PointToPointNetDevice``. Αν το τυπώσουμε,
 .. sourcecode:: bash
@@ -916,7 +925,7 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 5 megabits ανά δευτερόλεπτο. Εκπλαγήκατε από το αποτέλεσμα; Φαίνεται ότι για 
 να επαναφέρουμε την αρχική συμπεριφορά του σεναρίου, θα πρέπει να ρυθμίσουμε 
 την καθυστέρηση του καναλιού στην ταχύτητα του φωτός. Μπορούμε να ζητήσουμε 
-από το σύστημα γραμμής εντολών να εκτυπώσει τα `` Attributes`` του καναλιού, 
+από το σύστημα γραμμής εντολών να εκτυπώσει τα ``Attributes`` του καναλιού, 
 ακριβώς όπως κάναμε για την δικτυακή συσκευή:
 	
 .. sourcecode:: bash
@@ -1018,8 +1027,8 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 
 Συνδέοντας τις δικές σας τιμές
 ++++++++++++++++++++++++++++++
-Μπορείτε να προσθέσε τις δικές σας συνδέσεις στο σύστημα γραμμής εντολών. 
-Αυτό γίνεται με έναν απλό τρόπο, απλά χρησιμοποιόντας τη μέθοδο ``AddValue``
+Μπορείτε να προσθέσετε τις δικές σας συνδέσεις στο σύστημα γραμμής εντολών. 
+Αυτό γίνεται με έναν απλό τρόπο, απλά χρησιμοποιώντας τη μέθοδο ``AddValue``
 στον αναλυτή γραμμής εντολών.
 
 Ας χρησιμοποιήσουμε αυτή τη λειτουργία για να ορίσουμε με έναν τελείως 
@@ -1125,7 +1134,7 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 	they will automatically be available for setting by your users through the
 	command line system.  If you are a script author, you can add new variables to 
 	your scripts and hook them into the command line system quite painlessly.
-Έχετε αντανακλήσει τώρα δύο πακέτα. Φαίνεται ιδιαίτερα εύκολο, έτσι δεν είναι;
+Έχετε αντανακλάσει τώρα δύο πακέτα. Φαίνεται ιδιαίτερα εύκολο, έτσι δεν είναι;
 
 Αν είστε ένας χρήστης |ns3| λοιπόν, μπορείτε να χρησιμοποιείτε το σύστημα 
 ορισμάτων γραμμής εντολών για να ελέγχετε τα ``Attributes`` και τις μεταβλητές 
@@ -1226,7 +1235,7 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 	or how-to sections for information on advanced tracing configuration including
 	extending the tracing namespace and creating new tracing sources.
 Το σύστημα ιχνηλασίας |ns3| είναι χτισμένο στις έννοιες των ανεξάρτητων πηγών 
-και καταβόθρων ιχνηλασίας, και ενός ενιαίου μηχανισμού για τη σύνδεση πηγών σε 
+και καταβοθρών ιχνηλασίας, και ενός ενιαίου μηχανισμού για τη σύνδεση πηγών σε 
 καταβόθρες. Οι πηγές ίχνους είναι οντότητες οι οποίες μπορούν να σηματοδοτήσουν 
 γεγονότα που συμβαίνουν σε μια εξομοίωση και παρέχουν πρόσβαση σε ενδιαφέροντα
 δεδομένα. Για παράδειγμα, μια πηγή ίχνους θα μπορούσε να υποδείξει πότε ένα πακέτο 
@@ -1242,7 +1251,7 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 παραδείγματος).
 
 Το σκεπτικό για αυτή την ρητή διαίρεση είναι να επιτρέψει στους χρήστες να 
-επισυνάπτουν νέους τύπους καταβόθρων στις υπάρχουσες πηγές ιχνηλασίας, χωρίς να 
+επισυνάπτουν νέους τύπους καταβοθρών στις υπάρχουσες πηγές ιχνηλασίας, χωρίς να 
 απαιτείται επεξεργασία και επαναμεταγλωτισμός του πυρήνα του εξομοιωτή. Έτσι, στο 
 παραπάνω παράδειγμα, ο χρήστης μπορεί με την επεξεργασία μόνο του σεναρίου του χρήστη 
 να καθορίσει μια νέα καταβόθρα ιχνηλασίας στο σενάριό του και να το επισυνάψει σε 
@@ -1251,7 +1260,7 @@ debugger. Μπορώ απλά να ανοίξω την έξοδο στον αγ�
 Σε αυτόν τον οδηγό, θα εξετάσουμε κάποιες προκαθορισμένες πηγές και καταβόθρες και
 θα δείξουμε πως μπορούν να προσαρμοστούν με μια μικρή προσπάθεια. Δείτε το εγχειρίδιο 
 ns-3 ή τις ενότητες how-to για πληροφορίες σχετικά με τη διαμόρφωση προηγμένης 
-ιχνηλασίας, συμπεριλαμβανομένων της επέκτασης του namespace ιχνηλασίας και της 
+ιχνηλασίας, συμπεριλαμβανομένων της επέκτασης του χώρου ονομάτων ιχνηλασίας και της 
 δημιουργίας νέων πηγών ιχνηλασίας.
 
 ..
@@ -1357,28 +1366,52 @@ ofstream αντικείμενα που σχετίζονται με την αντ
 κατάλογο του αποθέματος και να ανοίξουμε το αρχείο ίχνους ASCII ``myfirst.tr`` 
 με τον αγαπημένο σας επεξεργαστή κειμένου.
 
-Parsing Ascii Traces
-~~~~~~~~~~~~~~~~~~~~
-There's a lot of information there in a pretty dense form, but the first thing
-to notice is that there are a number of distinct lines in this file.  It may
-be difficult to see this clearly unless you widen your window considerably.
+..
+	Parsing Ascii Traces
+	~~~~~~~~~~~~~~~~~~~~
+	There's a lot of information there in a pretty dense form, but the first thing
+	to notice is that there are a number of distinct lines in this file.  It may
+	be difficult to see this clearly unless you widen your window considerably.
 
-Each line in the file corresponds to a *trace event*.  In this case
-we are tracing events on the *transmit queue* present in every 
-point-to-point net device in the simulation.  The transmit queue is a queue 
-through which every packet destined for a point-to-point channel must pass.
-Note that each line in the trace file begins with a lone character (has a 
-space after it).  This character will have the following meaning:
+	Each line in the file corresponds to a *trace event*.  In this case
+	we are tracing events on the *transmit queue* present in every 
+	point-to-point net device in the simulation.  The transmit queue is a queue 
+	through which every packet destined for a point-to-point channel must pass.
+	Note that each line in the trace file begins with a lone character (has a 
+	space after it).  This character will have the following meaning:
+Αναλύοντας Ίχνη Ascii
+~~~~~~~~~~~~~~~~~~~~~
+Στο αρχείο αυτό υπάρχει ένα μεγάλο πλήθος πληροφοριών σε μια αρκετά πυκνή μορφή, 
+αλλά το πρώτο πράγμα που μπορείτε να παρατηρήσετε είναι ότι υπάρχει ένας πλήθος 
+από ξεχωριστές γραμμές. Ίσως είναι δύσκολο να το δείτε ξεκάθαρα αν δεν διευρύνει 
+το μέγεθος του παραθύρου σας σημαντικά.
 
-* ``+``: An enqueue operation occurred on the device queue;
-* ``-``: A dequeue operation occurred on the device queue;
-* ``d``: A packet was dropped, typically because the queue was full;
-* ``r``: A packet was received by the net device.
+Κάθε γραμμή στο αρχείο αντιστοιχεί σε ένα *ίχνος γεγονότος*. Σε αυτήν την περίπτωση
+εντοπίζουμε τα γεγονότα ιχνηλασίας στην *ουρά εκπομπής* που βρίσκεται σε κάθε
+δικτυακή συσκευή point-to-point στην εξομοίωση. Η ουρά εκπομπής είναι μια ουρά
+μέσω της οποίας πρέπει να περάσει κάθε πακέτο που προορίζεται για ένα κανάλι 
+point-to-point. Σημειώστε ότι κάθε γραμμή στο αρχείο παρακολούθησης αρχίζει με ένα 
+μοναχικό χαρακτήρα (έχει έναν κενό χαρακτήρα αμέσως μετά). Αυτός ο χαρακτήρας 
+έχει την ακόλουθη έννοια:
+	
+..
+	* ``+``: An enqueue operation occurred on the device queue;
+	* ``-``: A dequeue operation occurred on the device queue;
+	* ``d``: A packet was dropped, typically because the queue was full;
+	* ``r``: A packet was received by the net device.
 
-Let's take a more detailed view of the first line in the trace file.  I'll 
-break it down into sections (indented for clarity) with a reference
-number on the left side:
+	Let's take a more detailed view of the first line in the trace file.  I'll 
+	break it down into sections (indented for clarity) with a reference
+	number on the left side:
+* ``+``: Μια λειτουργία τοποθέτησης στην ουρά συνέβη στην ουρά συσκευής;
+* ``-``: Μια λειτουργία απομάκρυνσης από την ουρά συνέβη στην ουρά συσκευής;
+* ``d``: Ένα πακέτο απορρίφθηκε, συνήθως επειδή η ουρά ήταν πλήρης;
+* ``r``: Ένα πακέτο παρελήφθη από την δικτυακή συσκευή.
 
+Ας ρίξουμε μια πιο λεπτομερή ματιά στην πρώτη γραμμή του αρχείου παρακολούθησης. 
+Θα την τμηματοποιήσουμε (τοποθετώντας εσοχές για λόγους σαφήνειας) με αριθμός 
+αναφοράς στην αριστερή πλευρά:
+	
 .. sourcecode:: text
   :linenos:
 
@@ -1394,44 +1427,83 @@ number on the left side:
         length: 1032 49153 > 9) 
         Payload (size=1024)
 
-The first section of this expanded trace event (reference number 0) is the 
-operation.  We have a ``+`` character, so this corresponds to an
-*enqueue* operation on the transmit queue.  The second section (reference 1)
-is the simulation time expressed in seconds.  You may recall that we asked the 
-``UdpEchoClientApplication`` to start sending packets at two seconds.  Here
-we see confirmation that this is, indeed, happening.
+..
+	The first section of this expanded trace event (reference number 0) is the 
+	operation.  We have a ``+`` character, so this corresponds to an
+	*enqueue* operation on the transmit queue.  The second section (reference 1)
+	is the simulation time expressed in seconds.  You may recall that we asked the 
+	``UdpEchoClientApplication`` to start sending packets at two seconds.  Here
+	we see confirmation that this is, indeed, happening.
 
-The next section of the example trace (reference 2) tell us which trace source
-originated this event (expressed in the tracing namespace).  You can think
-of the tracing namespace somewhat like you would a filesystem namespace.  The 
-root of the namespace is the ``NodeList``.  This corresponds to a container
-managed in the |ns3| core code that contains all of the nodes that are
-created in a script.  Just as a filesystem may have directories under the 
-root, we may have node numbers in the ``NodeList``.  The string 
-``/NodeList/0`` therefore refers to the zeroth node in the ``NodeList``
-which we typically think of as "node 0".  In each node there is a list of 
-devices that have been installed.  This list appears next in the namespace.
-You can see that this trace event comes from ``DeviceList/0`` which is the 
-zeroth device installed in the node. 
+	The next section of the example trace (reference 2) tell us which trace source
+	originated this event (expressed in the tracing namespace).  You can think
+	of the tracing namespace somewhat like you would a filesystem namespace.  The 
+	root of the namespace is the ``NodeList``.  This corresponds to a container
+	managed in the |ns3| core code that contains all of the nodes that are
+	created in a script.  Just as a filesystem may have directories under the 
+	root, we may have node numbers in the ``NodeList``.  The string 
+	``/NodeList/0`` therefore refers to the zeroth node in the ``NodeList``
+	which we typically think of as "node 0".  In each node there is a list of 
+	devices that have been installed.  This list appears next in the namespace.
+	You can see that this trace event comes from ``DeviceList/0`` which is the 
+	zeroth device installed in the node. 
+Το πρώτο τμήμα αυτού του διευρυμένου γεγονότος ίχνους (αριθμός αναφοράς 0) είναι η
+λειτουργία. Έχουμε ένα χαρακτήρα ``+``, οπότε αυτό αντιστοιχεί σε μια λειτουργία
+*τοποθέτησης στην ουρά* στην ουρά εκπομπής. Το δεύτερο τμήμα (αναφορά 1) είναι ο 
+χρόνος εξομοίωσης που εκφράζεται σε δευτερόλεπτα. Ίσως να θυμάστε ότι ζητήσαμε 
+από το ``UdpEchoClientApplication`` να ξεκινήσετε την αποστολή πακέτων στα δύο 
+δευτερόλεπτα. Εδώ βλέπουμε την επιβεβαίωση ότι αυτό πράγματι συμβαίνει.
 
-The next string, ``$ns3::PointToPointNetDevice`` tells you what kind of 
-device is in the zeroth position of the device list for node zero.
-Recall that the operation ``+`` found at reference 00 meant that an enqueue 
-operation happened on the transmit queue of the device.  This is reflected in 
-the final segments of the "trace path" which are ``TxQueue/Enqueue``.
+Το επόμενο τμήμα του ίχνους του παραδείγματος (αναφορά 2) μας δείχνει από ποια πηγή 
+ίχνους προήλθε αυτό το γεγονός (εκφράζεται στο χώρο ονομάτων εντοπισμού). Μπορείτε 
+να σκεφτείτε ότι ο χώρος ονομάτων του εντοπισμού είναι παρόμοιος με τον χώρο ονομάτων 
+αρχείων. Η ρίζα του χώρου ονομάτων είναι η ``NodeList``. Αυτό αντιστοιχεί σε ένα δοχείο
+διαχειρίζεται το | NS3 | κωδικός πυρήνα που περιέχει το σύνολο των κόμβων που είναι
+δημιουργήθηκε σε ένα σενάριο. Ακριβώς όπως ένα σύστημα αρχείων μπορεί να έχει καταλόγους κάτω από το
+ρίζα, μπορεί να έχουμε τους αριθμούς κόμβου στο ``NodeList``. Το κορδόνι
+`` / NodeList / 0`` αναφέρεται, επομένως, στον κόμβο μηδενικής στην ``NodeList``
+οποία συνήθως σκεφτόμαστε ως «κόμβος 0". Σε κάθε κόμβο υπάρχει μια λίστα
+συσκευές που έχουν εγκατασταθεί. Αυτή η λίστα εμφανίζεται δίπλα στο χώρο ονομάτων.
+Μπορείτε να δείτε ότι αυτό το γεγονός ίχνος προέρχεται από ``DeviceList/0`` η οποία είναι η
+συσκευή μηδενικής εγκατεστημένο στον κόμβο.
 
-The remaining sections in the trace should be fairly intuitive.  References 3-4
-indicate that the packet is encapsulated in the point-to-point protocol.  
-References 5-7 show that the packet has an IP version four header and has
-originated from IP address 10.1.1.1 and is destined for 10.1.1.2.  References
-8-9 show that this packet has a UDP header and, finally, reference 10 shows
-that the payload is the expected 1024 bytes.
+..
+	The next string, ``$ns3::PointToPointNetDevice`` tells you what kind of 
+	device is in the zeroth position of the device list for node zero.
+	Recall that the operation ``+`` found at reference 00 meant that an enqueue 
+	operation happened on the transmit queue of the device.  This is reflected in 
+	the final segments of the "trace path" which are ``TxQueue/Enqueue``.
 
-The next line in the trace file shows the same packet being dequeued from the
-transmit queue on the same node. 
+	The remaining sections in the trace should be fairly intuitive.  References 3-4
+	indicate that the packet is encapsulated in the point-to-point protocol.  
+	References 5-7 show that the packet has an IP version four header and has
+	originated from IP address 10.1.1.1 and is destined for 10.1.1.2.  References
+	8-9 show that this packet has a UDP header and, finally, reference 10 shows
+	that the payload is the expected 1024 bytes.
 
-The Third line in the trace file shows the packet being received by the net
-device on the node with the echo server. I have reproduced that event below.
+	The next line in the trace file shows the same packet being dequeued from the
+	transmit queue on the same node. 
+
+	The Third line in the trace file shows the packet being received by the net
+	device on the node with the echo server. I have reproduced that event below.
+Το επόμενο αλφαριθμητικό, ``$ns3::PointToPointNetDevice`` σας λέει τι είδους
+συσκευή είναι στη μηδενική θέση στη λίστα συσκευών για τον κόμβο μηδέν.
+Θυμηθείτε ότι η λειτουργία ``+`` στην αναφορά 00 σημαίνει ότι μια λειτουργία 
+τοποθέτησης στην ουρά συνέβη στην ουρά μεταδόσεως της συσκευής. Αυτό αντικατοπτρίζεται 
+στα τελικά τμήματα της "διαδρομής ίχνους" τα οποίο είναι ``TxQueue/Enqueue``.
+
+Τα υπόλοιπα τμήματα στο ίχνος πρέπει να είναι αρκετά έξυπνα. Οι αναφορές 3-4
+υποδεικνύουν ότι το πακέτο είναι εμφωλιασμένο στο πρωτόκολλο point-to-point.
+Οι αναφορές 5-7 δείχνουν ότι το πακέτο έχει μια επικεφαλίδα IPv4 και προήλθε από 
+τη διεύθυνση IP 10.1.1.1 και έχει προορισμό την 10.1.1.2. Οι αναφορές 8-9 δείχνουν 
+ότι αυτό το πακέτο έχει μια επικεφαλίδα UDP και, τέλος, η αναφορά 10 δείχνει
+ότι το ωφέλιμο φορτίο είναι τα αναμενόμενα 1024 bytes.
+
+Η επόμενη γραμμή στο αρχείο ίχνος δείχνει το ίδιο πακέτο που απομακρύνεται από την
+ουρά μετάδοσης στον ίδιο κόμβο.
+
+Η τρίτη γραμμή στο αρχείο ίχνος δείχνει το πακέτο που λήφθηκε από τη δικτυακή συσκευή
+μέσω της αντήχησης του εξυπηρετητή. Αναπαράγουμε αυτό το συμβάν παρακάτω.
 
 .. sourcecode:: text
   :linenos:
@@ -1446,63 +1518,113 @@ device on the node with the echo server. I have reproduced that event below.
         length: 1032 49153 > 9) 
         Payload (size=1024)
 
-Notice that the trace operation is now ``r`` and the simulation time has
-increased to 2.25732 seconds.  If you have been following the tutorial steps
-closely this means that you have left the ``DataRate`` of the net devices
-and the channel ``Delay`` set to their default values.  This time should 
-be familiar as you have seen it before in a previous section.
 
-The trace source namespace entry (reference 02) has changed to reflect that
-this event is coming from node 1 (``/NodeList/1``) and the packet reception
-trace source (``/MacRx``).  It should be quite easy for you to follow the 
-progress of the packet through the topology by looking at the rest of the 
-traces in the file.
+..
+	Notice that the trace operation is now ``r`` and the simulation time has
+	increased to 2.25732 seconds.  If you have been following the tutorial steps
+	closely this means that you have left the ``DataRate`` of the net devices	
+	and the channel ``Delay`` set to their default values.  This time should 
+	be familiar as you have seen it before in a previous section.
 
-PCAP Tracing
-++++++++++++
-The |ns3| device helpers can also be used to create trace files in the
-``.pcap`` format.  The acronym pcap (usually written in lower case) stands
-for packet capture, and is actually an API that includes the 
-definition of a ``.pcap`` file format.  The most popular program that can
-read and display this format is Wireshark (formerly called Ethereal).
-However, there are many traffic trace analyzers that use this packet format.
-We encourage users to exploit the many tools available for analyzing pcap
-traces.  In this tutorial, we concentrate on viewing pcap traces with tcpdump.
+	The trace source namespace entry (reference 02) has changed to reflect that
+	this event is coming from node 1 (``/NodeList/1``) and the packet reception
+	trace source (``/MacRx``).  It should be quite easy for you to follow the 
+	progress of the packet through the topology by looking at the rest of the 
+	traces in the file.
+Παρατηρήστε ότι η λειτουργία ανίχνευσης είναι πλέον ``r`` και ο χρόνος εξομοίωσης 
+έχει αυξηθεί σε 2.25732 δευτερόλεπτα. Αν έχετε ακολουθήσει τα βήματα του οδηγού 
+προσεκτικά, αυτό σημαίνει ότι έχετε αφήσει το ``DataRate`` των δικτυακών συσκευών
+και το κανάλι ``Delay`` στις προεπιλεγμένες τιμές τους. Αυτή τη φορά θα πρέπει να
+είστε εξοικειωμένοι μια που το έχετε ξαναδεί σε προηγούμενη ενότητα.
 
-The code used to enable pcap tracing is a one-liner.  
+Η είσοδος χώρος ονομάτων της πηγής ίχνους (αναφορά 02) έχει αλλάξει για να 
+επισημάνει ότι το γεγονός έρχεται από τον κόμβο 1 (``/NodeList/1``) και η λήψη πακέτου
+της πηγή ίχνους (``/MacRx``). Θα πρέπει να είναι αρκετά εύκολο για σας να ακολουθήσετε
+την πρόοδο του πακέτου μέσω της τοπολογίας κοιτάζοντας τα υπόλοιπα ίχνη του αρχείου.
 
+..
+	PCAP Tracing
+	++++++++++++
+	The |ns3| device helpers can also be used to create trace files in the
+	``.pcap`` format.  The acronym pcap (usually written in lower case) stands
+	for packet capture, and is actually an API that includes the 
+	definition of a ``.pcap`` file format.  The most popular program that can
+	read and display this format is Wireshark (formerly called Ethereal).
+	However, there are many traffic trace analyzers that use this packet format.
+	We encourage users to exploit the many tools available for analyzing pcap
+	traces.  In this tutorial, we concentrate on viewing pcap traces with tcpdump.
+
+	The code used to enable pcap tracing is a one-liner.  
+Οι βοηθοί συσκευών |ns3| μπορούν επίσης να χρησιμοποιηθούν για τη δημιουργία 
+αρχείων ίχνους σε μορφή ``.pcap``. Το αρκτικόλεξο pcap αντιστοιχεί στη σύλληψη 
+πακέτων (packet capture) και συνήθως γράφεται με μικρά γράμματα. Είναι στην 
+πραγματικότητα μια διεπαφή προγράμματος που περιλαμβάνει τον ορισμό του είδους 
+αρχείου ``.pcap``. Το πιο δημοφιλές πρόγραμμα που μπορεί να εμφανίσει αυτό το είδος 
+αρχείου είναι το Wireshark (παλαιότερα ονομαζόταν Ethereal). Ωστόσο, υπάρχουν πολλοί 
+αναλυτές ίχνους κίνησης που χρησιμοποιούν αυτή τη μορφή πακέτων. Ενθαρρύνουμε τους 
+χρήστες να εκμεταλλευτούν τα πολλά διαθέσιμα εργαλεία για την ανάλυση ιχνών pcap. 
+Σε αυτόν τον οδηγό, θα επικεντρωθούμε στην προβολή ιχνών pcap με το tcpdump.
+
+Ο κωδικός που χρησιμοποιούμε για να ενεργοποιήσουμε την ιχνηλασία pcap είναι 
+μιας γραμμής.
+	
 ::
 
   pointToPoint.EnablePcapAll ("myfirst");
 
-Go ahead and insert this line of code after the ASCII tracing code we just 
-added to ``scratch/myfirst.cc``.  Notice that we only passed the string
-"myfirst," and not "myfirst.pcap" or something similar.  This is because the 
-parameter is a prefix, not a complete file name.  The helper will actually 
-create a trace file for every point-to-point device in the simulation.  The 
-file names will be built using the prefix, the node number, the device number
-and a ".pcap" suffix.
+..
+	Go ahead and insert this line of code after the ASCII tracing code we just 
+	added to ``scratch/myfirst.cc``.  Notice that we only passed the string
+	"myfirst," and not "myfirst.pcap" or something similar.  This is because the 
+	parameter is a prefix, not a complete file name.  The helper will actually 
+	create a trace file for every point-to-point device in the simulation.  The 
+	file names will be built using the prefix, the node number, the device number
+	and a ".pcap" suffix.
 
-In our example script, we will eventually see files named "myfirst-0-0.pcap" 
-and "myfirst-1-0.pcap" which are the pcap traces for node 0-device 0 and 
-node 1-device 0, respectively.
+	In our example script, we will eventually see files named "myfirst-0-0.pcap" 
+	and "myfirst-1-0.pcap" which are the pcap traces for node 0-device 0 and 
+	node 1-device 0, respectively.
 
-Once you have added the line of code to enable pcap tracing, you can run the
-script in the usual way:
+	Once you have added the line of code to enable pcap tracing, you can run the
+	script in the usual way:
+Εισάγετε αυτή τη γραμμή του κώδικα μετά τον κωδικό ιχνηλασίας ASCII που μόλις 
+προσθέσατε στο ``scratch/myfirst.cc``. Παρατηρήστε ότι έχουμε περάσει μόνο το 
+αλφαριθμητικό "myfirst," και όχι "myfirst.pcap" ή κάτι παρόμοιο. Αυτό συμβαίνει 
+επειδή η παράμετρος είναι ένα πρόθεμα, δεν είναι ένα πλήρες όνομα του αρχείου. 
+Ο βοηθός στην ουσία θα δημιουργήσει ένα αρχείο ίχνους για κάθε συσκευή point-to-point 
+στην εξομοίωση. Τα ονόματα των αρχείων θα χτιστούν χρησιμοποιώντας το πρόθεμα, 
+τον αριθμό κόμβου, τον αριθμό της συσκευής και μια κατάληξη ".pcap".
+
+Στο σενάριο του παραδείγματός μας, θα δούμε τελικά αρχεία με όνομα "myfirst-0-0.pcap"
+και "myfirst-1-0.pcap" που είναι τα ίχνη pcap για τον κόμβο 0-συσκευή 0 και
+κόμβο 1-συσκευή 0, αντίστοιχα.
+
+Μόλις έχετε προσθέσει τη γραμμή του κώδικα για να ενεργοποιήσετε την ιχνηλασία 
+pcap, μπορείτε να εκτελέσετε το σενάριο με το συνήθη τρόπο:
 
 .. sourcecode:: bash
 
   $ ./waf --run scratch/myfirst
 
-If you look at the top level directory of your distribution, you should now
-see three log files:  ``myfirst.tr`` is the ASCII trace file we have 
-previously examined.  ``myfirst-0-0.pcap`` and ``myfirst-1-0.pcap``
-are the new pcap files we just generated.  
+..
+	If you look at the top level directory of your distribution, you should now
+	see three log files:  ``myfirst.tr`` is the ASCII trace file we have 
+	previously examined.  ``myfirst-0-0.pcap`` and ``myfirst-1-0.pcap``
+	are the new pcap files we just generated.  
 
-Reading output with tcpdump
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The easiest thing to do at this point will be to use ``tcpdump`` to look
-at the ``pcap`` files.  
+	Reading output with tcpdump
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	The easiest thing to do at this point will be to use ``tcpdump`` to look
+	at the ``pcap`` files.  
+Αν κοιτάξετε στον κατάλογο κορυφής της διανομής σας, θα πρέπει τώρα να βλέπετε
+τρία αρχεία καταγραφής: ``myfirst.tr`` είναι το αρχείο ίχνους ASCII που έχουμε
+εξετάσει προηγουμένως. Τα ``myfirst-0-0.pcap`` και ``myfirst-1-0.pcap`` είναι τα 
+νέα αρχεία pcap που μόλις δημιουργήσαμε.
+
+Ανάγνωση εξόδου με tcpdump
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Το πιο εύκολο βήμα που μπορούμε κάνουμε σε αυτό το σημείο θα είναι να χρησιμοποιήσουμε 
+το ``tcpdump`` να δούμε τα ``pcap`` αρχεία.
 
 .. sourcecode:: bash
 
@@ -1516,19 +1638,36 @@ at the ``pcap`` files.
   2.257324 IP 10.1.1.1.49153 > 10.1.1.2.9: UDP, length 1024
   2.257324 IP 10.1.1.2.9 > 10.1.1.1.49153: UDP, length 1024
 
-You can see in the dump of ``myfirst-0-0.pcap`` (the client device) that the 
-echo packet is sent at 2 seconds into the simulation.  If you look at the
-second dump (``myfirst-1-0.pcap``) you can see that packet being received
-at 2.257324 seconds.  You see the packet being echoed back at 2.257324 seconds
-in the second dump, and finally, you see the packet being received back at 
-the client in the first dump at 2.514648 seconds.
+..
+	You can see in the dump of ``myfirst-0-0.pcap`` (the client device) that the 
+	echo packet is sent at 2 seconds into the simulation.  If you look at the
+	second dump (``myfirst-1-0.pcap``) you can see that packet being received
+	at 2.257324 seconds.  You see the packet being echoed back at 2.257324 seconds
+	in the second dump, and finally, you see the packet being received back at 
+	the client in the first dump at 2.514648 seconds.
 
-Reading output with Wireshark
+	Reading output with Wireshark
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	If you are unfamiliar with Wireshark, there is a web site available from which
+	you can download programs and documentation:  http://www.wireshark.org/.
+
+	Wireshark is a graphical user interface which can be used for displaying these
+	trace files.  If you have Wireshark available, you can open each of the trace
+	files and display the contents as if you had captured the packets using a
+	*packet sniffer*.
+Μπορείτε να δείτε στο dump του αρχείου ``myfirst-0-0.pcap`` (η συσκευή του πελάτη) 
+ότι η το πακέτο αντανάκλασης στέλνεται στα 2 δευτερόλεπτα στην εξομοίωση. Αν κοιτάξετε
+το δεύτερο dump (``myfirst-1-0.pcap``) μπορείτε να δείτε ότι το πακέτο λαμβάνεται
+σε 2.257324 δευτερόλεπτα. Μπορείτε να δείτε το πακέτο που αντανακλάται πίσω σε 2.257324 
+δευτερόλεπτα στο δεύτερο dump, και, τέλος, μπορείτε να δείτε το πακέτο που παραλαμβάνεται 
+πίσω στον πελάτη στο πρώτο dump σε 2.514648 δευτερόλεπτα.
+
+Ανάγνωση εξόδου με το Wireshark
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-If you are unfamiliar with Wireshark, there is a web site available from which
-you can download programs and documentation:  http://www.wireshark.org/.
+Εάν δεν είστε εξοικειωμένοι με το Wireshark, υπάρχει μια ιστοσελίδα από την οποία 
+μπορείτε να κατεβάσετε τα προγράμματα και την τεκμηρίωση: http://www.wireshark.org/.
 
-Wireshark is a graphical user interface which can be used for displaying these
-trace files.  If you have Wireshark available, you can open each of the trace
-files and display the contents as if you had captured the packets using a
-*packet sniffer*.
+Το Wireshark είναι ένα γραφικό περιβάλλον χρήστη, το οποίο μπορεί να χρησιμοποιηθεί 
+για την εμφάνιση αυτών των αρχείων ίχνους. Εάν έχετε διαθέσιμο το Wireshark, μπορείτε 
+να ανοίξετε κάθε αρχείο ίχνους και να εμφανίσετε τα περιεχόμενά του σαν να είχαν συλληφθεί 
+τα πακέτα χρησιμοποιώντας έναν οσφρηστή πακέτων (*packet sniffer*).

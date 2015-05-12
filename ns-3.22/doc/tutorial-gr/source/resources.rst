@@ -3,19 +3,20 @@
 ..
 	========================================================================================
 	Current translation in Greek was done as a project of a ns3-related seminar organized by
-	Greek Free/Open Source Software Society (ellak.gr) at University of Patras in 2014.	The
+	Greek Free/Open Source Software Society (ellak.gr) at University of Patras in 2014. The
 	members of the translation team were:
 		* Costas Deltouzos (costas.deltouzos@gmail.com)
 		* Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
 		* Giorgos Kaffezas (kaffezas@ceid.upatras.gr)
 		
 	The team that is responsible for keeping the translation up-to-date consists of:
-		# [name_of_team_member_1]
-		# [name_of_team_member_2]
-		# [name_of_team_member_3]
+		# Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
+		# Giorgos Kaffezas (kaffezas@ceid.upatras.gr)
+		# Nikos Stathopoulos (stathopou@ceid.upatras.gr)
+		# Enea Tsanai (tsanai@ceid.upatras.gr)
 	----------------------------------------------------------------------------------------
-	> Current file was initially translated by G. Kaffezas.
-	> Last update was performed at 2015-04-26 by G. Kaffezas.
+	> Current file was initially translated by Giorgos Kaffezas.
+	> Last update was performed at 2015-04-28 by Giorgos Kaffezas.
 	========================================================================================
 
 

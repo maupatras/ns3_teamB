@@ -1,9 +1,28 @@
 .. include:: replace.txt
 
+..
+	========================================================================================
+	Current translation in Greek was done as a project of a ns3-related seminar organized by
+	Greek Free/Open Source Software Society (ellak.gr) at University of Patras in 2014. The
+	members of the translation team were:
+		* Costas Deltouzos (costas.deltouzos@gmail.com)
+		* Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
+		* Giorgos Kaffezas (kaffezas@ceid.upatras.gr)
+		
+	The team that is responsible for keeping the translation up-to-date consists of:
+		# Vasileios Dimitropoulos (vasdimitrop@upatras.gr)
+		# Giorgos Kaffezas (kaffezas@ceid.upatras.gr)
+		# Nikos Stathopoulos (stathopou@ceid.upatras.gr)
+		# Enea Tsanai (tsanai@ceid.upatras.gr)
+	----------------------------------------------------------------------------------------
+	> Current file was initially translated by Giorgos Kaffezas.
+	> Last update was performed at 2015-04-28 by Giorgos Kaffezas.
+	========================================================================================
+
 
 .. Conclusion
 
-Συμπέρασμα
+Κατακλείδα
 ----------
 
 .. Futures
@@ -15,7 +34,7 @@
 	This document is intended as a living document.  We hope and expect it to 
 	grow over time to cover more and more of the nuts and bolts of |ns3|.
 	
-Αυτό το έγγραφο προορίζεται ώστε να είναι ένα ζωντανό έγγραφο. Ελπίζουμε και περιμένουμε
+Αυτό το έγγραφο προορίζεται ώστε να είναι ένα «ζωντανό» έγγραφο. Ελπίζουμε και περιμένουμε
 ότι θα επεκταθεί με τον καιρό προκειμένου να καλύπτει όλο και περισσότερες πτυχές του |ns3|.
 
 ..
@@ -26,7 +45,7 @@
 
 Η συγγραφή κεφαλαίων του εγχειριδίου και του οδηγού χρήσης δεν είναι κάτι για το οποίο
 τρελαινόμαστε όλοι, αλλά είναι κάτι πολύ σημαντικό για το εγχείρημά μας. Αν είστε ειδικός
-σε κάποιον από αυτούς τους τομείς, παρακαλούμε να σκεφτείτε αν θέλετε να συνεισφέρετε στον
+σε κάποιον από αυτούς τους τομείς, παρακαλούμε σκεφτείτε εάν θέλετε να συνεισφέρετε στον
 |ns3| παρέχοντας ένα από αυτά τα κεφάλαια, ή όποιο άλλο κεφάλαιο μπορεί να θεωρείτε ότι είναι
 σημαντικό.
 
@@ -54,7 +73,7 @@
 * Το εγχειρίδιο του |ns3|
 * Την τεκμηρίωση για τη βιβλιοθήκη μοντέλων του |ns3|
 * Το |ns3| Doxygen (τεκμηρίωση του API)
-* Το |ns3| wiki
+* Το wiki του |ns3|
 
 .. 
 	-- The |ns3| development team.
