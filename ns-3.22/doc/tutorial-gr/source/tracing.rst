@@ -2920,12 +2920,18 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 για τη μεταφορά των δεδομένων. Εάν ορίσετε το ρυθμό δεδομένων ενός ``Application`` στον ίδιο ρυθμό μετάδοσης δεδομένων ως 
 υποκείμενο ``Channel`` θα υπερχειλίσει η μνήμης σας.
 
+..
 Trace Sinks
+
+Πηγές Ίχνους
 ~~~~~~~~~~~
 
+..
 The whole point of this exercise is to get trace callbacks from TCP
 indicating the congestion window has been updated.  The next piece of
-code implements the corresponding trace sink::
+code implements the corresponding trace sink
+
+Ο σκοπός αυτής της εργασίας είναι οι επανακλήσεις  από το TCP υποδεικνύοντας ότι το παράθυρο συμφόρησης έχει ενημερωθεί. Το επόμενο τμήμα κώδικα υλοποιεί την αντίστοιχη πηγή ίχνους::
 
   static void
   CwndChange (uint32_t oldCwnd, uint32_t newCwnd)
