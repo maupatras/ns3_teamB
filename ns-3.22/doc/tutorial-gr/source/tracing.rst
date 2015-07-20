@@ -2921,13 +2921,13 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 υποκείμενο ``Channel`` θα υπερχειλίσει η μνήμης σας.
 
 ..
-Trace Sinks
+  Trace Sinks
 
 Πηγές Ίχνους
 ~~~~~~~~~~~
 
 ..
-The whole point of this exercise is to get trace callbacks from TCP
+  The whole point of this exercise is to get trace callbacks from TCP
 indicating the congestion window has been updated.  The next piece of
 code implements the corresponding trace sink
 
