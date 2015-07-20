@@ -3014,17 +3014,24 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 
 Αυτό δημιουργεί δύο κόμβους με ένα από άκρο σε άκρο κανάλι μεταξύ τους, όπως φαίνεται στην εικόνα στην αρχή του αρχείου.
 
-The next few lines of code show something new.  If we trace a
-connection that behaves perfectly, we will end up with a monotonically
-increasing congestion window.  To see any interesting behavior, we
-really want to introduce link errors which will drop packets, cause
-duplicate ACKs and trigger the more interesting behaviors of the
-congestion window.
+..
+  The next few lines of code show something new.  If we trace a
+  connection that behaves perfectly, we will end up with a monotonically
+  increasing congestion window.  To see any interesting behavior, we
+  really want to introduce link errors which will drop packets, cause
+  duplicate ACKs and trigger the more interesting behaviors of the
+  congestion window.
 
-|ns3| provides ``ErrorModel`` objects which can be attached to
-``Channels``.  We are using the ``RateErrorModel`` which allows us to
-introduce errors
-into a ``Channel`` at a given *rate*. 
+Οι επόμενες γραμμές κώδικα δείχνουν κάτι νέο. Αν παρακολουθήσουμε μια σύνδεση που συμπεριφέρεται άρτια, θα καταλήξουμε με ένα μονοτονικά αύξων παράθυρο συμφόρησης. Για να δούμε κάποια ενδιαφέρουσα συμπεριφορά, θα πρέπει να εισάγουμε σφάλματα συνδέσμων που θα απορρίπτουν πακέτα, θα προκαλούν διπλά ACKs και θα ενεργοποιήσουν τις πιο ενδιαφέρουσες συμπεριφορές του παραθύρου συμφόρησης.
+
+..
+  |ns3| provides ``ErrorModel`` objects which can be attached to
+  ``Channels``.  We are using the ``RateErrorModel`` which allows us to
+  introduce errors
+  into a ``Channel`` at a given *rate*. 
+
+
+Ο |ns3| παρέχει αντικείμενα τύπου ``ErrorModel`` που μπορούν να συνδεθούν σε ``Channels``. Χρησιμοποιούμε το `` RateErrorModel`` το οποίο μας επιτρέπει να εισάγουμε σφάλματα σε ένα ``Channel`` για ένα δοσμένο *ρυθμό*.
 
 ::
 
