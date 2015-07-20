@@ -2958,19 +2958,25 @@ demonstrate this working.
     NS_LOG_UNCOND ("RxDrop at " << Simulator::Now ().GetSeconds ());
   }
 
-This trace sink will be connected to the "PhyRxDrop" trace source of
-the point-to-point NetDevice.  This trace source fires when a packet
-is dropped by the physical layer of a ``NetDevice``.  If you take a
-small detour to the source
-(``src/point-to-point/model/point-to-point-net-device.cc``) you will
-see that this trace source refers to
-``PointToPointNetDevice::m_phyRxDropTrace``.  If you then look in
-``src/point-to-point/model/point-to-point-net-device.h`` for this
-member variable, you will find that it is declared as a
-``TracedCallback<Ptr<const Packet> >``.  This should tell you that the
-callback target should be a function that returns void and takes a
-single parameter which is a ``Ptr<const Packet>`` (assuming we use
-``ConnectWithoutContext``) -- just what we have above.
+..
+  This trace sink will be connected to the "PhyRxDrop" trace source of
+  the point-to-point NetDevice.  This trace source fires when a packet
+  is dropped by the physical layer of a ``NetDevice``.  If you take a
+  small detour to the source
+  (``src/point-to-point/model/point-to-point-net-device.cc``) you will
+  see that this trace source refers to
+  ``PointToPointNetDevice::m_phyRxDropTrace``.  If you then look in
+  ``src/point-to-point/model/point-to-point-net-device.h`` for this
+  member variable, you will find that it is declared as a
+  ``TracedCallback<Ptr<const Packet> >``.  This should tell you that the
+  callback target should be a function that returns void and takes a
+  single parameter which is a ``Ptr<const Packet>`` (assuming we use
+  ``ConnectWithoutContext``) -- just what we have above.
+
+Αυτή η πηγή ίχνους θα πρέπει να συνδεθεί με τη "PhyRxDrop" πηγή ίχνους
+του από άκρο σε άκρο NetDevice. Αυτή η πηγή ίχνους πυροδοτείται  όταν ένα πακέτο
+απορρίπτεραι από το φυσικό στρώμα ενός `` NetDevice``. Εάν μεταβείται στο (`` src / point-to-point / μοντέλο / point-to-point-net-device.cc``), θα δείτε ότι αυτή η πηγή ίχνος αναφέρεται στο `` PointToPointNetDevice :: m_phyRxDropTrace``. Αν στη συνέχεια να αναζητήσετε στο `` src / point-to-point / μοντέλο / point-to-point-net-device.h`` για αυτή τη μεταβλητή μέλος, θα διαπιστώσετε ότι έχει δηλωθεί ως `` TracedCallback<Ptr<const Packet> >``. Αυτό σας δείχνει ‘ότι ο
+στόχος επανάκλησης θα πρέπει να είναι μια συνάρτηση που επιστρέφει κενό και παίρνει μια μοναδική παράμετρο η οποία είναι μια `` Ptr<const Packet> `` (υποθέτοντας ότι χρησιμοποιούμε `` ConnectWithoutContext``) - ακριβώς αυτό που έχουμε και παραπάνω.
 
 Main Program
 ~~~~~~~~~~~~
