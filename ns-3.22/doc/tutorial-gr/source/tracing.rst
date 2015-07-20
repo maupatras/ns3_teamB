@@ -2939,16 +2939,22 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
     NS_LOG_UNCOND (Simulator::Now ().GetSeconds () << "\t" << newCwnd);
   }
 
-This should be very familiar to you now, so we won't dwell on the
-details.  This function just logs the current simulation time and the
-new value of the congestion window every time it is changed.  You can
-probably imagine that you could load the resulting output into a
-graphics program (gnuplot or Excel) and immediately see a nice graph
-of the congestion window behavior over time.
+..
+  This should be very familiar to you now, so we won't dwell on the
+  details.  This function just logs the current simulation time and the
+  new value of the congestion window every time it is changed.  You can
+  probably imagine that you could load the resulting output into a
+  graphics program (gnuplot or Excel) and immediately see a nice graph
+  of the congestion window behavior over time.
 
-We added a new trace sink to show where packets are dropped.  We are
-going to add an error model to this code also, so we wanted to
-demonstrate this working.
+Αυτό θα πρέπει να σας φαίνεται αρκετά οικείο, οπότε δεν θα εμβαθύνουμε σε λεπτομέρειες. Η συνάρτηση αυτή απλά καταγράφει την τρέχουσα ώρα προσομοίωσης και τη νέα τιμή του παραθύρου συμφόρησης κάθε φορά που αυτή αλλάζει. Μπορείτε πιθανώς να φανταστείτε ότι θα μπορούσατε να φορτώσει τα αποτελέσματα που προκύπτουν σε ένα πρόγραμμα γραφικών (gnuplot ή Excel) και να δείτε αμέσως ένα ωραίο γράφημα της συμπεριφοράς του παραθύρου συμφόρησης σε σχέση με τον  χρόνο.
+
+..
+  We added a new trace sink to show where packets are dropped.  We are
+  going to add an error model to this code also, so we wanted to
+  demonstrate this working.
+
+Προσθέσαμε ένα νέο ίχνος νεροχύτη για να δείξουμε που απορρίπτονται πακέτα. Πρόκειται να προσθέσουμε ένα πρότυπο μοντέλο σφάλματος στον εν λόγω κώδικα, γι 'αυτό θα θέλαμε να το δούμε στη πράξη.
 
 ::
 
