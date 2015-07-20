@@ -2984,10 +2984,16 @@ cwnd αυτού του συνόλου σε |ns3| με τη χρήση του σ�
 απορρίπτεραι από το φυσικό στρώμα ενός `` NetDevice``. Εάν μεταβείται στο (``src/point-to-point/model/point-to-point-net-device.cc``), θα δείτε ότι αυτή η πηγή ίχνος αναφέρεται στο ``PointToPointNetDevice::m_phyRxDropTrace``. Αν στη συνέχεια να αναζητήσετε στο ``src/point-to-point/model/point-to-point-net-device.h`` για αυτή τη μεταβλητή μέλος, θα διαπιστώσετε ότι έχει δηλωθεί ως ``TracedCallback<Ptr<const Packet> >``. Αυτό σας δείχνει ‘ότι ο
 στόχος επανάκλησης θα πρέπει να είναι μια συνάρτηση που επιστρέφει κενό και παίρνει μια μοναδική παράμετρο η οποία είναι μια ``Ptr<const Packet>`` (υποθέτοντας ότι χρησιμοποιούμε ``ConnectWithoutContext``) - ακριβώς αυτό που έχουμε και παραπάνω.
 
-Main Program
+..
+  Main Program
+
+Κυρίως Πρόγραμμα
 ~~~~~~~~~~~~
 
-The following code should be very familiar to you by now::
+..
+  The following code should be very familiar to you by now
+
+Ο παρακάτω κώδικας θα πρέπει να σας είναι πολύ οικείος::
 
   int
   main (int argc, char *argv[])
@@ -3002,8 +3008,11 @@ The following code should be very familiar to you by now::
     NetDeviceContainer devices;
     devices = pointToPoint.Install (nodes);
 
-This creates two nodes with a point-to-point channel between them,
-just as shown in the illustration at the start of the file.
+..
+  This creates two nodes with a point-to-point channel between them,
+  just as shown in the illustration at the start of the file.
+
+Αυτό δημιουργεί δύο κόμβους με ένα από άκρο σε άκρο κανάλι μεταξύ τους, όπως φαίνεται στην εικόνα στην αρχή του αρχείου.
 
 The next few lines of code show something new.  If we trace a
 connection that behaves perfectly, we will end up with a monotonically
